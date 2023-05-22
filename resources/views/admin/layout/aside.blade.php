@@ -49,7 +49,7 @@
           </a>
         </li>
       </ul>
-    </li><!-- End Clients -->
+    </li><!-- End Providers -->
 
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('services') || !Route::is('services.show')) collapsed @endif" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
@@ -67,7 +67,7 @@
           </a>
         </li>
       </ul>
-    </li><!-- End Clients -->
+    </li><!-- End Services -->
 
     <li class="nav-heading">
       <hr />

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <section class="wrapper image-wrapper bg-image bg-overlay bg-overlay-light-600 text-white" data-image-src="{{ asset('assets/img/photos/bg14.png') }}">
     <div class="container pt-17 pb-20 pt-md-19 pb-md-21 text-center">

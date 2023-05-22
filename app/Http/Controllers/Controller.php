@@ -38,32 +38,7 @@ class Controller extends BaseController
     public function index()
     { 
            
-        $admin              = Admin::find(1);   
-        $section_init       = Sections::where('section',1)->first();
-        $section_about      = Sections::where('section',2)->first();
-        $section_adviser    = Sections::where('section',3)->first();
-        $seccion_schedule_meeting    = Sections::where('section',5)->first();
-        $providers         = Providers::get();
-        $services        = Services::get();
-
-        $last_event         = Events::withCount('comments')->with(['comments'])->where('status',1)->Orderby('created_at','desc')->first();
-        $events             = Events::withCount('comments')->with(['comments'])->where('status',1)->Orderby('created_at','desc')->limit(2)->skip(1)->get();
-
-        $benficts           = Sections::where('section',6)->first();
- 
-
-        return view('index', [ 
-            'admin' => $admin,
-            'section_init'=> $section_init,
-            'section_about' => $section_about,
-            'providers' => $providers,
-            'services' => $services,
-            'section_adviser' => $section_adviser,
-            'seccion_schedule_meeting' => $seccion_schedule_meeting,
-            'last_event' => $last_event,
-            'events' => $events,
-            'benficts' => $benficts
-        ]); 
+        return redirect('/admin');
        
     }
 

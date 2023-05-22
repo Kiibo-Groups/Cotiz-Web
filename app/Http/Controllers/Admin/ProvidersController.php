@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Providers;
+use App\Models\Services;
 
 use DB;
 use Auth;
@@ -18,7 +19,7 @@ class ProvidersController extends Controller
 
     public function index(){
 
-        $data = Providers::get();
+        $data = Providers::paginate(10);
 
         return view($this->folder.'providers.index', [ 
             'providers' => $data,
@@ -29,7 +30,15 @@ class ProvidersController extends Controller
 
     public function store(Request $request)
     {
-        try {
+            $request->validate([
+                'name'=>'required',
+                'address'=>'required',
+                'email'=>'required',
+                'phone'=>'required',
+                'country'=>'required',
+                'logo'=>'required'
+            ]);
+
             $input = $request->all();
             $providers_data = new Providers;
     
@@ -47,9 +56,7 @@ class ProvidersController extends Controller
             $providers_data->create($input);
             
             return redirect(env('admin').'/providers')->with('message', 'Proveedor agregado con éxito ...');
-        } catch (\Exception $th) {
-        return Redirect::to(env('admin').'/providers/add')->with('error', 'Ha ocurrido un problema al intentar crear el proveedor, '.$th->getMessage());
-        }
+        
     }
 
     public function show($id)
@@ -71,6 +78,10 @@ class ProvidersController extends Controller
     public function delete($id){
 
         $res = Providers::find($id);
+        $services = Services::where('provider_id',$id)->count();
+        if($services > 0) {
+            return redirect(env('admin').'/providers')->with('error','No puede eliminar el proveedor porque tiene servicios relacionados al mismo.');
+        }
  
 		@unlink("assets/img/logos/".$res->logo);
 		$res->delete();
@@ -81,6 +92,15 @@ class ProvidersController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'country'=>'required',
+        ]);
+
         $input = $request->all();
         $providers_data = Providers::find($request->get('id'));
 

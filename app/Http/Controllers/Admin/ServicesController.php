@@ -18,7 +18,7 @@ class ServicesController extends Controller
 
     public function index(){
 
-        $data = Services::with(['provider'])->get();
+        $data = Services::with(['provider'])->paginate(10);
 
         
 
@@ -31,7 +31,15 @@ class ServicesController extends Controller
 
     public function store(Request $request){
 
-        try {
+
+            $request->validate([
+                'provider_id'=>'required',
+                'type'=>'required',
+                'title'=>'required',
+                'description'=>'required',
+                'logo'=>'required'
+            ]);
+
             $input = $request->all();
             $services_data = new Services;
     
@@ -49,9 +57,6 @@ class ServicesController extends Controller
             $services_data->create($input);
             
             return redirect(env('admin').'/services')->with('message', 'Servicio agregado con éxito ...');
-        } catch (\Exception $th) {
-        return Redirect::to(env('admin').'/services/add')->with('error', 'Ha ocurrido un problema al intentar crear el servicio, '.$th->getMessage());
-        }
         
     }
 
@@ -80,6 +85,13 @@ class ServicesController extends Controller
     }
 
     public function update(Request $request, $id){
+
+        $request->validate([
+            'provider_id'=>'required',
+            'type'=>'required',
+            'title'=>'required',
+            'description'=>'required'
+        ]);
 
         $input = $request->all();
         $services_data = Services::find($request->get('id'));

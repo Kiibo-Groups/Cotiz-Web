@@ -28,7 +28,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return View($this->folder.'index',[
+        return View('auth.login2',[
 			'form_url' => Asset(env('admin').'/login')
 		]);
     }
@@ -47,7 +47,7 @@ class AdminController extends Controller
 
 		if (auth()->guard('admin')->attempt(['username' => $username, 'password' => $password]))
 		{
-			return Redirect::to(env('admin').'/dash')->with('message', 'Bienvenido(a) ! Estás conectado ahora.');
+			return Redirect::to(env('admin').'/providers')->with('message', 'Bienvenido(a) ! Estás conectado ahora.');
 		}
 		else
 		{

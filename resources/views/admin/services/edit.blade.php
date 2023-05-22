@@ -1,4 +1,4 @@
-@extends('layouts.app_profile')
+@extends('layouts.app_profile2')
 @section('title') Servicios @endsection
 @section('page_active') Editar Servicios @endsection 
 

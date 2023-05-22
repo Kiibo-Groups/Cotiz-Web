@@ -1,5 +1,5 @@
 
-<section class="section providers">
+<section class="container providers flexs justify-center items-center">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -18,8 +18,13 @@
                                 <div class="avatar-upload">
                                     <label for="url" class="form-label" style="margin: 0 25px;">Imagen <small>(medidas 450px * 301px)</small></label>
 
-                                    <div class="avatar-edit">                                                           
-                                        <input type='file' id="img"  @if(!$data->id) required="required" @endif name="logo" class="ec-image-upload" accept=".png, .jpg, .jpeg" />
+                                    <div class="avatar-edit">
+                                        @error('logo')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes subir una imagen
+                                          </div>
+                                        @enderror
+                                        <input type='file' style="display:none;" id="img" name="logo" class="ec-image-upload" accept=".png, .jpg, .jpeg" />
                                         <label for="img">
                                             <img src="<?php echo asset('profile/img/icons/edit.svg') ?>" class="svg_img header_svg" alt="edit" />
                                         </label>
@@ -42,32 +47,57 @@
                         <div class="ec-vendor-upload-detail">   
                             <div class="row g-3">
                                 <div class="col-md-8">
+                                    @error('name')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar un nombre
+                                        </div>
+                                    @enderror
                                     <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control slug-title"  id="name" name="name" @if($data->id) value="{{ $data->name }}"@endif>
+                                    <input type="text" class="form-input slug-title"  id="name" name="name" @if($data->id) value="{{ $data->name }}"@endif>
                                 </div>
                                 <div class="col-md-8">
+                                    @error('address')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar una direccion
+                                        </div>
+                                    @enderror
                                     <label for="address" class="form-label">Direccion</label>
-                                    <input type="text" class="form-control slug-title"  id="address" name="address" @if($data->id) value="{{ $data->address }}"@endif>
+                                    <textarea name="address" rows="4" cols="50" class="form-input">@if($data->id){{ $data->address }}@endif</textarea>
                                 </div>
                                 <div class="col-md-8">
+                                    @error('email')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar un correo electronico
+                                        </div>
+                                    @enderror
                                     <label for="email" class="form-label">Correo</label>
-                                    <input type="text" class="form-control slug-title"  id="email" name="email" @if($data->id) value="{{ $data->email }}"@endif>
+                                    <input type="text" class="form-input slug-title"  id="email" name="email" @if($data->id) value="{{ $data->email }}"@endif>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8">+
+                                    @error('phone')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar un telefono
+                                        </div>
+                                    @enderror
                                     <label for="phone" class="form-label">Telefono</label>
-                                    <input type="text" class="form-control slug-title"  id="phone" name="phone" @if($data->id) value="{{ $data->phone }}"@endif>
+                                    <input type="text" class="form-input slug-title"  id="phone" name="phone" @if($data->id) value="{{ $data->phone }}"@endif>
                                 </div> 
 
                                 <div class="col-md-8" style="margin-top:25px;">
+                                    @error('country')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar un País
+                                        </div>
+                                    @enderror
                                     <label class="form-label">Pais</label>
-                                    <select name="country" id="country" class="form-select" required="required">
+                                    <select name="country" id="country" class="form-input js-example-basic-single">
                                         <option value="MX">Mexico</option>
                                     </select>
                                 </div> 
                             </div>
 
                             <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
-                                <button type="submit" class="btn btn-primary mb-2 btn-pill">
+                                <button type="submit" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-full !h-12 rounded">
                                     @if(!$data->id)
                                     Agregar
                                     @else 
