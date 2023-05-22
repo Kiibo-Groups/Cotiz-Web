@@ -1,6 +1,6 @@
 @extends('layouts.app_profile2')
-@section('title') Proveedores @endsection
-@section('page_active') Listado de Proveedores @endsection 
+@section('title') Servicios @endsection
+@section('page_active') Listado de Servicios @endsection 
 
 <link href="{{ asset('assets2/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets2/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
@@ -106,10 +106,6 @@
 														</li>
 												</ul>
 												<ul>
-													<li>
-															<span class="text-slate-400">Teléfono</span>
-															<p class="text-lg font-medium">{{ $service->phone}}</p>
-													</li>
 													<li>
 															<span class="text-slate-400">Tipo</span>
 															<p class="text-lg font-medium">{{ Str::upper($service->type) }}</p>

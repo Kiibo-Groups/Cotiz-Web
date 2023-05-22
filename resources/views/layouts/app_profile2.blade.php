@@ -477,7 +477,7 @@
         <!-- End Navbar -->
 
         <!-- Start Hero -->
-        <section class="relative table w-full py-32 lg:py-36 bg-no-repeat bg-center" style="background-image: url({{asset('assets2/images/real/bg/01.jpg')}}">
+        <section class="relative table w-full py-32 lg:py-36 bg-no-repeat bg-center" style="background-image: url({{asset('assets2/images/bg-login.jpg')}});background-size:cover;">
             <div class="absolute inset-0 bg-black opacity-80"></div>
             <div class="container">
                 <div class="grid grid-cols-1 text-center mt-10">

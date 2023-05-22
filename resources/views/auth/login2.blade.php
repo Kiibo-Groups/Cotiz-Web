@@ -35,12 +35,12 @@
         </div>
         <!-- Loader End -->
 
-        <section class="md:h-screen py-36 flex items-cente  bg-no-repeat bg-center" style="background-image:url({{ asset('assets2/images/cta.jpg')}})">
+        <section class="md:h-screen py-36 flex items-cente  bg-no-repeat bg-center" style="background-image:url({{ asset('assets2/images/bg-login.jpg')}});background-size:cover;">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
             <div class="container">
                 <div class="flex justify-center">
                     <div class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
-                        <img src="{{ asset('assets2/images/logo-icon-64.png')}}" class="mx-auto" alt="">
+                        <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto" alt="">
                         <h5 class="my-6 text-xl font-semibold">Login</h5>
                         <form class="ltr:text-left rtl:text-right" method="POST" action="/admin/login">
                             @csrf
