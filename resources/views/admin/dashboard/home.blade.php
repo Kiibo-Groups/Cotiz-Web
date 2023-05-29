@@ -1,6 +1,6 @@
 @extends('layouts.app_profile')
 @section('title') Panel de administración @endsection
-@section('page_active') Dashboard @endsection 
+@section('page_active') Dashboard @endsection
 
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="row">
 
                     <!-- Sales Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-xxl-3 col-md-6">
                         <div class="card info-card sales-card">
                             <div class="card-body">
-                                <h5 class="card-title">Visitas <span>| hoy</span></h5>
+                                <h5 class="card-title">Solicitudes <span>| hoy</span></h5>
 
                                 <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -29,10 +29,10 @@
                     </div><!-- End Sales Card -->
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-xxl-3 col-md-6">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
-                                <h5 class="card-title">Registros <span>| Nuevos</span></h5>
+                                <h5 class="card-title">Servicios <span>| Nuevos</span></h5>
 
                                 <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -47,11 +47,11 @@
                     </div><!-- End Revenue Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-12">
+                    <div class="col-xxl-3 col-xl-12">
 
                         <div class="card info-card customers-card">
                             <div class="card-body">
-                                <h5 class="card-title">Eventos <span>| Registrados</span></h5>
+                                <h5 class="card-title">Clientes <span>| Registrados</span></h5>
 
                                 <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -67,10 +67,30 @@
 
                     </div><!-- End Customers Card -->
 
+                    <div class="col-xxl-3 col-xl-12">
+
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Provedores <span>| Registrados</span></h5>
+
+                                <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{$events}}</h6>
+                                </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- End Customers Card -->
+
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">
-    
+
 
                         <div class="card-body">
                             <h5 class="card-title">Reportes</h5>
@@ -82,15 +102,20 @@
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#reportsChart"), {
                                 series: [{
-                                    name: 'Visitas',
+                                    name: 'Solicitudes',
                                     data: [31, 40, 28, 51, 42, 82, 56],
                                 }, {
-                                    name: 'Regisros',
+                                    name: 'Servicios',
                                     data: [11, 32, 45, 32, 34, 52, 41]
                                 }, {
-                                    name: 'Eventos',
+                                    name: 'Clientes',
                                     data: [15, 11, 32, 18, 9, 24, 11]
-                                }],
+                                },
+                                {
+                                    name: 'Provedores',
+                                    data: [14, 35, 46, 37, 31, 53, 47]
+                                },
+                                ],
                                 chart: {
                                     height: 350,
                                     type: 'area',

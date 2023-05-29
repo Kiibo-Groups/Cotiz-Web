@@ -16,7 +16,7 @@
 					<form action="{{ url(env('admin'). '/services')}}" method="GET">
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" name="search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una solicitud" aria-label="Recipient's username" aria-describedby="button-addon2">
-							<button class="btn btn-outline-primary" type="submit" id="button-addon2">Button</button>
+							<button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
 						</div>
 					</form>
 				</div>

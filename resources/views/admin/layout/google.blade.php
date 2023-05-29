@@ -10,13 +10,13 @@
   <span id="place-id"></span><br>
   <span id="place-address"></span>
 </div>
- 
+
 <script>
 let lat = 31.326015; // Por defecto
 let lng = 75.576180; // Por defecto
 function initMap() {
   var map;
-  var marker; 
+  var marker;
   var input = document.getElementById('pac-input');
   var autocomplete = new google.maps.places.Autocomplete(input);
   var infowindow = new google.maps.InfoWindow();
@@ -27,7 +27,7 @@ function initMap() {
   var geocoder = new google.maps.Geocoder;
 
   if(name.length == 0){
-      
+
       navigator.geolocation.getCurrentPosition(
         (position) => {
             lat = position.coords.latitude;
@@ -40,7 +40,7 @@ function initMap() {
                   disableDefaultUI: true
                 }
             );
- 
+
             input.focus();
             autocomplete.bindTo('bounds', map);
 
@@ -85,7 +85,7 @@ function initMap() {
 
     marker = new google.maps.Marker({map: map});
     infowindow.open(map, marker);
-    marker.setVisible(true);  
+    marker.setVisible(true);
   }
 
   autocomplete.addListener('place_changed', function() {
@@ -110,13 +110,15 @@ function initMap() {
 
       marker.setVisible(true);
 
-      infowindowContent.children['place-address'].textContent = results[0].formatted_address; 
+      infowindowContent.children['place-address'].textContent = results[0].formatted_address;
 
       document.getElementById('lat').value = results[0].geometry.location.lat();
-      document.getElementById('lng').value = results[0].geometry.location.lng(); 
+      document.getElementById('lng').value = results[0].geometry.location.lng();
       infowindow.open(map, marker);
     });
   });
 }
 </script>
+@if(!empty($ApiKey_google))
 <script src="https://maps.googleapis.com/maps/api/js?key={{$ApiKey_google}}&libraries=places&callback=initMap"></script>
+@endif

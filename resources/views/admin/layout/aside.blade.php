@@ -18,14 +18,14 @@
             <i class="bi bi-circle"></i><span>Perfil</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="{{ Asset(env('admin').'/settings') }}" class="@if(Route::is('settings')) active @endif">
             <i class="bi bi-circle"></i><span>Configuraciones</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </li><!-- End Settings -->
-    
+
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
         <i class="bi bi-person-lines-fill"></i>
@@ -102,6 +102,6 @@
         </form>
       </a>
     </li><!-- End Profile Page Nav -->
- 
+
   </ul>
 </aside>

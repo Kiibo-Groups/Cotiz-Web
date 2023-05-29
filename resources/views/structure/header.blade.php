@@ -5,10 +5,9 @@
         <div class="navbar-brand w-100">
           <a href="{{url('./')}}">
             @if(Route::is('home'))
-            <img class="logo-dark" src="{{ asset('assets/img/logo-dark.png') }}" srcset="{{ asset('assets/img/logo-dark@2x.png 2x') }}" alt="" />
-            <img class="logo-light" src="{{ asset('assets/img/logo-light.png') }}" srcset="{{ asset('assets/img/logo-light@2x.png 2x') }}" alt="" />
+            <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
             @else
-            <img src="{{ asset('assets/img/logo-dark.png') }}" srcset="{{ asset('assets/img/logo-dark@2x.png 2x') }}" alt="" />
+            <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
             @endif
           </a>
         </div>

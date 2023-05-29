@@ -4,7 +4,7 @@
     <i class="bi bi-list toggle-sidebar-btn"></i>
 
     <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-      <img src="{{ asset('assets/img/logo-dark.png')}}" alt="">
+        <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
     </a>
 
   </div><!-- End Logo -->
@@ -16,7 +16,9 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="{{ asset('profile/img/'.Auth::user()->pic_profile) }}" alt="Profile" class="rounded-circle">
+            @if(Auth::user()->pic_profile)
+                <img src="{{ asset('profile/img/'.Auth::user()->pic_profile) }}" alt="Profile" class="rounded-circle">
+            @endif
           <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }} .<?php echo substr(Auth::user()->last_name,0,1) ?></span>
         </a><!-- End Profile Iamge Icon -->
 

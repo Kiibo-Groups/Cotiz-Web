@@ -46,7 +46,7 @@ class AdminController extends Controller
 
 		if (auth()->guard('admin')->attempt(['username' => $username, 'password' => $password]))
 		{
-			return Redirect::to(env('admin').'/providers')->with('message', 'Bienvenido(a) ! Estás conectado ahora.');
+			return Redirect::to(env('admin').'/dash')->with('message', 'Bienvenido(a) ! Estás conectado ahora.');
 		}
 		else
 		{
@@ -67,7 +67,6 @@ class AdminController extends Controller
 
         return view($this->folder.'dashboard.profile', [
             'data' => $data,
-            'ApiKey_google' => Settings::findOrFail(1)->ApiKey_google,
             'form_url'	=> Asset(env('admin').'/profile'),
         ]);
     }
