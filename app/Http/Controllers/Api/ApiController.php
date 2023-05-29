@@ -16,8 +16,6 @@ class ApiController extends Controller {
     public function GetEvents()
 	{
 		$evts = Events::orderBy('created_at','DESC')->get();
-
-
 		return response()->json(['data' => $evts]);
 	}
 
