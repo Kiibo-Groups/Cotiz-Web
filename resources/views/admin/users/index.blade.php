@@ -11,7 +11,7 @@
 					<a href="{{url(env('admin').'/users/add')}}" class="btn btn-primary"> Agrega Usuario</a>
 				</div>
 			</div>
-            @if(count($data)>1)
+            @if(count($data)>0)
 			<div class="col-12">
                 <div class="card card-default">
                     <div class="card-body">
