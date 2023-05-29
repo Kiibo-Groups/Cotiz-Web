@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
- 
+
 use App\Models\Admin;
 use App\Models\AppUsers;
 use App\Models\UserAddress;
@@ -24,10 +24,10 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  
-        return view($this->folder.'users.index', [ 
+    {
+        return view($this->folder.'users.index', [
             'data' => AppUsers::get()
-        ]); 
+        ]);
     }
 
     /**
@@ -51,20 +51,21 @@ class UsersController extends Controller
         try {
             $input = $request->except('password');
             $lims_appusers_data = new AppUsers;
-    
+
             if(isset($input['img']))
             {
                 // Agregamos el nuevo
-                $filename   = time().rand(111,699).'.' .$input['img']->getClientOriginalExtension(); 
-                $input['img']->move("profile/img/", $filename);   
-                $input['pic_profile'] = $filename;   
+                $path = env('APP_DEBUG') ? '' : 'public/';
+                $filename   = time().rand(111,699).'.' .$input['img']->getClientOriginalExtension();
+                $input['img']->move($path."assets/profile/img/", $filename);
+                $input['pic_profile'] = $filename;
             }
-    
+
             $input['password'] = Hash::make($request->get('password'));
             $input['shw_password'] = $request->get('password');
 
             $lims_appusers_data->create($input);
-            
+
             return redirect(env('admin').'/users')->with('message', 'Usuario agregado con éxito ...');
            } catch (\Exception $th) {
             return Redirect::to(env('admin').'/users/add')->with('error', 'Ha ocurrido un problema al intentar crear el elemento, '.$th->getMessage());
@@ -79,9 +80,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view($this->folder.'users.add', [ 
+        return view($this->folder.'users.add', [
             'data' => new AppUsers
-        ]); 
+        ]);
     }
 
     /**
@@ -92,10 +93,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view($this->folder.'users.edit', [ 
+        return view($this->folder.'users.edit', [
             'data' => AppUsers::find($id),
             'form_url' => Asset(env('admin').'/users/update')
-        ]); 
+        ]);
     }
 
     /**
@@ -113,16 +114,17 @@ class UsersController extends Controller
         if(isset($input['img']))
         {
             // Eliminamos la anterior
-            @unlink("public/profile/img/".$lims_users_data->pic_profile);
+            $path = env('APP_DEBUG') ? '' : 'public/';
+            @unlink($path."assets/profile/img/".$lims_users_data->pic_profile);
 
             // Agregamos el nuevo
-            $filename   = time().rand(111,699).'.' .$input['img']->getClientOriginalExtension(); 
-            $input['img']->move("public/profile/img/", $filename);   
-            $input['pic_profile'] = $filename;   
+            $filename   = time().rand(111,699).'.' .$input['img']->getClientOriginalExtension();
+            $input['img']->move($path."assets/profile/img/", $filename);
+            $input['pic_profile'] = $filename;
         }
 
         $lims_users_data->update($input);
-        
+
         return redirect(env('admin').'/users')->with('message', 'Usuario actualizado con éxito ...');
     }
 
@@ -135,10 +137,11 @@ class UsersController extends Controller
     public function delete($id)
     {
         $res = AppUsers::find($id);
- 
+
         // Eliminamos el logotipo
-		@unlink("public/profile/img/".$res->pic_profile);
-		 
+        $path = env('APP_DEBUG') ? '' : 'public/';
+		@unlink($path."assets/profile/img/".$res->pic_profile);
+
         // Eliminamos al usuario mismo
         $res->delete();
 
@@ -154,10 +157,10 @@ class UsersController extends Controller
     public function status($id)
     {
         $res = AppUsers::find($id);
- 
+
 		$res->status = ($res->status == 0) ? 1 : 0;
         $res->save();
-        
+
 		return redirect(env('admin').'/users')->with('message','Elemento eliminado con éxito.');
     }
 }

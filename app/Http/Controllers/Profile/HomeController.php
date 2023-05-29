@@ -88,8 +88,9 @@ class HomeController extends Controller
             // unlink("public/profile/img/banner/".$input['img']);
 
             // Agregamos el nuevo
+            $path = env('APP_DEBUG') ? '' : 'public/';
             $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move($path."assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
@@ -127,11 +128,12 @@ class HomeController extends Controller
         if(isset($input['logo']))
         {
             // Eliminamos la anterior
-            @unlink("assets/img/logos/".$services_data->logo);
+            $path = env('APP_DEBUG') ? '' : 'public/';
+            @unlink($path."assets/img/logos/".$services_data->logo);
 
             // Agregamos el nuevo
             $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move($path."assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
@@ -144,8 +146,8 @@ class HomeController extends Controller
     public function deleteService($id){
 
         $res = Services::find($id);
-
-		@unlink("public/assets/img/logos/".$res->logo);
+        $path = env('APP_DEBUG') ? '' : 'public/';
+		@unlink($path."assets/img/logos/".$res->logo);
 		$res->delete();
 
 		return redirect(env('user').'/services')->with('message','Servicio eliminado con éxito.');
@@ -320,14 +322,16 @@ class HomeController extends Controller
         //
         if ($image) {
             // Verificamos si ya tenia una imagen anterior
+            $path = env('APP_DEBUG') ? '' : 'public/';
             if ($lims_profile_data->pic_profile != NULL) {
-                @unlink('public/profile/img/'.$lims_profile_data->pic_profile);
+                @unlink($path.'assets/profile/img/'.$lims_profile_data->pic_profile);
             }
 
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/profile/img/', $imageName);
+
+            $image->move($path.'assets/profile/img/', $imageName);
             $input['pic_profile'] = $imageName;
         }
 

@@ -51,8 +51,9 @@ class ProvidersController extends Controller
                 // unlink("public/profile/img/banner/".$input['img']);
 
                 // Agregamos el nuevo
+                $path = env('APP_DEBUG') ? '' : 'public/';
                 $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-                $input['logo']->move("assets/img/logos/", $filename);
+                $input['logo']->move($path."assets/img/logos/", $filename);
                 $input['logo'] = $filename;
             }
 
@@ -85,8 +86,8 @@ class ProvidersController extends Controller
         if($services > 0) {
             return redirect(env('admin').'/providers')->with('error','No puede eliminar el proveedor porque tiene servicios relacionados al mismo.');
         }
-
-		@unlink("assets/img/logos/".$res->logo);
+        $path = env('APP_DEBUG') ? '' : 'public/';
+		@unlink($path."assets/img/logos/".$res->logo);
 		$res->delete();
 
 		return redirect(env('admin').'/providers')->with('message','Proveedor eliminado con éxito.');
@@ -110,11 +111,13 @@ class ProvidersController extends Controller
         if(isset($input['logo']))
         {
             // Eliminamos la anterior
-            @unlink("assets/img/logos/".$providers_data->logo);
+            $path = env('APP_DEBUG') ? '' : 'public/';
+            @unlink($path."assets/img/logos/".$providers_data->logo);
 
             // Agregamos el nuevo
+            $path = env('APP_DEBUG') ? '' : 'public/';
             $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move($path."assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
