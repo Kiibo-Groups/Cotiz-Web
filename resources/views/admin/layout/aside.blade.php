@@ -86,12 +86,13 @@
       <hr />
     </li>
 
+    <!-- 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ url('./') }}" target="_blank">
         <i class="bx bxs-navigation"></i>
         <span>Ir al WebSite</span>
       </a>
-    </li>
+    </li>-->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
