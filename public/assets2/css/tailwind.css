@@ -471,6 +471,7 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+
 .container{
   width: 100%;
   margin-right: auto;
@@ -516,9 +517,16 @@ video {
     padding-left: 13rem;
   }
 }
-.pointer-events-none{
-  pointer-events: none !important;
+
+.tailwind {
+
+  .pointer-events-none{
+    pointer-events: none !important;
+  }
+
 }
+
+
 .invisible{
   visibility: hidden !important;
 }
@@ -8848,3 +8856,4 @@ html[dir=rtl] .tns-visually-hidden {
     left: -5rem !important;
   }
 }
+

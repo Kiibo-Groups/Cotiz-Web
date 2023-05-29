@@ -22,4 +22,9 @@ class Services extends Model
 
         return $this->belongsTo(Providers::class,'provider_id');
     }
+
+    public function requests(){
+
+        return $this->hasMany(Requests::class);
+    }
 }

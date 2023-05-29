@@ -3,30 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Panel adminisrtativo para el sitio web Engine.mx">
+    <meta name="description" content="Panel adminisrtativo para el sitio web Cotiz.mx">
     <meta name="keywords" content="Administrative Panel, business, DQV, Kiibo, DesarrollosQV, KiiboGroups">
     <meta name="author" content="DesarrollosQV, Kiibo Groups">
-    
+
     <title>@yield('title')</title>
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/favicon.png') }}" rel="apple-touch-icon">
     <!-- ========== Links ========== -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+
     @include("structure.account.main")
 </head>
 <body>
-     
+
     <!-- ======= Header ======= -->
     @if(Auth::guard('admin')->check())
         @include("admin.layout.header")
-    @else 
+    @else
         @include("structure.account.header")
     @endif
 
     <!-- ======= Sidebar ======= -->
     @if(Auth::guard('admin')->check())
         @include("admin.layout.aside")
-    @else 
+    @else
         @include("structure.account.aside")
     @endif
     <!-- ======= Main ======= -->
@@ -40,7 +42,7 @@
         @endif
 
         @if(Session::has('message'))
-         
+
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h6 class="mb-0 text-success">SUCCESS</h6>
             {{ Session::get('message') }}
@@ -56,24 +58,24 @@
             <ol class="breadcrumb">
                 @if(Auth::guard('admin')->check())
                 <li class="breadcrumb-item"><a href="{{url(env('admin').'/dash')}}">Home</a></li>
-                @else 
+                @else
                 <li class="breadcrumb-item"><a href="{{url('./home')}}">Home</a></li>
                 @endif
                 <li class="breadcrumb-item active">@yield('page_active')</li>
             </ol>
             </nav>
         </div>
-    
+
         <!-- Content Page -->
-        @yield('content') 
-    </main> 
- 
+        @yield('content')
+    </main>
+
     <!-- ======= Footer ======= -->
     @include("structure.account.footer")
-  
+
     <!-- ======= FooterJS ======= -->
     @include("structure.account.footerjs")
-  
+
     @yield('js')
 </body>
 </html>

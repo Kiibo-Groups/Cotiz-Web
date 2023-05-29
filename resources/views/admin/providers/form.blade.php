@@ -6,11 +6,11 @@
                 <div class="card-header card-header-border-bottom">
                     @if(!$data->id)
                     <h2>Agregar Nuevo Proveedor</h2>
-                    @else 
+                    @else
                     <h2>Editando Proveedor #{{$data->id}}</h2>
                     @endif
-                </div> 
-                
+                </div>
+
                 <div class="row ec-vendor-uploads">
                     <div class="col-lg-4">
                         <div class="ec-vendor-img-upload">
@@ -32,19 +32,23 @@
                                     <div class="avatar-preview ec-preview">
                                         <div class="imagePreview ec-div-preview">
                                             @if($data->id)
-                                            <img class="ec-image-preview" src="<?php echo asset('assets/img/logos/'.$data->logo) ?>" style="height: 301px;" alt="cliente" />
-                                            @else 
+                                                @if($data->logo)
+                                                    <img class="ec-image-preview" src="<?php echo asset('assets/img/logos/'.$data->logo) ?>" style="height: 301px;" alt="cliente" />
+                                                @else
+                                                    <img class="card-img" src="{{ asset('profile/img/user_profile.jpg') }}" alt="logo" />
+                                                @endif
+                                            @else
                                             <img class="ec-image-preview" src="<?php echo asset('profile/img/banner/1.jpg') ?>" style="height: 301px;" alt="edit" />
                                             @endif
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                    </div> 
-                    
+                    </div>
+
                     <div class="col-lg-8">
-                        <div class="ec-vendor-upload-detail">   
+                        <div class="ec-vendor-upload-detail">
                             <div class="row g-3">
                                 <div class="col-md-8">
                                     @error('name')
@@ -53,7 +57,7 @@
                                         </div>
                                     @enderror
                                     <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" class="form-input slug-title"  id="name" name="name" @if($data->id) value="{{ $data->name }}"@endif>
+                                    <input type="text" class="form-control slug-title"  id="name" name="name" @if($data->id) value="{{ $data->name }}"@endif>
                                 </div>
                                 <div class="col-md-8">
                                     @error('address')
@@ -62,7 +66,7 @@
                                         </div>
                                     @enderror
                                     <label for="address" class="form-label">Direccion</label>
-                                    <textarea name="address" rows="4" cols="50" class="form-input">@if($data->id){{ $data->address }}@endif</textarea>
+                                    <textarea name="address" rows="4" cols="50" class="form-control">@if($data->id){{ $data->address }}@endif</textarea>
                                 </div>
                                 <div class="col-md-8">
                                     @error('email')
@@ -71,7 +75,7 @@
                                         </div>
                                     @enderror
                                     <label for="email" class="form-label">Correo</label>
-                                    <input type="text" class="form-input slug-title"  id="email" name="email" @if($data->id) value="{{ $data->email }}"@endif>
+                                    <input type="text" class="form-control slug-title"  id="email" name="email" @if($data->id) value="{{ $data->email }}"@endif>
                                 </div>
                                 <div class="col-md-8">+
                                     @error('phone')
@@ -80,8 +84,8 @@
                                         </div>
                                     @enderror
                                     <label for="phone" class="form-label">Telefono</label>
-                                    <input type="text" class="form-input slug-title"  id="phone" name="phone" @if($data->id) value="{{ $data->phone }}"@endif>
-                                </div> 
+                                    <input type="text" class="form-control slug-title"  id="phone" name="phone" @if($data->id) value="{{ $data->phone }}"@endif>
+                                </div>
 
                                 <div class="col-md-8" style="margin-top:25px;">
                                     @error('country')
@@ -90,24 +94,24 @@
                                         </div>
                                     @enderror
                                     <label class="form-label">Pais</label>
-                                    <select name="country" id="country" class="form-input js-example-basic-single">
-                                        <option value="MX">Mexico</option>
+                                    <select name="country" id="country" class="form-select js-example-basic-single">
+                                        <option value="Mexico">Mexico</option>
                                     </select>
-                                </div> 
+                                </div>
                             </div>
 
                             <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
-                                <button type="submit" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-full !h-12 rounded">
+                                <button type="submit" class="btn btn-primary text-white rounded">
                                     @if(!$data->id)
                                     Agregar
-                                    @else 
+                                    @else
                                     Actualizar
                                     @endif
                                 </button>
                             </div>
                         </div>
-                    </div> 
-                </div>  
+                    </div>
+                </div>
             </div>
         </div>
     </div>

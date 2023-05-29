@@ -16,11 +16,17 @@ class Providers extends Model
        'email',
        'phone',
        'country',
-       'logo'
+       'logo',
+       'user_id '
     ];
 
     public function service(){
 
         return $this->hasOne(Services::class);
+    }
+
+    public function user(){
+
+        return $this->belongsTo(User::class,'user_id');
     }
 }

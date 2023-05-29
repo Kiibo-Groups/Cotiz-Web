@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 17-05-2023 a las 20:10:17
--- Versión del servidor: 10.5.19-MariaDB-cll-lve
--- Versión de PHP: 7.2.34
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 26-05-2023 a las 15:46:29
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `u938128216_engine`
+-- Base de datos: `engine`
 --
 
 -- --------------------------------------------------------
@@ -127,7 +127,7 @@ CREATE TABLE `clientsinfo` (
 --
 
 INSERT INTO `clientsinfo` (`id`, `title`, `descript`, `updated_at`, `created_at`) VALUES
-(1, 'JUNTOS SOMOS MAS', 'Nuestras Alianzas Estratégicas', '2023-01-28 21:00:31', '2022-12-16 01:14:29');
+(1, 'JUNTOS SOMOS', 'Nuestras Alianzas Estratégicas', '2023-05-18 21:42:31', '2022-12-16 01:14:29');
 
 -- --------------------------------------------------------
 
@@ -358,6 +358,33 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `providers`
+--
+
+CREATE TABLE `providers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Volcado de datos para la tabla `providers`
+--
+
+INSERT INTO `providers` (`id`, `name`, `address`, `email`, `phone`, `country`, `logo`, `user_id`, `created_at`, `updated_at`) VALUES
+(6, 'TECNO', 'Caracas', 'TECNO@gmail.com', '04123456789', 'MX', '1684850578349.jpg', NULL, '2023-05-23 18:02:59', '2023-05-23 18:02:59'),
+(7, 'Amazon', 'EEUU California', 'AMAZON@gmail.com', '12355567854', 'Mexico', '1684868418376.jpg', NULL, '2023-05-23 23:00:18', '2023-05-23 23:00:18');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `quotes`
 --
 
@@ -376,6 +403,32 @@ CREATE TABLE `quotes` (
 INSERT INTO `quotes` (`id`, `product_id`, `cost_product`, `updated_at`, `created_at`) VALUES
 (1, '1', '1500', '2022-10-19 04:24:44', '2022-10-19 04:24:44'),
 (2, '2', '3500', '2022-10-19 04:24:44', '2022-10-19 04:24:44');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `request_services`
+--
+
+CREATE TABLE `request_services` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Volcado de datos para la tabla `request_services`
+--
+
+INSERT INTO `request_services` (`id`, `user_id`, `service_id`, `status`, `description`, `created_at`, `updated_at`) VALUES
+(1, 22, 4, 1, 'comprar', '2023-05-24 00:15:00', '2023-05-25 07:04:22'),
+(6, 10, 6, 0, 'lo compro', '2023-05-25 17:34:27', '2023-05-25 16:19:59'),
+(7, 22, 5, 0, 'lo quiero', '2023-05-25 17:34:41', '2023-05-25 17:34:41'),
+(8, 22, 7, 0, 'lo alquilo', '2023-05-25 17:36:36', '2023-05-25 17:36:36');
 
 -- --------------------------------------------------------
 
@@ -441,6 +494,33 @@ INSERT INTO `sections` (`id`, `section`, `titulo`, `subtitulo`, `descript`, `btn
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `services_providers`
+--
+
+CREATE TABLE `services_providers` (
+  `id` int(11) NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `provider_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Volcado de datos para la tabla `services_providers`
+--
+
+INSERT INTO `services_providers` (`id`, `type`, `title`, `description`, `logo`, `provider_id`, `created_at`, `updated_at`) VALUES
+(4, 'product', 'Bluestack', 'APP mobile', '1684868029678.png', 6, '2023-05-23 22:53:49', '2023-05-23 22:53:49'),
+(5, 'employe', 'Predator', 'Rastrador', '1685018955621.jpg', 7, '2023-05-25 16:49:15', '2023-05-25 16:49:15'),
+(6, 'product', 'Black Adam', 'Pelicula', '1685019068503.jpg', 7, '2023-05-25 16:51:08', '2023-05-25 16:51:08'),
+(7, 'service', 'Caballo', 'Montar', '1685019119601.jpg', 7, '2023-05-25 16:51:59', '2023-05-25 16:51:59');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `settings`
 --
 
@@ -475,6 +555,7 @@ INSERT INTO `settings` (`id`, `admin`, `ApiKey_google`, `stripe_api_id`, `stripe
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `role` int(11) DEFAULT NULL,
   `name` varchar(120) NOT NULL,
   `last_name` varchar(120) DEFAULT NULL,
   `about` text DEFAULT NULL,
@@ -502,11 +583,11 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `last_name`, `about`, `pic_profile`, `email`, `phone`, `phone_verify`, `company`, `job`, `country`, `address`, `twitter`, `facebook`, `instagram`, `linkedin`, `password`, `shw_password`, `status`, `level`, `updated_at`, `created_at`) VALUES
-(10, 'Adrian', 'Quezada figueroa', 'Ingeniero en sistemas computacionales, Desarrollador Full Stack de aplicaciones Web/Móviles con amplia experiencia en integración a nuevas tecnologías, creador de sistemas innovadores distribuidos en gran parte de México, Estados Unidos, Chile, Colombia, Venezuela y Perú, Con gran respeto y amor por la tecnología, me dedico a crear experiencias nuevas intentando realizar sueños partiendo de ideas.', '20221210050548.jpg', 'quezada.adrian@hotmail.com', '6361229546', 1, 'DesarrollosQV', 'Ing. en sistemas', 'Mexico', 'calle fernando montes de oca #2908', 'https://twitter.com/eidrian.qf', 'https://facebook.com/desarrollosqv', 'https://instagram.com/eidrian.qf', 'https://www.linkedin.com/in/ing-adri%C3%A1n-quezada-aa2498104/', '$2y$10$h8Z0Q8bDpEJblr23GBNxFOwr9TL4CVFtjrW2WJIzlKdBEN0hC5Po2', 'Admin15978', 0, 1, '2023-02-25 20:01:29', '2022-03-15 13:38:08'),
-(13, 'jose alfredo', NULL, 'soy nuevo', '20221213090823.jpg', 'soporte.desarrollosqv@gmail.com', '6361032399', 1, 'nuevo', 'jefe', 'chile', 'chile', 'https://twitter.com/', 'https://facebook.com/', 'https://instagram.com/', 'https://linkedin.com/', '$2y$10$WBGBmPLswmvRKVTRpTSgFed/Bu5rt2Luw1HcghFKr/T2JDoq4c1HO', 'Pendejadas234xy.', 0, 0, '2022-12-13 15:08:23', '2022-12-13 15:03:51'),
-(18, 'mike', NULL, 'yo', '20230227041254.png', 'proyectistama@gmail.com', NULL, 1, NULL, NULL, NULL, NULL, 'https://twitter.com/', 'https://facebook.com/', 'https://instagram.com/', 'https://linkedin.com/', '$2y$10$52jtAlS9b2FyU8avAjKhAuYAQnbjfG6JrH9EDP4Ye88Mi9F0DAdXC', '12345678', 0, 0, '2023-02-27 16:12:54', '2023-02-27 16:11:22'),
-(19, 'Diego', 'Elizondo Garza', 'Licenciado en Derecho.\r\n-Especialidad en Derecho Corporativo.\r\n-Especialidad en Litigio Mercantil y Civil.\r\n-Especialidad en Amparo.\r\n-Maestría en Derecho de los Negocios.', '1680676668457.jpg', 'diego@balboaelizondo.com', '8112745115', 1, 'Balboa Elizondo, S.C. / Dael Transportes de Calidad, S.A. de C.V. / Soluciones Tecnológicas Xedik, S.A. de C.V. / AliviaFem, S.A. de C.V.', 'Socio Fundador / Director', 'México', 'Monterrey, Nuevo León', 'https://twitter.com/', 'https://facebook.com/', 'https://www.instagram.com/diegoelizondolegal/', 'https://www.linkedin.com/in/diegoelizondolegal/', '$2y$10$50RZPmXW67yNDWgBpruHReVzfrwRnj9qX0WT2VhbreQ1xz..9seau', 'Noviembre17', 0, 0, '2023-04-05 18:44:26', '2023-03-08 21:32:24');
+INSERT INTO `users` (`id`, `role`, `name`, `last_name`, `about`, `pic_profile`, `email`, `phone`, `phone_verify`, `company`, `job`, `country`, `address`, `twitter`, `facebook`, `instagram`, `linkedin`, `password`, `shw_password`, `status`, `level`, `updated_at`, `created_at`) VALUES
+(10, 1, 'Adrian', 'Quezada figueroa', 'Ingeniero en sistemas computacionales, Desarrollador Full Stack de aplicaciones Web/Móviles con amplia experiencia en integración a nuevas tecnologías, creador de sistemas innovadores distribuidos en gran parte de México, Estados Unidos, Chile, Colombia, Venezuela y Perú, Con gran respeto y amor por la tecnología, me dedico a crear experiencias nuevas intentando realizar sueños partiendo de ideas.', '20221210050548.jpg', 'quezada.adrian@hotmail.com', '6361229546', 1, 'DesarrollosQV', 'Ing. en sistemas', 'Mexico', 'calle fernando montes de oca #2908', 'https://twitter.com/eidrian.qf', 'https://facebook.com/desarrollosqv', 'https://instagram.com/eidrian.qf', 'https://www.linkedin.com/in/ing-adri%C3%A1n-quezada-aa2498104/', '$2y$10$h8Z0Q8bDpEJblr23GBNxFOwr9TL4CVFtjrW2WJIzlKdBEN0hC5Po2', 'Admin15978', 0, 1, '2023-05-26 01:14:06', '2022-03-15 13:38:08'),
+(13, 1, 'jose alfredo', NULL, 'soy nuevo', '20221213090823.jpg', 'soporte.desarrollosqv@gmail.com', '6361032399', 1, 'nuevo', 'jefe', 'chile', 'chile', 'https://twitter.com/', 'https://facebook.com/', 'https://instagram.com/', 'https://linkedin.com/', '$2y$10$WBGBmPLswmvRKVTRpTSgFed/Bu5rt2Luw1HcghFKr/T2JDoq4c1HO', 'Pendejadas234xy.', 0, 0, '2023-05-26 01:14:02', '2022-12-13 15:03:51'),
+(22, 1, 'Luis', 'Alejandro', 'hola', '1684425748419.jpg', 'l@gmail.com', '04123456789', 1, 'CACompany', 'Obrero', 'Venezuela', 'Caracas', 'https://twitter.com/', 'https://facebook.com/', 'https://instagram.com/', 'https://linkedin.com/', '$2y$10$edW/yo7BiHKxhtvYZ7/OI.zZpSJwYQbQQyzWCi/105VGz4Ga9C.Gq', '123', 0, 3, '2023-05-26 01:13:58', '2023-05-18 20:02:28'),
+(30, 2, 'Apple', NULL, NULL, NULL, 'apple@gmail.com', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$.4Zc3chIEvXhakWq2cG/Me.ku8FtG.ZlE/pjlB7UqTr.Auio3kX6K', '12345678', 0, 0, '2023-05-26 17:31:46', '2023-05-26 17:31:46');
 
 -- --------------------------------------------------------
 
@@ -620,10 +701,25 @@ ALTER TABLE `password_resets`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `providers`
+--
+ALTER TABLE `providers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_providers_users` (`user_id`);
+
+--
 -- Indices de la tabla `quotes`
 --
 ALTER TABLE `quotes`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `request_services`
+--
+ALTER TABLE `request_services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_request_services_users` (`user_id`),
+  ADD KEY `FK_request_services_services_providers` (`service_id`);
 
 --
 -- Indices de la tabla `reviews`
@@ -636,6 +732,13 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `services_providers`
+--
+ALTER TABLE `services_providers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Porviders_Services_FK1` (`provider_id`);
 
 --
 -- Indices de la tabla `settings`
@@ -744,10 +847,22 @@ ALTER TABLE `password_resets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de la tabla `providers`
+--
+ALTER TABLE `providers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `quotes`
 --
 ALTER TABLE `quotes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `request_services`
+--
+ALTER TABLE `request_services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `reviews`
@@ -762,6 +877,12 @@ ALTER TABLE `sections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `services_providers`
+--
+ALTER TABLE `services_providers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `settings`
 --
 ALTER TABLE `settings`
@@ -771,7 +892,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `visitas`
@@ -784,6 +905,29 @@ ALTER TABLE `visitas`
 --
 ALTER TABLE `wishlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `providers`
+--
+ALTER TABLE `providers`
+  ADD CONSTRAINT `FK_providers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `request_services`
+--
+ALTER TABLE `request_services`
+  ADD CONSTRAINT `FK_request_services_services_providers` FOREIGN KEY (`service_id`) REFERENCES `services_providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_request_services_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `services_providers`
+--
+ALTER TABLE `services_providers`
+  ADD CONSTRAINT `Porviders_Services_FK1` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

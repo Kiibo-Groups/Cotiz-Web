@@ -1,4 +1,4 @@
-@extends('layouts.app_profile2')
+@extends('layouts.app_profile')
 @section('title') Proveedores @endsection
 @section('page_active') Nuevos Proveedores @endsection 
 

@@ -67,7 +67,6 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/providers/edit/{id}', [App\Http\Controllers\Admin\ProvidersController::class, 'edit']); 
         Route::get('/providers/status/{id}', [App\Http\Controllers\Admin\ProvidersController::class, 'status']); 
         Route::get('/providers/delete/{id}', [App\Http\Controllers\Admin\ProvidersController::class, 'delete']); 
-        Route::post('/providers/updateInfo', [App\Http\Controllers\Admin\ProvidersController::class, 'updateInfo']);
 
         /*
         |--------------------------------------------------------------------------
@@ -77,10 +76,18 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::resource('/services',ServicesController::class);
         Route::get('/services', [App\Http\Controllers\Admin\ServicesController::class, 'index'])->name('services'); 
         Route::get('/services/edit/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'edit']); 
-        Route::get('/services/status/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'status']); 
         Route::get('/services/delete/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'delete']); 
-        Route::post('/services/updateInfo', [App\Http\Controllers\Admin\ServicesController::class, 'updateInfo']);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Our Requests Routes
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('/requests',RequestsController::class);
+        Route::get('/request', [App\Http\Controllers\Admin\RequestsController::class, 'index'])->name('requests'); 
+        Route::get('/request/status/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'status']); 
+        Route::get('/request/delete/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'delete']); 
+        Route::post('/request/edit/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'edit']);  
         /*
         |--------------------------------------------------------------------------
         | Secciones / Inicial, About, Beneficts, Advisers Routes

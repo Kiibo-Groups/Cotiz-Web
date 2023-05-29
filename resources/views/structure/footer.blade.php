@@ -1,6 +1,6 @@
 
 
-<footer class="wrapper bg-dark angled">
+<footer class="wrapper bg-dark angled d-none">
   <div class="container pb-7 pt-7 pt-md-11 pb-8">
     <div class="row gx-lg-0 gy-6">
       <div class="col-lg-4">
@@ -47,7 +47,7 @@
     <!--/.row -->
     <hr class="mt-13 mt-md-14 mb-7" />
     <div class="d-md-flex align-items-center justify-content-between">
-      <p class="mb-2 mb-lg-0 text-white">© 2022 Engine. All rights reserved.</p>
+      <p class="mb-2 mb-lg-0 text-white">© 2023 Cotiz. All rights reserved.</p>
       <nav class="nav social social-muted mb-0 text-md-end text-white">
         @if($admin->twitter)<a href="{{ $admin->twitter }}" target="_blank"><i class="uil uil-twitter"></i></a>@endif
         @if($admin->fb)<a href="{{ $admin->fb }}" target="_blank"><i class="uil uil-facebook-f"></i></a> @endif
@@ -61,7 +61,7 @@
 </footer>
 
 
-  
+
   <div class="progress-wrap">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
       <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />

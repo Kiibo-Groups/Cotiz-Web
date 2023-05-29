@@ -18,7 +18,7 @@ use Validator;
 use Redirect;
 class AdminController extends Controller
 {
-    
+
     public $folder = "admin.";
 
     /**
@@ -42,7 +42,6 @@ class AdminController extends Controller
 	{
 		$username = $request->input('username');
         $password = $request->input('password');
-
         // return response()->json(['username' => $username, 'password' => $password]);
 
 		if (auth()->guard('admin')->attempt(['username' => $username, 'password' => $password]))
@@ -62,17 +61,17 @@ class AdminController extends Controller
      */
     public function profile()
     {
-        $data = Admin::find(Admin::find(auth()->guard('admin')->user()->id))->first();  
-        
+        $data = Admin::find(Admin::find(auth()->guard('admin')->user()->id))->first();
+
         // return response()->json(['data' => auth()->guard('admin')->user()]);
 
-        return view($this->folder.'dashboard.profile', [ 
+        return view($this->folder.'dashboard.profile', [
             'data' => $data,
             'ApiKey_google' => Settings::findOrFail(1)->ApiKey_google,
             'form_url'	=> Asset(env('admin').'/profile'),
-        ]); 
-    }  
- 
+        ]);
+    }
+
 
     /*
 	|------------------------------------------------------------------
@@ -80,9 +79,9 @@ class AdminController extends Controller
 	|------------------------------------------------------------------
 	*/
 	public function home()
-	{ 
+	{
 
-		$admin = new Admin; 
+		$admin = new Admin;
         $views = Viewers::count();
         $users = AppUsers::count();
         $events = Events::count();
@@ -99,14 +98,14 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function settings()
-    { 
-        $data = Settings::find(1);  
-        
-        return view($this->folder.'dashboard.setting', [ 
+    {
+        $data = Settings::find(1);
+
+        return view($this->folder.'dashboard.setting', [
             'data' => $data,
             'form_url' => Asset(env('admin').'/settings'),
             'admin' => auth()->guard('admin')->user()
-        ]); 
+        ]);
     }
 
     public function settings_update(Request $request)
@@ -115,7 +114,7 @@ class AdminController extends Controller
             $input = $request->all();
             $lims_settings_data = Settings::find(1)->first();
             $lims_settings_data->update($input);
-            
+
             return redirect(env('admin').'/settings')->with('message', 'Configuración actualizada con éxito ...');
         } catch (\Exception $th) {
             return redirect(env('admin').'/settings')->with('error', $th->getMessage());
@@ -180,7 +179,7 @@ class AdminController extends Controller
 
         if ($image) {
             // Verificamos si ya tenia una imagen anterior
-            // if ($lims_profile_data->logo != NULL) { 
+            // if ($lims_profile_data->logo != NULL) {
             //     unlink('public/profile/img/logo/'.$lims_profile_data->logo);
             // }
 
@@ -190,7 +189,7 @@ class AdminController extends Controller
             $image->move('public/profile/img/logo', $imageName);
 
             $input['logo'] = $imageName;
-        } 
+        }
 
         if (isset($input['page_settings']) && $input['page_settings'] == 1) {
             if (isset($input['newPassword']) && $input['newPassword'] != '') {
@@ -203,7 +202,7 @@ class AdminController extends Controller
         }
 
         $lims_profile_data->update($input);
-        
+
         // return response()->json(['data' => $input,'admin' => $lims_profile_data]);
         return redirect(env('admin').'/profile')->with('message', 'Cuenta actualizada  actualizada con éxito...');
     }

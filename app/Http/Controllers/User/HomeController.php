@@ -26,7 +26,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         return view($this->folder.'home');
     }
@@ -60,13 +60,13 @@ class HomeController extends Controller
         if ($image) {
             // Verificamos si ya tenia una imagen anterior
             if ($lims_profile_data->pic_profile != NULL) { 
-                @unlink('public/profile/img/'.$lims_profile_data->pic_profile);
+                @unlink('/profile/img/'.$lims_profile_data->pic_profile);
             }
 
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/profile/img/', $imageName);
+            $image->move('/profile/img/', $imageName);
             $input['pic_profile'] = $imageName;
         } 
 

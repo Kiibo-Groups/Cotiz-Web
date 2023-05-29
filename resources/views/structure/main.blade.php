@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<?php echo asset('public/assets/css/plugins/jquery-ui.min.css') ?>" />
 <link rel="stylesheet" href="<?php echo asset('public/assets/css/plugins/bootstrap.css') ?>" />
 
-<link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+<link rel="shortcut icon" href="{{ asset('assets2/images/logo-cotiz.png') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/colors/aqua.css') }}">

@@ -12,9 +12,9 @@
       <a class="nav-link @if(!Route::is('profile') || !Route::is('settings')) collapsed @endif" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Panel</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="settings-nav" class="nav-content  collapse @if(Route::is('profile') || Route::is('settings'))  show @endif" data-bs-parent="#settings-nav">
+      <ul id="settings-nav" class="nav-content collapse @if(Route::is('profile') || Route::is('settings'))  show @endif" data-bs-parent="#settings-nav">
         <li>
-          <a href="{{ Asset(env('admin').'/profile') }}" class="@if(Route::is('profile')) active @endif">
+          <a href="{{ Asset(env('admin').'/profile') }}" class="@if(Route::is('profile'))nav-link active @endif">
             <i class="bi bi-circle"></i><span>Perfil</span>
           </a>
         </li>
@@ -68,6 +68,19 @@
         </li>
       </ul>
     </li><!-- End Services -->
+
+    <li class="nav-item">
+      <a class="nav-link @if(!Route::is('request')) collapsed @endif" data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="request-nav" class="nav-content  collapse @if(Route::is('request'))  show @endif" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{{ Asset(env('admin').'/request') }}" class="@if(Route::is('request')) active @endif">
+            <i class="bi bi-circle"></i><span>Lista</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Request -->
 
     <li class="nav-heading">
       <hr />

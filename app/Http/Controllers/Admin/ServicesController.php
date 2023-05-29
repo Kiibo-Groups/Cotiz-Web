@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder; 
 
 use App\Models\Services;
 use App\Models\Providers;
@@ -16,16 +17,26 @@ class ServicesController extends Controller
 {
     public $folder = "admin.";
 
-    public function index(){
+    public function index(Request $request){
 
-        $data = Services::with(['provider'])->paginate(10);
+        $search = $request->search;
 
-        
+        $data = Services::with(['provider'])
+                        ->where(function (Builder $query) use ($search) {
+                            return $query->where('title','like','%'.$search.'%');
+                        })
+                        ->orWhere(function (Builder $query) use ($search) {
+                            return $query->whereHas('provider', function ($q) use ($search) {
+                                $q->where('name', "like",'%'.$search.'%');
+                            });
+                        })
+                        ->paginate(10);
 
         return view($this->folder.'services.index', [ 
             'services' => $data,
+            'search' => $search
         
-        ]);
+        ]); 
 
     }
 

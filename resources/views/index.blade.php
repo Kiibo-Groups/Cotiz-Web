@@ -11,7 +11,7 @@
         <h1 class="display-1 text-white mb-4">
           {{$section_init->titulo}}
           <br />
-          <span class="typer text-primary text-nowrap" data-delay="100" 
+          <span class="typer text-primary text-nowrap" data-delay="100"
           data-words="{{$section_init->subtitulo}}"></span>
           <span class="cursor text-primary" data-owner="typer"></span>
         </h1>
@@ -63,7 +63,7 @@
           <video src="{{ asset('assets/videos/'.$section_about->video) }}" id="play_interview" style="width: 100%;" autoplay loop muted></video>
         </figure>
       </div>
-      
+
       <div class="col-lg-6">
         <h2 class="display-4 mb-3">{{ $section_about->titulo }}</h2>
         <p class="lead fs-lg">{{ $section_about->subtitulo }} </p>
@@ -78,7 +78,7 @@
   </div>
 </section>
 <!-- /about -->
- 
+
 <!-- Our Providers -->
 <section id="our_clients" class="wrapper bg-dark">
   <div class="container py-18 pb-md-18">
@@ -142,7 +142,7 @@
               <div>
                 <a href="./call_advice" class="btn btn-primary rounded-pill mt-2">Agendar una llamada</a>
               </div>
-               
+
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@
 
     <!--/.row -->
     <div class="row gx-lg-8 gx-xl-11 gy-10 blog grid-view">
-      <div class="col-lg-8"> 
+      <div class="col-lg-8">
         <article class="post">
           <figure class="overlay overlay-1 hover-scale rounded mb-5">
             <a href="{{ url('event/'.$last_event->id) }}">
@@ -200,14 +200,14 @@
             <h2 class="post-title mt-1 mb-4"><a class="link-dark" href="{{ url('event/'.$last_event->id) }}">{{$last_event->titulo}}</a></h2>
             <ul class="post-meta mb-0">
               <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{$last_event->fecha}} | {{ $last_event->hora }}</span></li>
-              <li class="post-author"><a><i class="uil uil-user"></i><span>By Engine</span></a></li>
+              <li class="post-author"><a><i class="uil uil-user"></i><span>By Cotiz</span></a></li>
               <li class="post-comments"><a><i class="uil uil-comment"></i>{{ $last_event->comments_count }}<span> Comments</span></a></li>
             </ul>
             <!-- /.post-meta -->
           </div>
           <!-- /.post-header -->
           <div class="post-content">
-            
+
           </div>
           <!-- /.post-content -->
         </article>
@@ -225,7 +225,7 @@
                   <h5 class="from-top mb-0">Ver evento</h5>
                 </figcaption>
               </figure>
-              <div class="post-header"> 
+              <div class="post-header">
                 <!-- /.post-category -->
                 <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark" href="{{ url('event/'.$evt->id) }}">{{$evt->titulo}}</a></h2>
               </div>
@@ -267,30 +267,30 @@
         <h2 class="fs-16 text-uppercase text-gradient gradient-1 mb-3">{{$benficts->titulo}}</h2>
         <h3 class="display-4 mb-4 me-lg-n5">{{$benficts->subtitulo}}</h3>
         <div class="row gx-xl-12 gy-6">
-          <?php 
+          <?php
             $dat_benef = json_decode($benficts->descript, true);
             $count_sect = count($dat_benef);
             if ($count_sect > 6) {
              $wrap_num = round($count_sect / 6);
             }else {
               $wrap_num = 1;
-            } 
+            }
             $page = 0;
             $count = 0;
           ?>
-          @for ($i = 0; $i < $wrap_num; $i++)  
+          @for ($i = 0; $i < $wrap_num; $i++)
           <div class="col-md-6">
             <ul class="icon-list bullet-bg bullet-soft-primary">
               @for ($x = $page; $x < $count_sect; $x++)
               <?php $page = $x;$count++; ?>
               <li><i class="uil uil-check"></i>{{$dat_benef[$x]['value']}}</li>
-              @if($count == 6) 
+              @if($count == 6)
               <?php $page++; $count = 0; break; ?>
               @endif
               @endfor
             </ul>
           </div>
-          @endfor 
+          @endfor
         </div>
       </div>
       <!--/column -->
@@ -320,38 +320,38 @@
             <th>
               <div class="h4 mb-1">Actividades</div>
               <div class="fs-15 fw-normal text-secondary"></div>
-            </th> 
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td scope="col" class="option text-start">Nuclear</td>
             <td>200 mil pesos</td>
-            <td>-</td> 
+            <td>-</td>
           </tr>
           <tr>
             <td scope="col" class="option text-start">Light</td>
             <td>Más de 120 mil pesos</td>
-            <td>Pitch al comité y estrategias a tomar.</td> 
+            <td>Pitch al comité y estrategias a tomar.</td>
           </tr>
           <tr>
             <td scope="col" class="option text-start">Thermal</td>
             <td>50 mil pesos, Proyecto ya con empleados.</td>
-            <td>Temas legeles, fiscales, 1 empleado y un proyecto replicable o de expansión.</td> 
+            <td>Temas legeles, fiscales, 1 empleado y un proyecto replicable o de expansión.</td>
           </tr>
           <tr>
             <td scope="col" class="option text-start">Chemical</td>
             <td>10 mil pesos, Idea ya generando.</td>
-            <td>Ventas, redes sociales, página web o lugar fisico.</td> 
+            <td>Ventas, redes sociales, página web o lugar fisico.</td>
           </tr>
           <tr>
             <td scope="col" class="option text-start">Motion</td>
             <td>1 mensualidad completa con nosotros</td>
-            <td>Business canva, Pitch al comité, empathy map, funnel de ventas, modelo financiero, roadmap, MVP y estudio de mercado.</td> 
+            <td>Business canva, Pitch al comité, empathy map, funnel de ventas, modelo financiero, roadmap, MVP y estudio de mercado.</td>
           </tr>
-        </tbody> 
+        </tbody>
       </table>
-    </div> 
+    </div>
   </div>
 </section>
 <!-- /Divisiones -->
@@ -359,7 +359,7 @@
 
 @section('js')
 <script>
-  $(document).ready(function() { 
+  $(document).ready(function() {
     $('#play_interview')[0].play();
   });
 </script>

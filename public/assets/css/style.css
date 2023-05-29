@@ -30211,6 +30211,14 @@ button.hamburger span {
 .card[class*=bg-] {
   box-shadow: none !important;
 }
+.card-img-box {
+  height: 200px;
+}
+.card-img {
+  width: 100%; 
+  height:100%; 
+  object-fit: fill;
+}
 .card-img-top img {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
@@ -31499,6 +31507,11 @@ button.hamburger span {
   display: flex;
   align-items: center;
 }
+
+.status-text {
+  color: white !important;
+}
+
 .swiper-container .swiper img {
   width: 100%;
   height: auto;

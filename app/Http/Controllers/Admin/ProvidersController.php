@@ -17,14 +17,17 @@ class ProvidersController extends Controller
 
     public $folder = "admin.";
 
-    public function index(){
+    public function index(Request $request){
 
-        $data = Providers::paginate(10);
+        $search = $request->search;
 
-        return view($this->folder.'providers.index', [ 
+        $data = Providers::where('name','like','%'.$search.'%')->paginate(10);
+
+        return view($this->folder.'providers.index', [
             'providers' => $data,
-        
-        ]); 
+            'search' => $search
+
+        ]);
 
     }
 
@@ -41,38 +44,38 @@ class ProvidersController extends Controller
 
             $input = $request->all();
             $providers_data = new Providers;
-    
+
             if(isset($input['logo']))
             {
                 // Eliminamos la anterior
                 // unlink("public/profile/img/banner/".$input['img']);
-    
+
                 // Agregamos el nuevo
-                $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension(); 
-                $input['logo']->move("assets/img/logos/", $filename);   
-                $input['logo'] = $filename;   
+                $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
+                $input['logo']->move("assets/img/logos/", $filename);
+                $input['logo'] = $filename;
             }
-    
+
             $providers_data->create($input);
-            
+
             return redirect(env('admin').'/providers')->with('message', 'Proveedor agregado con éxito ...');
-        
+
     }
 
     public function show($id)
     {
-        return view($this->folder.'providers.add', [ 
+        return view($this->folder.'providers.add', [
             'data' => new Providers
-        ]); 
+        ]);
     }
 
     public function edit($id){
 
-        return view($this->folder.'providers.edit', [ 
+        return view($this->folder.'providers.edit', [
             'data' => Providers::find($id),
             'form_url' => Asset(env('admin').'/providers/update')
-        ]); 
-        
+        ]);
+
     }
 
     public function delete($id){
@@ -82,12 +85,12 @@ class ProvidersController extends Controller
         if($services > 0) {
             return redirect(env('admin').'/providers')->with('error','No puede eliminar el proveedor porque tiene servicios relacionados al mismo.');
         }
- 
+
 		@unlink("assets/img/logos/".$res->logo);
 		$res->delete();
 
 		return redirect(env('admin').'/providers')->with('message','Proveedor eliminado con éxito.');
-        
+
     }
 
     public function update(Request $request, $id)
@@ -110,13 +113,13 @@ class ProvidersController extends Controller
             @unlink("assets/img/logos/".$providers_data->logo);
 
             // Agregamos el nuevo
-            $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension(); 
-            $input['logo']->move("assets/img/logos/", $filename);   
-            $input['logo'] = $filename;   
+            $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
+            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo'] = $filename;
         }
 
         $providers_data->update($input);
-        
+
         return redirect(env('admin').'/providers')->with('message', 'Proveedor actualizado con éxito ...');
     }
 }

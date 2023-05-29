@@ -2,16 +2,16 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-      <img src="{{ asset('assets/img/favicon.png')}}" alt="">
-      <span class="d-none d-lg-block">Engine Dash</span>
+      <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
+      <span class="d-none d-lg-block" style="padding-left:10px;">Cotiz Admin</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
- 
+
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
-   
+
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

@@ -46,13 +46,18 @@
                         <div class="ec-vendor-upload-detail">   
                             <div class="row g-3">
                                 <div class="col-md-8">
+                                    @if (!Auth::guard('admin')->check())
+                                        @foreach ( $providers as $provider )
+                                            <input type="hidden" name="provider_id" value="{{ $provider->id }}">     
+                                        @endforeach
+                                    @else
                                     @error('provider_id')
                                         <div class="alert alert-danger" role="alert">
                                             Debes agregar un Proveedor
                                         </div>
                                     @enderror
                                     <label for="provider" class="form-label">Proveedor</label>
-                                    <select name="provider_id" id="provider" class="form-input js-example-basic-single">
+                                    <select name="provider_id" id="provider" class="form-select js-example-basic-single">
                                         @if ($data->id)
                                             @foreach ($providers as $provider)
                                                 <option value="{{ $provider->id }}" @if($provider->id == $data->provider_id) selected @endif>{{ $provider->name }}</option>
@@ -65,6 +70,7 @@
                                         @endif
             
                                     </select>
+                                    @endif
                                 </div> 
 
                                 <div class="col-md-8" style="margin-top:25px;">
@@ -74,7 +80,7 @@
                                         </div>
                                     @enderror
                                     <label class="form-label">Tipo</label>
-                                    <select name="type" id="type" class="form-input js-example-basic-single">
+                                    <select name="type" id="type" class="form-select js-example-basic-single">
                                         <option value="" selected></option>
                                         <option value="service" @if ($data->type === "service") selected @endif>Servicio</option>
                                         <option value="product" @if ($data->type === "product") selected @endif>Producto</option>
@@ -89,7 +95,7 @@
                                         </div>
                                     @enderror
                                     <label class="title">Titulo</label>
-                                    <input type="text" name="title" class="form-input" @if ($data->id) value="{{ $data->title }}" @endif>
+                                    <input type="text" name="title" class="form-control" @if ($data->id) value="{{ $data->title }}" @endif>
                                 </div>
                                 
                                 <div class="col-md-8" style="margin-top:25px;">
@@ -99,12 +105,12 @@
                                         </div>
                                     @enderror
                                     <label for="description">Descripcion</label>
-                                    <textarea class="form-input" placeholder="Escribe una breve descripcion" id="description" name="description">{{ $data->description }}</textarea>
+                                    <textarea class="form-control" placeholder="Escribe una breve descripcion" id="description" name="description">{{ $data->description }}</textarea>
                                 </div>
                             </div>
 
                             <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
-                                <button type="submit" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-full !h-12 rounded">
+                                <button type="submit" class="btn btn-primary text-white rounded">
                                     @if(!$data->id)
                                     Agregar
                                     @else 
