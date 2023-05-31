@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Requests extends Model
 {
     use HasFactory;
-    protected $table = 'request_services'; 
+    protected $table = 'request_services';
 
     protected $fillable =[
        'user_id',
        'service_id',
        'status',
-       'description'
+       'description',
+       'document'
     ];
 
     public function service(){

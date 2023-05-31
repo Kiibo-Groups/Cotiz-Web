@@ -20,26 +20,37 @@ class RequestsController extends Controller
 
     public function index(Request $request){
         $search = $request->search;
-        $filter = $request->filter_status;
+        $status = $request->filter_status;
+        $from = $request->filter_from;
+        $even = $request->filter_even;
+        $requests = Requests::with(['service','user']);
 
-        $requests = Requests::with(['service','user'])
-            ->where(function (Builder $query) use ($search) {
-                return $query->whereHas('service', function ($q) use ($search) {
-                    $q->where('title', "like",'%'.$search.'%');
-                });
+        if(!is_null($status)) {
+            $requests = $requests->where('status','=', $status);
+        }
+
+        if($search) {
+            $requests = $requests->orWhereHas('service', function ($q) use ($search) {
+                $q->where('title', "like",'%'.$search.'%');
             })
-            ->orWhere(function (Builder $query) use ($search) {
-                return $query->whereHas('user', function ($q) use ($search) {
-                    $q->where('name', "like",'%'.$search.'%');
-                });
-            })
-            ->paginate(10);
+            ->orWhereHas('user', function ($q) use ($search) {
+                $q->where('name','like','%'.$search.'%');
+            });
+        }
+
+        if(!is_null($from)) {
+            $requests = $requests->where('created_at','>=',$from)
+            ->where('created_at','<=',$even);
+        }
+
+
+        $requests = $requests->paginate(10);
 
         return view($this->folder.'requests.index', [
             'requests'=> $requests,
-            'search'=> $search
+            'search'=> $search,
+            'status'=>$status
         ]);
-
 
     }
 

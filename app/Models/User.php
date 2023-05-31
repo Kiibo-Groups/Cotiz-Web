@@ -19,10 +19,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'about',
+        'pic_profile',
         'email',
+        'phone',
+        'company',
+        'job',
+        'country',
+        'address',
         'password',
         'shw_password',
-        'role'
+        'role',
+        'status'
     ];
 
     /**
@@ -51,6 +60,6 @@ class User extends Authenticatable
 
     public function provider(){
 
-        return $this->hasOne(Provider::class);
+        return $this->hasOne(Providers::class);
     }
 }

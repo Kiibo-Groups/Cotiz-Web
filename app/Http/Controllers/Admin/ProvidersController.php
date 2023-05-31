@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Providers;
 use App\Models\Services;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 use DB;
 use Auth;
@@ -20,12 +22,26 @@ class ProvidersController extends Controller
     public function index(Request $request){
 
         $search = $request->search;
+        $status = $request->filter_status;
 
-        $data = Providers::where('name','like','%'.$search.'%')->paginate(10);
+        $data = Providers::with(['user']);
+
+        if(!is_null($status)) {
+            $data = $data->whereHas('user', function ($q) use ($status) {
+                $q->where('status','=',$status);
+            });
+        }
+
+        if($search) {
+            $data = $data->where('name','like','%'.$search.'%');
+        }
+
+        $data = $data->paginate(10);
 
         return view($this->folder.'providers.index', [
             'providers' => $data,
-            'search' => $search
+            'search' => $search,
+            'status' => $status
 
         ]);
 
@@ -44,6 +60,18 @@ class ProvidersController extends Controller
 
             $input = $request->all();
             $providers_data = new Providers;
+            $user_provider = new User;
+            $user_provider->name = $request->name;
+            $user_provider->email = $request->email;
+            $user_provider->password = Hash::make($request->password);
+            $user_provider->shw_password = $request->password;
+            $user_provider->address = $request->address;
+            $user_provider->phone = $request->phone;
+            $user_provider->country = $request->country;
+            $user_provider->pic_profile = time().rand(111,699).'.'.$request->logo->getClientOriginalExtension();
+            $user_provider->role = 2;
+            $user_provider->status = $request->status;
+            $user_provider->save();
 
             if(isset($input['logo']))
             {
@@ -57,7 +85,10 @@ class ProvidersController extends Controller
                 $input['logo'] = $filename;
             }
 
-            $providers_data->create($input);
+            $user = User::where('name','=',$request->name)->get()->first();
+            $providers_data->user_id = $user->id;
+            $providers_data->save();
+            $providers_data->update($input);
 
             return redirect(env('admin').'/providers')->with('message', 'Proveedor agregado con éxito ...');
 
@@ -88,6 +119,8 @@ class ProvidersController extends Controller
         }
         $path = env('APP_DEBUG') ? '' : 'public/';
 		@unlink($path."assets/img/logos/".$res->logo);
+        $user = User::where('name',$res->name)->get()->first();
+        $user->delete();
 		$res->delete();
 
 		return redirect(env('admin').'/providers')->with('message','Proveedor eliminado con éxito.');
@@ -103,10 +136,23 @@ class ProvidersController extends Controller
             'email'=>'required',
             'phone'=>'required',
             'country'=>'required',
+            'status'=>'required',
+            'password'=>'required'
         ]);
 
         $input = $request->all();
         $providers_data = Providers::find($request->get('id'));
+        $user_provider_data = User::find($providers_data->user_id);
+        $user_provider_data->name = $request->name;
+        $user_provider_data->email = $request->email;
+        $user_provider_data->password = Hash::make($request->password);
+        $user_provider_data->shw_password = $request->password;
+        $user_provider_data->address = $request->address;
+        $user_provider_data->phone = $request->phone;
+        $user_provider_data->country = $request->country;
+        $user_provider_data->pic_profile = $request->logo;
+        $user_provider_data->status = $request->status;
+        $user_provider_data->update();
 
         if(isset($input['logo']))
         {

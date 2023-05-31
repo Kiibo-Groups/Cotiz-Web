@@ -11,7 +11,7 @@
                 <div class="row">
 
                     <!-- Sales Card -->
-                    <div class="col-xxl-3 col-md-6">
+                    <div class="col-xxl-6 col-md-6">
                         <div class="card info-card sales-card">
                             <div class="card-body">
                                 <h5 class="card-title">Solicitudes <span></span></h5>
@@ -29,7 +29,7 @@
                     </div><!-- End Sales Card -->
 
                     <!-- Revenue Card -->
-                    <div class="col-xxl-3 col-md-6">
+                    <div class="col-xxl-6 col-md-6">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
                                 <h5 class="card-title">Servicios <span></span></h5>
@@ -46,46 +46,6 @@
                         </div>
                     </div><!-- End Revenue Card -->
 
-                    <!-- Customers Card -->
-                    <div class="col-xxl-3 col-xl-12">
-
-                        <div class="card info-card customers-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Clientes <span></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-calendar-check-fill"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>{{$users}}</h6>
-                                </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
-
-                    <div class="col-xxl-3 col-xl-12">
-
-                        <div class="card info-card customers-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Provedores <span></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>{{$providers}}</h6>
-                                </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
 
                     <!-- Reports -->
                     <div class="col-12">
@@ -103,7 +63,7 @@
                             document.addEventListener("DOMContentLoaded", () => {
                                 const months = JSON.parse(@json($months));
                                 var categories = [];
-                                months.providers.forEach(month=> {
+                                months.services.forEach(month=> {
                                     categories.push(month.start);
                                 })
 
@@ -115,12 +75,6 @@
                                     }, {
                                         name: 'Servicios',
                                         data: months.services.map(item=>item.value)
-                                    }, {
-                                        name: 'Clientes',
-                                        data: months.users.map(item=>item.value)
-                                    }, {
-                                        name: 'Provedores',
-                                        data: months.providers.map(item=>item.value)
                                     }],
                                     chart: {
                                         locales: [{

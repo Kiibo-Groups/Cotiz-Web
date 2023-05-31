@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Helpers\StatisticsHelper;
 use App\Models\Admin;
 use App\Models\Settings;
-use App\Models\AppUsers;
-use App\Models\Events;
-use App\Models\Viewers;
-
+use App\Models\User;
+use App\Models\Providers;
+use App\Models\Services;
+use App\Models\Requests;
+use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use DB;
 use Auth;
 use Validator;
 use Redirect;
+
 class AdminController extends Controller
 {
 
@@ -70,8 +73,6 @@ class AdminController extends Controller
             'form_url'	=> Asset(env('admin').'/profile'),
         ]);
     }
-
-
     /*
 	|------------------------------------------------------------------
 	|Homepage, Dashboard
@@ -80,14 +81,26 @@ class AdminController extends Controller
 	public function home()
 	{
 
-		$admin = new Admin;
-        $views = Viewers::count();
-        $users = AppUsers::count();
-        $events = Events::count();
+		$providers = Providers::count();
+        $services = Services::count();
+        $users = User::where('role',1)->get()->count();
+        $requests = Requests::count();
+
+        $statistics = json_encode([
+            'providers' => StatisticsHelper::statisticsCountModel(Providers::class),
+            'services' => StatisticsHelper::statisticsCountModel(Services::class),
+            'users' => StatisticsHelper::statisticsCountModel(User::class, function ($query) {
+                $query->where('role', 1);
+            }),
+            'request' => StatisticsHelper::statisticsCountModel(Requests::class)
+        ]);
+
 		return View($this->folder.'dashboard.home',[
-            'views' => $views,
+            'providers' => $providers,
+            'services' => $services,
             'users' => $users,
-            'events' => $events
+            'requests' => $requests,
+            'months' => $statistics
 		]);
 	}
 

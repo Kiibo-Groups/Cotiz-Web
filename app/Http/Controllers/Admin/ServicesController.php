@@ -20,21 +20,28 @@ class ServicesController extends Controller
     public function index(Request $request){
 
         $search = $request->search;
+        $status = $request->filter_status;
 
-        $data = Services::with(['provider'])
-                        ->where(function (Builder $query) use ($search) {
-                            return $query->where('title','like','%'.$search.'%');
-                        })
-                        ->orWhere(function (Builder $query) use ($search) {
-                            return $query->whereHas('provider', function ($q) use ($search) {
-                                $q->where('name', "like",'%'.$search.'%');
-                            });
-                        })
-                        ->paginate(10);
+        $data = Services::with(['provider']);
+
+        if(!is_null($status)) {
+            $data = $data->where('status','=', $status);
+        }
+
+        if($search) {
+            $data = $data->where('title','like','%'.$search.'%')
+                        ->orWhereHas('provider', function ($q) use ($search) {
+                            $q->where('name','like','%'.$search.'%');
+                        });
+        }
+
+        $data = $data->paginate(10);
 
         return view($this->folder.'services.index', [
             'services' => $data,
-            'search' => $search
+            'search' => $search,
+            'status' => $status,
+            'user' => ''
 
         ]);
 
@@ -43,12 +50,13 @@ class ServicesController extends Controller
     public function store(Request $request){
 
 
-            $request->validate([
+             $request->validate([
                 'provider_id'=>'required',
                 'type'=>'required',
                 'title'=>'required',
                 'description'=>'required',
-                'logo'=>'required'
+                'logo'=>'required',
+                'status'=>'required'
             ]);
 
             $input = $request->all();
@@ -103,7 +111,8 @@ class ServicesController extends Controller
             'provider_id'=>'required',
             'type'=>'required',
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'status'=>'required'
         ]);
 
         $input = $request->all();

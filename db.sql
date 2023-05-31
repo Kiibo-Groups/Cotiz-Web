@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando estructura para tabla engine.admin
+-- Volcando estructura para tabla cotiz.admin
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
@@ -49,183 +49,11 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla engine.admin: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.admin: ~1 rows (aproximadamente)
 INSERT INTO `admin` (`id`, `name`, `short_descript`, `email`, `shw_email`, `username`, `address`, `lat`, `lng`, `phone`, `password`, `shw_password`, `phone_contact`, `logo`, `terms_title`, `terms_descript`, `terms`, `about_title`, `about_descript`, `about`, `privacy_title`, `privacy_descript`, `privacy`, `fb`, `insta`, `twitter`, `youtube`, `_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Cotiz', 'Cotiz admin', 'admin@cotiz.com', 'admin@cotiz.com', 'admin', 'Mexico', '0', '0', '0', '$2y$10$7yiBbLxaEHcWMmfNIJDXNOXXeIMxF///.kuRoXEFBQDFs1PAevg9.', 'Admin15978', '0', '', 'Términos y Condiciones', 'Bienvenido(a) a nuestro sistema Cotiz', '\r\n', 'Acerca de nosotros', 'Conoce acerca de nustra empresa', '', 'Política de privacidad', '', '', '', '', '', '', 'qzrRntctq9Ha0NLcqt0O6fj3LUg1OGZEvMPGUQSR', '2019-03-27 14:47:27', '2023-05-29 04:12:53');
+	(1, 'Cotiz', 'Cotiz admin', 'admin@cotiz.com', 'admin@cotiz.com', 'admin', 'Mexico', '0', '0', '0', '$2y$10$7yiBbLxaEHcWMmfNIJDXNOXXeIMxF///.kuRoXEFBQDFs1PAevg9.', 'Admin15978', '0', '', 'Términos y Condiciones', 'Bienvenido(a) a nuestro sistema Cotiz', '\r\n', 'Acerca de nosotros', 'Conoce acerca de nustra empresa', '', 'Política de privacidad', '', '', '', '', '', '', 'qzrRntctq9Ha0NLcqt0O6fj3LUg1OGZEvMPGUQSR', '2019-03-27 10:47:27', '2023-05-29 00:00:00');
 
--- Volcando estructura para tabla engine.banner
-CREATE TABLE IF NOT EXISTS `banner` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `img` varchar(250) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `subtitle` varchar(100) DEFAULT NULL,
-  `descript` longtext,
-  `status` int NOT NULL,
-  `position` int NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-
--- Volcando datos para la tabla engine.banner: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.cart
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cart_no` int NOT NULL,
-  `item_id` int NOT NULL,
-  `price` double NOT NULL,
-  `qty` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.cart: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.clientsinfo
-CREATE TABLE IF NOT EXISTS `clientsinfo` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) NOT NULL,
-  `descript` text NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.clientsinfo: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.comments_events
-CREATE TABLE IF NOT EXISTS `comments_events` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `events_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `comment` text NOT NULL,
-  `rating` int NOT NULL,
-  `status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.comments_events: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.events
-CREATE TABLE IF NOT EXISTS `events` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `img` varchar(155) NOT NULL,
-  `titulo` varchar(155) NOT NULL,
-  `subtitulo` varchar(155) DEFAULT NULL,
-  `descript` text NOT NULL,
-  `lugar` varchar(155) NOT NULL,
-  `fecha` varchar(155) NOT NULL,
-  `hora` varchar(155) NOT NULL,
-  `confirmacion` int DEFAULT '0',
-  `level` int NOT NULL DEFAULT '0',
-  `code` varchar(100) NOT NULL,
-  `cupo` varchar(155) DEFAULT NULL,
-  `status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.events: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.events_confirms
-CREATE TABLE IF NOT EXISTS `events_confirms` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `events_id` int NOT NULL,
-  `code` varchar(100) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.events_confirms: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.history
-CREATE TABLE IF NOT EXISTS `history` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `item_id` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.history: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.mentors
-CREATE TABLE IF NOT EXISTS `mentors` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `img` varchar(155) NOT NULL,
-  `nombre` varchar(155) NOT NULL,
-  `email` varchar(155) NOT NULL,
-  `descript` text NOT NULL,
-  `facebook` varchar(155) DEFAULT NULL,
-  `twitter` varchar(155) DEFAULT NULL,
-  `instagram` varchar(155) DEFAULT NULL,
-  `status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.mentors: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.newsletter
-CREATE TABLE IF NOT EXISTS `newsletter` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email_contact` varchar(100) NOT NULL,
-  `status` int DEFAULT '1',
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.newsletter: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.orders
-CREATE TABLE IF NOT EXISTS `orders` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `code_order` varchar(50) NOT NULL,
-  `user_id` int NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `address` text NOT NULL,
-  `d_charges` double NOT NULL,
-  `t_charges` tinyint(1) NOT NULL,
-  `price_comm` double NOT NULL,
-  `discount` double NOT NULL,
-  `total` double NOT NULL,
-  `notes` text NOT NULL,
-  `payment_method` varchar(50) NOT NULL,
-  `payment_id` varchar(50) NOT NULL,
-  `Status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.orders: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.our_clients
-CREATE TABLE IF NOT EXISTS `our_clients` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `imagen` varchar(255) NOT NULL,
-  `url` text,
-  `status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.our_clients: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.password_resets
+-- Volcando estructura para tabla cotiz.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
@@ -235,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla engine.password_resets: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.password_resets: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla engine.providers
+-- Volcando estructura para tabla cotiz.providers
 CREATE TABLE IF NOT EXISTS `providers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
@@ -251,30 +79,19 @@ CREATE TABLE IF NOT EXISTS `providers` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `FK_providers_users` (`user_id`),
-  CONSTRAINT `FK_providers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  CONSTRAINT `FK_providers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Volcando datos para la tabla engine.providers: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.providers: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla engine.quotes
-CREATE TABLE IF NOT EXISTS `quotes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` varchar(200) NOT NULL,
-  `cost_product` varchar(100) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.quotes: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.request_services
+-- Volcando estructura para tabla cotiz.request_services
 CREATE TABLE IF NOT EXISTS `request_services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `service_id` int NOT NULL,
   `status` int NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `document` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -282,47 +99,11 @@ CREATE TABLE IF NOT EXISTS `request_services` (
   KEY `FK_request_services_services_providers` (`service_id`),
   CONSTRAINT `FK_request_services_services_providers` FOREIGN KEY (`service_id`) REFERENCES `services_providers` (`id`),
   CONSTRAINT `FK_request_services_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Volcando datos para la tabla engine.request_services: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.request_services: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla engine.reviews
-CREATE TABLE IF NOT EXISTS `reviews` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `job_title` varchar(100) NOT NULL,
-  `descript` text NOT NULL,
-  `pic` varchar(100) NOT NULL,
-  `rating` int NOT NULL,
-  `status` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.reviews: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.sections
-CREATE TABLE IF NOT EXISTS `sections` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `section` int NOT NULL,
-  `titulo` varchar(155) NOT NULL,
-  `subtitulo` varchar(155) DEFAULT NULL,
-  `descript` text NOT NULL,
-  `btn_text` varchar(200) DEFAULT NULL,
-  `btn_action` text,
-  `video` varchar(155) DEFAULT NULL,
-  `pic_1` varchar(155) DEFAULT NULL,
-  `pic_2` varchar(155) DEFAULT NULL,
-  `pic_3` varchar(155) DEFAULT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.sections: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.services_providers
+-- Volcando estructura para tabla cotiz.services_providers
 CREATE TABLE IF NOT EXISTS `services_providers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
@@ -330,36 +111,17 @@ CREATE TABLE IF NOT EXISTS `services_providers` (
   `description` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `logo` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `provider_id` int DEFAULT NULL,
+  `status` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `Porviders_Services_FK1` (`provider_id`),
   CONSTRAINT `Porviders_Services_FK1` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Volcando datos para la tabla engine.services_providers: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.services_providers: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla engine.settings
-CREATE TABLE IF NOT EXISTS `settings` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `admin` int NOT NULL,
-  `ApiKey_google` varchar(250) NOT NULL,
-  `stripe_api_id` varchar(250) NOT NULL,
-  `stripe_client_id` varchar(250) NOT NULL,
-  `comm_stripe` double NOT NULL,
-  `id_openpay` varchar(150) NOT NULL,
-  `private_key_openpay` varchar(150) NOT NULL,
-  `public_key_openpay` varchar(150) NOT NULL,
-  `paypal_client_id` varchar(150) NOT NULL,
-  `paypal_secret` text NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.settings: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.users
+-- Volcando estructura para tabla cotiz.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `role` int DEFAULT NULL,
@@ -381,38 +143,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(150) NOT NULL,
   `shw_password` varchar(120) NOT NULL,
   `status` int DEFAULT '0',
-  `level` int DEFAULT '0',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla engine.users: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.visitas
-CREATE TABLE IF NOT EXISTS `visitas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `hosting` varchar(100) NOT NULL,
-  `ip` varchar(155) NOT NULL,
-  `visit` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.visitas: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla engine.wishlist
-CREATE TABLE IF NOT EXISTS `wishlist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `item_id` int NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla engine.wishlist: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cotiz.users: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

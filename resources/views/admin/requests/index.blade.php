@@ -20,16 +20,29 @@
                 @else
                 <form action="{{ url(env('user'). '/request')}}" method="GET">
                 @endif
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="filter_from">Desde</label>
+                            <input type="date" name="filter_from" class="form-control">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="filter_even">Hasta</label>
+                            <input type="date" name="filter_even" id="filter_even" class="form-control">
+                        </div>
+                    </div>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="search" id="filter_search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una solicitud" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        @if (Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
                             <option value="" selected>Estatus</option>
-                            <option value="0">Pendiente</option>
-                            <option value="1">Aprobado</option>
-                            <option value="2">Rechazado</option>
+                            <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
+                            <option value="1" @if ($status == 1) selected @endif>Aprobado</option>
+                            <option value="2" @if ($status == 2) selected @endif>Rechazado</option>
                         </select>
+                        @endif
                         <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                     </div>
+
                 </form>
             </div>
             <div class="row">
@@ -61,6 +74,12 @@
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-danger">Rechazado</span></h5>
                                     @endif
                                 </div>
+                                @if (!is_null($request->document))
+                                <div class="col-9 mb-2 p-0">
+                                    <p class="card-text text-muted m-0">Archivo</p>
+                                    <a href="/assets/documents/users/{{$request->document}}">Descargar</a>
+                                </div>
+                                @endif
                                 @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
                                     <div class="col-6 mt-3 p-0">
                                         <a class="btn btn-primary p-1" data-bs-toggle="modal" data-bs-target="#editRequest">Editar</a>

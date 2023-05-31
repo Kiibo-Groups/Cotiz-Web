@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         return view($this->folder.'home');
     }
- 
+
 
     /**
      * Settings the application dashboard.
@@ -42,7 +42,7 @@ class HomeController extends Controller
         return view($this->folder.'settings');
     }
 
-   
+
      /**
      * Update the specified resource in storage.
      *
@@ -54,21 +54,35 @@ class HomeController extends Controller
     {
         $image = $request->pic_profile;
         $input = $request->except('pic_profile');
-        $lims_profile_data = AppUsers::findOrFail($id);
+        $lims_profile_data = User::find($id);
+
+        if (Auth::user()->role == 2){
+
+            $provider_user = Providers::where('user_id',$id)->get()->first();
+            $provider_user->name = $request->name;
+            $provider_user->email = $request->email;
+            $provider_user->address = $request->address;
+            $provider_user->phone = $request->phone;
+            $provider_user->country = $request->country;
+            $provider_user->logo = $request->pic_profile->getClientOriginalName();
+            $provider_user->update();
+        }
 
         //
         if ($image) {
+            $path = env('APP_DEBUG') ? '' : 'public/';
             // Verificamos si ya tenia una imagen anterior
-            if ($lims_profile_data->pic_profile != NULL) { 
-                @unlink('/profile/img/'.$lims_profile_data->pic_profile);
+            if ($lims_profile_data->pic_profile != NULL) {
+                @unlink($path.'assets/img/logos'.$lims_profile_data->pic_profile);
             }
 
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('/profile/img/', $imageName);
+            $image->move($path.'assets/img/logos', $imageName);
             $input['pic_profile'] = $imageName;
-        } 
+        }
+
 
         if (isset($input['page_settings']) && $input['page_settings'] == 1) {
             if (isset($input['newpassword']) && $input['newpassword'] != '') {
@@ -80,7 +94,7 @@ class HomeController extends Controller
                     }else {
                         return redirect('settings')->with('error', 'Las contraseñas no coinciden, Por favor verifica la información');
                     }
-                   
+
                 }else {
                     return redirect('settings')->with('error', 'Las contraseñas no coinciden, Por favor verifica la información');
                 }
@@ -95,7 +109,7 @@ class HomeController extends Controller
         }
         // return response()->json(['data' => $lims_profile_data ,'req' => $input]);
         $lims_profile_data->update($input);
-        
+
         return redirect('settings')->with('message', 'Cuenta actualizada  actualizada con éxito...');
     }
 }

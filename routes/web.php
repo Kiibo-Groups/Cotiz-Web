@@ -52,7 +52,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('/home', [App\Http\Controllers\Profile\HomeController::class, 'index'])->name('home');
         Route::patch('/input_code/{id}', [App\Http\Controllers\Profile\HomeController::class, 'input_code']);
         Route::get('/home/activeEvent/{id}', [App\Http\Controllers\Profile\HomeController::class, 'activeEvent']);
-        Route::get('/services', [App\Http\Controllers\Profile\HomeController::class, 'index'])->name('services');
+        Route::get('/services', [App\Http\Controllers\Profile\HomeController::class, 'indexService'])->name('services');
         Route::get('/services/add', [App\Http\Controllers\Profile\HomeController::class, 'createService'])->name('services_create');
         Route::get('/services/edit/{id}', [App\Http\Controllers\Profile\HomeController::class, 'editService'])->name('services_create');
         Route::get('/services/delete/{id}', [App\Http\Controllers\Profile\HomeController::class, 'deleteService'])->name('services_create');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Helpers\StatisticsHelper;
 use App\Models\AppUsers;
 use App\Models\Events;
 use App\Models\EventsConfirms;
@@ -33,20 +33,73 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $user   = Auth::user();
-        $services = Services::paginate(10);
+        $services = Services::where('status',1)->paginate(10);
+        $search = $request->search;
+        $status = '2';
         if(Auth::user()->role == 2){
 
+            $user   = Auth::user();
+
+            $provider = Providers::where('user_id',$user->id)->first();
+            $services = Services::where('provider_id',$provider->id)->count();
+            $servidesId = Services::where('provider_id',$provider->id)->get()->pluck('id');
+            $requests = Requests::whereIn('service_id',$servidesId)->count();
+
+            $statistics = json_encode([
+                'services' => StatisticsHelper::statisticsCountModel(Services::class, function ($query) use ($provider) {
+                    $query->where('provider_id', $provider->id);
+                }),
+                'request' => StatisticsHelper::statisticsCountModel(Requests::class, function ($query) use ($servidesId) {
+                    $query->whereIn('service_id', $servidesId);
+                })
+            ]);
+
+            return View('admin.dashboard.homeProviders',[
+                'services' => $services,
+                'requests' => $requests,
+                'months' => $statistics
+            ]);
+        }else {
+            return view($this->folder.'home', [
+                'user' => Auth::user(),
+                'services' => $services,
+                'status' => $status,
+            ]);
+        }
+
+    }
+
+    public function indexService(Request $request)
+    {
+        $user   = Auth::user();
+        $services = Services::where('status',1)->paginate(10);
+        $search = $request->search;
+        $status = '2';
+        if(Auth::user()->role == 2){
+
+            $status = $request->status;
             $provider = Providers::where('user_id',$user->id)->first();
             if(!is_null($provider)) {
-                $services_provider = Services::where('provider_id',$provider->id)->paginate(10);
+                $services_provider = Services::where('provider_id',$provider->id);
+
+                if(!is_null($status)){
+                    $services_provider = $services_provider->orWhere('status','=', $status);
+                }
+
+                if($search){
+                    $services_provider = $services_provider->orWhere('title','like','%'.$search.'%');
+                }
+
+                $services_provider = $services_provider->paginate(10);
 
                 return view('admin.services.index', [
                     'user' => Auth::user(),
                     'services' => $services_provider,
-                    'search' => ''
+                    'search' => $search,
+                    'status' => $status
                 ]);
             }
 
@@ -54,7 +107,8 @@ class HomeController extends Controller
 
         return view($this->folder.'home', [
             'user' => Auth::user(),
-            'services' => $services
+            'services' => $services,
+            'status' => $status,
         ]);
     }
 
@@ -76,11 +130,13 @@ class HomeController extends Controller
             'type'=>'required',
             'title'=>'required',
             'description'=>'required',
-            'logo'=>'required'
+            'logo'=>'required',
+            'status'=>'required'
         ]);
 
         $input = $request->all();
         $services_data = new Services;
+
 
         if(isset($input['logo']))
         {
@@ -119,7 +175,8 @@ class HomeController extends Controller
             'provider_id'=>'required',
             'type'=>'required',
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'status'=>'required'
         ]);
 
         $input = $request->all();
@@ -162,6 +219,15 @@ class HomeController extends Controller
         $input = $request->all();
         $requests_data = new Requests;
 
+        if($request->file('document'))
+        {
+
+            // Agregamos el nuevo
+            $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
+            $input['document']->move("assets/documents/users", $filename);
+            $input['document'] = $filename;
+        }
+
         $requests_data->create($input);
 
         return redirect()->route('home')->with('message', 'Solicitud Enviada');
@@ -172,6 +238,8 @@ class HomeController extends Controller
         $user = Auth::user()->id;
         $search = $request->search;
         $status = $request->filter_status;
+        $from = $request->filter_from;
+        $even = $request->filter_even;
 
         if(Auth::user()->role == 2){
             $provider = Providers::where('user_id',$user)->first();
@@ -193,11 +261,17 @@ class HomeController extends Controller
                 });
         }
 
+        if(!is_null($from)) {
+            $requests_user = $requests_user->where('created_at','>=',$from)
+            ->where('created_at','<=',$even);
+        }
+
         $requests_user = $requests_user->paginate(10);
 
         return view('admin.requests.index', [
             'requests'=> $requests_user,
-            'search' => $search
+            'search' => $search,
+            'status' => $status
         ]);
     }
 

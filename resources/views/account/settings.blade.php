@@ -1,55 +1,12 @@
 @extends('layouts.app_profile')
 @section('title') Configuraciones @endsection
-@section('page_active') Settings @endsection 
+@section('page_active') Settings @endsection
 
 
 @section('content')
 <section class="section profile">
     <div class="row">
-      <div class="col-xl-4">
-
-        <div class="card">
-          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-            <img src="{{ asset('profile/img/'.Auth::user()->pic_profile) }}" alt="Profile" class="rounded-circle">
-            <h2>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h2>
-            <h3>Tu Nivel Actual: 
-             <b>
-              @switch(Auth::user()->level)
-                  @case(0)
-                  Cuenta Gratis
-                  @break
-                  @case(1)
-                  Light
-                  @break
-                  @case(2)
-                  Thermal
-                  @break
-                  @case(3)
-                  Chemical
-                  @break
-                  @case(4)
-                  Motion
-                  @break
-                  @case(5) 
-                  Nuclear
-                  @break
-                  @default
-              @endswitch
-             </b>
-            </h3>
-            <div class="social-links mt-2">
-              <a @if(!Auth::user()->twitter) href="#" @else href="{{ Auth::user()->twitter }}" target="_blank" @endif class="twitter"><i class="bi bi-twitter"></i></a>
-              <a @if(!Auth::user()->facebook) href="#" @else href="{{ Auth::user()->facebook }}" target="_blank" @endif class="facebook"><i class="bi bi-facebook"></i></a>
-              <a @if(!Auth::user()->instagram) href="#" @else href="{{ Auth::user()->instagram }}" target="_blank" @endif class="instagram"><i class="bi bi-instagram"></i></a>
-              <a @if(!Auth::user()->linkedin) href="#" @else href="{{ Auth::user()->linkedin }}" target="_blank" @endif class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-xl-8">
+      <div class="col-xl-12">
 
         <div class="card">
           <div class="card-body pt-3">
@@ -62,7 +19,7 @@
 
               <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar perfil</button>
-              </li> 
+              </li>
 
               <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambia la contraseña</button>
@@ -124,8 +81,8 @@
                       <input type='file' name='pic_profile' id="imageUpload" class="ec-image-upload" accept=".png, .jpg, .jpeg" hidden />
                       <label for="imageUpload">
                         @if(Auth::user()->pic_profile)
-                          <img src="{{ asset('profile/img/'.Auth::user()->pic_profile) }}" class="ec-image-preview" alt="Profile">
-                        @else 
+                          <img src="{{ asset('img/logos'.Auth::user()->pic_profile) }}" class="ec-image-preview" alt="Profile">
+                        @else
                         <img src="{{ asset('profile/img/user_profile.jpg') }}" class="ec-image-preview" alt="Profile">
                         @endif
                       </label>
@@ -133,16 +90,16 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
+                    <label for="name" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="fullName" type="text" class="form-control" id="fullName" value="{{ Auth::user()->name }}">
+                      <input name="name" type="text" class="form-control" id="name" value="{{ Auth::user()->name }}">
                     </div>
                   </div>
-                  
+
                   <div class="row mb-3">
-                    <label for="LastName" class="col-md-4 col-lg-3 col-form-label">Apellidos</label>
+                    <label for="last_name" class="col-md-4 col-lg-3 col-form-label">Apellidos</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="LastName" type="text" class="form-control" id="LastName" value="{{ Auth::user()->last_name }}">
+                      <input name="last_name" type="text" class="form-control" id="last_name" value="{{ Auth::user()->last_name }}">
                     </div>
                   </div>
 
@@ -228,7 +185,7 @@
                   </div>
                 </form><!-- End Profile Edit Form -->
 
-              </div> 
+              </div>
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <!-- Change Password Form -->

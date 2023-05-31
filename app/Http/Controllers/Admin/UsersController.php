@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Hash;
 
 
 use App\Models\Admin;
-use App\Models\AppUsers;
+use App\Models\User;
 use App\Models\UserAddress;
+use App\Models\Providers;
 
 use DB;
 use Auth;
@@ -26,7 +27,7 @@ class UsersController extends Controller
     public function index()
     {
         return view($this->folder.'users.index', [
-            'data' => AppUsers::get()
+            'data' => User::get()
         ]);
     }
 
@@ -50,7 +51,7 @@ class UsersController extends Controller
     {
         try {
             $input = $request->except('password');
-            $lims_appusers_data = new AppUsers;
+            $user = new User;
 
             if(isset($input['img']))
             {
@@ -64,7 +65,22 @@ class UsersController extends Controller
             $input['password'] = Hash::make($request->get('password'));
             $input['shw_password'] = $request->get('password');
 
-            $lims_appusers_data->create($input);
+            $user->create($input);
+
+            if ($input['role'] == '2'){
+
+                $user = User::where('name',$input['name'])->get()->first();
+
+                $provider_user = new Providers;
+                $provider_user->name = $input['name'];
+                $provider_user->email = $input['email'];
+                $provider_user->address = $input['address'];
+                $provider_user->logo = $input['img'];
+                $provider_user->phone = $input['phone'];
+                $provider_user->country = $input['country'];
+                $provider_user->user_id = $user->id;
+                $provider_user->save();
+            }
 
             return redirect(env('admin').'/users')->with('message', 'Usuario agregado con éxito ...');
            } catch (\Exception $th) {
@@ -94,7 +110,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         return view($this->folder.'users.edit', [
-            'data' => AppUsers::find($id),
+            'data' => User::find($id),
             'form_url' => Asset(env('admin').'/users/update')
         ]);
     }
@@ -109,7 +125,7 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $input = $request->all();
-        $lims_users_data = AppUsers::find($request->get('id'));
+        $user = User::find($request->get('id'));
 
         if(isset($input['img']))
         {
@@ -123,7 +139,17 @@ class UsersController extends Controller
             $input['pic_profile'] = $filename;
         }
 
-        $lims_users_data->update($input);
+        if ($input['role'] == '2'){
+
+            $provider_user = Providers::where('user_id',$user->id)->get()->first();
+            $provider_user->name = $input['name'];
+            $provider_user->email = $input['email'];
+            $provider_user->address = $input['address'];
+            $provider_user->logo = $input['img'];
+            $provider_user->update();
+        }
+
+        $user->update($input);
 
         return redirect(env('admin').'/users')->with('message', 'Usuario actualizado con éxito ...');
     }
@@ -136,7 +162,7 @@ class UsersController extends Controller
      */
     public function delete($id)
     {
-        $res = AppUsers::find($id);
+        $res = User::find($id);
 
         // Eliminamos el logotipo
         $path = env('APP_DEBUG') ? '' : 'public/';

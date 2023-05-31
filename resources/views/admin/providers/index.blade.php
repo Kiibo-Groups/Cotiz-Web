@@ -17,7 +17,12 @@
 			<div class="row">
                 <form action="{{ url(env('admin'). '/providers')}}" method="GET">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una proveedor" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" name="search" id="filter_search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una Provedor" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <select name="filter_status" id="filter_status" class="form-select">
+                            <option value="" @if ($status == '') selected @endif>Estatus</option>
+                            <option value="1" @if ($status == '1') selected @endif>Activo</option>
+                            <option value="0" @if ($status == '0') selected @endif>Inactivo</option>
+                        </select>
                         <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                     </div>
                 </form>
@@ -48,6 +53,14 @@
 							<div class="col-12 mb-2">
 								<p class="card-text text-muted m-0">Pais</p>
 								<h5 class="card-title m-0 p-0">{{ $provider->country }}</h5>
+							</div>
+                            <div class="col-12 mb-2">
+								<p class="card-text text-muted m-0">Estado</p>
+								@if ($provider->user->status === 0)
+                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Inactivo</span></h5>
+                                    @elseif ($provider->user->status === 1)
+                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Activo</span></h5>
+                                    @endif
 							</div>
 							<div class="col-6 mt-3">
 								<a href="{{ url(env('admin').'/providers/edit/'.$provider->id) }}" class="btn btn-primary">Editar</a>
