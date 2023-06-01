@@ -53,6 +53,19 @@ CREATE TABLE IF NOT EXISTS `admin` (
 INSERT INTO `admin` (`id`, `name`, `short_descript`, `email`, `shw_email`, `username`, `address`, `lat`, `lng`, `phone`, `password`, `shw_password`, `phone_contact`, `logo`, `terms_title`, `terms_descript`, `terms`, `about_title`, `about_descript`, `about`, `privacy_title`, `privacy_descript`, `privacy`, `fb`, `insta`, `twitter`, `youtube`, `_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Cotiz', 'Cotiz admin', 'admin@cotiz.com', 'admin@cotiz.com', 'admin', 'Mexico', '0', '0', '0', '$2y$10$7yiBbLxaEHcWMmfNIJDXNOXXeIMxF///.kuRoXEFBQDFs1PAevg9.', 'Admin15978', '0', '', 'Términos y Condiciones', 'Bienvenido(a) a nuestro sistema Cotiz', '\r\n', 'Acerca de nosotros', 'Conoce acerca de nustra empresa', '', 'Política de privacidad', '', '', '', '', '', '', 'qzrRntctq9Ha0NLcqt0O6fj3LUg1OGZEvMPGUQSR', '2019-03-27 10:47:27', '2023-05-29 00:00:00');
 
+-- Volcando estructura para tabla cotiz.notifications
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `of_user` int NOT NULL,
+  `for_user` int NOT NULL,
+  `message` text COLLATE utf8mb4_bin NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Volcando datos para la tabla cotiz.notifications: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla cotiz.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -80,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `providers` (
   PRIMARY KEY (`id`),
   KEY `FK_providers_users` (`user_id`),
   CONSTRAINT `FK_providers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Volcando datos para la tabla cotiz.providers: ~0 rows (aproximadamente)
 
@@ -99,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `request_services` (
   KEY `FK_request_services_services_providers` (`service_id`),
   CONSTRAINT `FK_request_services_services_providers` FOREIGN KEY (`service_id`) REFERENCES `services_providers` (`id`),
   CONSTRAINT `FK_request_services_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Volcando datos para la tabla cotiz.request_services: ~0 rows (aproximadamente)
 
@@ -117,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `services_providers` (
   PRIMARY KEY (`id`),
   KEY `Porviders_Services_FK1` (`provider_id`),
   CONSTRAINT `Porviders_Services_FK1` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Volcando datos para la tabla cotiz.services_providers: ~0 rows (aproximadamente)
 
@@ -146,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb3;
 
 -- Volcando datos para la tabla cotiz.users: ~0 rows (aproximadamente)
 
