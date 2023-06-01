@@ -323,7 +323,7 @@ class HomeController extends Controller
         $requests_data->update($input);
 
 
-        //Mail::to($user->email)->send(new CotizMail($userName, $title, $message));
+        Mail::to($user->email)->send(new CotizMail($userName, $title, $message));
 
 
         return redirect(env('user').'/request')->with('message', 'Solicitud actualizada con éxito ...');
