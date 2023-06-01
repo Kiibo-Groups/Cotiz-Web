@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Notifications;
 use App\Models\AppUsers;
 use DB;
 use Auth;
@@ -31,6 +31,12 @@ class HomeController extends Controller
         return view($this->folder.'home');
     }
 
+
+    public function notifications() {
+        $user   = Auth::user();
+        $notifications = Notifications::where('for_user',$user->id)->paginate(10);
+        return View('admin.notifications.index',['notifications'=> $notifications]);
+    }
 
     /**
      * Settings the application dashboard.

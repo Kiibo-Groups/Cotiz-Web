@@ -1,6 +1,6 @@
 
 <aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav"> 
+  <ul class="sidebar-nav" id="sidebar-nav">
 
     @if (Auth::user()->role == 2)
     <li class="nav-item">
@@ -65,6 +65,7 @@
         </li>
       </ul>
     </li><!-- End Settings -->
+
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('request_user')) collapsed @endif" data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Tus solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -77,6 +78,12 @@
         </li>
       </ul>
     </li><!-- End Request -->
+    <li class="nav-item">
+      <a class="nav-link @if(!Route::is('notifications')) collapsed @endif" href="{{ Asset(env('user').'/notifications') }}">
+        <i class="bi bi-grid"></i>
+        <span>Notificaciones</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
     @endif
 
     <li class="nav-heading">
@@ -101,6 +108,6 @@
         </form>
       </a>
     </li><!-- End Profile Page Nav -->
- 
+
   </ul>
 </aside>

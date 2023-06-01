@@ -48,6 +48,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         | Dashboard Routes
         |--------------------------------------------------------------------------
         */
+        Route::get('/notifications', [App\Http\Controllers\User\HomeController::class, 'notifications'])->name('notifications');
         Route::resource('home',HomeController::class);
         Route::get('/home', [App\Http\Controllers\Profile\HomeController::class, 'index'])->name('home');
         Route::patch('/input_code/{id}', [App\Http\Controllers\Profile\HomeController::class, 'input_code']);

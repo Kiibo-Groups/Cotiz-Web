@@ -62,12 +62,7 @@
                                                 <p>En este campos podrás añadir detalles importantes a tu solicitud para que sea procesada con mayor efectividad.</p>
                                                 <label for="description">Descripción:</label>
                                                 <textarea name="description" id="description" cols="30" style="min-height: 200px;" rows="1" class="form-control"></textarea>
-                                                    <input type='file' style="display:none;" id="document" name="document" class="ec-image-upload" accept=".png, .jpg, .jpeg, .pdf, .docx, .txt"/>
-                                                    <label for="document">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
-                                                            <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
-                                                        </svg>
-                                                    </label>
+                                                <input type='file' id="document" name="document" class="ec-image-upload mt-3" accept=".png, .jpg, .jpeg, .pdf, .docx, .txt"/>
                                                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
                                                 <input type="hidden" name="status" value="0">

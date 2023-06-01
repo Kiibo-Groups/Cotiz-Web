@@ -11,7 +11,10 @@ use App\Models\EventsConfirms;
 use App\Models\Services;
 use App\Models\Providers;
 use App\Models\Requests;
-
+use App\Models\Notifications;
+use App\Models\User;
+use App\Mail\CotizMail;
+use Illuminate\Support\Facades\Mail;
 use DB;
 use Redirect;
 use Auth;
@@ -219,12 +222,23 @@ class HomeController extends Controller
         $input = $request->all();
         $requests_data = new Requests;
 
+        $user_data = User::find($request->user_id);
+        $service_data = Services::find($request->service_id);
+        $provider_data = Providers::find($service_data->provider_id);
+
+        $notification = new Notifications;
+        $notification->of_user = $request->user_id;
+        $notification->for_user = $provider_data->user_id;
+        $notification->message = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
+        $notification->save();
+
         if($request->file('document'))
         {
 
             // Agregamos el nuevo
+            $path = env('APP_DEBUG') ? '' : 'public/';
             $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
-            $input['document']->move("assets/documents/users", $filename);
+            $input['document']->move($path."assets/documents/users", $filename);
             $input['document'] = $filename;
         }
 
@@ -285,6 +299,32 @@ class HomeController extends Controller
         $requests_data = Requests::find($id);
 
         $requests_data->update($input);
+
+        $user = User::find($requests_data->user_id);
+
+        $userName = $user->name;
+
+        if ($requests_data->status == 1) {
+            $message = 'La solicitud ha sido aprobada con éxito.';
+            $title = 'Solicitud Aprobada - Cotiz';
+        } else {
+            $message = 'La solicitud ha sido rechazada.';
+            $title = 'Solicitud Rechazada - Cotiz';
+        }
+
+        $service_data = Services::find($requests_data->service_id);
+        $provider_data = Providers::find($service_data->provider_id);
+
+        $notification = new Notifications;
+        $notification->of_user = $provider_data->user_id;
+        $notification->for_user = $requests_data->user_id;
+        $notification->message = 'El Proveedor ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
+        $notification->save();
+        $requests_data->update($input);
+
+
+        //Mail::to($user->email)->send(new CotizMail($userName, $title, $message));
+
 
         return redirect(env('user').'/request')->with('message', 'Solicitud actualizada con éxito ...');
 

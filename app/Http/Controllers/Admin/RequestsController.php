@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\Requests;
 use App\Models\Services;
+use App\Models\Providers;
+use App\Models\Notifications;
 
 use DB;
 use Auth;
@@ -62,7 +64,14 @@ class RequestsController extends Controller
 
         $input = $request->all();
         $requests_data = Requests::find($id);
+        $service_data = Services::find($requests_data->service_id);
+        $provider_data = Providers::find($service_data->provider_id);
 
+        $notification = new Notifications;
+        $notification->of_user = $provider_data->user_id;
+        $notification->for_user = $requests_data->user_id;
+        $notification->message = 'El Administrador ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
+        $notification->save();
         $requests_data->update($input);
 
         return redirect(env('admin').'/request')->with('message', 'Solicitud actualizado con éxito ...');

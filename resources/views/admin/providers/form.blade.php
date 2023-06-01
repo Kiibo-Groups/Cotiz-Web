@@ -110,8 +110,8 @@
                                 <div class="col-md-8" style="margin-top:25px;">
                                     <label class="form-label">Estado</label>
                                     <select name="status" id="status" class="form-select js-example-basic-single">
-                                        <option value="1" selected>Activo</option>
-                                        <option value="0">Inactivo</option>
+                                        <option value="1" @if($data->user->status === 1) selected @endif>Activo</option>
+                                        <option value="0" @if($data->user->status === 0) selected @endif>Inactivo</option>
                                     </select>
                                 </div>
                             </div>
