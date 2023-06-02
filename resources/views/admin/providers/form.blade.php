@@ -98,6 +98,7 @@
                                         <option value="Mexico">Mexico</option>
                                     </select>
                                 </div>
+                                
                                 <div class="col-md-8" style="margin-top:25px;">
                                     @error('password')
                                         <div class="alert alert-danger" role="alert">
@@ -107,6 +108,7 @@
                                     <label class="form-label">Contraseña</label>
                                     <input type="password" name="password" id="password" @if($data->id) value="{{ $data->user->shw_password }}"@endif class="form-control">
                                 </div>
+                                @if($data->id)
                                 <div class="col-md-8" style="margin-top:25px;">
                                     <label class="form-label">Estado</label>
                                     <select name="status" id="status" class="form-select js-example-basic-single">
@@ -114,6 +116,7 @@
                                         <option value="0" @if($data->user->status === 0) selected @endif>Inactivo</option>
                                     </select>
                                 </div>
+                                @endif
                             </div>
 
                             <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">

@@ -84,7 +84,7 @@
                                         <option value="" selected></option>
                                         <option value="service" @if ($data->type === "service") selected @endif>Servicio</option>
                                         <option value="product" @if ($data->type === "product") selected @endif>Producto</option>
-                                        <option value="employe" @if ($data->type === "empleyee") selected @endif>Personal</option>
+                                        <option value="employe" @if ($data->type === "empleye") selected @endif>Personal</option>
                                     </select>
                                 </div>
 
@@ -107,6 +107,17 @@
                                     <label for="description">Descripcion</label>
                                     <textarea class="form-control" placeholder="Escribe una breve descripcion" id="description" name="description">{{ $data->description }}</textarea>
                                 </div>
+
+                                <div class="col-md-8" style="margin-top:25px;">
+                                    @error('price')
+                                        <div class="alert alert-danger" role="alert">
+                                            Debes Agregar una descripcion del servicio
+                                        </div>
+                                    @enderror
+                                    <label for="price">Costo del servicio</label>
+                                    <input type="number" name="price" id="price" class="form-control" @if ($data->id) value="{{ $data->price }}" @endif>
+                                </div>
+
                                 <div class="col-md-8" style="margin-top:25px;">
                                     @error('status')
                                         <div class="alert alert-danger" role="alert">

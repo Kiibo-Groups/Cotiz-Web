@@ -81,7 +81,7 @@
                       <input type='file' name='pic_profile' id="imageUpload" class="ec-image-upload" accept=".png, .jpg, .jpeg" hidden />
                       <label for="imageUpload">
                         @if(Auth::user()->pic_profile)
-                          <img src="{{ asset('img/logos'.Auth::user()->pic_profile) }}" class="ec-image-preview" alt="Profile">
+                          <img src="{{ asset('assets/img/logos/'.Auth::user()->pic_profile) }}" class="ec-image-preview" alt="Profile">
                         @else
                         <img src="{{ asset('profile/img/user_profile.jpg') }}" class="ec-image-preview" alt="Profile">
                         @endif

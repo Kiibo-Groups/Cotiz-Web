@@ -13,6 +13,7 @@ use App\Models\Providers;
 use App\Models\Requests;
 use App\Models\Notifications;
 use App\Models\User;
+use App\Models\Admin;
 use App\Mail\CotizMail;
 use Illuminate\Support\Facades\Mail;
 use DB;
@@ -49,14 +50,14 @@ class HomeController extends Controller
             $provider = Providers::where('user_id',$user->id)->first();
             $services = Services::where('provider_id',$provider->id)->count();
             $servidesId = Services::where('provider_id',$provider->id)->get()->pluck('id');
-            $requests = Requests::whereIn('service_id',$servidesId)->count();
+            $requests = Requests::whereIn('services_id',$servidesId)->count();
 
             $statistics = json_encode([
                 'services' => StatisticsHelper::statisticsCountModel(Services::class, function ($query) use ($provider) {
                     $query->where('provider_id', $provider->id);
                 }),
                 'request' => StatisticsHelper::statisticsCountModel(Requests::class, function ($query) use ($servidesId) {
-                    $query->whereIn('service_id', $servidesId);
+                    $query->whereIn('services_id', $servidesId);
                 })
             ]);
 
@@ -97,7 +98,7 @@ class HomeController extends Controller
                 }
 
                 $services_provider = $services_provider->paginate(10);
-
+                 
                 return view('admin.services.index', [
                     'user' => Auth::user(),
                     'services' => $services_provider,
@@ -223,7 +224,7 @@ class HomeController extends Controller
         $requests_data = new Requests;
 
         $user_data = User::find($request->user_id);
-        $service_data = Services::find($request->service_id);
+        $service_data = Services::find($request->services_id);
         $provider_data = Providers::find($service_data->provider_id);
 
         $notification = new Notifications;
@@ -244,7 +245,7 @@ class HomeController extends Controller
 
         $requests_data->create($input);
 
-        return redirect()->route('home')->with('message', 'Solicitud Enviada');
+        return redirect()->route('request_user')->with('message', 'Solicitud Enviada');
 
     }
 
@@ -258,7 +259,7 @@ class HomeController extends Controller
         if(Auth::user()->role == 2){
             $provider = Providers::where('user_id',$user)->first();
             $services = Services::where('provider_id',$provider->id)->get()->pluck('id');
-            $requests_user = Requests::whereIn('service_id',$services)
+            $requests_user = Requests::whereIn('services_id',$services)
                                 ->with(['service']);
         }else {
             $requests_user = Requests::where('user_id','like','%'.$user.'%')
@@ -280,7 +281,7 @@ class HomeController extends Controller
             ->where('created_at','<=',$even);
         }
 
-        $requests_user = $requests_user->paginate(10);
+        $requests_user = $requests_user->orderBy('id','DESC')->paginate(10);
 
         return view('admin.requests.index', [
             'requests'=> $requests_user,
@@ -296,6 +297,7 @@ class HomeController extends Controller
         ]);
 
         $input = $request->all();
+        $admin   = Admin::find(1);
         $requests_data = Requests::find($id);
 
         $requests_data->update($input);
@@ -307,13 +309,45 @@ class HomeController extends Controller
         if ($requests_data->status == 1) {
             $message = 'La solicitud ha sido aprobada con éxito.';
             $title = 'Solicitud Aprobada - Cotiz';
+        }else if ($requests_data->status == 5) {
+            $message = 'La solicitud ha sido aprobada y el CashBack aplicado con éxito.';
+            $title = 'Solicitud Aprobada - Cotiz';
         } else {
             $message = 'La solicitud ha sido rechazada.';
             $title = 'Solicitud Rechazada - Cotiz';
         }
 
-        $service_data = Services::find($requests_data->service_id);
-        $provider_data = Providers::find($service_data->provider_id);
+        $service_data = Services::find($requests_data->services_id);
+        $provider_data = Providers::find($service_data->provider_id); 
+
+        if ($requests_data->status == 5) {
+            $amountServ    = $service_data->price;
+            $cashBackUser  = $user->cashback;
+            $cashBackAdmin = $admin->cashback;
+            $typeCashB     = $admin->type_cashb;
+
+            $newCash;
+            if ($typeCashB === 1) { // en %
+                $newCash = ($amountServ * $cashBackAdmin) / 100;   
+            }else { // Valor Fijo
+                $newCash = $cashBackAdmin;
+            }
+
+            $cashBackUser = $cashBackUser + $newCash;
+            $user->cashback = $cashBackUser;
+            $user->save();
+
+            $msg = "Solicitud actualizada, y CashBack aplicado.";
+
+            // Agregamos el cashBack si es necesario
+            // return response()->json([
+            //     'amountServ' => $service_data->price,
+            //     'cashbackUser' => $cashBackUser,
+            //     'cashbackAdmin' => $cashBackAdmin,
+            //     'typeCashB' => $typeCashB,
+            //     'newCash' => $newCash
+            // ]);
+        }
 
         $notification = new Notifications;
         $notification->of_user = $provider_data->user_id;
@@ -321,12 +355,12 @@ class HomeController extends Controller
         $notification->message = 'El Proveedor ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
         $notification->save();
         $requests_data->update($input);
-
+ 
 
         Mail::to($user->email)->send(new CotizMail($userName, $title, $message));
 
 
-        return redirect(env('user').'/request')->with('message', 'Solicitud actualizada con éxito ...');
+        return redirect(env('user').'/request')->with('message', $message);
 
     }
 
@@ -476,5 +510,11 @@ class HomeController extends Controller
         $lims_profile_data->update($input);
 
         return redirect('settings')->with('message', 'Cuenta actualizada  actualizada con éxito...');
+    }
+ 
+    public function notifications() {
+        $user   = Auth::user();
+        $notifications = Notifications::where('for_user',$user->id)->paginate(10);
+        return View('admin.notifications.index',['notifications'=> $notifications]);
     }
 }

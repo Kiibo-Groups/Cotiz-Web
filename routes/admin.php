@@ -1,7 +1,7 @@
 <?php
 
-Route::get('/admin',[App\Http\Controllers\Admin\AdminController::class, 'index']);
 
+Route::get('/admin',[App\Http\Controllers\Admin\AdminController::class, 'index']);
 // Admin Section
 // Route::group(['namespace' => 'Admin','prefix' => env('admin')], function(){
 Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
@@ -16,7 +16,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         |Dashboard and Account Setting & Logout
         |-----------------------------------------
         */
-
+   
         Route::get('dash',[App\Http\Controllers\Admin\AdminController::class, 'home']);
         Route::get('settings',[App\Http\Controllers\Admin\AdminController::class, 'settings'])->name('settings');
         Route::get('/profile',[App\Http\Controllers\Admin\AdminController::class, 'profile'])->name('profile');

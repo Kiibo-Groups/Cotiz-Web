@@ -2,7 +2,16 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
 
+    
+
     @if (Auth::user()->role == 2)
+    <li class="nav-item">
+      <a class="nav-link @if(!Route::is('dash')) collapsed @endif" href="{{ Asset(env('user').'/') }}">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('services') || !Route::is('services.show')) collapsed @endif" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-building"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -50,10 +59,10 @@
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('home')) collapsed @endif" href="{{ Asset(env('user').'/home') }}">
         <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
+        <span>Configuración</span>
       </a>
     </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
+    <!--<li class="nav-item">
       <a class="nav-link @if(!Route::is('settings')) collapsed @endif" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -64,7 +73,7 @@
           </a>
         </li>
       </ul>
-    </li><!-- End Settings -->
+    </li> End Settings -->
 
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('request_user')) collapsed @endif" data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
@@ -89,15 +98,13 @@
     <li class="nav-heading">
       <hr />
     </li>
-
-   <!--
+ 
      <li class="nav-item">
       <a class="nav-link collapsed" href="{{ url('./') }}">
         <i class="bx bxs-navigation"></i>
         <span>Ir al WebSite</span>
       </a>
-    </li>
-   -->
+    </li> 
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

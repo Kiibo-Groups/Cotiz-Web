@@ -33,7 +33,11 @@ class ProvidersController extends Controller
         }
 
         if($search) {
-            $data = $data->where('name','like','%'.$search.'%');
+            $data = $data->where(function($q) use($search){
+                $q->whereRaw('lower(name) like "%' . strtolower($search) . '%"');
+            });
+            
+            
         }
 
         $data = $data->paginate(10);
@@ -70,7 +74,7 @@ class ProvidersController extends Controller
             $user_provider->country = $request->country;
             $user_provider->pic_profile = time().rand(111,699).'.'.$request->logo->getClientOriginalExtension();
             $user_provider->role = 2;
-            $user_provider->status = $request->status;
+            $user_provider->status = 0;
             $user_provider->save();
 
             if(isset($input['logo']))
@@ -87,6 +91,7 @@ class ProvidersController extends Controller
 
             $user = User::where('name','=',$request->name)->get()->first();
             $providers_data->user_id = $user->id;
+            $providers_data->status  = 1; // Default status
             $providers_data->save();
             $providers_data->update($input);
 
@@ -96,6 +101,10 @@ class ProvidersController extends Controller
 
     public function show($id)
     {
+
+        // return response()->json([
+        //     'data' => new Providers
+        // ]);
         return view($this->folder.'providers.add', [
             'data' => new Providers
         ]);

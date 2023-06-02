@@ -33,6 +33,7 @@ class AppUsers extends Model
         'linkedin',
         'password',
         'shw_password',
-        'level'
+        'level',
+        'cashback'
     ];
 }

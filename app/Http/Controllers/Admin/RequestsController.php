@@ -10,7 +10,8 @@ use App\Models\Requests;
 use App\Models\Services;
 use App\Models\Providers;
 use App\Models\Notifications;
-
+use App\Models\User;
+use App\Models\Admin;
 use DB;
 use Auth;
 use Redirect;
@@ -48,6 +49,13 @@ class RequestsController extends Controller
 
         $requests = $requests->paginate(10);
 
+        // return response()->json([
+        //     'user' => Auth::user(),
+        //     'requests'=> $requests,
+        //     'search'=> $search,
+        //     'status'=>$status
+        // ]);
+
         return view($this->folder.'requests.index', [
             'requests'=> $requests,
             'search'=> $search,
@@ -63,10 +71,43 @@ class RequestsController extends Controller
         ]);
 
         $input = $request->all();
+        $admin   = Admin::find(1);
         $requests_data = Requests::find($id);
-        $service_data = Services::find($requests_data->service_id);
+        $service_data = Services::find($requests_data->services_id);
         $provider_data = Providers::find($service_data->provider_id);
+        $user_data = User::find($requests_data->user_id);
+        $msg =  'Solicitud actualizado con éxito ...';
+        if ($input['status'] == 5) {
+            $amountServ    = $service_data->price;
+            $cashBackUser  = $user_data->cashback;
+            $cashBackAdmin = $admin->cashback;
+            $typeCashB     = $admin->type_cashb;
 
+            $newCash;
+            if ($typeCashB === 1) { // en %
+                $newCash = ($amountServ * $cashBackAdmin) / 100;   
+            }else { // Valor Fijo
+                $newCash = $cashBackAdmin;
+            }
+
+            $cashBackUser = $cashBackUser + $newCash;
+            $user_data->cashback = $cashBackUser;
+            $user_data->save();
+
+            $msg = "Solicitud actualizada, y CashBack aplicado.";
+
+            // Agregamos el cashBack si es necesario
+            // return response()->json([
+            //     'amountServ' => $service_data->price,
+            //     'cashbackUser' => $cashBackUser,
+            //     'cashbackAdmin' => $cashBackAdmin,
+            //     'typeCashB' => $typeCashB,
+            //     'newCash' => $newCash
+            // ]);
+        }
+ 
+
+        // Notificamos
         $notification = new Notifications;
         $notification->of_user = $provider_data->user_id;
         $notification->for_user = $requests_data->user_id;
@@ -74,7 +115,7 @@ class RequestsController extends Controller
         $notification->save();
         $requests_data->update($input);
 
-        return redirect(env('admin').'/request')->with('message', 'Solicitud actualizado con éxito ...');
+        return redirect(env('admin').'/request')->with('message', $msg);
 
     }
 

@@ -19,7 +19,7 @@
                 <div class="col-4">
                     <div class="card">
                         <div class="card-img-box">
-                            <img src="{{ asset('assets/img/logos/' . $service->logo) }}" class="card-img" alt="logo">
+                            <div style="background-image:url('{{ asset('assets/img/logos/'.$service->logo) }}');background-size: cover;width: 100%;height: 210px;background-position: center center;"></div>
                         </div>
                         <div class="card-body row justify-content-center">
                             <div class="col-12">

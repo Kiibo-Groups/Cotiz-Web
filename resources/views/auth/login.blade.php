@@ -1,60 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.app_website')
 @section('content')
-<section class=" bg-image bg-no-repeat bg-center bg-overlay bg-overlay-black-600 text-white py-md-16 "
-    data-image-src="{{ asset('assets2/images/bg-login.jpg') }}"
-    style="height:100vh; background-repeat: no-repeat;background-size: cover;">
+<section class="md:h-screen py-36 flex items-center bg-no-repeat bg-center" style="background-image:url('{{ asset('assets2/images/bg-login.jpg') }}');background-size: contain;">
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-xl-6 col-xxl-5 mx-auto">
-                <div class="card">
-                    <div class="card-body p-11 text-center">
-                        <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto" alt="">
-                        <h2 class="mb-3">Iniciar sesion</h2>
-                        <form class="text-start my-3" method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-floating mb-4">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <label for="loginEmail">Email</label>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-floating password-field mb-4">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                <span class="password-toggle"><i class="uil uil-eye"></i></span>
-                                <label for="loginPassword">Contraseña</label>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
-                                Ingresar
-                            </button>
-                        </form>
-                    <!-- /form -->
-
-                    @if (Route::has('password.request'))
-                        <p class="mb-1"><a href="{{ route('password.request') }}" class="hover">Has olvidado tu contraseña?</a></p>
-                    @endif
-
-                    <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('register_get')}}" class="hover">Registrate</a></p>
+        <div class="flex justify-center">
+            <div class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
+                <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto" alt="">
+                <h5 class="my-6 text-xl font-semibold">Iniciar sesion</h5>
+                <form class="ltr:text-left rtl:text-right" method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="loginEmail">Email</label>
+                        <input id="email" type="email" class="form-input mt-3 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                </div>
+
+                    <div class="mb-4">
+                        <label for="loginPassword">Contraseña</label>
+                        <input id="password" type="password" class="form-input mt-3 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+ 
+                    <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
+                        Ingresar
+                    </button>
+                </form>
+                <!-- /form -->
+
+
+                <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('register_get')}}" class="hover">Registrate</a></p>
             </div>
         </div>
     </div>
-</section>
-<!-- /section -->
+</section><!--end section -->
 
-<section class="wrapper bg-light">
+                        
 
-</section>
+<div class="fixed bottom-3 ltr:right-3 rtl:left-3">
+    <a href="" class="back-button btn btn-icon bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full"><i data-feather="arrow-left" class="h-4 w-4"></i></a>
+</div>
 <!-- /section -->
 @endsection

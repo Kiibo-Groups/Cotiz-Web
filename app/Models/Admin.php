@@ -39,7 +39,9 @@ class Admin extends Authenticatable
         'fb',
         'insta',
         'twitter',
-        'youtube'
+        'youtube',
+		'cashback',
+		'type_cashb'
 	];
 
     public function rules($type)

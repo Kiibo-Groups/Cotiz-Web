@@ -39,20 +39,20 @@
                             <div class="col-12 col-sm-4 p-3">
                                 <div class="card">
                                     <div class="card-img-box">
-                                        <img src="{{ asset('assets/img/logos/' . $service->logo) }}" class="card-img"
-                                            alt="logo">
+                                            <div style="background-image:url('{{ asset('assets/img/logos/'.$service->logo) }}');background-size: cover;width: 100%;height: 210px;background-position: center center;"></div>
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-12">
                                             <h5 class="card-title">{{ $service->provider->name }}</h5>
+                                            @if ($service->status === 0)
+                                            <span class="badge text-white bg-secondary" style="float: right;top: -40px;position: relative;">Inactivo</span>
+                                            @else
+                                            <span class="badge text-white bg-success" style="float: right;top: -40px;position: relative;">Activo</span>
+                                            @endif
                                         </div>
                                         <div class="col-12 mb-2">
                                             <p class="card-text text-muted m-0">Titulo</p>
                                             <h5 class="card-title m-0 p-0">{{ $service->title }}</h5>
-                                        </div>
-                                        <div class="col-12 mb-2">
-                                            <p class="card-text text-muted m-0">Descripcion</p>
-                                            <h5 class="card-title m-0 p-0">{{ $service->description }}</h5>
                                         </div>
                                         <div class="col-12 mb-2">
                                             <p class="card-text text-muted m-0">Tipo</p>
@@ -67,15 +67,12 @@
                                             </h5>
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <p class="card-text text-muted m-0">Estado</p>
-                                            <h5 class="card-title m-0 p-0">
-                                                @if ($service->status === 0)
-                                                <span class="badge text-white bg-secondary">Inactivo</span>
-                                                @else
-                                                <span class="badge text-white bg-success">Activo</span>
-                                                @endif
+                                            <p class="card-text text-muted m-0">Costo</p>
+                                            <h5 class="card-title m-0 p-0"> 
+                                                <span class="badge text-white bg-success">$ {{number_format($service->price,2)}}</span>
                                             </h5>
                                         </div>
+                                        
                                         @if (!Auth::guard('admin')->check())
                                             <div class="col-6 mt-3">
                                                 <a href="{{ url(env('user') . '/services/edit/' . $service->id) }}"

@@ -37,11 +37,12 @@ class ServicesController extends Controller
 
         $data = $data->paginate(10);
 
+        
+
         return view($this->folder.'services.index', [
             'services' => $data,
             'search' => $search,
             'status' => $status,
-            'user' => ''
 
         ]);
 
@@ -56,6 +57,7 @@ class ServicesController extends Controller
                 'title'=>'required',
                 'description'=>'required',
                 'logo'=>'required',
+                'price'=>'required',
                 'status'=>'required'
             ]);
 
@@ -112,6 +114,7 @@ class ServicesController extends Controller
             'type'=>'required',
             'title'=>'required',
             'description'=>'required',
+            'price' => 'required',
             'status'=>'required'
         ]);
 

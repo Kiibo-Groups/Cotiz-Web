@@ -6,11 +6,10 @@
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 col-xl-6 col-xxl-5 mx-auto">
+            <div class=" col-lg-7 col-xl-6 col-xxl-5 mx-auto">
                 <div class="card">
                     <div class="card-body p-11 text-center">
-                    <h2>Regístrese en Cotiz</h2>
-                    <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto my-3" alt="">
+                    <h2>Regístrese en Cotiz</h2> 
                     <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
                     <form class="text-start mb-3" method="POST" action="{{ route('register_post') }}">
                         @csrf

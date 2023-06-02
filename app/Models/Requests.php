@@ -12,15 +12,17 @@ class Requests extends Model
 
     protected $fillable =[
        'user_id',
-       'service_id',
+       'services_id',
        'status',
        'description',
        'document'
     ];
 
+    
+
     public function service(){
 
-        return $this->belongsTo(Services::class, 'service_id');
+        return $this->belongsTo(Services::class, 'services_id');
     }
 
     public function user(){

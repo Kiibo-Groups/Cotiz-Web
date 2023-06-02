@@ -43,6 +43,7 @@ class RegisterController extends Controller
             $provider->name = $user_data[0]->name;
             $provider->email = $user_data[0]->email;
             $provider->user_id = $user_data[0]->id;
+            $provider->status = 0; // Default status
             $provider->save();
         }
 

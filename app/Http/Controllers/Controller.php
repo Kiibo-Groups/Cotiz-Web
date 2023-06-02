@@ -11,16 +11,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 use App\Models\Admin;
 use App\Models\AppUsers;
-use App\Models\Banners;
-use App\Models\Comments;
-use App\Models\Events;
-use App\Models\EventsConfirms;
 use App\Models\Providers;
-use App\Models\Sections;
 use App\Models\Services;
 use App\Models\Settings;
+use App\Models\Requests;
 use App\Models\User;
-use App\Models\Mentors;
 
 use DB;
 use Auth;
@@ -30,17 +25,81 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**
-     * Show the application dashboard.
+     /**
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return void
      */
-    /* public function index()
+    public function __construct()
     {
 
-        return redirect('/home');
+    }
 
-    } */
+    public function home()
+    {
+        $allProds   = Services::with('provider')->where('status',1)->get();
+        $Services   = Services::with('provider')->where('type','service')->where('status',1)->get();
+        $Products   = Services::with('provider')->where('type','product')->where('status',1)->get();
+        $Employes   = Services::with('provider')->where('type','employe')->where('status',1)->get();
+
+        return view('index', [
+            'allProducts' => $allProds,
+            'Services' => $Services,
+            'Products' => $Products,
+            'Employes' => $Employes
+        ]);
+
+    }
+
+    public function viewprod($id,$tit)
+    {
+
+        $Id = base64_decode($id);
+        $service = Services::where('id',$Id)->with('provider')->withCount('requests')->first();
+
+        // return response()->json([
+        //     'data' => $service
+        // ]);
+        return view('pages.viewprod', [
+            'data' => $service
+        ]);
+
+    }
+
+    public function searchProd(Request $request)
+    {
+        $user = Auth::user()->id;
+        $search = strtolower($request->q);
+        $type   = strtolower($request->type);
+
+        $requests_user = Services::with(['provider']);
+
+        if($search) {
+            $requests_user = $requests_user->where(function ($q) use ($search) {
+                    $q->whereRaw('lower(title) like "%'.$search.'%"');
+            });
+        }
+
+        if($type) {
+            $requests_user = $requests_user->where('type',$type);
+        }
+ 
+        $requests_user = $requests_user->orderBy('id','DESC') 
+        ->simplePaginate(10);
+
+
+        // return response()->json([
+        //     'requests'=> $requests_user,
+        //     'search' => $search
+        // ]);
+
+        return view('pages.search', [
+            'requests'=> $requests_user,
+            'search' => $search,
+            'type'  => $type
+        ]);
+    }
+
 
     public function input_code(Request $request,$id) {
 

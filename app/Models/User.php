@@ -31,7 +31,8 @@ class User extends Authenticatable
         'password',
         'shw_password',
         'role',
-        'status'
+        'status',
+        'cashback'
     ];
 
     /**

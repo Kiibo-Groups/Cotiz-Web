@@ -17,7 +17,8 @@ class Providers extends Model
        'phone',
        'country',
        'logo',
-       'user_id '
+       'user_id',
+       'status'
     ];
 
     public function service(){

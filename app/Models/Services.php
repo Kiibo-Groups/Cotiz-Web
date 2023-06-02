@@ -16,6 +16,7 @@ class Services extends Model
        'description',
        'logo',
        'status',
+       'price',
        'provider_id'
     ];
 

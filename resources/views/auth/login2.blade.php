@@ -10,13 +10,14 @@
                 <div class="card">
                     <div class="card-body p-11 text-center">
                         <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto" alt="">
-                        <h2 class="mb-3">Iniciar sesion</h2>
+                        <br>
+                        <h2 class="mb-3">Panel de Administración</h2>
                         <form class="text-start my-3" method="POST" action="/admin/login">
                             @csrf
                             <div class="form-floating mb-4">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="username" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <label for="loginEmail">Email</label>
-                                @error('email')
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus>
+                                <label for="username">Usuario</label>
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -39,12 +40,8 @@
                             </button>
                         </form>
                     <!-- /form -->
+ 
 
-                    @if (Route::has('password.request'))
-                        <p class="mb-1"><a href="{{ route('password.request') }}" class="hover">Has olvidado tu contraseña?</a></p>
-                    @endif
-
-                    <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('register_get')}}" class="hover">Registrate</a></p>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="search" id="filter_search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una solicitud" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        @if (Auth::user()->role != 1)
+                        @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
                             <option value="" selected>Estatus</option>
                             <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
@@ -70,8 +70,10 @@
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>
                                     @elseif ($request->status === 1)
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Aprobado</span></h5>
-                                    @else
+                                    @elseif ($request->status === 2)
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-danger">Rechazado</span></h5>
+                                    @elseif ($request->status === 5)
+                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Finalizado</span></h5>
                                     @endif
                                 </div>
                                 @if (!is_null($request->document))
@@ -106,6 +108,7 @@
 															<select name="status" id="status" class="form-select">
 																<option value="0" selected>Pendiente</option>
 																<option value="1">Aprobado</option>
+                                                                <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
 																<option value="2">Rechazado</option>
 															</select>
                                                         </div>

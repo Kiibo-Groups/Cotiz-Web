@@ -11,26 +11,26 @@
     @include("structure.main")
     <!-- CSS -->
     <style>
-    .to-black{
-        --tw-gradient-to: #161c2d !important;
-    }
-    .from-transparent {
-        --tw-gradient-from: transparent !important;
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
-    }
-    .bg-gradient-to-b {
-        background-image: -webkit-gradient(linear, left top, left bottom, from(var(--tw-gradient-stops))) !important;
-        background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
-    }
-    .inset-0 {
-        top: 0px !important;
-        right: 0px !important;
-        bottom: 0px !important;
-        left: 0px !important;
-        }
-    .absolute {
-        position: absolute !important;
-    }
+      .to-black{
+          --tw-gradient-to: #161c2d !important;
+      }
+      .from-transparent {
+          --tw-gradient-from: transparent !important;
+          --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+      }
+      .bg-gradient-to-b {
+          background-image: -webkit-gradient(linear, left top, left bottom, from(var(--tw-gradient-stops))) !important;
+          background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
+      }
+      .inset-0 {
+          top: 0px !important;
+          right: 0px !important;
+          bottom: 0px !important;
+          left: 0px !important;
+          }
+      .absolute {
+          position: absolute !important;
+      }
     </style>
 </head>
 <body class="antialiased">

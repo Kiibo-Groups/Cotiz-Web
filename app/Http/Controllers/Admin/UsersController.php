@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\AppUsers;
 use App\Models\UserAddress;
 use App\Models\Providers;
 

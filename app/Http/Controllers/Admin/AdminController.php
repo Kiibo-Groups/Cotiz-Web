@@ -31,9 +31,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return View('auth.login2',[
-			'form_url' => Asset(env('admin').'/login')
-		]);
+
+        if (auth()->guard('admin')->check()) {
+            return redirect(env('Admin').'/dash');
+        }else {
+            return View('auth.login2',[
+                'form_url' => Asset(env('admin').'/login')
+            ]);
+        }
     }
 
     /*
@@ -198,7 +203,7 @@ class AdminController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('public/profile/img/logo', $imageName);
+            $image->move('profile/img/logo', $imageName);
 
             $input['logo'] = $imageName;
         }

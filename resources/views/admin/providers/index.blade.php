@@ -33,7 +33,8 @@
 					<div class="card">
 						<div class="card-img-box">
                             @if($provider->logo)
-							<img src="{{ asset('assets/img/logos/'.$provider->logo) }}" class="card-img" alt="logo">
+							{{-- <img src="{{ asset('assets/img/logos/'.$provider->logo) }}" class="card-img" alt="logo"> --}}
+                            <div style="background-image:url('{{ asset('assets/img/logos/'.$provider->logo) }}');background-size: cover;width: 100%;height: 210px;background-position: center center;"></div>
                             @else
                                 <img class="card-img" src="{{ asset('profile/img/user_profile.jpg') }}" alt="logo" />
                             @endif

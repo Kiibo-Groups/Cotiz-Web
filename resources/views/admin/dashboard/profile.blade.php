@@ -14,7 +14,7 @@
                 @if($data->logo == '')
                     <img src="{{ asset('profile/img/1647418114462.jpg') }}" alt="Profile" class="rounded-circle">
                 @else
-                    <img src="<?php echo asset('public/profile/img/logo/'.$data->logo) ?>" alt="Profile" class="rounded-circle"> 
+                    <img src="<?php echo asset('profile/img/logo/'.$data->logo) ?>" alt="Profile" class="rounded-circle"> 
                 @endif
 
                 <h2>{{$data->name}}</h2>
@@ -143,7 +143,32 @@
                                     </div>
                                 </div> 
                             </div>
-    
+                            <hr />
+                            <div class="row mb-3">
+                                <div class="col-lg-12 mb-3">
+                                    <div class="form-group mb-3">
+                                        <label for="name">Configuración del CashBack</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group mb-3">
+                                        <label for="cashback">Monto <small>(Productos, Personal y Servicios)</small></label>
+                                        <input type="number" class="form-control" name="cashback" value="{{$data->cashback}}" id="cashback"  autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group mb-3">
+                                        <label for="type_cashb">Tipo</label>
+                                        <select name="type_cashb" id="type_cashb" class="form-select">
+                                            <option value="1" @if ($data->type_cashb === 1) selected @endif>Valor en %</option>
+                                            <option value="0" @if ($data->type_cashb === 0) selected @endif>Valor fijo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="text-left pt-16 mb-3">
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
