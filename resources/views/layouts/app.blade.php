@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cotiz descubre nuestros mejores eventos y agenda una llamada con nuestros mejores mentores.">
-    <meta name="keywords" content="Mentorias, Eventos, Inversiones, Startups, DQV, Kiibo Groups">
+    <meta name="keywords" content="Startups, Kiibo Groups">
     <meta name="author" content="elemis">
     <title>Cotiz | WebSite</title>
     <!-- ========== Links ========== -->

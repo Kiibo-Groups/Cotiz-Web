@@ -15,4 +15,4 @@
 <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
 <!-- Template Main CSS File -->
-<link href="{{ asset('profile/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('profile/css/style.css') }}" rel="stylesheet"> 
