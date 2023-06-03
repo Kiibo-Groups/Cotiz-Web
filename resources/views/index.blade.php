@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Start Hero -->
-<section class="md:h-screen py-36 h-auto relative flex items-center background-effect overflow-hidden" style="background-image: url('{{ asset('assets2/images/job/job.jpg') }}')">
+<section class="md:h-screen py-36 h-auto relative flex items-center background-effect overflow-hidden" style="background-image: url('{{ asset('assets2/images/bg-login.jpg') }}');background-repeat: no-repeat;background-size: contain;">
     <div class="container-fluid">
         <div class="absolute inset-0 z-0 "
         style="background-image:url('{{ asset('assets2/images/job/curve-shape.png') }}')"></div>
@@ -11,7 +11,7 @@
 
     <div class="container z-1">
         <div class="grid grid-cols-1 mt-10">
-            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br> Productos <span class="text-indigo-600">y/o Servicios</span></h4>
+            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br> Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
             <p class="text-slate-400 text-lg max-w-xl">
                 Pretendemos ser una vitrina única a la que las empresas puedan acudir para
                 solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
@@ -35,7 +35,7 @@
                                         </select>
                                     </div>
                                  
-                                    <input type="submit" id="search" name="search" style="height: 60px;" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-100" value="Buscar">
+                                    <input type="submit" id="search" name="search" class="btn text-white searchbtn submit-btn w-100" value="Buscar" style="height: 60px;background: #00C5D7;">
                                 </div><!--end grid-->
                             </div><!--end container-->
                         </form>
@@ -51,13 +51,6 @@
         <li class="brand-img"><img src="{{ asset('assets2/images/client/shree-logo.png') }}" class="w-9 h-9" alt=""></li>
         <li class="brand-img"><img src="{{ asset('assets2/images/client/skype.png') }}" class="w-9 h-9" alt=""></li>
         <li class="brand-img"><img src="{{ asset('assets2/images/client/snapchat.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/spotify.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/telegram.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/whatsapp.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/android.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/facebook-logo-2019.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/linkedin.png') }}" class="w-9 h-9" alt=""></li>
-        <li class="brand-img"><img src="{{ asset('assets2/images/client/google-logo.png') }}" class="w-9 h-9" alt=""></li>
     </ul>
 </section><!--end section-->
 <div class="relative">

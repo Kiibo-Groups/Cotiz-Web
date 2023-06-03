@@ -38,15 +38,15 @@
         <div class="container">
             <!-- Logo container-->
             <a class="logo ltr:pl-0 rtl:pr-0" href="{{ route('init') }}">
-                <img src="{{ asset('assets2/images/logo-cotiz.png') }}" style="width: 50px;" class="inline-block dark:hidden" alt="">
-                <img src="{{ asset('assets2/images/logo-cotiz.png') }}" style="width: 50px;" class="hidden dark:inline-block" alt="">
+                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="inline-block dark:hidden" alt="">
+                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="hidden dark:inline-block" alt="">
             </a>
  
             <!--Login button Start-->
             <ul class="buy-button list-none mb-0">
                 @if(!Auth::user())
                     <li class="inline mb-0">
-                        <a href="{{ route('login') }}" class="btn btn-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+                        <a href="{{ route('login') }}" class="btn btn-icon rounded-full hover:text-black">
                             <i data-feather="user" class="h-4 w-4"></i></a>
                     </li>
                 @else 
@@ -66,7 +66,7 @@
                 @endif
 
                 <li class="inline mb-0">
-                    <a href="{{ route('contact') }}" class="btn btn-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+                    <a href="{{ route('contact') }}" class="btn btn-icon rounded-full hover:text-black">
                         <i data-feather="phone" class="h-4 w-4"></i></a>
                 </li>
             </ul>
