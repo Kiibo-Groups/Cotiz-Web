@@ -139,49 +139,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -224,15 +181,76 @@ class AdminController extends Controller
         return redirect(env('admin').'/profile')->with('message', 'Cuenta actualizada  actualizada con éxito...');
     }
 
+    
     /**
-     * Remove the specified resource from storage.
+     * Gestion de SubCuentas de administración
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function subAccounts()
     {
-        //
+        return view($this->folder.'accounts.index', [
+            'accounts' => Admin::get(), 
+            'admin' => auth()->guard('admin')->user()
+        ]);
+    }
+
+    public function AddsubAccounts()
+    {
+        return view($this->folder.'accounts.add', [ 
+            'form_url' => Asset(env('admin').'/AddsubAccount'),
+            'data' => new Admin,
+            'array' => []
+        ]);
+    }
+
+    public function AddsubAccount(Request $request)
+    {
+        $admin = new Admin;
+ 
+        if($admin->validate($request->all(),'add'))
+		{
+			return redirect::back()->withErrors($data->validate($request->all(),'add'))->withInput();
+			exit;
+		}
+
+        $new = $admin->addNew($request->all(),'add');
+        return redirect(env('admin').'/subAccounts')->with('message', 'Cuenta agregada con éxito...'); 
+    }
+
+    public function EditsubAccounts($id)
+    {
+        $admin = Admin::find($id);
+
+        return view($this->folder.'accounts.add', [ 
+            'form_url' => Asset(env('admin').'/EditsubAccount/'.$id),
+            'data' => $admin,
+            'array' => explode(",", $admin->perm)
+        ]);
+    }
+
+    public function _EditsubAccount(Request $Request, $id)
+    {
+        $data = new Admin;
+		
+		if($data->validate($Request->all(),$id))
+		{
+			return redirect::back()->withErrors($data->validate($Request->all(),$id))->withInput();
+			exit;
+		}
+
+		$data->addNew($Request->all(),$id);
+		
+		return redirect(env('admin').'/subAccounts')->with('message','Cuenta actualizada con éxito.');
+    }
+
+    public function StatussubAccounts($id)
+    {
+        $res 			= Admin::find($id);
+		$res->status 	= $res->status == 0 ? 1 : 0;
+		$res->save();
+
+		return redirect(env('admin').'/subAccounts')->with('message','Status Updated Successfully.');
     }
 
     /*

@@ -49,19 +49,16 @@ class Admin extends Authenticatable
         if($type === 'add')
         {
             return [
-
-            'username' => 'required|unique:admin',
-
+            	'username' => 'required|unique:admin',
             ];
         }
         else
         {
             return [
-
-            'username'     => 'required|unique:admin,username,'.$type,
-
+            	'username'     => 'required|unique:admin,username,'.$type,
             ];
         }
+
     }
     
     public function validate($data,$type)
@@ -151,8 +148,8 @@ class Admin extends Authenticatable
         $add                    = $type === 'add' ? new Admin : Admin::find($type);
        	$add->username 			= isset($data['username']) ? $data['username'] : null;
        	$add->name 				= isset($data['name']) ? $data['name'] : null;
-       	$add->perm 				= isset($data['perm']) ? implode(",", $data['perm']) : null;
-		$add->city_id           = isset($data['city_id']) ? $data['city_id'] : 0;
+		$add->email  			= isset($data['email']) ? $data['email'] : null;
+       	$add->perm 				= isset($data['perm']) ? implode(",", $data['perm']) : null; 
 
         if(isset($data['password']))
         {

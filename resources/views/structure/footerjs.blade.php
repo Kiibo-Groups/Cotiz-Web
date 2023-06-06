@@ -16,5 +16,6 @@
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/main.js?v='.time()) }}"></script>
 
+<script src="{{ asset('profile/vendor/select2/js/select2.full.min.js') }}"></script>
 <!-- Full Calendar -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>

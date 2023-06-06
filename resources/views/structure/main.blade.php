@@ -9,3 +9,5 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/colors/aqua.css') }}">
 <link rel="preload" href="{{ asset('assets/css/fonts/thicccboi.css') }}" as="style" onload="this.rel='stylesheet'">
+
+<link href="{{ asset('profile/vendor/select2/css/select2.min.css') }}" rel="stylesheet">

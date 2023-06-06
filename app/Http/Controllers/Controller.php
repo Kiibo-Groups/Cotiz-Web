@@ -68,36 +68,35 @@ class Controller extends BaseController
 
     public function searchProd(Request $request)
     {
-        $user = Auth::user()->id;
-        $search = strtolower($request->q);
-        $type   = strtolower($request->type);
 
-        $requests_user = Services::with(['provider']);
+        if (Auth::user()) {
+            $user = Auth::user()->id;
+            $search = strtolower($request->q);
+            $type   = strtolower($request->type);
 
-        if($search) {
-            $requests_user = $requests_user->where(function ($q) use ($search) {
-                    $q->whereRaw('lower(title) like "%'.$search.'%"');
-            });
+            $requests_user = Services::with(['provider']);
+
+            if($search) {
+                $requests_user = $requests_user->where(function ($q) use ($search) {
+                        $q->whereRaw('lower(title) like "%'.$search.'%"');
+                });
+            }
+
+            if($type) {
+                $requests_user = $requests_user->where('type',$type);
+            }
+    
+            $requests_user = $requests_user->orderBy('id','DESC') 
+            ->simplePaginate(10);
+
+            return view('pages.search', [
+                'requests'=> $requests_user,
+                'search' => $search,
+                'type'  => $type
+            ]);
+        }else {
+            return Redirect::to('/login')->with('error', 'Debes ingresar para poder realizar una busqueda.');
         }
-
-        if($type) {
-            $requests_user = $requests_user->where('type',$type);
-        }
- 
-        $requests_user = $requests_user->orderBy('id','DESC') 
-        ->simplePaginate(10);
-
-
-        // return response()->json([
-        //     'requests'=> $requests_user,
-        //     'search' => $search
-        // ]);
-
-        return view('pages.search', [
-            'requests'=> $requests_user,
-            'search' => $search,
-            'type'  => $type
-        ]);
     }
 
 

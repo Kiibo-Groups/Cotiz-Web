@@ -46,97 +46,79 @@
                 </form>
             </div>
             <div class="row">
-                @foreach ($requests as $request)
-                    <div class="col-12 col-sm-4 p-3">
-                        <div class="card p-3">
-                            <div class="card-body row">
-                                @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
-                                    <div class="col-12 p-0">
-                                        <p class="card-text text-muted m-0">Usuario</p>
-                                        <h5 class="card-title m-0 p-0">{{ $request->user->name }}</h5>
-                                    </div>
-                                @endif
-                                <div class="col-12 p-0">
-                                    <p class="card-text text-muted m-0">Servicio</p>
-                                    <h5 class="card-title m-0 p-0">{{ $request->service->title }}</h5>
-                                </div>
-                                <div class="col-12 p-0 mb-2">
-                                    <p class="card-text text-muted m-0">Descripcion</p>
-                                    <h5 class="card-title m-0 p-0">{{ $request->description }}</h5>
-                                </div>
-                                <div class="col-9 mb-2 p-0">
-                                    <p class="card-text text-muted m-0">Estado</p>
-                                    @if ($request->status === 0)
-                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>
-                                    @elseif ($request->status === 1)
-                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Aprobado</span></h5>
-                                    @elseif ($request->status === 2)
-                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-danger">Rechazado</span></h5>
-                                    @elseif ($request->status === 5)
-                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Finalizado</span></h5>
-                                    @endif
-                                </div>
-                                @if (!is_null($request->document))
-                                <div class="col-9 mb-2 p-0">
-                                    <p class="card-text text-muted m-0">Archivo</p>
-                                    <a href="/assets/documents/users/{{$request->document}}">Descargar</a>
-                                </div>
-                                @endif
-                                @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
-                                    <div class="col-6 mt-3 p-0">
-                                        <a class="btn btn-primary p-1" data-bs-toggle="modal" data-bs-target="#editRequest">Editar</a>
 
-                                        <div class="modal fade" id="editRequest" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar
-                                                            solicitud</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    @if (!Auth::guard('admin')->check())
-                                                    <form action="{{ url(env('user') . '/request/edit/' . $request->id) }}" method="POST">
-                                                    @else
-                                                    <form action="{{ url(env('admin') . '/request/edit/' . $request->id) }}" method="POST">
-                                                    @endif
-														@csrf
-                                                        <div class="modal-body">
-                                                            <label for="status">Estado</label>
-															<select name="status" id="status" class="form-select">
-																<option value="0" selected>Pendiente</option>
-																<option value="1">Aprobado</option>
-                                                                <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
-																<option value="2">Rechazado</option>
-															</select>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn"
-                                                                data-bs-dismiss="modal">Cancelar</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Aceptar</button>
-                                                        </div>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 mt-3 p-0">
-                                        @if (!Auth::guard('admin')->check())
-                                        <a href="{{ url(env('user') . '/request/delete/' . $request->id) }}"
-                                            class="btn btn-danger p-1">Eliminar</a>
-                                        @else
-                                        <a href="{{ url(env('admin') . '/request/delete/' . $request->id) }}"
-                                            class="btn btn-danger p-1">Eliminar</a>
+
+                <div class="col-lg-12">
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Listado de Solicitudes</h5>
+
+                            <!-- Default Table -->
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ocpiones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($requests as $req)
+                                <tr>
+                                    <th scope="row">{{ $req->id }}</th>
+                                    <td>{{ $req->service->type }}</td>
+                                    <td>{{ $req->user->name }} {{ $req->user->last_name }}</td>
+                                    <td>{{ $req->description }}</td>
+                                    <td>
+                                        @if ($req->status === 0)
+                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>
+                                        @elseif ($req->status === 1)
+                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Aprobado</span></h5>
+                                        @elseif ($req->status === 2)
+                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-danger">Rechazado</span></h5>
+                                        @elseif ($req->status === 5)
+                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Finalizado</span></h5>
                                         @endif
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
+                                    </td>
+                                    <td>
+                                        @if (!is_null($req->document))
+                                        <a target="_blank" class="btn btn-warning" href="/assets/documents/users/{{$req->document}}">
+                                            <i class="bi bi-download"></i>
+                                        </a>
+                                        @endif
+                                        @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
+                                        
+                                        <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editRequest">
+                                                <i class="bi bi-pencil"></i>
+                                        </a>
+                                        
+                                        @if (!Auth::guard('admin')->check())
+                                        <a  class="btn btn-danger" href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
+                                                <i class="bi bi-trash"></i>
+                                        </a>
+                                        @else
+                                        <a  class="btn btn-danger" href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
+                                                <i class="bi bi-trash"></i>
+                                        </a>
+                                        @endif
+
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- End Default Table Example -->
+                      </div>
                     </div>
-                @endforeach
+                </div>
+
+               
+
                 @if(count($requests)<1)
                 <div class="d-flex align-items-center flex-column py-6">
                     <div>
@@ -156,6 +138,46 @@
         <!--end container-->
     </section>
     <!--end section-->
+
+
+    <!-- Modal Edit Element -->
+    <div class="modal fade" id="editRequest" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar
+                        solicitud</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                @if (!Auth::guard('admin')->check())
+                <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
+                @else
+                <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                @endif
+                    @csrf
+                    <div class="modal-body">
+                        <label for="status">Estado</label>
+                        <select name="status" id="status" class="form-select">
+                            <option value="0" selected>Pendiente</option>
+                            <option value="1">Aprobado</option>
+                            <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
+                            <option value="2">Rechazado</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit"
+                            class="btn btn-primary">Aceptar</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal Edit Element -->
     <script>
         const asignarParametrosURL = () => {
             const urlParams = new URLSearchParams(window.location.search);

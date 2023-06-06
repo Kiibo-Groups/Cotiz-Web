@@ -1,3 +1,4 @@
+@inject('admin', 'App\Models\Admin')
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -8,31 +9,40 @@
       </a>
     </li><!-- End Dashboard Nav -->
 
+    @if($admin->hasPerm('Dashboard - Inicio') || $admin->hasPerm('Dashboard - Configuraciones') || $admin->hasPerm('Dashboard - All'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('profile') || !Route::is('settings')) collapsed @endif" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Panel</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="settings-nav" class="nav-content collapse @if(Route::is('profile') || Route::is('settings'))  show @endif" data-bs-parent="#settings-nav">
+        @if($admin->hasPerm('Dashboard - Inicio') || $admin->hasPerm('Dashboard - Configuraciones'))
         <li>
           <a href="{{ Asset(env('admin').'/profile') }}" class="@if(Route::is('profile'))nav-link active @endif">
             <i class="bi bi-circle"></i><span>Perfil</span>
           </a>
         </li>
-        <!-- <li>
-          <a href="{{ Asset(env('admin').'/settings') }}" class="@if(Route::is('settings')) active @endif">
-            <i class="bi bi-circle"></i><span>Configuraciones</span>
+        @endif
+        @if($admin->hasPerm('All'))
+        <li>
+          <a href="{{ Asset(env('admin').'/subAccounts') }}" class="@if(Route::is('subAccounts')) active @endif">
+            <i class="bi bi-circle"></i><span>SubCuentas</span>
           </a>
-        </li> -->
+        </li>
+        @endif
       </ul>
     </li><!-- End Settings -->
+    @endif
 
+    @if($admin->hasPerm('Dashboard - Usuarios'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
         <i class="bi bi-person-lines-fill"></i>
         <span>Usuarios</span>
       </a>
     </li><!-- End Users -->
+    @endif
 
+    @if($admin->hasPerm('Dashboard - Proveedores'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('providers') || !Route::is('providers.show')) collapsed @endif" data-bs-target="#providers-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-ui-checks-grid"></i><span>Proveedores</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -50,7 +60,9 @@
         </li>
       </ul>
     </li><!-- End Providers -->
+    @endif
 
+    @if($admin->hasPerm('Dashboard - Servicios'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('services') || !Route::is('services.show')) collapsed @endif" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-building"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -68,7 +80,9 @@
         </li>
       </ul>
     </li><!-- End Services -->
+    @endif
 
+    @if($admin->hasPerm('Dashboard - Solicitudes'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('request')) collapsed @endif" data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -81,6 +95,7 @@
         </li>
       </ul>
     </li><!-- End Request -->
+    @endif
 
     <li class="nav-heading">
       <hr />

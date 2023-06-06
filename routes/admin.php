@@ -24,6 +24,13 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::post('/profile',[App\Http\Controllers\Admin\AdminController::class, 'update']);
         Route::get('logout',[App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('logoutAdmin');
 
+        Route::get('/subAccounts',[App\Http\Controllers\Admin\AdminController::class, 'subAccounts'])->name('subAccounts');
+        Route::get('/subAccounts/add',[App\Http\Controllers\Admin\AdminController::class, 'AddsubAccounts']);
+        Route::get('/subAccounts/edit/{id}',[App\Http\Controllers\Admin\AdminController::class, 'EditsubAccounts']);
+        Route::post('/EditsubAccount/{id}',[App\Http\Controllers\Admin\AdminController::class, '_EditsubAccount']);
+        Route::get('/subAccounts/status/{id}',[App\Http\Controllers\Admin\AdminController::class, 'StatussubAccounts']);
+        Route::post('/AddsubAccount',[App\Http\Controllers\Admin\AdminController::class, 'AddsubAccount']);
+
         /*
         |--------------------------------------------------------------------------
         | Banners Routes

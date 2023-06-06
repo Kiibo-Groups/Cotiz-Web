@@ -28,52 +28,62 @@
                 </form>
             </div>
             <div class="row">
-                @foreach ($providers as $provider)
-				<div class="col-12 col-sm-4 p-3">
+
+                <div class="col-lg-12">
 					<div class="card">
-						<div class="card-img-box">
-                            @if($provider->logo)
-							{{-- <img src="{{ asset('assets/img/logos/'.$provider->logo) }}" class="card-img" alt="logo"> --}}
-                            <div style="background-image:url('{{ asset('assets/img/logos/'.$provider->logo) }}');background-size: cover;width: 100%;height: 210px;background-position: center center;"></div>
-                            @else
-                                <img class="card-img" src="{{ asset('profile/img/user_profile.jpg') }}" alt="logo" />
-                            @endif
-						</div>
-						<div class="card-body row">
-							<div class="col-12">
-								<h5 class="card-title">{{ $provider->name }}</h5>
-							</div>
-							<div class="col-12 mb-2">
-								<p class="card-text text-muted m-0">Direccion</p>
-								<h5 class="card-title m-0 p-0">{{ $provider->address }}</h5>
-							</div>
-							<div class="col-12 mb-2">
-								<p class="card-text text-muted m-0">Email</p>
-								<h5 class="card-title m-0 p-0">{{ $provider->email }}</h5>
-							</div>
-							<div class="col-12 mb-2">
-								<p class="card-text text-muted m-0">Pais</p>
-								<h5 class="card-title m-0 p-0">{{ $provider->country }}</h5>
-							</div>
-                            <div class="col-12 mb-2">
-								<p class="card-text text-muted m-0">Estado</p>
-								@if ($provider->user->status === 0)
+                        <div class="card-body">
+                            <h5 class="card-title">Listado de proveedores</h5>
+              
+                            <!-- Default Table -->
+                            <table class="table">
+                              <thead>
+                                <tr> 
+                                  <th scope="col">Logo</th>
+                                  <th scope="col">Proveedor</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Pais</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Opciones</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($providers as $provider)
+                                <tr> 
+                                  <td>
+                                    @if($provider->logo)
+                                    <div style="background-image:url('{{ asset('assets/img/logos/'.$provider->logo) }}');background-size: cover;width: 50px;height: 50;background-position: center center;border-radius: 2003px;border: 1px solid #e1e1e2;"></div>
+                                    @else
+                                    <div style="background-image:url('{{ asset('profile/img/user_profile.jpg') }}');background-size: cover;width: 50px;height: 50;background-position: center center;border-radius: 2003px;border: 1px solid #e1e1e2;"></div>
+                                    @endif
+                                  </td>
+                                  <td>{{$provider->name}}</td>
+                                  <td>{{$provider->email}}</td>
+                                  <td>{{$provider->country}}</td>
+                                  <td>
+                                    @if ($provider->user->status === 0)
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Inactivo</span></h5>
                                     @elseif ($provider->user->status === 1)
                                         <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Activo</span></h5>
                                     @endif
-							</div>
-							<div class="col-6 mt-3">
-								<a href="{{ url(env('admin').'/providers/edit/'.$provider->id) }}" class="btn btn-primary">Editar</a>
-							</div>
-							<div class="col-6 mt-3">
-								<a href="{{ url(env('admin').'/providers/delete/'.$provider->id) }}" class="btn btn-danger">Eliminar</a>
-							</div>
-						</div>
-					</div>
-				</div>
+                                  </td>
+                                  <td>
+                                    <a href="{{ url(env('admin').'/providers/edit/'.$provider->id) }}" class="btn btn-primary">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+								    <a href="{{ url(env('admin').'/providers/delete/'.$provider->id) }}" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                            <!-- End Default Table Example -->
+                          </div>
+                    </div>
+                </div>
 
-                @endforeach
+
                 @if(count($providers)<1)
                 <div class="d-flex align-items-center flex-column py-6">
 
