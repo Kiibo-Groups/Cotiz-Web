@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Providers;
 use App\Models\Services;
 use App\Models\Requests;
+use App\Models\Rfc;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use DB;
@@ -181,7 +182,7 @@ class AdminController extends Controller
         return redirect(env('admin').'/profile')->with('message', 'Cuenta actualizada  actualizada con éxito...');
     }
 
-    
+
     /**
      * Gestion de SubCuentas de administración
      *
@@ -190,14 +191,14 @@ class AdminController extends Controller
     public function subAccounts()
     {
         return view($this->folder.'accounts.index', [
-            'accounts' => Admin::get(), 
+            'accounts' => Admin::get(),
             'admin' => auth()->guard('admin')->user()
         ]);
     }
 
     public function AddsubAccounts()
     {
-        return view($this->folder.'accounts.add', [ 
+        return view($this->folder.'accounts.add', [
             'form_url' => Asset(env('admin').'/AddsubAccount'),
             'data' => new Admin,
             'array' => []
@@ -207,7 +208,7 @@ class AdminController extends Controller
     public function AddsubAccount(Request $request)
     {
         $admin = new Admin;
- 
+
         if($admin->validate($request->all(),'add'))
 		{
 			return redirect::back()->withErrors($data->validate($request->all(),'add'))->withInput();
@@ -215,14 +216,14 @@ class AdminController extends Controller
 		}
 
         $new = $admin->addNew($request->all(),'add');
-        return redirect(env('admin').'/subAccounts')->with('message', 'Cuenta agregada con éxito...'); 
+        return redirect(env('admin').'/subAccounts')->with('message', 'Cuenta agregada con éxito...');
     }
 
     public function EditsubAccounts($id)
     {
         $admin = Admin::find($id);
 
-        return view($this->folder.'accounts.add', [ 
+        return view($this->folder.'accounts.add', [
             'form_url' => Asset(env('admin').'/EditsubAccount/'.$id),
             'data' => $admin,
             'array' => explode(",", $admin->perm)
@@ -232,7 +233,7 @@ class AdminController extends Controller
     public function _EditsubAccount(Request $Request, $id)
     {
         $data = new Admin;
-		
+
 		if($data->validate($Request->all(),$id))
 		{
 			return redirect::back()->withErrors($data->validate($Request->all(),$id))->withInput();
@@ -240,7 +241,7 @@ class AdminController extends Controller
 		}
 
 		$data->addNew($Request->all(),$id);
-		
+
 		return redirect(env('admin').'/subAccounts')->with('message','Cuenta actualizada con éxito.');
     }
 
@@ -264,4 +265,45 @@ class AdminController extends Controller
 
 		return Redirect::to(env('admin').'/login')->with('message', 'Logout Successfully !');
 	}
+
+       /*
+	|------------------------------------------------------------------
+	|Empresas
+	|------------------------------------------------------------------
+	*/
+
+    public function indexEmpresas()
+    {
+        return view($this->folder.'empresa.index', [
+            'requests' => Rfc::orderBy('status', 'desc')->paginate(10)
+        ]);
+    }
+
+
+    public function statusEmpresas($id)
+    {
+        $res = Rfc::find($id);
+
+		$res->status = ($res->status == 0) ? 1 : 0;
+        $res->save();
+
+		return redirect(env('admin').'/empresas')->with('message','Elemento Editado con éxito.');
+    }
+
+    public function verEmpresas($id)
+    {
+        return view($this->folder.'empresa.edit', [
+            'data' => Rfc::find($id),
+            'form_url' => Asset(env('admin').'/users/update')
+        ]);
+    }
+
+    public function verFilesEmpresa($id){
+
+       // $arc  = Arbitraje::where('id', $id)->first();
+        $rutaDeArchivo = public_path().'/assets/img/empresa/' .$id;
+        //dd($rutaDeArchivo);
+        return response()->download($rutaDeArchivo, $id);
+    }
+
 }

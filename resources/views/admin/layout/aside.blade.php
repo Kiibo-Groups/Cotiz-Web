@@ -33,6 +33,15 @@
     </li><!-- End Settings -->
     @endif
 
+    @if($admin->hasPerm('Dashboard - Empresas'))
+    <li class="nav-item">
+      <a class="nav-link @if(!Route::is('empresas')) collapsed @endif" href="{{ Asset(env('admin').'/empresas') }}">
+        <i class="bi bi-person-lines-fill"></i>
+        <span>Empresas</span>
+      </a>
+    </li><!-- End Empresas -->
+    @endif
+
     @if($admin->hasPerm('Dashboard - Usuarios'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
@@ -41,6 +50,8 @@
       </a>
     </li><!-- End Users -->
     @endif
+
+
 
     @if($admin->hasPerm('Dashboard - Proveedores'))
     <li class="nav-item">

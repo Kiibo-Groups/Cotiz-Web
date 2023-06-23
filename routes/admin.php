@@ -16,7 +16,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         |Dashboard and Account Setting & Logout
         |-----------------------------------------
         */
-   
+
         Route::get('dash',[App\Http\Controllers\Admin\AdminController::class, 'home']);
         Route::get('settings',[App\Http\Controllers\Admin\AdminController::class, 'settings'])->name('settings');
         Route::get('/profile',[App\Http\Controllers\Admin\AdminController::class, 'profile'])->name('profile');
@@ -63,6 +63,18 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
         Route::get('/users/status/{id}', [App\Http\Controllers\Admin\UsersController::class, 'status']);
         Route::get('/users/delete/{id}', [App\Http\Controllers\Admin\UsersController::class, 'delete']);
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | Users Empresas
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('/empresas',AdminController::class);
+        Route::get('/empresas', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresas'])->name('empresas');
+        Route::get('/empresas/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresas']);
+        Route::get('/empresas/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresas']);
+        Route::get('/empresas/file/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesEmpresa']);
 
         /*
         |--------------------------------------------------------------------------

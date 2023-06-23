@@ -1,5 +1,5 @@
 <?php
- 
+
 
 include("admin.php");
 
@@ -30,10 +30,16 @@ Route::get('/search', [App\Http\Controllers\Controller::class, 'searchProd'])->n
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register_get');
 Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register_post');
 
+Route::get('/register/rfc', [App\Http\Controllers\Auth\RegisterController::class, 'buscarRfc'])->name('register.rfc');
+Route::post('register/empresa', [App\Http\Controllers\Auth\RegisterController::class, 'storeEmpresa'])->name('register_empresa');
+
+
+
+
 // Contact Section
 Route::get('/contact', [App\Http\Controllers\Controller::class, 'contact'])->name('contact');
 Route::post('/contact', [App\Http\Controllers\Controller::class, '_contact']);
- 
+
 // Profile Section
 Route::prefix(env('user'))->namespace('User')->group(static function() {
     Route::middleware('auth')->group(static function () {
@@ -54,7 +60,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         Route::get('/services/delete/{id}', [App\Http\Controllers\Profile\HomeController::class, 'deleteService'])->name('services_create');
 
         Route::get('/notifications', [App\Http\Controllers\Profile\HomeController::class, 'notifications'])->name('notifications');
-        
+
 
         Route::get('/settings', [App\Http\Controllers\Profile\HomeController::class, 'settings'])->name('settings');
         Route::get('/request', [App\Http\Controllers\Profile\HomeController::class, 'listRequest'])->name('request_user');

@@ -9,64 +9,41 @@
             <div class=" col-lg-7 col-xl-6 col-xxl-5 mx-auto">
                 <div class="card">
                     <div class="card-body p-11 text-center">
-                    <h2>Regístrese en Cotiz</h2> 
+                    <h2>Regístrese en Cotiz</h2>
                     <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
-                    <form class="text-start mb-3" method="POST" action="{{ route('register_post') }}">
-                        @csrf
 
                         <div class="form-floating mb-4">
-                            <input id="signupName" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            <label for="signupName">Nombre</label>
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input id="buscarfc" type="text" class="form-control"  name="rfc"  required  >
+                            <label for="rfc">Buscar RFC</label>
+
+                        </div>
+                        <div id="divempresa" style="display: none" class="row form-floating mb-4">
+
+                            <div id="divempresaboton" class="col-6" style="float: left; display: none">
+                                <button id="botonempresa"  class="btn btn-info rounded-pill btn-login w-100 mb-2">
+                                    empresa
+                                </button>
+                            </div>
+                            <div id="divbotonregistro" class="col-6" style="float: right">
+                                <button  type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
+                                    Registrar Empresa
+                                </button>
+                            </div>
+                            <div class="col-6"style="float: right">
+                                <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
+                                    Prueba
+                                </button>
+                            </div>
+
+                        </div>
+                        @include('alerts')
+                        <div id="registroData" style="display: none">
+
+                            @include('auth.registerempresa')
+
                         </div>
 
-                        <div class="form-floating mb-4">
-                            <input id="signupEmail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            <label for="signupEmail">Email</label>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
 
-                        <div class="form-floating mb-4">
-                            <select name="role" id="signupRole" class="form-select" required>
-                                <option value="" selected></option>
-                                <option value="1">Usuario</option>
-                                <option value="2">Proveedor</option>
-                            </select>
-                            <label for="signupRole">Tipo de Cuenta</label>
-                            @error('role')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-floating mb-4">
-                            <input id="signupPass" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            <label for="signupPass">Contraseña</label>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-floating mb-4">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            <label for="signupPass">Confirmar Contraseña</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
-                            Registrarme
-                        </button>
-                    </form>
                     <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a href="{{route('login')}}" class="hover">Ingresar</a></p>
                     </div>
                     <!--/.card-body -->
@@ -84,3 +61,58 @@
 </section>
 <!-- /section -->
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+
+        $("#buscarfc").blur(function() {
+            var rfc = $("#buscarfc").val();
+            $.ajax({
+                url: '{{ route('register.rfc') }}',
+                type: "GET",
+                data: {
+                    rfc: rfc,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(response) {
+
+                   var id = response.data.id;
+                   var rfc = response.data.rfc;
+                   var nombre = response.data.nombre;
+                   //$("#signupName").val(nombre);
+                    if (response.code == 200) {
+                        if (nombre != 0) {
+                            $("#divempresaboton").show();
+                            $("#divbotonregistro").hide();
+                        }else{
+                            $("#divempresaboton").hide();
+                            $("#divbotonregistro").show();
+                        }
+                        $("#divempresa").show();
+                        $("#botonempresa").html(nombre);
+                    }
+                }
+            });
+
+        });
+
+
+        $("#divbotonregistro").click(function(){
+
+            $("#divempresa").hide();
+            $("#registroData").show();
+            //$('#signupName').prop('readonly', true);
+            $('#buscarfc').prop('readonly', true);
+            $('#buscarfc').prop('disabled', true);
+            var rfc = $("#buscarfc").val();
+            $("#signuprfc").val(rfc);
+
+        });
+
+
+    });
+</script>
