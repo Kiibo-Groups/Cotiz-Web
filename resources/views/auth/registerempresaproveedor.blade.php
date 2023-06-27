@@ -1,17 +1,24 @@
-<form class="text-start mb-3" method="POST" enctype="multipart/form-data" action="{{ route('register_empresa') }}">
+<form class="text-start mb-3" method="POST" enctype="multipart/form-data" action="{{ route('register_proveedor') }}">
     @csrf
 
 
+    <div class="row">
+        <div class="col-6 form-floating mb-4">
+            <input id="signupName" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                value="{{ old('nombre') }}" required autocomplete="nombre">
+            <label for="signupName">Nombre</label>
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="col-6 form-floating mb-4">
+            <input id="constanciaPositiva" type="file" class="form-control" name="constanciaPositiva"
+            value="{{ old('constanciaPositiva') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+            <label for="constanciaPositiva">Constancia de situación positiva</label>
+        </div>
 
-    <div class="form-floating mb-4">
-        <input id="signupName" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre"
-            value="{{ old('nombre') }}" required autocomplete="nombre">
-        <label for="signupName">Nombre</label>
-        @error('name')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
     </div>
     <input id="signuprfc" name="rfc" type="hidden">
 
@@ -19,7 +26,7 @@
         <div class="col-6 form-floating mb-4">
             <input id="opinionPositiva" type="file" class="form-control" name="opinionPositiva" title="Opinión positiva"
             accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-            <label for="opinionPositiva">Opinión positiva</label>
+            <label for="opinionPositiva">Opinion Positiva actualizada</label>
 
 
         </div>
@@ -31,21 +38,21 @@
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="constFiscal" type="file" class="form-control" name="constFiscal" value="{{ old('constFiscal') }}"
+            <input id="cartaAceptacion" type="file" class="form-control" name="cartaAceptacion" value="{{ old('cartaAceptacion') }}"
             accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-            <label for="constFiscal">Constancia de situación fiscal</label>
+            <label for="cartaAceptacion">Carta de aceptación de crédito firmada </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="domicilioFiscal" type="file" class="form-control" name="domicilioFiscal"
-                value="{{ old('domicilioFiscal') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-            <label for="domicilioFiscal">Registro de Domiclio fiscal </label>
+            <input id="listadoProductos" type="file" class="form-control" name="listadoProductos"
+                value="{{ old('listadoProductos') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+            <label for="listadoProductos">Listado de productos o servicios </label>
         </div>
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="numeroPlanta" type="text" class="form-control" name="numeroPlanta"
-                value="{{ old('numeroPlanta') }}"  required>
-            <label for="numeroPlanta">Número de planta industrial </label>
+            <input id="telefono" type="text" class="form-control" name="telefono"
+            value="{{ old('telefono') }}"  required>
+            <label for="telefono">Teléfono empresarial / extensión</label>
         </div>
         <div class="col-6 form-floating mb-4">
             <input id="signupEmail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">

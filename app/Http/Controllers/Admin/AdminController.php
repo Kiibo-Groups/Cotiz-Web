@@ -275,9 +275,12 @@ class AdminController extends Controller
     public function indexEmpresas()
     {
         return view($this->folder.'empresa.index', [
-            'requests' => Rfc::orderBy('status', 'desc')->paginate(10)
+            'requests' => Rfc::where('rol', 1)->orderBy('status', 'desc')->paginate(10)
         ]);
     }
+
+
+
 
 
     public function statusEmpresas($id)
@@ -305,5 +308,37 @@ class AdminController extends Controller
         //dd($rutaDeArchivo);
         return response()->download($rutaDeArchivo, $id);
     }
+
+    /*
+	|------------------------------------------------------------------
+	|Empresas - Proveedores
+	|------------------------------------------------------------------
+	*/
+
+    public function indexEmpresasProveedores()
+    {
+        return view($this->folder.'empresa_proveedor.index', [
+            'requests' => Rfc::where('rol', 2)->orderBy('status', 'desc')->paginate(10)
+        ]);
+    }
+
+    public function verEmpresasproveedores($id)
+    {
+        return view($this->folder.'empresa_proveedor.edit', [
+            'data' => Rfc::find($id),
+            'form_url' => Asset(env('admin').'/users/update')
+        ]);
+    }
+
+    public function statusEmpresasProveedores($id)
+    {
+        $res = Rfc::find($id);
+
+		$res->status = ($res->status == 0) ? 1 : 0;
+        $res->save();
+
+		return redirect(env('admin').'/empresas/proveedores')->with('message','Elemento Editado con éxito.');
+    }
+
 
 }

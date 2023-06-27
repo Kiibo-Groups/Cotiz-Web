@@ -1285,7 +1285,7 @@ h6 {
   position: absolute;
   right: 25px;
   z-index: 1;
-  top: 25px;
+  top: 12px;
 }
 .ec-vendor-uploads .ec-vendor-img-upload .ec-vendor-main-img .avatar-upload .avatar-edit input {
   opacity: 0;

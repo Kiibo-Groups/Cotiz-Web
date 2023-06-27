@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body p-11 text-center">
                             <h2>Regístrese en Cotiz</h2>
-                            <h4>Empresa</h4>
+                            <h4>Proveedor</h4>
                             <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
 
                             <div class="form-floating mb-4">
@@ -18,7 +18,7 @@
                                 <input id="idempresa" type="hidden" class="form-control" name="idempresa" required>
                                 <input id="nombreempresa" type="hidden" class="form-control" name="nombreempresa" required>
 
-                                <label for="rfc">Buscar RFC de Empresa </label>
+                                <label for="rfc">Buscar RFC de Proveedor </label>
 
                             </div>
                             <div id="divempresa" style="display: none" class="row form-floating mb-4">
@@ -30,7 +30,7 @@
                                 </div>
                                 <div id="divbotonregistro" class="col-6" style="float: right">
                                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
-                                        Registrar Empresa
+                                        Registrar Proveedor
                                     </button>
                                 </div>
                                 <div class="col-6"style="float: right">
@@ -79,7 +79,7 @@
                 type: "GET",
                 data: {
                     rfc: rfc,
-                    rol: 1,
+                    rol: 2,
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
@@ -111,7 +111,7 @@
 
         $("#divbotonregistro").click(function() {
 
-            $('#formulario').append(` @include('auth.registerempresa')`);
+            $('#formulario').append(` @include('auth.registerempresaproveedor')`);
 
             $("#divempresa").hide();
             $("#registroData").show();

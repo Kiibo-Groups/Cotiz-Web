@@ -6,11 +6,10 @@
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
         <div class="container">
             <div class="row">
-                <div class=" col-lg-8 col-xl-8 col-xxl-8 mx-auto">
+                <div class=" col-lg-7 col-xl-6 col-xxl-8 mx-auto">
                     <div class="card">
                         <div class="card-body p-11 text-center">
                             <h2>Regístrese en Cotiz</h2>
-                            <h4>Empresa</h4>
                             <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
 
                             <div class="form-floating mb-4">
@@ -18,7 +17,7 @@
                                 <input id="idempresa" type="hidden" class="form-control" name="idempresa" required>
                                 <input id="nombreempresa" type="hidden" class="form-control" name="nombreempresa" required>
 
-                                <label for="rfc">Buscar RFC de Empresa </label>
+                                <label for="rfc">Buscar RFC</label>
 
                             </div>
                             <div id="divempresa" style="display: none" class="row form-floating mb-4">
@@ -41,9 +40,12 @@
 
                             </div>
                             @include('alerts')
-                            <div id="registroData" style="display: none" class="registroData">
 
-                                <div id="formulario"></div>
+
+                            <div id="registroUsuario"  class="registroUsuario">
+                                <p></p>
+
+                               @include('auth.registerusuario')
                             </div>
 
 
@@ -79,7 +81,6 @@
                 type: "GET",
                 data: {
                     rfc: rfc,
-                    rol: 1,
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
@@ -111,8 +112,6 @@
 
         $("#divbotonregistro").click(function() {
 
-            $('#formulario').append(` @include('auth.registerempresa')`);
-
             $("#divempresa").hide();
             $("#registroData").show();
             //$('#signupName').prop('readonly', true);
@@ -126,44 +125,28 @@
 
         $("#botonempresa").click(function() {
 
-            $('#formulario').append(` @include('auth.registerusuario')`);
-            $("#divempresa").hide();
-            $("#registroData").show();
+           // $('p').html('registerusuario');
 
+           window.location.href = "{{url('/register/usuario')}}"
+
+          //$("#registroData").children().prop('disabled', true);
+          $("#registroData").show();
+          $("#registroData").remove();
+
+
+            $("#divempresa").hide();
             $("#registroUsuario").show();
             $('#buscarfc').prop('readonly', true);
             $('#buscarfc').prop('disabled', true);
             var nombreempresa = $("#nombreempresa").val();
             $("#empresanombre").val(nombreempresa);
-            $("#empresa").val(nombreempresa);
             var idempresa = $("#idempresa").val();
             $("#empresaid").val(idempresa);
-            var rfc = $("#buscarfc").val();
-            $("#signuprfc").val(rfc);
 
 
 
 
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     });

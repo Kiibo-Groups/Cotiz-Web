@@ -29,9 +29,13 @@ Route::get('/search', [App\Http\Controllers\Controller::class, 'searchProd'])->n
 // Register Section
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register_get');
 Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register_post');
+Route::get('/seccion', [App\Http\Controllers\Auth\RegisterController::class, 'createSeccion'])->name('seccion_get');
+Route::get('/registerp', [App\Http\Controllers\Auth\RegisterController::class, 'createProveedor'])->name('registerprove_get');
+
 
 Route::get('/register/rfc', [App\Http\Controllers\Auth\RegisterController::class, 'buscarRfc'])->name('register.rfc');
 Route::post('register/empresa', [App\Http\Controllers\Auth\RegisterController::class, 'storeEmpresa'])->name('register_empresa');
+Route::post('register/proveedor', [App\Http\Controllers\Auth\RegisterController::class, 'storeProveedor'])->name('register_proveedor');
 
 
 

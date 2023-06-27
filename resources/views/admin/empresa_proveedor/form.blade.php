@@ -8,7 +8,7 @@
                         @if(!$data->id)
                         <h2>Agregar Nueva Empresa</h2>
                         @else
-                        <h2>Ver Empresa #{{$data->id}}</h2>
+                        <h2>Ver Empresa  Proveedora #{{$data->id}}</h2>
                         @endif
                     </div>
 
@@ -43,6 +43,10 @@
                                         <input type="text" class="form-control slug-title" id="cp" name="cp" value="{{$data->cp}}">
                                     </div>
                                     <div class="col-md-4">
+                                        <label for="telefono" class="form-label">Teléfono empresarial / extensión</label>
+                                        <input type="text" class="form-control slug-title" id="telefono" name="telefono" value="{{$data->telefono}}">
+                                    </div>
+                                    <div class="col-md-4">
                                         <label for="municipio" class="form-label">Municipio</label>
                                         <input type="text" class="form-control slug-title" id="municipio" name="municipio" value="{{$data->municipio}}">
                                     </div>
@@ -55,10 +59,7 @@
                                         <label for="estado" class="form-label">Estado</label>
                                         <input type="text" class="form-control slug-title" id="estado" name="estado" value="{{$data->estado}}">
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="numeroPlanta" class="form-label">Número de planta industrial</label>
-                                        <input type="text" class="form-control slug-title" id="numeroPlanta" name="numeroPlanta" value="{{$data->numeroPlanta}}">
-                                    </div>
+
                                     <div class="col-md-4" style="margin-top:25px;">
                                         <label class="form-label">País</label>
                                         <input type="text" class="form-control slug-title" id="pais" name="pais" value="{{$data->pais}}">

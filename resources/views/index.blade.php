@@ -10,13 +10,14 @@
     </div><!--end container-->
 
     <div class="container z-1">
+
         <div class="grid grid-cols-1 mt-10">
             <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br> Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
             <p class="text-slate-400 text-lg max-w-xl">
                 Pretendemos ser una vitrina única a la que las empresas puedan acudir para
                 solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
             </p>
-        
+
             <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
                 <div class="lg:col-span-10 mt-8">
                     <div class="bg-white dark:bg-slate-900 border-0 shadow rounded p-3">
@@ -34,7 +35,7 @@
                                             <option value="employe">Personal</option>
                                         </select>
                                     </div>
-                                 
+
                                     <input type="submit" id="search" name="search" class="btn text-white searchbtn submit-btn w-100" value="Buscar" style="height: 60px;background: #00C5D7;">
                                 </div><!--end grid-->
                             </div><!--end container-->
@@ -42,7 +43,7 @@
                     </div>
                 </div><!--ed col-->
             </div><!--end grid-->
- 
+
         </div><!--end grid-->
     </div><!--end container-->
 
@@ -90,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="tiny-slide">
                             <div class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 transition duration-500 m-2">
                                 <div class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 transition duration-500 mx-auto">
@@ -103,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="tiny-slide">
                             <div class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 transition duration-500 m-2">
                                 <div class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 transition duration-500 mx-auto">
@@ -121,7 +122,7 @@
             </div><!--end container-->
         </section><!--end section-->
         <!-- End Section-->
-        
+
         <!-- Start -->
         <section class="relative">
             <div class="container">
@@ -138,17 +139,17 @@
                             <div class="p-6">
                                 <a href="{{ asset('viewprod/'.base64_encode(urldecode($item->id)).'/'.$item->title) }}" class="title h5 text-lg font-semibold hover:text-indigo-600">{{$item->title}}</a>
                                 <p class="text-slate-400 mt-2"><i class="uil uil-clock text-indigo-600"></i> {{$item->created_at->diffForHumans()}}</p>
-    
+
                                 <div class="flex justify-between items-center mt-4">
                                     <span class="bg-indigo-600/5 text-indigo-600 text-xs font-bold px-2.5 py-0.5 rounded h-5">{{ $item->type }}</span>
-    
+
                                     <p class="text-slate-400"><i class="uil uil-usd-circle text-indigo-600"></i> ${{ number_format($item->price,2) }}</p>
                                 </div>
                             </div>
-    
+
                             <div class="flex items-center p-6 border-t border-gray-100 dark:border-gray-700">
                                 <img src="{{ asset('assets/img/logos/'.$item->provider->logo) }}" class="h-12 w-12 shadow-md dark:shadow-gray-800 rounded-md p-2 bg-white dark:bg-slate-900" alt="">
-    
+
                                 <div class="ltr:ml-3 rtl:mr-3">
                                     <h6 class="mb-0 font-semibold text-base">{{ $item->provider->name }}</h6>
                                     <span class="text-slate-400 text-sm">{{ $item->provider->country }}</span>
@@ -158,20 +159,20 @@
                         @endforeach
                     @endif
                 </div><!--end grid-->
-            
+
             </div><!--end container-->
         </section><!--end section-->
         <!-- End -->
     @endif
 @endif
- 
+
 
 <section class="relative">
     <div class="container">
         <div class="grid grid-cols-1 pb-8 text-center">
             <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
-               
-            </h3> 
+
+            </h3>
         </div><!--end grid-->
     </div>
 </section>

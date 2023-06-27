@@ -28,7 +28,7 @@
                             </span>
                         @enderror
                     </div>
- 
+
                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                         Ingresar
                     </button>
@@ -36,13 +36,13 @@
                 <!-- /form -->
 
 
-                <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('register_get')}}" class="hover">Registrate</a></p>
+                <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('seccion_get')}}" class="hover">Registrate</a></p>
             </div>
         </div>
     </div>
 </section><!--end section -->
 
-                        
+
 
 <div class="fixed bottom-3 ltr:right-3 rtl:left-3">
     <a href="" class="back-button btn btn-icon bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full"><i data-feather="arrow-left" class="h-4 w-4"></i></a>

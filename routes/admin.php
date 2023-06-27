@@ -65,16 +65,29 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/users/delete/{id}', [App\Http\Controllers\Admin\UsersController::class, 'delete']);
 
 
-            /*
+        /*
         |--------------------------------------------------------------------------
         | Users Empresas
         |--------------------------------------------------------------------------
         */
-        Route::resource('/empresas',AdminController::class);
+        Route::resource('/empresas/proveedores',AdminController::class);
         Route::get('/empresas', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresas'])->name('empresas');
         Route::get('/empresas/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresas']);
         Route::get('/empresas/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresas']);
         Route::get('/empresas/file/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesEmpresa']);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Users Empresas - Proveedores
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('/empresas',AdminController::class);
+        Route::get('/empresas/proveedores', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresasProveedores'])->name('empresasProveedores');
+        Route::get('/empresas/proveedores/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedores']);
+        Route::get('/empresas/proveedores/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresasProveedores']);
+
+
+
 
         /*
         |--------------------------------------------------------------------------
