@@ -23,21 +23,21 @@
                             </div>
                             <div id="divempresa" style="display: none" class="row form-floating mb-4">
 
-                                <div id="divempresaboton" class="col-6" style="float: left; display: none">
+                                <div id="divempresaboton" class="col-12" style="float: left; display: none">
                                     <button id="botonempresa" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                                         empresa
                                     </button>
                                 </div>
-                                <div id="divbotonregistro" class="col-6" style="float: right">
+                                <div id="divbotonregistro" class="col-12" style="float: right">
                                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                                         Registrar Proveedor
                                     </button>
                                 </div>
-                                <div class="col-6"style="float: right">
+                               {{-- <div class="col-6"style="float: right">
                                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                                         Prueba
                                     </button>
-                                </div>
+                                </div>--}}
 
                             </div>
                             @include('alerts')
@@ -126,7 +126,7 @@
 
         $("#botonempresa").click(function() {
 
-            $('#formulario').append(` @include('auth.registerusuario')`);
+            $('#formulario').append(` @include('auth.registerusuarioproveedor')`);
             $("#divempresa").hide();
             $("#registroData").show();
 

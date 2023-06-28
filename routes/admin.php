@@ -81,7 +81,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         | Users Empresas - Proveedores
         |--------------------------------------------------------------------------
         */
-        Route::resource('/empresas',AdminController::class);
+        Route::resource('/empresas/proveedores',AdminController::class);
         Route::get('/empresas/proveedores', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresasProveedores'])->name('empresasProveedores');
         Route::get('/empresas/proveedores/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedores']);
         Route::get('/empresas/proveedores/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresasProveedores']);

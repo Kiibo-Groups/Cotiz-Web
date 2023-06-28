@@ -23,7 +23,8 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Telefono</th>
-                                        <th>Nivel</th>
+                                        <th>Tipo</th>
+                                       {{-- <th>Nivel</th> --}}
                                         <th>Status</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -39,12 +40,36 @@
                                             @else
                                                 <img class="tbl-thumb" src="{{ asset('profile/img/user_profile.jpg') }}" style="max-width: 50px;" alt="Banner Image" />
                                             @endif
-                                            
+
                                             </td>
                                         <td>{{$row->name}} {{$row->last_name}}</td>
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
-                                        <td>
+                                      <td>
+                                            @switch($row->role)
+                                                @case(0)
+                                                Cuenta Gratis
+                                                @break
+                                                @case(1)
+                                                    Usuário empresa
+                                                @break
+                                                @case(2)
+                                                    ---
+                                                @break
+                                                @case(3)
+                                                    Empresa
+                                                @break
+                                                @case(4)
+                                                    Proveedor
+                                                @break
+                                                @case(5)
+                                                    Usuário Proveedor
+                                                @break
+                                                @default
+                                            @endswitch
+
+                                        </td>
+                                       {{--  <td>
                                             @switch($row->level)
                                                 @case(0)
                                                 Cuenta Gratis
@@ -66,7 +91,7 @@
                                                 @break
                                                 @default
                                             @endswitch
-                                        </td>
+                                        </td>--}}
                                         <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>

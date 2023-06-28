@@ -67,8 +67,8 @@ class RegisterController extends Controller
         $user->shw_password      = $request->password;
         $user->fotoGafete        = $fotoGafete;
         $user->fotoCredencial    = $fotoCredencial;
-        $user->role = 1;
-        $user->status = 1; // Default status
+        $user->role              = 1; //usuarios empleado de empresa
+        $user->status            = 1; // Default status
 
         $user->save();
         //dd($user);
@@ -180,7 +180,9 @@ class RegisterController extends Controller
        $user->email               = $request->email;
        $user->password            = Hash::make($request->password);
        $user->shw_password        = $request->password;
-       $user->role = 3 ;
+       $user->role                = 3 ; // Usuario empresa
+       $user->idempresa           = $registro->id;
+       $user->rfc                 = $registro->rfc;
        $user->save();
 
        Session::flash('mensaje','Registro Exitoso!');
@@ -259,12 +261,91 @@ class RegisterController extends Controller
        $user->email               = $request->email;
        $user->password            = Hash::make($request->password);
        $user->shw_password        = $request->password;
-       $user->role = 4 ;  // Rol =4 --> proveedores Empresa
+       $user->role                = 4 ;  // Rol =4 --> proveedores Empresa
+       $user->idempresa         = $registro->id;
+       $user->rfc               = $registro->rfc;
        $user->save();
 
        Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
        Session::flash('class', 'success');
        return back();
+
+    }
+
+
+
+    public function storeProveedorUser(Request $request){
+
+        $input = $request->all();
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required|min:8|confirmed',
+
+        ]);
+
+        if(isset($input['fotoGafete']))
+        {
+
+            $fotoGafete   = time().rand(111,699).'.' .$input['fotoGafete']->getClientOriginalExtension();
+            $input['fotoGafete']->move("assets/img/fotogafete/", $fotoGafete);
+            $input['fotoGafete'] = $fotoGafete;
+        }
+        if(isset($input['fotoCredencial']))
+        {
+            $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
+            $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
+            $input['fotoCredencial'] = $fotoCredencial;
+        }
+
+        $user = new User;
+        $user->company           = $request->empresa;
+        $user->idempresa         = $request->empresaid;
+        $user->rfc               = $request->rfc;
+        $user->name              = $request->name;
+        $user->last_name         = $request->apellidoPaterno. ' '. $request->apellidoMaterno;
+        $user->job               = $request->puestoEmpresa;
+        $user->areaEmpresa       = $request->areaEmpresa;
+        $user->telefonoEmpresa   = $request->telefonoEmpresa;
+        $user->phone             = $request->phone;
+        $user->email             = $request->email;
+        $user->address           = $request->direccionEmpresa;
+        $user->password          = Hash::make($request->password);
+        $user->shw_password      = $request->password;
+        $user->fotoGafete        = $fotoGafete;
+        $user->fotoCredencial    = $fotoCredencial;
+        $user->role              = 5; //Rol para usuarios Proveedor
+        $user->status            = 1; // Default status
+
+        $user->calle               = $request->calle;
+        $user->numeroCalle         = $request->numeroCalle;
+        $user->colonia             = $request->colonia;
+        $user->cp                  = $request->cp;
+        $user->municipio           = $request->municipio;
+        $user->delegación          = $request->delegación;
+        $user->estado              = $request->estado;
+        $user->country             = $request->country;
+
+        $user->save();
+        //dd($user);
+        // if($request->role == '2'){
+
+        //     $user_data = User::where('name','like',$request->name)->get();
+
+        //     $provider = new Providers;
+        //     $provider->name = $user_data[0]->name;
+        //     $provider->email = $user_data[0]->email;
+        //     $provider->user_id = $user_data[0]->id;
+        //     $provider->status = 0; // Default status
+        //     $provider->save();
+        // }
+
+        //auth()->login($user); auto Login -  se quita por activacion por admin
+
+        Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
+        Session::flash('class', 'success');
+        return back();
+
 
     }
 }
