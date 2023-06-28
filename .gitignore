@@ -12,6 +12,6 @@ yarn-error.log
 /.idea
 /.vscode
 .zip
-/public/img/empresa
-/public/img/fotocredencial
-/public/img/fotogafete
+/public/assets/img/empresa
+/public/assets/img/fotocredencial
+/public/assets/img/fotogafete
