@@ -66,6 +66,7 @@
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/ver/'.$req->id) }}">Ver</a>
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/status/'.$req->id) }}">Activar/Desactivar</a>
 
+
                                             </div>
                                         </div>
                                     </td>

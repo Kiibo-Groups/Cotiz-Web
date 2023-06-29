@@ -54,7 +54,7 @@
                                                     Usuário empresa
                                                 @break
                                                 @case(2)
-                                                    ---
+                                                    Prueba
                                                 @break
                                                 @case(3)
                                                     Empresa

@@ -33,7 +33,7 @@
                                         Registrar Empresa
                                     </button>
                                 </div>
-                                <div class="col-6"style="float: right">
+                                <div  id="divbotonregistroPrueba" class="col-6"style="float: right">
                                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                                         Prueba
                                     </button>
@@ -112,6 +112,21 @@
         $("#divbotonregistro").click(function() {
 
             $('#formulario').append(` @include('auth.registerempresa')`);
+
+            $("#divempresa").hide();
+            $("#registroData").show();
+            //$('#signupName').prop('readonly', true);
+            $('#buscarfc').prop('readonly', true);
+            $('#buscarfc').prop('disabled', true);
+            var rfc = $("#buscarfc").val();
+            $("#signuprfc").val(rfc);
+
+        });
+        $("#divbotonregistroPrueba").click(function() {
+
+            $('#formulario').append(` @include('auth.registerempresaprueba')`);
+
+            $("#buscarfc").hide();
 
             $("#divempresa").hide();
             $("#registroData").show();

@@ -348,4 +348,60 @@ class RegisterController extends Controller
 
 
     }
+
+
+    //----------------Usuario Prueba--------------
+
+    public function storePrueba(Request $request){
+
+        $input = $request->all();
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required|min:8|confirmed',
+
+        ]);
+
+        if(isset($input['fotoGafete']))
+        {
+
+            $fotoGafete   = time().rand(111,699).'.' .$input['fotoGafete']->getClientOriginalExtension();
+            $input['fotoGafete']->move("assets/img/fotogafete/", $fotoGafete);
+            $input['fotoGafete'] = $fotoGafete;
+        }
+        if(isset($input['fotoCredencial']))
+        {
+            $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
+            $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
+            $input['fotoCredencial'] = $fotoCredencial;
+        }
+
+        $user = new User;
+        $user->company           = $request->empresa;
+        //$user->idempresa         = $request->empresaid;
+        //$user->rfc               = $request->rfc;
+        $user->name              = $request->name;
+        $user->last_name         = $request->apellidoPaterno. ' '. $request->apellidoMaterno;
+        $user->job               = $request->puestoEmpresa;
+        $user->areaEmpresa       = $request->areaEmpresa;
+        $user->telefonoEmpresa   = $request->telefonoEmpresa;
+        $user->phone             = $request->phone;
+        $user->email             = $request->email;
+        $user->address           = $request->direccionEmpresa;
+        $user->password          = Hash::make($request->password);
+        $user->shw_password      = $request->password;
+        $user->fotoGafete        = $fotoGafete;
+        $user->fotoCredencial    = $fotoCredencial;
+        $user->role              = 2; //usuarios empleado de empresa
+        $user->status            = 1; // Default status
+
+        $user->save();
+
+
+        Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
+        Session::flash('class', 'success');
+        return back();
+
+
+    }
 }

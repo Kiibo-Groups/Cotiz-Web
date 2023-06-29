@@ -32,6 +32,7 @@ Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 's
 Route::get('/seccion', [App\Http\Controllers\Auth\RegisterController::class, 'createSeccion'])->name('seccion_get');
 Route::get('/registerp', [App\Http\Controllers\Auth\RegisterController::class, 'createProveedor'])->name('registerprove_get');
 Route::post('register/proveedor/usuario', [App\Http\Controllers\Auth\RegisterController::class, 'storeProveedorUser'])->name('register_post_proveedor_usuario');
+Route::post('register/prueba', [App\Http\Controllers\Auth\RegisterController::class, 'storePrueba'])->name('register_post_prueba');
 
 
 Route::get('/register/rfc', [App\Http\Controllers\Auth\RegisterController::class, 'buscarRfc'])->name('register.rfc');
