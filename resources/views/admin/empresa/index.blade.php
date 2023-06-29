@@ -19,6 +19,7 @@
 
 
                 <div class="col-lg-12">
+                    @include('alerts')
 
                     <div class="card">
                       <div class="card-body">
@@ -65,7 +66,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/ver/'.$req->id) }}">Ver</a>
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/status/'.$req->id) }}">Activar/Desactivar</a>
-                                                <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/ver/'.$req->id) }}">Ver Usuários</a>
+                                                <a class="dropdown-item" href="{{ url(env('admin').'/empresas/usuarios/ver/'.$req->id) }}">Ver Usuários</a>
 
                                             </div>
                                         </div>

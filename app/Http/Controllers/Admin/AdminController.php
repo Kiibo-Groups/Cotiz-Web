@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Helpers\StatisticsHelper;
-use App\Models\Admin;
-use App\Models\Settings;
-use App\Models\User;
-use App\Models\Providers;
-use App\Models\Services;
-use App\Models\Requests;
-use App\Models\Rfc;
-use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use DB;
 use Auth;
-use Validator;
 use Redirect;
+use Validator;
+use Carbon\Carbon;
+use App\Models\Rfc;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Requests;
+use App\Models\Services;
+use App\Models\Settings;
+use App\Models\Providers;
+use Carbon\CarbonInterface;
+use Illuminate\Http\Request;
+use App\Helpers\StatisticsHelper;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -279,6 +280,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function verEmpresasUsuarios($id){
+
+        return view($this->folder.'empresa.usuarios', [
+            'data' => User::where('idempresa', $id)->get(),
+            'empresa' => Rfc::where('id', $id)->value('nombre')
+        ]);
+
+    }
+
 
 
 
@@ -289,8 +299,11 @@ class AdminController extends Controller
 
 		$res->status = ($res->status == 0) ? 1 : 0;
         $res->save();
+        Session::flash('mensaje','Elemento Editado con éxito!');
+        Session::flash('class', 'success');
+        return back();
 
-		return redirect(env('admin').'/empresas')->with('message','Elemento Editado con éxito.');
+		//return redirect(env('admin').'/empresas')->with('message','Elemento Editado con éxito.');
     }
 
     public function verEmpresas($id)
@@ -337,7 +350,20 @@ class AdminController extends Controller
 		$res->status = ($res->status == 0) ? 1 : 0;
         $res->save();
 
-		return redirect(env('admin').'/empresas/proveedores')->with('message','Elemento Editado con éxito.');
+        Session::flash('mensaje','Elemento Editado con éxito!');
+        Session::flash('class', 'success');
+        return back();
+
+		//return redirect(env('admin').'/empresas/proveedores')->with('message','Elemento Editado con éxito.');
+    }
+
+    public function verEmpresasproveedoresUsuarios($id){
+
+        return view($this->folder.'empresa_proveedor.usuarios', [
+            'data' => User::where('idempresa', $id)->get(),
+            'empresa' => Rfc::where('id', $id)->value('nombre')
+        ]);
+
     }
 
 

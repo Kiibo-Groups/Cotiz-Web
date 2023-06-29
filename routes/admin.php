@@ -1,6 +1,7 @@
 <?php
 
 
+
 Route::get('/admin',[App\Http\Controllers\Admin\AdminController::class, 'index']);
 // Admin Section
 // Route::group(['namespace' => 'Admin','prefix' => env('admin')], function(){
@@ -60,6 +61,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         */
         Route::resource('/users',UsersController::class);
         Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
+        Route::get('/users/proveedor', [App\Http\Controllers\Admin\UsersController::class, 'indexProveedor']);
         Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
         Route::get('/users/status/{id}', [App\Http\Controllers\Admin\UsersController::class, 'status']);
         Route::get('/users/delete/{id}', [App\Http\Controllers\Admin\UsersController::class, 'delete']);
@@ -75,6 +77,8 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/empresas/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresas']);
         Route::get('/empresas/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresas']);
         Route::get('/empresas/file/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesEmpresa']);
+        Route::get('/empresas/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresas']);
+        Route::get('/empresas/usuarios/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasUsuarios']);
 
         /*
         |--------------------------------------------------------------------------
@@ -85,6 +89,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/empresas/proveedores', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresasProveedores'])->name('empresasProveedores');
         Route::get('/empresas/proveedores/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedores']);
         Route::get('/empresas/proveedores/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresasProveedores']);
+        Route::get('/empresas/proveedores/usuarios/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedoresUsuarios']);
 
 
 

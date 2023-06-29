@@ -87,7 +87,26 @@
     @endif
 
 
-
+{{--
+    @if($admin->hasPerm('Dashboard - Proveedores'))
+    <li class="nav-item">
+      <a class="nav-link @if(!Route::is('providers') || !Route::is('providers.show')) collapsed @endif" data-bs-target="#providers-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-ui-checks-grid"></i><span>Proveedores</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="providers-nav" class="nav-content  collapse @if(Route::is('providers') || Route::is('providers.show'))  show @endif" data-bs-parent="#providers-nav">
+        <li>
+          <a href="{{ Asset(env('admin').'/providers') }}" class="@if(Route::is('providers')) active @endif">
+            <i class="bi bi-circle"></i><span>Listado</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ Asset(env('admin').'/providers/add') }}" class="@if(Route::is('providers.show')) active @endif">
+            <i class="bi bi-circle"></i><span>Agregar Proveedor</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Providers -->
+    @endif--}}
 
     @if($admin->hasPerm('Dashboard - Servicios'))
     <li class="nav-item">

@@ -1,16 +1,17 @@
 @extends('layouts.app_profile')
-@section('title') Usuarios @endsection
-@section('page_active') Listado de Usuarios @endsection
+@section('title') Proveedores - Usuarios @endsection
+@section('page_active') Listado  usuarios de {{ $empresa }} @endsection
 
 
 @section('content')
 	<section class="section banners">
 		<div class="row">
-			<div class="col-12 text-align-right">
+	{{--		<div class="col-12 text-align-right">
 				<div class="card-body" style="justify-items: right;display: grid;">
 					<a href="{{url(env('admin').'/users/add')}}" class="btn btn-primary"> Agrega Usuario</a>
 				</div>
-			</div>
+			</div>--}}
+
             @if(count($data)>0)
 			<div class="col-12">
                 @include('alerts')
@@ -24,7 +25,7 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Telefono</th>
-                                        <th>Tipo</th>
+
                                        {{-- <th>Nivel</th> --}}
                                         <th>Status</th>
                                         <th>Acciones</th>
@@ -46,53 +47,7 @@
                                         <td>{{$row->name}} {{$row->last_name}}</td>
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
-                                      <td>
-                                            @switch($row->role)
-                                                @case(0)
-                                                Cuenta Gratis
-                                                @break
-                                                @case(1)
-                                                    Usuário empresa
-                                                @break
-                                                @case(2)
-                                                    Prueba
-                                                @break
-                                                @case(3)
-                                                    Empresa
-                                                @break
-                                                @case(4)
-                                                    Proveedor
-                                                @break
-                                                @case(5)
-                                                    Usuário Proveedor
-                                                @break
-                                                @default
-                                            @endswitch
 
-                                        </td>
-                                       {{--  <td>
-                                            @switch($row->level)
-                                                @case(0)
-                                                Cuenta Gratis
-                                                @break
-                                                @case(1)
-                                                Light
-                                                @break
-                                                @case(2)
-                                                Thermal
-                                                @break
-                                                @case(3)
-                                                Chemical
-                                                @break
-                                                @case(4)
-                                                Motion
-                                                @break
-                                                @case(5)
-                                                Nuclear
-                                                @break
-                                                @default
-                                            @endswitch
-                                        </td>--}}
                                         <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>
@@ -109,7 +64,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ url(env('admin').'/users/edit/'.$row->id) }}">Editar</a>
+                                                    {{-- <aclass="dropdown-item"href="url(env('admin').'/users/edit/'.$row->id) }}">Editar</a> --}}
                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/status/'.$row->id) }}">Activar/Desactivar</a>
                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/delete/'.$row->id) }}">Eliminar</a>
                                                 </div>

@@ -19,7 +19,7 @@
 
 
                 <div class="col-lg-12">
-
+                    @include('alerts')
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">Listado de Empresas Proveedoras</h5>
@@ -65,6 +65,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/ver/'.$req->id) }}">Ver</a>
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/status/'.$req->id) }}">Activar/Desactivar</a>
+                                                <a class="dropdown-item" href="{{ url(env('admin').'/empresas/proveedores/usuarios/ver/'.$req->id) }}">Ver Usuários</a>
 
 
                                             </div>

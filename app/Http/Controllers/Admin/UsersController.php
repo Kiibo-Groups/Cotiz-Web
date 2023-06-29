@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
-
-use App\Models\Admin;
-use App\Models\User;
-use App\Models\AppUsers;
-use App\Models\UserAddress;
-use App\Models\Providers;
-
 use DB;
 use Auth;
 use Redirect;
+
+
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\AppUsers;
+use App\Models\Providers;
+use App\Models\UserAddress;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 class UsersController extends Controller
 {
     public $folder = "admin.";
@@ -28,7 +30,14 @@ class UsersController extends Controller
     public function index()
     {
         return view($this->folder.'users.index', [
-            'data' => User::get()
+            'data' => User::where('role', 1)->get()
+        ]);
+    }
+    public function indexProveedor()
+    {
+        dd('holsa');
+        return view($this->folder.'users.index', [
+            'data' => User::where('role', 5)->get()
         ]);
     }
 
@@ -163,16 +172,22 @@ class UsersController extends Controller
      */
     public function delete($id)
     {
-        $res = User::find($id);
+        //$res = User::find($id);
 
         // Eliminamos el logotipo
-        $path = env('APP_DEBUG') ? '' : 'public/';
-		@unlink($path."assets/profile/img/".$res->pic_profile);
+        //$path = env('APP_DEBUG') ? '' : 'public/';
+		//@unlink($path."assets/profile/img/".$res->pic_profile);
 
         // Eliminamos al usuario mismo
-        $res->delete();
+        //$res->delete();
 
-		return redirect(env('admin').'/users')->with('message','Elemento eliminado con éxito.');
+		//return redirect(env('admin').'/users')->with('message','Elemento eliminado con éxito.');
+
+        $id  = request()->id;
+        User::find($id)->delete();
+        Session::flash('mensaje','Elemento eliminado con éxito!');
+        Session::flash('class', 'success');
+        return back();
     }
 
     /**
@@ -188,6 +203,10 @@ class UsersController extends Controller
 		$res->status = ($res->status == 0) ? 1 : 0;
         $res->save();
 
-		return redirect(env('admin').'/users')->with('message','Elemento eliminado con éxito.');
+        Session::flash('mensaje','Registro Exitoso!');
+        Session::flash('class', 'success');
+        return back();
+
+		//return redirect(env('admin').'/users')->with('message','Elemento eliminado con éxito.');
     }
 }

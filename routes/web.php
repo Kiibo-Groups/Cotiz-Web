@@ -55,7 +55,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         | Dashboard Routes
         |--------------------------------------------------------------------------
         */
-        Route::resource('home',HomeController::class);
+        //Route::resource('home',HomeController::class);
         Route::get('/', [App\Http\Controllers\Profile\HomeController::class, 'index'])->name('dash');
         Route::get('/home', [App\Http\Controllers\Profile\HomeController::class, 'settings'])->name('home');
         Route::patch('/input_code/{id}', [App\Http\Controllers\Profile\HomeController::class, 'input_code']);
