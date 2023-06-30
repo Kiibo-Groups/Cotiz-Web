@@ -33,7 +33,8 @@ class User extends Authenticatable
         'shw_password',
         'role',
         'status',
-        'cashback'
+        'cashback',
+        'idempresa'
     ];
 
     /**
@@ -63,5 +64,11 @@ class User extends Authenticatable
     public function provider(){
 
         return $this->hasOne(Providers::class);
+    }
+
+    public function empresa()
+    {
+
+        return $this->belongsTo(Rfc::class,'idempresa','id');
     }
 }

@@ -321,6 +321,17 @@ class AdminController extends Controller
         //dd($rutaDeArchivo);
         return response()->download($rutaDeArchivo, $id);
     }
+    public function verFilesGafete($id){
+
+         $rutaDeArchivo = public_path().'/assets/img/fotogafete/' .$id;
+         return response()->download($rutaDeArchivo, $id);
+     }
+
+     public function verFilesfotoCredencial($id){
+
+        $rutaDeArchivo = public_path().'/assets/img/fotocredencial/' .$id;
+        return response()->download($rutaDeArchivo, $id);
+    }
 
     /*
 	|------------------------------------------------------------------

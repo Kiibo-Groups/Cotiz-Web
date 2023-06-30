@@ -61,10 +61,21 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         */
         Route::resource('/users',UsersController::class);
         Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
-        Route::get('/users/proveedor', [App\Http\Controllers\Admin\UsersController::class, 'indexProveedor']);
+
+        //Route::get('/users/proveedor/{user}', [App\Http\Controllers\Admin\UsersController::class, 'indexProveedor'])->name('userspanel');
+
         Route::get('/users/edit/{id}', [App\Http\Controllers\Admin\UsersController::class, 'edit']);
         Route::get('/users/status/{id}', [App\Http\Controllers\Admin\UsersController::class, 'status']);
         Route::get('/users/delete/{id}', [App\Http\Controllers\Admin\UsersController::class, 'delete']);
+
+        Route::get('/users/ver/{id}', [App\Http\Controllers\Admin\UsersController::class, 'VerUsuarioEmpresa']);
+        Route::get('/users/ver/proveedor/{id}', [App\Http\Controllers\Admin\UsersController::class, 'VerUsuarioProveedor']);
+        Route::get('/users/ver/prueba/{id}', [App\Http\Controllers\Admin\UsersController::class, 'VerUsuarioPrueba']);
+
+
+        Route::resource('/userspanel',AdminUsuarioDashController::class);
+        Route::get('/userspanel', [App\Http\Controllers\Admin\AdminUsuarioDashController::class, 'index'])->name('userspanel');
+
 
 
         /*
@@ -79,6 +90,9 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/empresas/file/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesEmpresa']);
         Route::get('/empresas/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresas']);
         Route::get('/empresas/usuarios/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasUsuarios']);
+
+        Route::get('/empresas/gafete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesGafete']);
+        Route::get('/empresas/credencial/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesfotoCredencial']);
 
         /*
         |--------------------------------------------------------------------------

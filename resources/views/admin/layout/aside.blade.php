@@ -51,34 +51,34 @@
     </li><!-- End empresas Proveedores -->
     @endif
 
-    @if($admin->hasPerm('Dashboard - Usuarios'))
+{{--    @if($admin->hasPerm('Dashboard - Usuarios'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
         <i class="bi bi-person-lines-fill"></i>
         <span>Usuarios</span>
       </a>
     </li><!-- End Users -->
-    @endif
+    @endif --}}
 
     @if($admin->hasPerm('Dashboard - Usuarios'))
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('users') || !Route::is('users.show')) collapsed @endif" data-bs-target="#usuarios-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-ui-checks-grid"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="usuarios-nav" class="nav-content  collapse @if(Route::is('users') || Route::is('users.show'))  show @endif" data-bs-parent="#usuarios-nav">
+      <ul id="usuarios-nav" class="nav-content  collapse @if(Route::is('users') || Route::is('users.show') || Route::is('userspanel.show')|| Route::is('userspanel'))   show @endif" data-bs-parent="#usuarios-nav">
         <li>
           <a href="{{ Asset(env('admin').'/users') }}" class="@if(Route::is('users')) active @endif">
             <i class="bi bi-circle"></i><span>Empresa</span>
           </a>
         </li>
-        {{ Asset(env('admin').'/users/proveedor') }}
+
         <li>
-          <a href="{{ Asset(env('admin').'/users/proveedor') }}" class="@if(Route::is('users.show')) active @endif">
+          <a href="{{ Asset(env('admin').'/userspanel/proveedor') }}" class="@if(Route::is('userspanel.show')) active @endif" >
             <i class="bi bi-circle"></i><span>Proveedor</span>
           </a>
         </li>
         <li>
-            <a href="{{ Asset(env('admin').'/users/add') }}" class="@if(Route::is('users.show')) active @endif">
+            <a href="{{ Asset(env('admin').'/userspanel') }}" class="@if(Route::is('userspanel')) active @endif">
               <i class="bi bi-circle"></i><span>Prueba</span>
             </a>
           </li>

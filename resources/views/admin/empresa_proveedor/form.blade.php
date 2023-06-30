@@ -79,7 +79,16 @@
                                         <textarea class="form-control" rows="2" name="actividadPPal">{{$data->actividadPPal}}</textarea>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
+                                        <label for="delegación" class="form-label">Constancia de situación positiva</label>
+                                        <br>
+                                        <a target="_blank" class="btn btn-warning" title="Constancia de situación positiva" href="{{ url(env('admin').'/empresas/file/'.$data->constanciaPositiva) }}">
+                                            <i class="bi bi-download"></i>
+                                        </a>
+
+
+                                    </div>
+                                    <div class="col-md-4">
                                         <label for="delegación" class="form-label">Opinión positiva</label>
                                         <br>
                                         <a target="_blank" class="btn btn-warning" title="Descargar Opinión positiva" href="{{ url(env('admin').'/empresas/file/'.$data->opinionPositiva) }}">
@@ -88,7 +97,7 @@
 
 
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <label for="delegación" class="form-label">Información bancaria</label>
                                         <br>
                                         <a target="_blank" class="btn btn-warning"  title="Descargar Información bancaria" href="{{ url(env('admin').'/empresas/file/'.$data->infoBancaria) }}">
@@ -96,18 +105,18 @@
                                         </a>
 
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="delegación" class="form-label">Constancia de situación fiscal</label>
+                                    <div class="col-md-4">
+                                        <label for="delegación" class="form-label">Carta de aceptación de crédito firmada </label>
                                         <br>
-                                        <a target="_blank" class="btn btn-warning" title="Descargar Constancia de situación fiscal"  href="{{ url(env('admin').'/empresas/file/'.$data->constFiscal) }}">
+                                        <a target="_blank" class="btn btn-warning" title="Carta de aceptación de crédito firmada"  href="{{ url(env('admin').'/empresas/file/'.$data->cartaAceptacion) }}">
                                             <i class="bi bi-download"></i>
                                         </a>
 
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="delegación" class="form-label">Registro de Domiclio fiscal</label>
+                                    <div class="col-md-4">
+                                        <label for="delegación" class="form-label">Listado de productos o servicios</label>
                                         <br>
-                                        <a target="_blank" class="btn btn-warning" title="Descargar Registro de Domiclio fiscal" href="{{ url(env('admin').'/empresas/file/'.$data->domicilioFiscal) }}">
+                                        <a target="_blank" class="btn btn-warning" title="Listado de productos o servicios" href="{{ url(env('admin').'/empresas/file/'.$data->listadoProductos) }}">
                                             <i class="bi bi-download"></i>
                                         </a>
 

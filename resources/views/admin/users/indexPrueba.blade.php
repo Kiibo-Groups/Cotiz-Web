@@ -1,6 +1,6 @@
 @extends('layouts.app_profile')
-@section('title') Usuarios Empresa @endsection
-@section('page_active') Listado de Usuarios Empresa @endsection
+@section('title') Usuarios Prueba @endsection
+@section('page_active') Listado de Usuarios Prueba @endsection
 
 
 @section('content')
@@ -24,8 +24,6 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Telefono</th>
-                                        <th>Empresa</th>
-                                       {{-- <th>Nivel</th> --}}
                                         <th>Status</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -47,14 +45,6 @@
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
                                         <td>
-                                           @if ($row->empresa)
-                                                {{ $row->empresa->nombre }}
-                                           @else
-                                            -
-                                           @endif
-
-                                        </td>
-                                        <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>
                                             @else
@@ -70,7 +60,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
-                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/ver/'.$row->id) }}">Ver</a>
+                                                    <a class="dropdown-item"href="{{ url(env('admin').'/users/ver/prueba/'.$row->id) }}">Ver</a>
                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/status/'.$row->id) }}">Activar/Desactivar</a>
                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/delete/'.$row->id) }}">Eliminar</a>
                                                 </div>

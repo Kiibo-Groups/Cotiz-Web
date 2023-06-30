@@ -33,13 +33,7 @@ class UsersController extends Controller
             'data' => User::where('role', 1)->get()
         ]);
     }
-    public function indexProveedor()
-    {
-        dd('holsa');
-        return view($this->folder.'users.index', [
-            'data' => User::where('role', 5)->get()
-        ]);
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -124,6 +118,34 @@ class UsersController extends Controller
             'form_url' => Asset(env('admin').'/users/update')
         ]);
     }
+
+    public function VerUsuarioEmpresa($id)
+    {
+        return view($this->folder.'users.formVerEmpresa', [
+            'data' => User::find($id),
+            'form_url' => Asset(env('admin').'/users/update'),
+            'ver' => 0 //0 permiso ver
+        ]);
+    }
+
+    public function VerUsuarioProveedor($id)
+    {
+        return view($this->folder.'users.formVerProveedor', [
+            'data' => User::find($id),
+            'form_url' => Asset(env('admin').'/users/update'),
+            'ver' => 0 //0 permiso ver
+        ]);
+    }
+
+    public function VerUsuarioPrueba($id)
+    {
+        return view($this->folder.'users.formVerPrueba', [
+            'data' => User::find($id),
+            'form_url' => Asset(env('admin').'/users/update'),
+            'ver' => 0 //0 permiso ver
+        ]);
+    }
+
 
     /**
      * Update the specified resource in storage.
