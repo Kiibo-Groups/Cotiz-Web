@@ -45,10 +45,26 @@ Route::post('register/proveedor', [App\Http\Controllers\Auth\RegisterController:
 // Contact Section
 Route::get('/contact', [App\Http\Controllers\Controller::class, 'contact'])->name('contact');
 Route::post('/contact', [App\Http\Controllers\Controller::class, '_contact']);
+Route::get('/activar', [App\Http\Controllers\Profile\HomeController::class, 'activar'])->name('activar');
+
 
 // Profile Section
 Route::prefix(env('user'))->namespace('User')->group(static function() {
     Route::middleware('auth')->group(static function () {
+
+            /*
+        |--------------------------------------------------------------------------
+        | Perfil - Usuario
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/perfil', [App\Http\Controllers\Profile\HomeController::class, 'perfilUsuario'])->name('perfil');
+
+
+
+
+
+
 
         /*
         |--------------------------------------------------------------------------

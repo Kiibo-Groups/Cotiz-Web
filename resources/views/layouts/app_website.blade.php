@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light scroll-smooth" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cotiz descubre nuestros mejores eventos y agenda una llamada con nuestros mejores mentores.">
+    <meta name="description"
+        content="Cotiz descubre nuestros mejores eventos y agenda una llamada con nuestros mejores mentores.">
     <meta name="keywords" content="Mentorias, Eventos, Inversiones, Startups, DQV, Kiibo Groups">
     <meta name="author" content="Kiibo Groups">
     <meta name="website" content="https://kiibo.mx" />
     <meta name="email" content="soporte@kiibo.mx" />
-    <title>Cotiz | WebSite</title>  
+    <title>Cotiz | WebSite</title>
     <meta name="version" content="1.6.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -22,8 +24,9 @@
     <link rel="stylesheet" href="{{ asset('assets2/css/icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets2/css/tailwind.css') }}" />
 </head>
+
 <body class="font-nunito text-base text-black dark:text-white dark:bg-slate-900">
-    <!-- Loader Start  
+    <!-- Loader Start
     <div id="preloader">
         <div id="status">
             <div class="spinner">
@@ -38,53 +41,80 @@
         <div class="container">
             <!-- Logo container-->
             <a class="logo ltr:pl-0 rtl:pr-0" href="{{ route('init') }}">
-                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="inline-block dark:hidden" alt="">
-                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="hidden dark:inline-block" alt="">
+                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="inline-block dark:hidden"
+                    alt="">
+                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="hidden dark:inline-block"
+                    alt="">
             </a>
- 
+
             <!--Login button Start-->
+
             <ul class="buy-button list-none mb-0">
-                @if(!Auth::user())
+                @if (!Auth::user())
                     <li class="inline mb-0">
                         <a href="{{ route('login') }}" class="btn btn-icon rounded-full hover:text-black">
                             <i data-feather="user" class="h-4 w-4"></i></a>
                     </li>
-                @else 
-                    @if(Auth::user()->pic_profile)
+                @else
+                    @if (Auth::user()->pic_profile)
                         <li class="inline mb-0">
-                            @if(Auth::user()->role == 2)
-                            <a href="{{ asset(env('user')) }}" class="btn" style="border: none;">
-                                <div style="background-image:url('{{ asset('assets/img/logos/'.Auth::user()->pic_profile) }}');background-size: cover;width: 40px;height: 40px;border-radius:2003px; background-position: center center;"></div>
-                            </a>
-                            @else 
-                            <a href="{{ asset(env('user').'/home') }}" class="btn" style="border: none;">
-                                <div style="background-image:url('{{ asset('assets/img/logos/'.Auth::user()->pic_profile) }}');background-size: cover;width: 40px;height: 40px;border-radius:2003px; background-position: center center;"></div>
-                            </a>
+                            @if (Auth::user()->role == 2)
+                                <a href="{{ asset(env('user')) }}" class="btn" style="border: none;">
+                                    <div
+                                        style="background-image:url('{{ asset('assets/img/logos/' . Auth::user()->pic_profile) }}');background-size: cover;width: 40px;height: 40px;border-radius:2003px; background-position: center center;">
+                                    </div>
+                                </a>
+                            @else
+                                <a href="{{ asset(env('user') . '/home') }}" class="btn" style="border: none;">
+                                    <div
+                                        style="background-image:url('{{ asset('assets/img/logos/' . Auth::user()->pic_profile) }}');background-size: cover;width: 40px;height: 40px;border-radius:2003px; background-position: center center;">
+                                    </div>
+                                </a>
                             @endif
                         </li>
                     @endif
+                @endif
+
+                @if (Auth::user())
+                    <li class="inline mb-0">
+                        <a href="{{ asset(env('user') . '/perfil') }}" class="btn btn-icon rounded-full hover:text-black" title="Perfil Usuario" >
+                            <i data-feather="user" class="h-4 w-4"></i></a>
+                    </li>
+                    <li class="inline mb-0">
+                        <a href="{{ route('contact') }}" class="btn btn-icon rounded-full hover:text-black" title="Solicitudes">
+                            <i data-feather="book" class="h-4 w-4"></i></a>
+                    </li>
                 @endif
 
                 <li class="inline mb-0">
                     <a href="{{ route('contact') }}" class="btn btn-icon rounded-full hover:text-black">
                         <i data-feather="phone" class="h-4 w-4"></i></a>
                 </li>
+
+
+
+
+
+
             </ul>
-            <!--Login button End-->            
-        </div><!--end container-->
+            <!--Login button End-->
+        </div>
+        <!--end container-->
     </nav>
- 
+
     <!-- Main -->
     <main>
         @yield('content')
     </main>
     <!-- Main -->
- 
+
 
     <!-- Back to top -->
-    <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 ltr:left-5 rtl:left-5 h-9 w-9 text-center bg-indigo-600 text-white leading-9"><i class="uil uil-arrow-up"></i></a>
+    <a href="#" onclick="topFunction()" id="back-to-top"
+        class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 ltr:left-5 rtl:left-5 h-9 w-9 text-center bg-indigo-600 text-white leading-9"><i
+            class="uil uil-arrow-up"></i></a>
     <!-- Back to top -->
-  
+
     <!-- JAVASCRIPTS -->
     <script src="{{ asset('assets2/libs/tiny-slider/min/tiny-slider.js') }}"></script>
     <script src="{{ asset('assets2/libs/choices.js/public/assets/scripts/choices.min.j') }}s"></script>
@@ -93,4 +123,5 @@
     <script src="{{ asset('assets2/js/app.js') }}"></script>
     <!-- JAVASCRIPTS -->
 </body>
+
 </html>

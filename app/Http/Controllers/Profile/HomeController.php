@@ -98,7 +98,7 @@ class HomeController extends Controller
                 }
 
                 $services_provider = $services_provider->paginate(10);
-                 
+
                 return view('admin.services.index', [
                     'user' => Auth::user(),
                     'services' => $services_provider,
@@ -318,7 +318,7 @@ class HomeController extends Controller
         }
 
         $service_data = Services::find($requests_data->services_id);
-        $provider_data = Providers::find($service_data->provider_id); 
+        $provider_data = Providers::find($service_data->provider_id);
 
         if ($requests_data->status == 5) {
             $amountServ    = $service_data->price;
@@ -328,7 +328,7 @@ class HomeController extends Controller
 
             $newCash;
             if ($typeCashB === 1) { // en %
-                $newCash = ($amountServ * $cashBackAdmin) / 100;   
+                $newCash = ($amountServ * $cashBackAdmin) / 100;
             }else { // Valor Fijo
                 $newCash = $cashBackAdmin;
             }
@@ -355,7 +355,7 @@ class HomeController extends Controller
         $notification->message = 'El Proveedor ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
         $notification->save();
         $requests_data->update($input);
- 
+
 
         //Mail::to($user->email)->send(new CotizMail($userName, $title, $message));
 
@@ -511,9 +511,63 @@ class HomeController extends Controller
 
         return redirect('settings')->with('message', 'Cuenta actualizada  actualizada con éxito...');
     }
- 
+
     public function notifications() {
         $user   = Auth::user();
+        $notifications = Notifications::where('for_user',$user->id)->paginate(10);
+        return View('admin.notifications.index',['notifications'=> $notifications]);
+    }
+
+
+
+    //----------Perfil - Usuarios ---------------------------------
+
+    public function activar() {
+
+        return View('pages.activar');
+    }
+
+
+    public function perfilUsuario() {
+
+        $user   = User::find(auth()->user()->id);
+
+
+        switch(auth()->user()->role) {
+            case(1):
+                if (auth()->user()->status = 1) {
+                    return redirect('activar');
+                } else {
+                    return redirect('admin/dash');
+                }
+
+
+
+                break;
+
+            case(2):
+
+                break;
+
+            case(2):
+
+                break;
+            case(2):
+
+                break;
+
+            case(2):
+
+                break;
+
+        }
+
+
+
+
+
+
+        dd($user);
         $notifications = Notifications::where('for_user',$user->id)->paginate(10);
         return View('admin.notifications.index',['notifications'=> $notifications]);
     }
