@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\Services;
 use App\Models\Providers;
-
+use App\Models\Rfc;
 use DB;
 use Auth;
 use Redirect;
@@ -37,7 +37,7 @@ class ServicesController extends Controller
 
         $data = $data->paginate(10);
 
-        
+
 
         return view($this->folder.'services.index', [
             'services' => $data,
@@ -49,7 +49,7 @@ class ServicesController extends Controller
     }
 
     public function store(Request $request){
-
+//dd($request);
 
              $request->validate([
                 'provider_id'=>'required',
@@ -67,13 +67,11 @@ class ServicesController extends Controller
             if(isset($input['logo']))
             {
                 // Eliminamos la anterior
-                // unlink("public/profile/img/banner/".$input['img']);
-
-                $path = env('APP_DEBUG') ? '' : 'public/';
-
+                //unlink("public/profile/img/banner/".$input['img']);
+                //$path = env('APP_DEBUG') ? '' : 'public/';
                 // Agregamos el nuevo
                 $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-                $input['logo']->move($path."assets/img/logos/", $filename);
+                $input['logo']->move("assets/img/logos/", $filename);
                 $input['logo'] = $filename;
             }
 
@@ -85,7 +83,8 @@ class ServicesController extends Controller
 
     public function show(){
 
-        $providers = Providers::get();
+        //$providers = Providers::get();
+        $providers = Rfc::where('rol', 2)->where('status', 0)->get();
 
         return view($this->folder.'services.add', [
             'data' => new Services,

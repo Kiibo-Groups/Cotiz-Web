@@ -15,3 +15,5 @@ yarn-error.log
 /public/assets/img/empresa
 /public/assets/img/fotocredencial
 /public/assets/img/fotogafete
+/public/assets/img/logos
+.env

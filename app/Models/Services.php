@@ -22,7 +22,7 @@ class Services extends Model
 
     public function provider(){
 
-        return $this->belongsTo(Providers::class,'provider_id');
+        return $this->belongsTo(Rfc::class,'provider_id', 'id');
     }
 
     public function requests(){

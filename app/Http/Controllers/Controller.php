@@ -85,8 +85,8 @@ class Controller extends BaseController
             if($type) {
                 $requests_user = $requests_user->where('type',$type);
             }
-    
-            $requests_user = $requests_user->orderBy('id','DESC') 
+
+            $requests_user = $requests_user->orderBy('id','DESC')
             ->simplePaginate(10);
 
             return view('pages.search', [
@@ -143,7 +143,7 @@ class Controller extends BaseController
 
     public function contact()
     {
-        $admin              = Admin::find(1);
+        $admin   = Admin::find(1);
         return view('pages.contact', [
             'admin' => $admin,
         ]);

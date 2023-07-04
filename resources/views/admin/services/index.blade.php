@@ -34,6 +34,7 @@
                             </div>
                         </form>
                     </div>
+                    {{ $services }}
                     <div class="row">
                         @foreach ($services as $service)
                             <div class="col-12 col-sm-4 p-3">
@@ -43,7 +44,7 @@
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-12">
-                                            <h5 class="card-title">{{ $service->provider->name }}</h5>
+                                            <h5 class="card-title">{{ $service->provider->nombre}}</h5>
                                             @if ($service->status === 0)
                                             <span class="badge text-white bg-secondary" style="float: right;top: -40px;position: relative;">Inactivo</span>
                                             @else
@@ -68,11 +69,11 @@
                                         </div>
                                         <div class="col-12 mb-2">
                                             <p class="card-text text-muted m-0">Costo</p>
-                                            <h5 class="card-title m-0 p-0"> 
+                                            <h5 class="card-title m-0 p-0">
                                                 <span class="badge text-white bg-success">$ {{number_format($service->price,2)}}</span>
                                             </h5>
                                         </div>
-                                        
+
                                         @if (!Auth::guard('admin')->check())
                                             <div class="col-6 mt-3">
                                                 <a href="{{ url(env('user') . '/services/edit/' . $service->id) }}"

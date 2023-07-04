@@ -28,6 +28,7 @@
                                             <img src="<?php echo asset('profile/img/icons/edit.svg') ?>" class="svg_img header_svg" alt="edit" />
                                         </label>
                                     </div>
+
                                     <div class="avatar-preview ec-preview">
                                         <div class="imagePreview ec-div-preview">
                                             @if($data->id)
@@ -60,12 +61,12 @@
                                     <select name="provider_id" id="provider" class="form-select js-example-basic-single">
                                         @if ($data->id)
                                             @foreach ($providers as $provider)
-                                                <option value="{{ $provider->id }}" @if($provider->id == $data->provider_id) selected @endif>{{ $provider->name }}</option>
+                                                <option value="{{ $provider->id }}" @if($provider->id == $data->provider_id) selected @endif>{{ $provider->nombre }}</option>
                                             @endforeach
                                         @else
                                             <option value="" selected></option>
                                             @foreach ($providers as $provider)
-                                                <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                                                <option value="{{ $provider->id }}">{{ $provider->nombre }}</option>
                                             @endforeach
                                         @endif
 

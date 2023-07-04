@@ -78,6 +78,7 @@ class HomeController extends Controller
 
     public function indexService(Request $request)
     {
+
         $user   = Auth::user();
         $services = Services::where('status',1)->paginate(10);
         $search = $request->search;
@@ -121,6 +122,8 @@ class HomeController extends Controller
         $user = Auth::user();
 
         $providers = Providers::where('user_id',$user->id)->get();
+
+
 
         return view('admin.services.add', [
             'data' => new Services,
@@ -524,7 +527,11 @@ class HomeController extends Controller
 
     public function activar() {
 
-        return View('pages.activar');
+        $admin   = Admin::find(1);
+        return view('pages.activar', [
+            'admin' => $admin,
+        ]);
+
     }
 
 

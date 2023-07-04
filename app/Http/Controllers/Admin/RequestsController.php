@@ -22,6 +22,7 @@ class RequestsController extends Controller
     public $folder = 'admin.';
 
     public function index(Request $request){
+
         $search = $request->search;
         $status = $request->filter_status;
         $from = $request->filter_from;
@@ -85,7 +86,7 @@ class RequestsController extends Controller
 
             $newCash;
             if ($typeCashB === 1) { // en %
-                $newCash = ($amountServ * $cashBackAdmin) / 100;   
+                $newCash = ($amountServ * $cashBackAdmin) / 100;
             }else { // Valor Fijo
                 $newCash = $cashBackAdmin;
             }
@@ -105,7 +106,7 @@ class RequestsController extends Controller
             //     'newCash' => $newCash
             // ]);
         }
- 
+
 
         // Notificamos
         $notification = new Notifications;

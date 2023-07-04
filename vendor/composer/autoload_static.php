@@ -525,6 +525,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Helpers\\StatisticsHelper' => __DIR__ . '/../..' . '/app/Helpers/StatisticsHelper.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\AdminUsuarioDashController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminUsuarioDashController.php',
         'App\\Http\\Controllers\\Admin\\BannersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannersController.php',
         'App\\Http\\Controllers\\Admin\\EventsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EventsController.php',
         'App\\Http\\Controllers\\Admin\\MentorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MentorsController.php',

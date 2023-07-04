@@ -89,9 +89,10 @@ class AdminController extends Controller
 	{
 
 		$providers = Providers::count();
-        $services = Services::count();
-        $users = User::where('role',1)->get()->count();
-        $requests = Requests::count();
+        $services  = Services::count();
+        $users     = User::where('role',1)->get()->count();
+        $providers = User::where('role',4)->get()->count();
+        $requests  = Requests::count();
 
         $statistics = json_encode([
             'providers' => StatisticsHelper::statisticsCountModel(Providers::class),
