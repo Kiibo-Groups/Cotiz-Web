@@ -44,13 +44,25 @@
     <div class="row">
         <div class="col-6 form-floating mb-4">
             <input id="fotoGafete" type="file" class="form-control" name="fotoGafete"
-            value="{{ old('fotoGafete') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-           <label for="fotoGafete">Foto de gafete ambos lados </label>
+            value="{{ old('fotoGafete') }}" accept=".png, .jpg, .jpeg" required>
+           <label for="fotoGafete">Foto de gafete lado #1 </label>
         </div>
         <div class="col-6 form-floating mb-4">
+            <input id="fotoGafete2" type="file" class="form-control" name="fotoGafete2"
+            value="{{ old('fotoGafete2') }}" accept=".png, .jpg, .jpeg" required>
+            <label for="fotoGafete2">Foto de gafete lado #2 </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 form-floating mb-4">
             <input id="fotoCredencial" type="file" class="form-control" name="fotoCredencial"
-            value="{{ old('fotoCredencial') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-            <label for="fotoCredencial">Foto credencial de elector (INE) ambos lados </label>
+            value="{{ old('fotoCredencial') }}" accept=".png, .jpg, .jpeg" required>
+           <label for="fotoCredencial">Foto credencial de elector (INE)  lado #1 </label>
+        </div>
+        <div class="col-6 form-floating mb-4">
+            <input id="fotoCredencial2" type="file" class="form-control" name="fotoCredencial2"
+            value="{{ old('fotoCredencial2') }}" accept=".png, .jpg, .jpeg" required>
+            <label for="fotoCredencial2">Foto credencial de elector (INE) lado #2 </label>
         </div>
     </div>
 

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
-
-use App\Models\Requests;
-use App\Models\Services;
-use App\Models\Providers;
-use App\Models\Notifications;
-use App\Models\User;
-use App\Models\Admin;
 use DB;
 use Auth;
 use Redirect;
+
+use App\Models\Rfc;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Requests;
+use App\Models\Services;
+use App\Models\Providers;
+use Illuminate\Http\Request;
+use App\Models\Notifications;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Builder;
 
 class RequestsController extends Controller
 {
@@ -67,17 +69,23 @@ class RequestsController extends Controller
 
     public function edit(Request $request, $id){
 
+
+        $id_admin = auth('admin')->user()->id;
         $request->validate([
             'status'=>'required'
         ]);
 
-        $input = $request->all();
-        $admin   = Admin::find(1);
+        $input         = $request->all();
+        $admin         = Admin::find($id_admin);
         $requests_data = Requests::find($id);
-        $service_data = Services::find($requests_data->services_id);
-        $provider_data = Providers::find($service_data->provider_id);
+        $service_data  = Services::find($requests_data->services_id);
+        $provider_data = Rfc::find($service_data->provider_id);
+
+
+
         $user_data = User::find($requests_data->user_id);
         $msg =  'Solicitud actualizado con éxito ...';
+
         if ($input['status'] == 5) {
             $amountServ    = $service_data->price;
             $cashBackUser  = $user_data->cashback;
@@ -110,13 +118,20 @@ class RequestsController extends Controller
 
         // Notificamos
         $notification = new Notifications;
-        $notification->of_user = $provider_data->user_id;
+        $notification->of_user = $provider_data->id;
         $notification->for_user = $requests_data->user_id;
         $notification->message = 'El Administrador ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
         $notification->save();
+
+
         $requests_data->update($input);
 
-        return redirect(env('admin').'/request')->with('message', $msg);
+        //return redirect(env('admin').'/request')->with('message', $msg);
+
+        Session::flash('mensaje',$msg);
+        Session::flash('class', 'success');
+        return back();
+
 
     }
 

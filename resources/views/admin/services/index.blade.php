@@ -17,6 +17,9 @@
             <!-- Start -->
             <section class="relative">
                 <div class="container">
+
+                    @include('alerts')
+
                     <div class="row">
                         @if(!Auth::guard('admin')->check())
                         <form action="{{ url(env('user') . '/services') }}" method="GET">
@@ -34,7 +37,7 @@
                             </div>
                         </form>
                     </div>
-                    {{ $services }}
+
                     <div class="row">
                         @foreach ($services as $service)
                             <div class="col-12 col-sm-4 p-3">

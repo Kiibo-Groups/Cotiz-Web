@@ -36,7 +36,9 @@
                 <!-- /form -->
 
 
-                <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('seccion_get')}}" class="hover">Registrate</a></p>
+                <p class="mb-0" style="color:black;">No tienes una cuenta? <a href="{{route('seccion_get')}}" class="hover" style="color: #FE6401">Registrate</a></p>
+
+
             </div>
         </div>
     </div>

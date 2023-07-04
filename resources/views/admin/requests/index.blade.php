@@ -15,12 +15,14 @@
     <section class="relative">
         <div class="container">
             <div class="row">
+
                 @if (Auth::guard('admin')->check())
                 <form action="{{ url(env('admin'). '/request')}}" method="GET">
                 @else
                 <form action="{{ url(env('user'). '/request')}}" method="GET">
                 @endif
-                    <div class="row">
+                    <div class="row ">
+                        @include('alerts')
                         <div class="col-6 mb-3">
                             <label for="filter_from">Desde</label>
                             <input type="date" name="filter_from" class="form-control">
@@ -91,11 +93,11 @@
                                         </a>
                                         @endif
                                         @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
-                                        
+
                                         <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editRequest">
                                                 <i class="bi bi-pencil"></i>
                                         </a>
-                                        
+
                                         @if (!Auth::guard('admin')->check())
                                         <a  class="btn btn-danger" href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
                                                 <i class="bi bi-trash"></i>
@@ -117,7 +119,7 @@
                     </div>
                 </div>
 
-               
+
 
                 @if(count($requests)<1)
                 <div class="d-flex align-items-center flex-column py-6">

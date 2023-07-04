@@ -12,6 +12,11 @@
                             <h2>Regístrese en Cotiz</h2>
                             <h4>Empresa</h4>
                             <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
                             <div class="form-floating mb-4">
                                 <input id="buscarfc" type="text" class="form-control" name="rfc" required>
@@ -33,7 +38,7 @@
                                         Registrar Empresa
                                     </button>
                                 </div>
-                                <div  id="divbotonregistroPrueba" class="col-6"style="float: right">
+                                <div id="divbotonregistroPrueba" class="col-6"style="float: right">
                                     <button type="submit" class="btn btn-info rounded-pill btn-login w-100 mb-2">
                                         Prueba
                                     </button>

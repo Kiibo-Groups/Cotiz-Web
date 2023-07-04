@@ -16,7 +16,7 @@
         <div class="col-6 form-floating mb-4">
             <input id="constanciaPositiva" type="file" class="form-control" name="constanciaPositiva"
             value="{{ old('constanciaPositiva') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
-            <label for="constanciaPositiva">Constancia de situación positiva</label>
+            <label for="constanciaPositiva">Constancia de situación fiscal</label>
         </div>
 
     </div>

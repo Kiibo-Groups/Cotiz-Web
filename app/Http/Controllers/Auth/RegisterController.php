@@ -32,9 +32,13 @@ class RegisterController extends Controller
         $input = $request->all();
         $request->validate([
             'name'=>'required',
-            'email'=>'required',
+            'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
+        ],
+        [
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
+            Session::flash('class', 'danger'),
         ]);
 
         if(isset($input['fotoGafete']))
@@ -49,6 +53,19 @@ class RegisterController extends Controller
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
             $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
+        }
+        if(isset($input['fotoGafete2']))
+        {
+
+            $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
+            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2'] = $fotoGafete2;
+        }
+        if(isset($input['fotoCredencial2']))
+        {
+            $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
+            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2'] = $fotoCredencial2;
         }
 
         $user = new User;
@@ -66,7 +83,9 @@ class RegisterController extends Controller
         $user->password          = Hash::make($request->password);
         $user->shw_password      = $request->password;
         $user->fotoGafete        = $fotoGafete;
+        $user->fotoGafete2       = $fotoGafete2;
         $user->fotoCredencial    = $fotoCredencial;
+        $user->fotoCredencial2   = $fotoCredencial2;
         $user->role              = 1; //usuarios empleado de empresa
         $user->status            = 1; // Default status
 
@@ -119,6 +138,17 @@ class RegisterController extends Controller
 
 
     public function storeEmpresa(Request $request){
+
+        $request->validate([
+            'name'=>'required',
+            'email'   => 'required|string|email|unique:users',
+            'password'=>'required|min:8|confirmed',
+
+        ],
+        [
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
+            Session::flash('class', 'danger'),
+        ]);
 
         $input = $request->all();
         $registro   =  new Rfc();
@@ -194,7 +224,16 @@ class RegisterController extends Controller
 
     public function storeProveedor(Request $request){
 
+        $request->validate([
+            'name'=>'required',
+            'email'   => 'required|string|email|unique:users',
+            'password'=>'required|min:8|confirmed',
 
+        ],
+        [
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
+            Session::flash('class', 'danger'),
+        ]);
 
         $input = $request->all();
         $registro   =  new Rfc();
@@ -279,9 +318,13 @@ class RegisterController extends Controller
         $input = $request->all();
         $request->validate([
             'name'=>'required',
-            'email'=>'required',
+            'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
+        ],
+        [
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
+            Session::flash('class', 'danger'),
         ]);
 
         if(isset($input['fotoGafete']))
@@ -296,6 +339,21 @@ class RegisterController extends Controller
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
             $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
+        }
+
+
+        if(isset($input['fotoGafete2']))
+        {
+
+            $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
+            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2'] = $fotoGafete2;
+        }
+        if(isset($input['fotoCredencial2']))
+        {
+            $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
+            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2'] = $fotoCredencial2;
         }
 
         $user = new User;
@@ -313,7 +371,9 @@ class RegisterController extends Controller
         $user->password          = Hash::make($request->password);
         $user->shw_password      = $request->password;
         $user->fotoGafete        = $fotoGafete;
+        $user->fotoGafete2       = $fotoGafete2;
         $user->fotoCredencial    = $fotoCredencial;
+        $user->fotoCredencial2    = $fotoCredencial2;
         $user->role              = 5; //Rol para usuarios Proveedor
         $user->status            = 1; // Default status
 
@@ -356,10 +416,14 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
+            'name'    =>'required',
+            'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
+        ],
+        [
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
+            Session::flash('class', 'danger'),
         ]);
 
         if(isset($input['fotoGafete']))
@@ -374,6 +438,20 @@ class RegisterController extends Controller
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
             $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
+        }
+
+        if(isset($input['fotoGafete2']))
+        {
+
+            $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
+            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2'] = $fotoGafete2;
+        }
+        if(isset($input['fotoCredencial2']))
+        {
+            $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
+            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2'] = $fotoCredencial2;
         }
 
         $user = new User;
@@ -391,7 +469,9 @@ class RegisterController extends Controller
         $user->password          = Hash::make($request->password);
         $user->shw_password      = $request->password;
         $user->fotoGafete        = $fotoGafete;
+        $user->fotoGafete2       = $fotoGafete2;
         $user->fotoCredencial    = $fotoCredencial;
+        $user->fotoCredencial2    = $fotoCredencial2;
         $user->role              = 2; //usuarios empleado de empresa
         $user->status            = 1; // Default status
 

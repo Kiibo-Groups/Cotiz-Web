@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
-
-use App\Models\Services;
-use App\Models\Providers;
-use App\Models\Rfc;
 use DB;
 use Auth;
 use Redirect;
+
+use App\Models\Rfc;
+use App\Models\Services;
+use App\Models\Providers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Builder;
 
 class ServicesController extends Controller
 {
@@ -96,7 +97,8 @@ class ServicesController extends Controller
 
     public function edit($id){
 
-        $providers = Providers::get();
+        //$providers = Providers::get();
+        $providers = Rfc::where('rol', 2)->where('status', 0)->get();
 
         return view($this->folder.'services.edit', [
             'data' => Services::find($id),
@@ -123,18 +125,23 @@ class ServicesController extends Controller
         if(isset($input['logo']))
         {
             // Eliminamos la anterior
-            $path = env('APP_DEBUG') ? '' : 'public/';
-            @unlink($path."assets/img/logos/".$services_data->logo);
+            //$path = env('APP_DEBUG') ? '' : 'public/';
+            @unlink("assets/img/logos/".$services_data->logo);
 
             // Agregamos el nuevo
             $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-            $input['logo']->move($path."assets/img/logos/", $filename);
+            $input['logo']->move("assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
         $services_data->update($input);
 
-        return redirect(env('admin').'/services')->with('message', 'Servicio actualizado con éxito ...');
+        //return redirect(env('admin').'/services')->with('message', 'Servicio actualizado con éxito ...');
+
+        Session::flash('mensaje','Servicio actualizado con éxito ...');
+        Session::flash('class', 'success');
+        return redirect(env('admin').'/services');
+
 
     }
 
