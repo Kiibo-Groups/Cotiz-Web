@@ -132,7 +132,7 @@
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 text-center">
                 <div class="md:col-span-12 text-center">
-                    {{ $requests->links('pagination::semantic-ui') }}
+                    {{ $requests->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
             <!--end grid-->

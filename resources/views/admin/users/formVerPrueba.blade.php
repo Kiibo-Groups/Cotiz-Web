@@ -127,21 +127,41 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label for="fotoGafete" class="form-label">Foto de gafete ambos lados </label>
+                                            <label for="fotoGafete" class="form-label">Foto de gafete lado #1 </label>
                                             <br>
                                             <a target="_blank" class="btn btn-warning"
-                                                title="Foto de gafete ambos lados"
+                                                title="Foto de gafete lado #1"
                                                 href="{{ url(env('admin') . '/empresas/gafete/' . $data->fotoGafete) }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
 
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector (INE) ambos lados</label>
+                                            <label for="fotoGafete" class="form-label">Foto de gafete lado #2 </label>
                                             <br>
                                             <a target="_blank" class="btn btn-warning"
-                                                title="Foto credencial de elector (INE) ambos lados"
+                                                title="Foto de gafete lado #2"
+                                                href="{{ url(env('admin') . '/empresas/gafete/' . $data->fotoGafete2) }}">
+                                                <i class="bi bi-download"></i>
+                                            </a>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector (INE)  lado #1 </label>
+                                            <br>
+                                            <a target="_blank" class="btn btn-warning"
+                                                title="Foto credencial de elector (INE)  lado #1"
                                                 href="{{ url(env('admin') . '/empresas/credencial/' . $data->fotoCredencial) }}">
+                                                <i class="bi bi-download"></i>
+                                            </a>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector (INE) lado #2 </label>
+                                            <br>
+                                            <a target="_blank" class="btn btn-warning"
+                                                title="Foto credencial de elector (INE) lado #2"
+                                                href="{{ url(env('admin') . '/empresas/credencial/' . $data->fotoCredencial2) }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
 

@@ -15,6 +15,7 @@ use App\Models\Notifications;
 use App\Models\User;
 use App\Models\Admin;
 use App\Mail\CotizMail;
+use App\Models\Rfc;
 use Illuminate\Support\Facades\Mail;
 use DB;
 use Redirect;
@@ -226,14 +227,15 @@ class HomeController extends Controller
         $input = $request->all();
         $requests_data = new Requests;
 
-        $user_data = User::find($request->user_id);
-        $service_data = Services::find($request->services_id);
-        $provider_data = Providers::find($service_data->provider_id);
+        $user_data     = User::find($request->user_id);
+        $service_data  = Services::find($request->services_id);
+        $provider_data = Rfc::find($service_data->provider_id);
 
-        $notification = new Notifications;
-        $notification->of_user = $request->user_id;
-        $notification->for_user = $provider_data->user_id;
-        $notification->message = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
+
+        $notification           = new Notifications;
+        $notification->of_user  = $request->user_id;
+        $notification->for_user = $provider_data->id;
+        $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
         $notification->save();
 
         if($request->file('document'))
@@ -260,8 +262,8 @@ class HomeController extends Controller
         $even = $request->filter_even;
 
         if(Auth::user()->role == 2){
-            $provider = Providers::where('user_id',$user)->first();
-            $services = Services::where('provider_id',$provider->id)->get()->pluck('id');
+            $provider      = User::where('id',$user)->first();
+            $services      = Services::where('provider_id',$provider->id)->get()->pluck('id');
             $requests_user = Requests::whereIn('services_id',$services)
                                 ->with(['service']);
         }else {
