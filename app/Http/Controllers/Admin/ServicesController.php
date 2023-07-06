@@ -23,7 +23,7 @@ class ServicesController extends Controller
         $search = $request->search;
         $status = $request->filter_status;
 
-        $data = Services::with(['provider']);
+        $data = Services::where('type','product')->with(['provider']);
 
         if(!is_null($status)) {
             $data = $data->where('status','=', $status);

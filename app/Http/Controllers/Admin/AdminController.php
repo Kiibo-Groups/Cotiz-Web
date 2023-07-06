@@ -88,17 +88,22 @@ class AdminController extends Controller
 	public function home()
 	{
 
-		$providers = Providers::count();
+
+        $status    = auth('admin')->user()->status;
+
+		//$providers = Providers::count();
         $services  = Services::count();
-        $users     = User::where('role',1)->get()->count();
-        $providers = User::where('role',4)->get()->count();
+        $users     = Rfc::where('rol',1)->get()->count();
+        $providers = Rfc::where('rol',2)->get()->count();
         $requests  = Requests::count();
 
         $statistics = json_encode([
-            'providers' => StatisticsHelper::statisticsCountModel(Providers::class),
+            'providers' => StatisticsHelper::statisticsCountModel(Rfc::class, function ($query) {
+                $query->where('rol', 2);
+            }),
             'services' => StatisticsHelper::statisticsCountModel(Services::class),
-            'users' => StatisticsHelper::statisticsCountModel(User::class, function ($query) {
-                $query->where('role', 1);
+            'users' => StatisticsHelper::statisticsCountModel(Rfc::class, function ($query) {
+                $query->where('rol', 1);
             }),
             'request' => StatisticsHelper::statisticsCountModel(Requests::class)
         ]);
@@ -108,7 +113,8 @@ class AdminController extends Controller
             'services' => $services,
             'users' => $users,
             'requests' => $requests,
-            'months' => $statistics
+            'months' => $statistics,
+            'status' => $status
 		]);
 	}
 

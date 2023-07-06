@@ -13,6 +13,7 @@
                             <h4>Proveedor</h4>
                             <p class="lead mb-6" style="color:black;">El registro toma menos de un minuto.</p>
 
+
                             <div class="form-floating mb-4">
                                 <input id="buscarfc" type="text" class="form-control" name="rfc" required>
                                 <input id="idempresa" type="hidden" class="form-control" name="idempresa" required>

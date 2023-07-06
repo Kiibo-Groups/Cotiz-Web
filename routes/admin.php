@@ -129,6 +129,9 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/services/edit/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'edit']);
         Route::get('/services/delete/{id}', [App\Http\Controllers\Admin\ServicesController::class, 'delete']);
 
+        Route::resource('/catalogo',CatalogoController::class);
+        Route::get('/catalogo', [App\Http\Controllers\Admin\CatalogoController::class, 'index'])->name('catalogo');
+
         /*
         |--------------------------------------------------------------------------
         | Our Requests Routes

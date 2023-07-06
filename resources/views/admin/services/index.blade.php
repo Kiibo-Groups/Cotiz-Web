@@ -55,10 +55,10 @@
                                             @endif
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <p class="card-text text-muted m-0">Titulo</p>
+                                           {{-- <pclass="card-texttext-mutedm-0">Titulo</p> --}}
                                             <h5 class="card-title m-0 p-0">{{ $service->title }}</h5>
                                         </div>
-                                        <div class="col-12 mb-2">
+                                    {{--    <div class="col-12 mb-2">
                                             <p class="card-text text-muted m-0">Tipo</p>
                                             <h5 class="card-title m-0 p-0">
                                                 @if ($service->type === 'service')
@@ -69,7 +69,7 @@
                                                     Personal
                                                 @endif
                                             </h5>
-                                        </div>
+                                        </div>--}}
                                         <div class="col-12 mb-2">
                                             <p class="card-text text-muted m-0">Costo</p>
                                             <h5 class="card-title m-0 p-0">
@@ -86,14 +86,19 @@
                                                 <a href="{{ url(env('user') . '/services/delete/' . $service->id) }}"
                                                     class="btn btn-danger">Eliminar</a>
                                             </div>
+
                                         @else
-                                            <div class="col-6 mt-3">
+                                            <div class="col-4 mt-3">
                                                 <a href="{{ url(env('admin') . '/services/edit/' . $service->id) }}"
                                                     class="btn btn-primary">Editar</a>
                                             </div>
-                                            <div class="col-6 mt-3">
+                                            <div class="col-4 mt-3">
                                                 <a href="{{ url(env('admin') . '/services/delete/' . $service->id) }}"
                                                     class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                            <div class="col-4 mt-3">
+                                                <a href="#"
+                                                    class="btn btn-success">Enviar</a>
                                             </div>
                                         @endif
                                     </div>
@@ -106,7 +111,7 @@
                                 <div>
                                     No hay registros
                                 </div>
-                                @if (!Auth::guard('admin')->check())
+                              {{--  @if (!Auth::guard('admin')->check())
                                     <div class="mt-3">
                                         <a href="{{ url(env('user') . '/services/add') }}" class="btn btn-primary">Crear
                                             nuevo</a>
@@ -116,14 +121,14 @@
                                         <a href="{{ url(env('admin') . '/services/add') }}" class="btn btn-primary">Crear
                                             nuevo</a>
                                     </div>
-                                @endif
+                                @endif--}}
                             </div>
                         @endif
                     </div>
 
                     <div class="mt-8 text-center">
                         <div class="md:col-span-12 text-center">
-                            {{ $services->links('pagination::semantic-ui') }}
+                            {{ $services->links('vendor.pagination.bootstrap-4') }}
                         </div>
                     </div>
                     <!--end grid-->

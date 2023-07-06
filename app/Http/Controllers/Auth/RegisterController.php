@@ -224,16 +224,15 @@ class RegisterController extends Controller
 
     public function storeProveedor(Request $request){
 
+
         $request->validate([
-            'name'=>'required',
+            'nombre'=>'required',
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
-        ],
-        [
-            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
-            Session::flash('class', 'danger'),
         ]);
+
+
 
         $input = $request->all();
         $registro   =  new Rfc();

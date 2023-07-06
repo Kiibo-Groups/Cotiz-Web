@@ -12,6 +12,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
     'App\\Http\\Controllers\\Admin\\AdminUsuarioDashController' => $baseDir . '/app/Http/Controllers/Admin/AdminUsuarioDashController.php',
     'App\\Http\\Controllers\\Admin\\BannersController' => $baseDir . '/app/Http/Controllers/Admin/BannersController.php',
+    'App\\Http\\Controllers\\Admin\\CatalogoController' => $baseDir . '/app/Http/Controllers/Admin/CatalogoController.php',
     'App\\Http\\Controllers\\Admin\\EventsController' => $baseDir . '/app/Http/Controllers/Admin/EventsController.php',
     'App\\Http\\Controllers\\Admin\\MentorsController' => $baseDir . '/app/Http/Controllers/Admin/MentorsController.php',
     'App\\Http\\Controllers\\Admin\\ProvidersController' => $baseDir . '/app/Http/Controllers/Admin/ProvidersController.php',

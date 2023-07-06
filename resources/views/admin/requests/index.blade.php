@@ -17,33 +17,36 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                <form action="{{ url(env('admin'). '/request')}}" method="GET">
-                @else
-                <form action="{{ url(env('user'). '/request')}}" method="GET">
+                    <form action="{{ url(env('admin') . '/request') }}" method="GET">
+                    @else
+                        <form action="{{ url(env('user') . '/request') }}" method="GET">
                 @endif
-                    <div class="row ">
-                        @include('alerts')
-                        <div class="col-6 mb-3">
-                            <label for="filter_from">Desde</label>
-                            <input type="date" name="filter_from" class="form-control">
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label for="filter_even">Hasta</label>
-                            <input type="date" name="filter_even" id="filter_even" class="form-control">
-                        </div>
+                <div class="row ">
+                    @include('alerts')
+                    <div class="col-6 mb-3">
+                        <label for="filter_from">Desde</label>
+                        <input type="date" name="filter_from" class="form-control">
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="search" id="filter_search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar una solicitud" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        @if (Auth::user() && Auth::user()->role != 1)
+                    <div class="col-6 mb-3">
+                        <label for="filter_even">Hasta</label>
+                        <input type="date" name="filter_even" id="filter_even" class="form-control">
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="filter_search"
+                        @if ($search != null) value="{{ $search }}" @endif
+                        placeholder="Buscar una solicitud por usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
                             <option value="" selected>Estatus</option>
                             <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
                             <option value="1" @if ($status == 1) selected @endif>Aprobado</option>
                             <option value="2" @if ($status == 2) selected @endif>Rechazado</option>
                         </select>
-                        @endif
-                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
-                    </div>
+                    @endif
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                </div>
 
                 </form>
             </div>
@@ -53,80 +56,86 @@
                 <div class="col-lg-12">
 
                     <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Listado de Solicitudes</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Listado de Solicitudes</h5>
 
                             <!-- Default Table -->
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Ocpiones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($requests as $req)
-                                <tr>
-                                    <th scope="row">{{ $req->id }}</th>
-                                    <td>{{ $req->service->type }}</td>
-                                    <td>{{ $req->user->name }} {{ $req->user->last_name }}</td>
-                                    <td>{{ $req->description }}</td>
-                                    <td>
-                                        @if ($req->status === 0)
-                                        <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>
-                                        @elseif ($req->status === 1)
-                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Aprobado</span></h5>
-                                        @elseif ($req->status === 2)
-                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-danger">Rechazado</span></h5>
-                                        @elseif ($req->status === 5)
-                                            <h5 class="card-title m-0 p-0"><span class="badge text-white bg-success">Finalizado</span></h5>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if (!is_null($req->document))
-                                        <a target="_blank" class="btn btn-warning" href="/assets/documents/users/{{$req->document}}">
-                                            <i class="bi bi-download"></i>
-                                        </a>
-                                        @endif
-                                        @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Ocpiones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($requests as $req)
+                                        <tr>
+                                            <th scope="row">{{ $req->id }}</th>
+                                            <td>{{ $req->service->type }}</td>
+                                            <td>{{ $req->user->name }} {{ $req->user->last_name }}</td>
+                                            <td>{{ $req->description }}</td>
+                                            <td>
+                                                @if ($req->status === 0)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-secondary">Pendiente</span></h5>
+                                                @elseif ($req->status === 1)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-success">Aprobado</span></h5>
+                                                @elseif ($req->status === 2)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-danger">Rechazado</span></h5>
+                                                @elseif ($req->status === 5)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-success">Finalizado</span></h5>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if (!is_null($req->document))
+                                                    <a target="_blank" class="btn btn-warning"
+                                                        href="/assets/documents/users/{{ $req->document }}">
+                                                        <i class="bi bi-download"></i>
+                                                    </a>
+                                                @endif
+                                                @if (Auth::guard('admin')->check() || Auth::user()->role == 2)
+                                                    <a type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#editRequest">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
 
-                                        <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editRequest">
-                                                <i class="bi bi-pencil"></i>
-                                        </a>
-
-                                        @if (!Auth::guard('admin')->check())
-                                        <a  class="btn btn-danger" href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
-                                                <i class="bi bi-trash"></i>
-                                        </a>
-                                        @else
-                                        <a  class="btn btn-danger" href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
-                                                <i class="bi bi-trash"></i>
-                                        </a>
-                                        @endif
-
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <!-- End Default Table Example -->
-                      </div>
+                                                    @if (!Auth::guard('admin')->check())
+                                                        <a class="btn btn-danger"
+                                                            href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
+                                                            <i class="bi bi-trash"></i>
+                                                        </a>
+                                                    @else
+                                                        <a class="btn btn-danger"
+                                                            href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
+                                                            <i class="bi bi-trash"></i>
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <!-- End Default Table Example -->
+                        </div>
                     </div>
                 </div>
 
 
 
-                @if(count($requests)<1)
-                <div class="d-flex align-items-center flex-column py-6">
-                    <div>
-                        No hay solocitudes...
+                @if (count($requests) < 1)
+                    <div class="d-flex align-items-center flex-column py-6">
+                        <div>
+                            No hay solocitudes...
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
 
@@ -143,38 +152,38 @@
 
 
     <!-- Modal Edit Element -->
-    <div class="modal fade" id="editRequest" data-bs-backdrop="static"
-        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editRequest" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar
                         solicitud</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 @if (!Auth::guard('admin')->check())
-                <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
+                    @if (!$requests)
+                        <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
+                    @endif
                 @else
-                <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                    @if (!$requests)
+                        <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                    @endif
                 @endif
-                    @csrf
-                    <div class="modal-body">
-                        <label for="status">Estado</label>
-                        <select name="status" id="status" class="form-select">
-                            <option value="0" selected>Pendiente</option>
-                            <option value="1">Aprobado</option>
-                            <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
-                            <option value="2">Rechazado</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn"
-                            data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit"
-                            class="btn btn-primary">Aceptar</button>
-                    </div>
+                @csrf
+                <div class="modal-body">
+                    <label for="status">Estado</label>
+                    <select name="status" id="status" class="form-select">
+                        <option value="0" selected>Pendiente</option>
+                        <option value="1">Aprobado</option>
+                        <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
+                        <option value="2">Rechazado</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
             </div>
             </form>
         </div>

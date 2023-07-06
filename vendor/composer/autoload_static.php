@@ -527,6 +527,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AdminUsuarioDashController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminUsuarioDashController.php',
         'App\\Http\\Controllers\\Admin\\BannersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannersController.php',
+        'App\\Http\\Controllers\\Admin\\CatalogoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CatalogoController.php',
         'App\\Http\\Controllers\\Admin\\EventsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EventsController.php',
         'App\\Http\\Controllers\\Admin\\MentorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MentorsController.php',
         'App\\Http\\Controllers\\Admin\\ProvidersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProvidersController.php',

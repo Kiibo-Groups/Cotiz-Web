@@ -33,6 +33,7 @@
                                 <th scope="col">Calle</th>
                                 <th scope="col">Número</th>
                                 <th scope="col">Colonia</th>
+                                <th scope="col">Creación</th>
                                 <th scope="col">Status</th>
                                 <th>Acciones</th>
                             </tr>
@@ -45,6 +46,7 @@
                                     <td>{{ $req->calle}} </td>
                                     <td>{{ $req->numeroCalle }}</td>
                                     <td>{{ $req->colonia }}</td>
+                                    <td>{{ $req->created_at->format('d-m-Y') }}</td>
                                     <td>
                                         @if ($req->status === 1)
                                             <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>

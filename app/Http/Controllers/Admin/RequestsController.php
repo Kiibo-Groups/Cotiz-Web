@@ -29,7 +29,7 @@ class RequestsController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
-        $requests = Requests::with(['service','user']);
+        $requests = Requests::where('solicitud', 1)->orderBy("status", "asc")->with(['service','user']);
 
         if(!is_null($status)) {
             $requests = $requests->where('status','=', $status);
@@ -62,10 +62,58 @@ class RequestsController extends Controller
         return view($this->folder.'requests.index', [
             'requests'=> $requests,
             'search'=> $search,
-            'status'=>$status
+            'status'=>$status,
+            'solicitud'=> 1
         ]);
 
     }
+
+    public function show(Request $request){
+
+        $search = $request->search;
+        $status = $request->filter_status;
+        $from = $request->filter_from;
+        $even = $request->filter_even;
+        $requests = Requests::where('solicitud', 2)->orderBy("status", "asc")->with(['service','user']);
+
+        if(!is_null($status)) {
+            $requests = $requests->where('status','=', $status);
+        }
+
+        if($search) {
+            $requests = $requests->orWhereHas('service', function ($q) use ($search) {
+                $q->where('title', "like",'%'.$search.'%');
+            })
+            ->orWhereHas('user', function ($q) use ($search) {
+                $q->where('name','like','%'.$search.'%');
+            });
+        }
+
+        if(!is_null($from)) {
+            $requests = $requests->where('created_at','>=',$from)
+            ->where('created_at','<=',$even);
+        }
+
+
+        $requests = $requests->paginate(10);
+
+        // return response()->json([
+        //     'user' => Auth::user(),
+        //     'requests'=> $requests,
+        //     'search'=> $search,
+        //     'status'=>$status
+        // ]);
+
+        return view($this->folder.'requests.index', [
+            'requests'=> $requests,
+            'search'=> $search,
+            'status'=>$status,
+            'solicitud'=> 2
+        ]);
+
+
+    }
+
 
     public function edit(Request $request, $id){
 
