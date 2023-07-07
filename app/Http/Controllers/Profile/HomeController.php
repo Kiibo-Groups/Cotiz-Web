@@ -576,7 +576,7 @@ class HomeController extends Controller
 
 
 
-        dd($user);
+        //dd($user);
         $notifications = Notifications::where('for_user',$user->id)->paginate(10);
         return View('admin.notifications.index',['notifications'=> $notifications]);
     }

@@ -24,6 +24,7 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Telefono</th>
+                                        <th>Ingresos</th>
                                         <th>Status</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -44,6 +45,7 @@
                                         <td>{{$row->name}} {{$row->last_name}}</td>
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
+                                        <td style="text-align: center">{{$row->ingresos}}</td>
                                         <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>

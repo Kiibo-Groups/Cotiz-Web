@@ -33,6 +33,8 @@ trait AuthenticatesUsers
     {
         $this->validateLogin($request);
 
+
+
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -47,6 +49,13 @@ trait AuthenticatesUsers
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
+
+            $user     = auth()->user()->id;
+            $item     = User::where('id', $user)->value('ingresos');
+            $folio    = $item + 1;
+            $usur     = User::findOrFail($user);
+            $usur->ingresos = $folio;
+            $usur->save();
 
             return $this->sendLoginResponse($request);
         }

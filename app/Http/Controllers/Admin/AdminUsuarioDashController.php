@@ -68,7 +68,7 @@ class AdminUsuarioDashController extends Controller
     {
 
         return view($this->folder.'users.indexProveedores', [
-            'data' => User::where('role', 5)->get()
+            'data' => User::whereIn('role', [4, 5])->get()
         ]);
     }
 

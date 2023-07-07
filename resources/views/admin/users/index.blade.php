@@ -25,7 +25,7 @@
                                         <th>Email</th>
                                         <th>Telefono</th>
                                         <th>Empresa</th>
-                                       {{-- <th>Nivel</th> --}}
+                                        <th>Ingresos</th>
                                         <th>Status</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -50,10 +50,11 @@
                                            @if ($row->empresa)
                                                 {{ $row->empresa->nombre }}
                                            @else
-                                            -
+                                                {{$row->name}}
                                            @endif
 
                                         </td>
+                                        <td style="text-align: center">{{$row->ingresos}}</td>
                                         <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>

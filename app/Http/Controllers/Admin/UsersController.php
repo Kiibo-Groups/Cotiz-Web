@@ -30,7 +30,7 @@ class UsersController extends Controller
     public function index()
     {
         return view($this->folder.'users.index', [
-            'data' => User::where('role', 1)->get()
+            'data' => User::whereIn('role', [1, 3])->get()
         ]);
     }
 
