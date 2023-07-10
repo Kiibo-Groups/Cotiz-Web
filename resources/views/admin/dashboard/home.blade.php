@@ -139,10 +139,10 @@
                                             name: 'Solicitudes',
                                             data: months.request.map(item=>item.value),
                                         }, {
-                                            name: 'Servicios',
+                                            name: 'Catálogos',
                                             data: months.services.map(item=>item.value)
                                         }, {
-                                            name: 'Clientes',
+                                            name: 'Empresas',
                                             data: months.users.map(item=>item.value)
                                         }, {
                                             name: 'Provedores',

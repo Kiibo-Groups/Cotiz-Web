@@ -152,22 +152,27 @@
 
             @if ($admin->hasPerm('Dashboard - Solicitudes'))
                 <li class="nav-item">
-                    <a class="nav-link @if (!Route::is('request')) collapsed @endif"
+                    <a class="nav-link @if (!Route::is('requests') || !Route::is('services.show')) collapsed @endif"
                         data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('request')|| Route::is('request.show')) show @endif"
+                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('requests')|| Route::is('servicios.show') || Route::is('servicios') ) show @endif"
                         data-bs-parent="#sidebar-nav">
                         <li>
-                            <a href="{{ Asset(env('admin') . '/request') }}"
-                                class="@if (Route::is('request')) active @endif">
+                            <a href="{{ Asset(env('admin') . '/servicios') }}"
+                                class="@if (Route::is('servicios')) active @endif">
                                 <i class="bi bi-circle"></i><span>Empresas</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ Asset(env('admin') . '/requests/proveedores') }}"
-                                class="@if (Route::is('request.show')) active @endif">
+                            <a href="{{ Asset(env('admin') . '/servicios/proveedores') }}"
+                                class="@if (Route::is('servicios.show')) active @endif">
                                 <i class="bi bi-circle"></i><span>Proveedores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Asset(env('admin').'/requests') }}" class="@if(Route::is('requests')) active @endif">
+                              <i class="bi bi-circle"></i><span>Prueba</span>
                             </a>
                         </li>
                     </ul>

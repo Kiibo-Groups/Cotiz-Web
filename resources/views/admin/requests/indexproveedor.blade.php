@@ -17,9 +17,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/servicios') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/servicios/proveedores') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/servicios') }}" method="GET">
+                        <form action="{{ url(env('user') . '/servicios/proveedores') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')

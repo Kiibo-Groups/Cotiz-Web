@@ -15,10 +15,11 @@ class Requests extends Model
        'services_id',
        'status',
        'description',
-       'document'
+       'document',
+       'solicitud'
     ];
 
-    
+
 
     public function service(){
 

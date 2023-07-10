@@ -29,7 +29,9 @@ class RequestsController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
-        $requests = Requests::where('solicitud', 1)->orderBy("status", "asc")->with(['service','user']);
+        $requests = Requests::where('solicitud', 2)->orderBy("status", "asc")->with(['service','user']);
+
+
 
         if(!is_null($status)) {
             $requests = $requests->where('status','=', $status);
@@ -59,14 +61,17 @@ class RequestsController extends Controller
         //     'status'=>$status
         // ]);
 
-        return view($this->folder.'requests.index', [
+        return view($this->folder.'requests.indexprueba', [
             'requests'=> $requests,
             'search'=> $search,
             'status'=>$status,
-            'solicitud'=> 1
+            'solicitud'=> "Prueba"
         ]);
 
     }
+
+
+
 
     public function show(Request $request){
 

@@ -138,10 +138,18 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         |--------------------------------------------------------------------------
         */
         Route::resource('/requests',RequestsController::class);
-        Route::get('/request', [App\Http\Controllers\Admin\RequestsController::class, 'index'])->name('requests');
+        Route::get('/requests', [App\Http\Controllers\Admin\RequestsController::class, 'index'])->name('requests');
         Route::get('/request/status/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'status']);
         Route::get('/request/delete/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'delete']);
         Route::post('/request/edit/{id}', [App\Http\Controllers\Admin\RequestsController::class, 'edit']);
+
+        Route::resource('/servicios',SolicitudesController::class);
+        Route::get('/servicios', [App\Http\Controllers\Admin\SolicitudesController::class, 'index'])->name('servicios');
+        Route::get('/servicios/ver/{id}', [App\Http\Controllers\Admin\SolicitudesController::class, 'indexVer'])->name('serviciosVer');
+        Route::get('/servicios/add/{id}',[App\Http\Controllers\Admin\SolicitudesController::class, 'AddindexVer']);
+        Route::post('/Addservicios',[App\Http\Controllers\Admin\SolicitudesController::class, 'Addservicios']);
+
+
         /*
         |--------------------------------------------------------------------------
         | Secciones / Inicial, About, Beneficts, Advisers Routes

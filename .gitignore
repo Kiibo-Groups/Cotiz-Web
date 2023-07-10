@@ -17,3 +17,5 @@ yarn-error.log
 /public/assets/img/fotogafete
 /public/assets/img/logos
 .env
+/public/assets/documento
+/public/assets/documents

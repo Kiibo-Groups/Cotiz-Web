@@ -15,7 +15,7 @@
             </ul>
         </div><!--end grid-->
     </div><!--end container-->
-    
+
     <div class="absolute text-center z-10 bottom-5 right-0 left-0 mx-3">
         <ul class="breadcrumb tracking-[0.5px] breadcrumb-light mb-0 inline-block">
             <li class="inline breadcrumb-item uppercase text-[13px] font-bold duration-500 ease-in-out text-white/50 hover:text-white"><a href="{{ url('./') }}">Inicio</a></li>
@@ -45,16 +45,17 @@
                         <p class="text-slate-400">
                             {!! $data->description !!}
                         </p>
-                    
+
                     </div>
                 </div>
 
-                 
+
                 <div class="p-6 rounded-md shadow dark:shadow-gray-800 mt-8">
                     <h5 class="text-lg font-semibold">Solicitar Servicio:</h5>
 
                     <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="services_id" value="{{ $data->id }}">
                         <input type="hidden" name="status" value="0">
@@ -103,8 +104,8 @@
                             </div>
                         </div>
 
-                        
-                                                
+
+
                         <button type="submit" id="submit" name="send" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full">Solicitar servicio</button>
                     </form>
                 </div>
@@ -122,7 +123,7 @@
                 </div>
             </div>
         </div><!--end grid-->
-    </div><!--end container--> 
+    </div><!--end container-->
 </section><!--end section-->
 <!-- End -->
 @endsection
