@@ -132,6 +132,9 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::resource('/catalogo',CatalogoController::class);
         Route::get('/catalogo', [App\Http\Controllers\Admin\CatalogoController::class, 'index'])->name('catalogo');
 
+        Route::get('/catalogo/enviar/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'enviarSolicitud'])->name('catalogoEnviar');
+        Route::post('/enviar/create', [App\Http\Controllers\Admin\CatalogoController::class, 'storeRequestSolicitud']);
+
         /*
         |--------------------------------------------------------------------------
         | Our Requests Routes
@@ -148,6 +151,18 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/servicios/ver/{id}', [App\Http\Controllers\Admin\SolicitudesController::class, 'indexVer'])->name('serviciosVer');
         Route::get('/servicios/add/{id}',[App\Http\Controllers\Admin\SolicitudesController::class, 'AddindexVer']);
         Route::post('/Addservicios',[App\Http\Controllers\Admin\SolicitudesController::class, 'Addservicios']);
+
+
+           /*
+        |--------------------------------------------------------------------------
+        | Our Buzón Routes
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('/buzon',BuzonController::class);
+        Route::get('/buzon', [App\Http\Controllers\Admin\BuzonController::class, 'index'])->name('buzon');
+        Route::post('/buzon/create', [App\Http\Controllers\Admin\BuzonController::class, 'create']);
+
+
 
 
         /*

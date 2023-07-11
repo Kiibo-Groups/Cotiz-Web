@@ -18,6 +18,7 @@
             </div>
             @if (count($servicios) > 0)
                 <div class="col-12">
+                    @include('alerts')
                     <div class="card card-default">
                         <div class="card-body">
                             <div class="table-responsive">
@@ -46,7 +47,7 @@
                                                 <td style="text-align: center">{{ $row->created_at->format('d-m-Y') }}</td>
                                                 <td style="text-align: center">
                                                     <a target="_blank" class="btn btn-warning" title="Descargar Documento"
-                                                        href="/assets/documents/users/{{ $row->documento }}">
+                                                        href="/assets/documento/servicios/{{ $row->documento }}">
                                                         <i class="bi bi-download"></i>
                                                     </a>
                                                 </td>

@@ -40,6 +40,13 @@
                     </div>
                 </div>
             @endif
+
+            <div class="mt-8 text-center">
+                <div class="md:col-span-12 text-center">
+                    {{ $notifications->links('vendor.pagination.bootstrap-4') }}
+                </div>
+            </div>
+
 		</div>
 	</section>
 @endsection

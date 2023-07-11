@@ -29,7 +29,7 @@ class SolicitudesController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
-        $requests = Requests::whereIn('solicitud', [1, 3])->orderBy("status", "asc")->with(['service','user']);
+        $requests = Requests::where('solicitud', 1)->orderBy("status", "asc")->with(['service','user']);
 
         if(!is_null($status)) {
             $requests = $requests->where('status','=', $status);
@@ -84,7 +84,7 @@ class SolicitudesController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
-        $requests = Requests::whereIn('solicitud', [4, 5])->orderBy("status", "asc")->with(['service','user']);
+        $requests = Requests::where('solicitud', 3)->orderBy("status", "asc")->with(['service','user']);
 
         //dd($requests);
 
@@ -165,7 +165,8 @@ class SolicitudesController extends Controller
 
     public function Addservicios(Request $request)
     {
-
+       // dd($request);
+        $id = $request->servicio_id;
         $input         = $request->all();
         $requests_data = new Serviciover;
 
@@ -190,10 +191,10 @@ class SolicitudesController extends Controller
 
         $requests_data->create($input);
 
-        Session::flash('mensaje','Solicitud Enviada ...');
+        Session::flash('mensaje','Documento Cargado ...');
         Session::flash('class', 'success');
-        //return redirect(env('admin').'/services');
-        return back();
+        return redirect(env('admin').'/servicios/ver/'.$id);
+        //return back();
 
         //return redirect()->route('serviciosVer')->with('message', 'Solicitud Enviada');
     }

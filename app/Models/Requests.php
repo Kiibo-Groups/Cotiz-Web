@@ -16,7 +16,8 @@ class Requests extends Model
        'status',
        'description',
        'document',
-       'solicitud'
+       'solicitud',
+       'proveedor'
     ];
 
 
@@ -29,5 +30,9 @@ class Requests extends Model
     public function user(){
 
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function admin(){
+
+        return $this->belongsTo(Admin::class, 'user_id');
     }
 }

@@ -40,18 +40,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user   = Auth::user();
+
+        $user     = Auth::user();
         $services = Services::where('status',1)->paginate(10);
-        $search = $request->search;
-        $status = '2';
-        if(Auth::user()->role == 2){
+        $search   = $request->search;
+        $status   = '2';
+        //whereIn('role', [1, 3])->
+        if(Auth::user()->role == 4 || Auth::user()->role == 5){
 
             $user   = Auth::user();
 
-            $provider = Providers::where('user_id',$user->id)->first();
-            $services = Services::where('provider_id',$provider->id)->count();
+            $provider   = Providers::where('user_id',$user->id)->first();
+            $services   = Services::where('provider_id',$provider->id)->count();
             $servidesId = Services::where('provider_id',$provider->id)->get()->pluck('id');
-            $requests = Requests::whereIn('services_id',$servidesId)->count();
+            $requests   = Requests::whereIn('services_id',$servidesId)->count();
 
             $statistics = json_encode([
                 'services' => StatisticsHelper::statisticsCountModel(Services::class, function ($query) use ($provider) {
@@ -544,6 +546,7 @@ class HomeController extends Controller
 
         switch(auth()->user()->role) {
             case(1):
+
                 if (auth()->user()->status = 1) {
                     return redirect('activar');
                 } else {
@@ -555,29 +558,33 @@ class HomeController extends Controller
                 break;
 
             case(2):
+//dd('2');
 
                 break;
 
-            case(2):
+            case(3):
+                dd('3');
 
                 break;
-            case(2):
+            case(4):
 
+                    if (auth()->user()->status == 1) {
+                        return redirect('activar');
+                    } else {
+                        $notifications = Notifications::where('for_user',$user->id)->orderBy("id", "Desc")->paginate(10);
+                        return View('admin.notifications.index',['notifications'=> $notifications]);
+                    }
                 break;
 
-            case(2):
-
+            case(5):
+                dd('5');
                 break;
 
         }
 
 
 
-
-
-
-        //dd($user);
-        $notifications = Notifications::where('for_user',$user->id)->paginate(10);
+        $notifications = Notifications::where('for_user',$user->id)->orderBy("id", "Desc")->paginate(10);
         return View('admin.notifications.index',['notifications'=> $notifications]);
     }
 }

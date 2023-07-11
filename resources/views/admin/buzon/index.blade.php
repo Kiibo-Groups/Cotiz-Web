@@ -1,9 +1,9 @@
 @extends('layouts.app_profile')
 @section('title')
-    Solicitudes
+    Buzón
 @endsection
 @section('page_active')
-    Listado de Solicitudes
+Buzón
 @endsection
 
 <link href="{{ asset('assets2/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">
@@ -17,9 +17,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/servicios/proveedores') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/buzon') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/servicios/proveedores') }}" method="GET">
+                        <form action="{{ url(env('user') . '/buzon') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')
@@ -57,72 +57,37 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Listado de Solicitudes de {{ $solicitud }}</h5>
+                            <h5 class="card-title">Listado</h5>
 
                             <!-- Default Table -->
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Tipo</th>
+
+                                        <th scope="col">Admin</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Creación</th>
                                         <th scope="col">Ocpiones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($requests as $req)
                                         <tr>
-                                            <th scope="row">{{ $req->id }}</th>
-                                            <td>{{ $req->service->type }}</td>
-                                            <td>{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
-                                            <td>{{ $req->description }}</td>
-                                            <td>
-                                                @if ($req->status === 0)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">Pendiente</span></h5>
-                                                @elseif ($req->status === 1)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Aprobado</span></h5>
-                                                @elseif ($req->status === 2)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">Rechazado</span></h5>
-                                                @elseif ($req->status === 5)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Finalizado</span></h5>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-info" title="Documentos Relacionados"
-                                                    href="{{ url(env('admin') . '/servicios/ver/' . $req->id) }}">
-                                                    <i class="bi bi-book"></i>
-                                                </a>
-                                                @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning" title="Descargar Documento"
-                                                        href="/assets/documents/users/{{ $req->document }}">
-                                                        <i class="bi bi-download"></i>
-                                                    </a>
-                                                @endif
-                                                {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
-                                                @if (Auth::guard('admin')->check())
-                                                    <a type="button" class="btn btn-success" data-bs-toggle="modal" title="Editar Estado"
-                                                        data-bs-target="#editRequest">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
 
-                                                    @if (!Auth::guard('admin')->check())
-                                                        <a class="btn btn-danger"
-                                                            href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
-                                                    @else
-                                                        <a class="btn btn-danger"
-                                                            href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
-                                                    @endif
-                                                @endif
+                                            <td>{{ $req->admin->name}}</td>
+                                            <td>{{ $req->proveedor->nombre }} </td>
+                                            <td>{{ $req->descripcion }}</td>
+                                            <td>{{ $req->created_at->format('d-m-Y') }}</td>
+
+                                            <td>
+
+                                                <a target="_blank" class="btn btn-warning" title="Descargar Documento"
+                                                    href="/assets/documento/buzon/{{ $req->documento }}">
+                                                    <i class="bi bi-download"></i>
+                                                </a>
+
+
                                             </td>
                                         </tr>
                                     @endforeach

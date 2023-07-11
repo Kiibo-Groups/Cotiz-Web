@@ -97,7 +97,7 @@
                                                     class="btn btn-danger">Eliminar</a>
                                             </div>
                                             <div class="col-4 mt-3">
-                                                <a href="#"
+                                                <a href="{{ url(env('admin') . '/catalogo/enviar/' . $service->id) }}"
                                                     class="btn btn-success">Enviar</a>
                                             </div>
                                         @endif

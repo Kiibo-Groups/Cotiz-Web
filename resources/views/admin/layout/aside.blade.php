@@ -64,14 +64,14 @@
                 </li><!-- End empresas Proveedores -->
             @endif
 
-            {{--    @if ($admin->hasPerm('Dashboard - Usuarios'))
-    <li class="nav-item">
-      <a class="nav-link @if (!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
-        <i class="bi bi-person-lines-fill"></i>
-        <span>Usuarios</span>
-      </a>
-    </li><!-- End Users -->
-    @endif --}}
+                    {{--    @if ($admin->hasPerm('Dashboard - Usuarios'))
+            <li class="nav-item">
+            <a class="nav-link @if (!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
+                <i class="bi bi-person-lines-fill"></i>
+                <span>Usuarios</span>
+            </a>
+            </li><!-- End Users -->
+            @endif --}}
 
             @if (
                 $admin->hasPerm('Dashboard - Usuarios') ||
@@ -178,6 +178,36 @@
                     </ul>
                 </li><!-- End Request -->
             @endif
+
+
+
+
+
+        @if ($admin->hasPerm('Dashboard - Buzon'))
+        <li class="nav-item">
+            <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif"
+                data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-briefcase"></i><span>Buzón</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="services-nav" class="nav-content  collapse @if (Route::is('buzon') || Route::is('buzon.show') ) show @endif"
+                data-bs-parent="#services-nav">
+                <li>
+                    <a href="{{ Asset(env('admin') . '/buzon') }}"
+                        class="@if (Route::is('buzon')) active @endif">
+                        <i class="bi bi-circle"></i><span>Listado</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ Asset(env('admin') . '/buzon/agregar') }}"
+                        class="@if (Route::is('buzon.show')) active @endif">
+                        <i class="bi bi-circle"></i><span>Agregar</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li><!-- End Services -->
+    @endif
 
 
         @endif

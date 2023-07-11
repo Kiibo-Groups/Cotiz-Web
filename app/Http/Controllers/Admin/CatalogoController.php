@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Rfc;
 use App\Models\User;
+use App\Models\Requests;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -87,6 +89,56 @@ class CatalogoController extends Controller
             'status' => $status,
 
         ]);
+    }
+
+
+    public function enviarSolicitud($id){
+
+            $user = auth()->guard('admin')->user()->id;
+            $origen = 'admin';
+
+
+
+        return view($this->folder.'services.enviar', [
+            'form_url' => Asset(env('admin').'/enviar/create'),
+            'data' => new Request,
+            'array' => [],
+            'id' => $id,
+            'user' => $user,
+
+        ]);
+
+    }
+
+    public function storeRequestSolicitud(Request $request){
+       // dd($request);
+
+
+        $input = $request->all();
+        $requests_data = new Requests;
+
+        $user_data     = User::find($request->user_id);
+        $service_data  = Services::find($request->services_id);
+        $provider_data = Rfc::find($service_data->provider_id);
+
+
+        // $notification           = new Notifications;
+        // $notification->of_user  = $request->user_id;
+        // $notification->for_user = $provider_data->id;
+        // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
+        // $notification->save();
+
+        if($request->file('document'))
+        {
+            $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
+            $input['document']->move("assets/documents/users", $filename);
+            $input['document'] = $filename;
+        }
+
+        $requests_data->create($input);
+        return redirect(env('admin').'/servicios/proveedores')->with('message', 'Solicitud Enviada');
+        //return redirect()->route('servicios.show')->with('message', 'Solicitud Enviada');
+
     }
 
 
