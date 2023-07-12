@@ -129,6 +129,8 @@ class RequestsController extends Controller
         ]);
 
         $input         = $request->all();
+        dd($input);
+
         $admin         = Admin::find($id_admin);
         $requests_data = Requests::find($id);
         $service_data  = Services::find($requests_data->services_id);

@@ -558,12 +558,12 @@ class HomeController extends Controller
                 break;
 
             case(2):
-//dd('2');
+
 
                 break;
 
             case(3):
-                dd('3');
+
 
                 break;
             case(4):
@@ -571,13 +571,16 @@ class HomeController extends Controller
                     if (auth()->user()->status == 1) {
                         return redirect('activar');
                     } else {
-                        $notifications = Notifications::where('for_user',$user->id)->orderBy("id", "Desc")->paginate(10);
-                        return View('admin.notifications.index',['notifications'=> $notifications]);
+                       return redirect('user/solicitud');
                     }
                 break;
 
             case(5):
-                dd('5');
+                if (auth()->user()->status == 1) {
+                    return redirect('activar');
+                } else {
+                   return redirect('user/solicitud');
+                }
                 break;
 
         }

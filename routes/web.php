@@ -2,6 +2,7 @@
 
 
 include("admin.php");
+include("prove.php");
 
 /*
 |--------------------------------------------------------------------------
@@ -52,17 +53,13 @@ Route::get('/activar', [App\Http\Controllers\Profile\HomeController::class, 'act
 Route::prefix(env('user'))->namespace('User')->group(static function() {
     Route::middleware('auth')->group(static function () {
 
-            /*
+        /*
         |--------------------------------------------------------------------------
         | Perfil - Usuario
         |--------------------------------------------------------------------------
         */
 
         Route::get('/perfil', [App\Http\Controllers\Profile\HomeController::class, 'perfilUsuario'])->name('perfil');
-
-
-
-
 
 
 

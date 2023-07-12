@@ -94,8 +94,9 @@ class CatalogoController extends Controller
 
     public function enviarSolicitud($id){
 
-            $user = auth()->guard('admin')->user()->id;
-            $origen = 'admin';
+            $user          = auth()->guard('admin')->user()->id;
+            $origen        = 'admin';
+            $service_data  = Services::find($id);
 
 
 
@@ -105,6 +106,7 @@ class CatalogoController extends Controller
             'array' => [],
             'id' => $id,
             'user' => $user,
+            'prove' => $service_data->provider_id,
 
         ]);
 

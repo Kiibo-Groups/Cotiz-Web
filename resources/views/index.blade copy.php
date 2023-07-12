@@ -64,7 +64,7 @@
 <!-- End Hero -->
 
 @if(Auth::user())
-    @if (Auth::user()->role == 100)
+    @if (Auth::user()->role == 1)
         <!-- Start Section-->
         <section class="relative md:py-24 py-16">
             <div class="container">

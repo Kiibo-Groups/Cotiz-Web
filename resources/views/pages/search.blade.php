@@ -27,75 +27,85 @@
 <!-- End Hero -->
 
 <!-- Start Section-->
-<section class="relative md:py-24 py-16">
+<section class="relative md:py-2 py-1">
     <div class="container">
-        <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
-            <div class="lg:col-start-2 lg:col-span-10">
-                <div class="bg-white dark:bg-slate-900 border-0 shadow dark:shadow-gray-800 rounded p-3 -mt-[150px]">
-                    <form action="{{ url('/search')}}" method="GET">
-                        <div class="registration-form text-dark text-start">
-                            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
-                                <div class="filter-search-form relative filter-border">
-                                    <input name="q" type="text" id="job-keyword" value="{{ $search }}" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" placeholder="Busca tus productos y/o servicios" style="padding-left: 25px;">
-                                </div>
 
-                                <div class="filter-search-form relative filter-border">
-                                    <select class="form-select" name="type" data-trigger id="choices-location" aria-label="Tipo de servicios" style="padding-left: 25px;">
-                                        <option value="product" @if($type === 'product') selected @endif>Productos</option>
-                                        <option value="service" @if($type === 'service') selected @endif>Servicios</option>
-                                        <option value="employe" @if($type === 'employe') selected @endif>Personal</option>
-                                    </select>
-                                </div>
-                             
-                                <input type="submit" id="search" name="search" style="height: 60px;" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-100" value="Buscar">
-                            </div><!--end grid-->
-                        </div><!--end container-->
-                    </form>
-                </div>
-            </div><!--ed col-->
-        </div><!--grid-->
-    </div><!--end container-->
 
-    <div class="container">
-        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-            @if (count($requests) > 0)
-                @foreach ($requests as $item)
-                <div class="rounded-md shadow dark:shadow-gray-800">
-                    <div class="p-6">
-                        <a href="{{ asset('viewprod/'.base64_encode(urldecode($item->id)).'/'.$item->title) }}" class="title h5 text-lg font-semibold hover:text-indigo-600">{{$item->title}}</a>
-                        <p class="text-slate-400 mt-2"><i class="uil uil-clock text-indigo-600"></i> {{$item->created_at->diffForHumans()}}</p>
 
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="bg-indigo-600/5 text-indigo-600 text-xs font-bold px-2.5 py-0.5 rounded h-5">{{ $item->type }}</span>
 
-                            <p class="text-slate-400"><i class="uil uil-usd-circle text-indigo-600"></i> ${{ number_format($item->price,2) }}</p>
+
+
+        <div class="p-6 rounded-md shadow dark:shadow-gray-800 mt-8">
+            <h4 class="text-lg font-semibold">Solicitar Servicio:</h4>
+
+            <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="services_id" value="">
+                <input type="hidden" name="status" value="0">
+                {{--<div class="grid lg:grid-cols-12 lg:gap-6">
+                    <div class="lg:col-span-6 mb-5">
+                        <div class="ltr:text-left rtl:text-right">
+                            <label for="name" class="font-semibold">Nombre:</label>
+                            <div class="form-icon relative mt-2">
+                                <i data-feather="user" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
+                                <input name="name" id="name" type="text" class="form-input ltr:pl-11 rtl:pr-11" readonly placeholder="Name :" value="{{ Auth::user()->name }}">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex items-center p-6 border-t border-gray-100 dark:border-gray-700">
-                        <img src="{{ asset('assets/img/logos/'.$item->provider->logo) }}" class="h-12 w-12 shadow-md dark:shadow-gray-800 rounded-md p-2 bg-white dark:bg-slate-900" alt="">
+                    <div class="lg:col-span-6 mb-5">
+                        <div class="ltr:text-left rtl:text-right">
+                            <label for="email" class="font-semibold">Email:</label>
+                            <div class="form-icon relative mt-2">
+                                <i data-feather="mail" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
+                                <input name="email" id="email" type="email" class="form-input ltr:pl-11 rtl:pr-11" readonly placeholder="Email :" value="{{ Auth::user()->email }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>--}}
 
-                        <div class="ltr:ml-3 rtl:mr-3">
-                            <h6 class="mb-0 font-semibold text-base">{{ $item->provider->name }}</h6>
-                            <span class="text-slate-400 text-sm">{{ $item->provider->country }}</span>
+                <div class="grid grid-cols-1">
+                    <div class="mb-5">
+                        <div class="ltr:text-left rtl:text-right">
+                            <label for="description" class="font-semibold">Descripción de la solicitud:</label>
+                            <div class="form-icon relative mt-2">
+                                <i data-feather="message-circle" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
+                                <textarea name="description" id="description" required class="form-input ltr:pl-11 rtl:pr-11 h-28" placeholder="En este campos podrás añadir detalles importantes a tu solicitud para que sea procesada con mayor efectividad.">{{ $search }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-            @endif
-        </div><!--end grid-->
 
-        <div class="grid md:grid-cols-12 grid-cols-1 mt-8">
-            <div class="md:col-span-12 text-center">
-                <nav aria-label="Page navigation example">
-                    <ul class="inline-flex items-center -space-x-px">
-                        {{ $requests->links() }}
-                    </ul>
-                </nav>
-            </div>
+                <div class="grid grid-cols-1">
+                    <div class="mb-5">
+                        <div class="ltr:text-left rtl:text-right">
+                            <label for="document" class="font-semibold">Adjunta información importante:</label>
+                            <div class="form-icon relative mt-2">
+                                <input type='file' id="document" name="document" class="ec-image-upload mt-3" accept=".png, .jpg, .jpeg, .pdf, .docx, .txt"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button type="submit" id="submit" name="send" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full">Solicitar servicio</button>
+            </form>
         </div>
+
+
     </div><!--end container-->
- 
+
+
+
+
+
+
+
+
+
 </section><!--end section-->
 <!-- End Section-->
 @endsection

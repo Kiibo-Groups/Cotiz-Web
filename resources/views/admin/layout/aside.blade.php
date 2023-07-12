@@ -140,12 +140,6 @@
                                 <i class="bi bi-circle"></i><span>Personal</span>
                             </a>
                         </li>
-                       {{-- <li>
-                            <a href="{{ Asset(env('admin') . '/services/add') }}"
-                                class="@if (Route::is('services.show')) active @endif">
-                                <i class="bi bi-circle"></i><span>Agregar Catálogo</span>
-                            </a>
-                        </li>--}}
                     </ul>
                 </li><!-- End Services -->
             @endif
@@ -181,16 +175,14 @@
 
 
 
-
-
         @if ($admin->hasPerm('Dashboard - Buzon'))
         <li class="nav-item">
             <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif"
-                data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
+                data-bs-target="#buzon-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-briefcase"></i><span>Buzón</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="services-nav" class="nav-content  collapse @if (Route::is('buzon') || Route::is('buzon.show') ) show @endif"
-                data-bs-parent="#services-nav">
+            <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('buzon') || Route::is('buzon.show') ) show @endif"
+                data-bs-parent="#buzon-nav">
                 <li>
                     <a href="{{ Asset(env('admin') . '/buzon') }}"
                         class="@if (Route::is('buzon')) active @endif">
@@ -203,10 +195,8 @@
                         <i class="bi bi-circle"></i><span>Agregar</span>
                     </a>
                 </li>
-
-
             </ul>
-        </li><!-- End Services -->
+        </li><!-- End buzon -->
     @endif
 
 

@@ -6,30 +6,26 @@
                 <div class="card info-card">
                     <div class="card-header card-header-border-bottom">
 
-                        <h4>Agregar Nueva Solicitud</h4>
+                        <h3>Agregar Nuevo Documento</h3>
 
                     </div>
 
                     <div class="row ec-vendor-uploads">
                         <div class="col-lg-12">
                             <div class="ec-vendor-upload-detail">
-
-                                <input type="hidden" name="solicitud" value="3">
-                                <input type="hidden"  id="proveedor" name="proveedor" value="{{ $prove }}">
                                 <input type="hidden"  id="user_id" name="user_id" value="{{ $user }}">
-                                <input type="hidden" name="services_id" value="{{ $id }}">
-                                <input type="hidden" name="status" value="0">
-
+                                <input type="hidden"  id="servicio_id" name="servicio_id" value="{{ $id }}">
+                                <input type="hidden"  id="origen" name="origen" value="{{ $origen }}">
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <label for="document" class="form-label">Documento</label>
-                                        <input type="file" class="form-control slug-title"  id="document" name="document" required>
+                                        <label for="name" class="form-label">Documento</label>
+                                        <input type="file" class="form-control slug-title"  id="documento" name="documento" required>
                                     </div>
 
 
                                     <div class="col-md-12">
-                                        <label for="description" class="form-label">Descripción</label>
-                                        <textarea class="form-control" placeholder="Escribe una breve descripcion" id="description" name="description" required></textarea>
+                                        <label for="email" class="form-label">Descripción</label>
+                                        <textarea class="form-control" placeholder="Escribe una breve descripcion" id="descripcion" name="descripcion" required></textarea>
                                     </div>
 
                                 </div>
