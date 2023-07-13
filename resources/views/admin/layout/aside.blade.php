@@ -64,7 +64,7 @@
                 </li><!-- End empresas Proveedores -->
             @endif
 
-                    {{--    @if ($admin->hasPerm('Dashboard - Usuarios'))
+            {{--    @if ($admin->hasPerm('Dashboard - Usuarios'))
             <li class="nav-item">
             <a class="nav-link @if (!Route::is('users')) collapsed @endif" href="{{ Asset(env('admin').'/users') }}">
                 <i class="bi bi-person-lines-fill"></i>
@@ -150,7 +150,7 @@
                         data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('requests')|| Route::is('servicios.show') || Route::is('servicios') ) show @endif"
+                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('requests') || Route::is('servicios.show') || Route::is('servicios')) show @endif"
                         data-bs-parent="#sidebar-nav">
                         <li>
                             <a href="{{ Asset(env('admin') . '/servicios') }}"
@@ -165,8 +165,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ Asset(env('admin').'/requests') }}" class="@if(Route::is('requests')) active @endif">
-                              <i class="bi bi-circle"></i><span>Prueba</span>
+                            <a href="{{ Asset(env('admin') . '/requests') }}"
+                                class="@if (Route::is('requests')) active @endif">
+                                <i class="bi bi-circle"></i><span>Prueba</span>
                             </a>
                         </li>
                     </ul>
@@ -175,29 +176,55 @@
 
 
 
-        @if ($admin->hasPerm('Dashboard - Buzon'))
-        <li class="nav-item">
-            <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif"
-                data-bs-target="#buzon-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-briefcase"></i><span>Buzón</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('buzon') || Route::is('buzon.show') ) show @endif"
-                data-bs-parent="#buzon-nav">
-                <li>
-                    <a href="{{ Asset(env('admin') . '/buzon') }}"
-                        class="@if (Route::is('buzon')) active @endif">
-                        <i class="bi bi-circle"></i><span>Listado</span>
+            @if ($admin->hasPerm('Buzon - Empresa'))
+                <li class="nav-item">
+                    <a class="nav-link @if (!Route::is('buzonempresa') || !Route::is('buzonempresa.show')) collapsed @endif" data-bs-target="#buzonempresa-nav"
+                        data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-briefcase"></i><span>Buzón Empresa</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                </li>
-                <li>
-                    <a href="{{ Asset(env('admin') . '/buzon/agregar') }}"
-                        class="@if (Route::is('buzon.show')) active @endif">
-                        <i class="bi bi-circle"></i><span>Agregar</span>
+                    <ul id="buzonempresa-nav" class="nav-content  collapse @if (Route::is('buzonempresa') || Route::is('buzonempresa.show')) show @endif"
+                        data-bs-parent="#buzonempresa-nav">
+                        <li>
+                            <a href="{{ Asset(env('admin') . '/buzonempresa') }}"
+                                class="@if (Route::is('buzonempresa')) active @endif">
+                                <i class="bi bi-circle"></i><span>Listado</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Asset(env('admin') . '/buzonempresa/agregar') }}"
+                                class="@if (Route::is('buzonempresa.show')) active @endif">
+                                <i class="bi bi-circle"></i><span>Agregar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End buzon Empresa-->
+            @endif
+
+            @if ($admin->hasPerm('Buzon - Proveedor'))
+                <li class="nav-item">
+                    <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif" data-bs-target="#buzon-nav"
+                        data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-briefcase"></i><span>Buzón Proveedor</span><i
+                            class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                </li>
-            </ul>
-        </li><!-- End buzon -->
-    @endif
+                    <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('buzon') || Route::is('buzon.show')) show @endif"
+                        data-bs-parent="#buzon-nav">
+                        <li>
+                            <a href="{{ Asset(env('admin') . '/buzon') }}"
+                                class="@if (Route::is('buzon')) active @endif">
+                                <i class="bi bi-circle"></i><span>Listado</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Asset(env('admin') . '/buzon/agregar') }}"
+                                class="@if (Route::is('buzon.show')) active @endif">
+                                <i class="bi bi-circle"></i><span>Agregar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End buzon -->
+            @endif
 
 
         @endif

@@ -40,10 +40,11 @@
 
             <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                <input type="hidden" name="services_id" value="">
-                <input type="hidden" name="status" value="0">
+                <input type="hidden" class="form-control slug-title"   name="admin_id" value="1">
+                <input type="hidden" class="form-control slug-title"   name="origen" value="Empresa">
+
+                <input type="hidden" name="prove_id" value="{{ Auth::user()->idempresa }}">
+
                 {{--<div class="grid lg:grid-cols-12 lg:gap-6">
                     <div class="lg:col-span-6 mb-5">
                         <div class="ltr:text-left rtl:text-right">
@@ -69,10 +70,10 @@
                 <div class="grid grid-cols-1">
                     <div class="mb-5">
                         <div class="ltr:text-left rtl:text-right">
-                            <label for="description" class="font-semibold">Descripción de la solicitud:</label>
+                            <label for="descripcion" class="font-semibold">Descripción de la solicitud:</label>
                             <div class="form-icon relative mt-2">
                                 <i data-feather="message-circle" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
-                                <textarea name="description" id="description" required class="form-input ltr:pl-11 rtl:pr-11 h-28" placeholder="En este campos podrás añadir detalles importantes a tu solicitud para que sea procesada con mayor efectividad.">{{ $search }}</textarea>
+                                <textarea name="descripcion" id="descripcion" required class="form-input ltr:pl-11 rtl:pr-11 h-28" placeholder="En este campos podrás añadir detalles importantes a tu solicitud para que sea procesada con mayor efectividad." required>{{ $search }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -81,9 +82,9 @@
                 <div class="grid grid-cols-1">
                     <div class="mb-5">
                         <div class="ltr:text-left rtl:text-right">
-                            <label for="document" class="font-semibold">Adjunta información importante:</label>
+                            <label for="documento" class="font-semibold">Adjunta información importante:</label>
                             <div class="form-icon relative mt-2">
-                                <input type='file' id="document" name="document" class="ec-image-upload mt-3" accept=".png, .jpg, .jpeg, .pdf, .docx, .txt"/>
+                                <input type='file' id="documento" name="documento" class="ec-image-upload mt-3" accept=".png, .jpg, .jpeg, .pdf, .docx, .txt" required/>
                             </div>
                         </div>
                     </div>
@@ -91,20 +92,12 @@
 
 
 
-                <button type="submit" id="submit" name="send" class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full">Solicitar servicio</button>
+                <button type="submit" id="submit"  class="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md w-full">Solicitar servicio</button>
             </form>
         </div>
 
 
     </div><!--end container-->
-
-
-
-
-
-
-
-
 
 </section><!--end section-->
 <!-- End Section-->

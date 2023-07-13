@@ -75,12 +75,12 @@ Buzón
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                            <td>{{ $req->admin->name}}</td>
-                                            <td>{{ $req->proveedor->nombre }} </td>
+                                            <td class="col-md-1">{{ $req->admin->name}}</td>
+                                            <td class="col-md-2">{{ $req->proveedor->nombre }} </td>
                                             <td>{{ $req->descripcion }}</td>
-                                            <td>{{ $req->created_at->format('d-m-Y') }}</td>
+                                            <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
 
-                                            <td>
+                                            <td class="col-md-1" style="text-align: center">
 
                                                 <a target="_blank" class="btn btn-warning" title="Descargar Documento"
                                                     href="/assets/documento/buzon/{{ $req->documento }}">

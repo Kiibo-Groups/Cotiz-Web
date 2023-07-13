@@ -153,14 +153,23 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::post('/Addservicios',[App\Http\Controllers\Admin\SolicitudesController::class, 'Addservicios']);
 
 
-           /*
+        /*
         |--------------------------------------------------------------------------
-        | Our Buzón Routes
+        | Our Buzón Proveedores Routes
         |--------------------------------------------------------------------------
         */
         Route::resource('/buzon',BuzonController::class);
         Route::get('/buzon', [App\Http\Controllers\Admin\BuzonController::class, 'index'])->name('buzon');
         Route::post('/buzon/create', [App\Http\Controllers\Admin\BuzonController::class, 'create']);
+
+         /*
+        |--------------------------------------------------------------------------
+        | Our Buzón Empresa Routes
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('/buzonempresa',BuzonEmpresaController::class);
+        Route::get('/buzonempresa', [App\Http\Controllers\Admin\BuzonEmpresaController::class, 'index'])->name('buzonempresa');
+        Route::post('/buzonempresa/create', [App\Http\Controllers\Admin\BuzonEmpresaController::class, 'create']);
 
 
 

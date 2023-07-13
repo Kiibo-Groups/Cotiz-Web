@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers\Profile;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Helpers\StatisticsHelper;
-use App\Models\AppUsers;
-use App\Models\Events;
-use App\Models\EventsConfirms;
-use App\Models\Services;
-use App\Models\Providers;
-use App\Models\Requests;
-use App\Models\Notifications;
+use DB;
+use Auth;
+use Redirect;
+use App\Models\Rfc;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Events;
 use App\Mail\CotizMail;
-use App\Models\Rfc;
+use App\Models\AppUsers;
+use App\Models\Requests;
+use App\Models\Services;
+use App\Models\Providers;
+use App\Models\Buzonempresa;
+use Illuminate\Http\Request;
+use App\Models\Notifications;
+use App\Models\EventsConfirms;
+use App\Helpers\StatisticsHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use DB;
-use Redirect;
-use Auth;
+
 class HomeController extends Controller
 {
     private $folder = 'account.';
@@ -222,37 +224,35 @@ class HomeController extends Controller
     }
 
     public function storeRequest(Request $request){
-        $request->validate([
-            'description'=>'required'
-        ]);
 
-        $input = $request->all();
-        $requests_data = new Requests;
-
-        $user_data     = User::find($request->user_id);
-        $service_data  = Services::find($request->services_id);
-        $provider_data = Rfc::find($service_data->provider_id);
+       // dd($request);
 
 
-        $notification           = new Notifications;
-        $notification->of_user  = $request->user_id;
-        $notification->for_user = $provider_data->id;
-        $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
-        $notification->save();
+        $input         = $request->all();
+        $requests_data = new Buzonempresa;
 
-        if($request->file('document'))
+        // $user_data     = User::find($request->user_id);
+        // $service_data  = Services::find($request->services_id);
+        // $provider_data = Rfc::find($service_data->provider_id);
+
+
+        // $notification           = new Notifications;
+        // $notification->of_user  = $request->user_id;
+        // $notification->for_user = $provider_data->id;
+        // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
+        // $notification->save();
+
+        if($request->file('documento'))
         {
 
-            // Agregamos el nuevo
-            $path = env('APP_DEBUG') ? '' : 'public/';
-            $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
-            $input['document']->move($path."assets/documents/users", $filename);
-            $input['document'] = $filename;
+            $filename   = time().rand(111,699).'.' .$request->file('documento')->getClientOriginalExtension();
+            $input['documento']->move("assets/documento/buzonempresa", $filename);
+            $input['documento'] = $filename;
         }
 
         $requests_data->create($input);
 
-        return redirect()->route('request_user')->with('message', 'Solicitud Enviada');
+        return redirect()->route('init')->with('message', 'Solicitud Enviada');
 
     }
 

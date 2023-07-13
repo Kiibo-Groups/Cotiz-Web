@@ -63,7 +63,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+
                                         <th scope="col">Tipo</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
@@ -74,9 +74,9 @@
                                 <tbody>
                                     @foreach ($requests as $req)
                                         <tr>
-                                            <th scope="row">{{ $req->id }}</th>
-                                            <td>{{ $req->service->type }}</td>
-                                            <td>{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
+
+                                            <td class="col-md-1">{{ $req->service->type }}</td>
+                                            <td class="col-md-2">{{ $req->prove->nombre }} </td>
                                             <td>{{ $req->description }}</td>
                                             <td>
                                                 @if ($req->status === 0)
@@ -93,31 +93,31 @@
                                                             class="badge text-white bg-success">Finalizado</span></h5>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a class="btn btn-info" title="Documentos Relacionados"
+                                            <td class="col-md-2">
+                                                <a class="btn btn-info btn-sm" title="Documentos Relacionados"
                                                     href="{{ url(env('admin') . '/servicios/ver/' . $req->id) }}">
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning" title="Descargar Documento"
+                                                    <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
                                                         href="/assets/documents/users/{{ $req->document }}">
                                                         <i class="bi bi-download"></i>
                                                     </a>
                                                 @endif
                                                 {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
                                                 @if (Auth::guard('admin')->check())
-                                                    <a type="button" class="btn btn-success" data-bs-toggle="modal" title="Editar Estado"
+                                                    <a type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" title="Editar Estado"
                                                         data-bs-target="#editRequest">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
 
                                                     @if (!Auth::guard('admin')->check())
-                                                        <a class="btn btn-danger"
+                                                        <a class="btn btn-danger btn-sm"
                                                             href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
                                                             <i class="bi bi-trash"></i>
                                                         </a>
                                                     @else
-                                                        <a class="btn btn-danger"
+                                                        <a class="btn btn-danger btn-sm"
                                                             href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
                                                             <i class="bi bi-trash"></i>
                                                         </a>

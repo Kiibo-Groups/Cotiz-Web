@@ -35,4 +35,8 @@ class Requests extends Model
 
         return $this->belongsTo(Admin::class, 'user_id');
     }
+    public function prove(){
+
+        return $this->belongsTo(Rfc::class, 'proveedor');
+    }
 }
