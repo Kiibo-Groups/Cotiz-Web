@@ -17,7 +17,8 @@ class Requests extends Model
        'description',
        'document',
        'solicitud',
-       'proveedor'
+       'proveedor',
+       'tipo'
     ];
 
 
@@ -38,5 +39,9 @@ class Requests extends Model
     public function prove(){
 
         return $this->belongsTo(Rfc::class, 'proveedor');
+    }
+    public function prueba(){
+
+        return $this->belongsTo(User::class, 'proveedor');
     }
 }

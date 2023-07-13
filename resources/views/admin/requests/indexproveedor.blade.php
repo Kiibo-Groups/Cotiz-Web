@@ -78,7 +78,7 @@
                                             <td class="col-md-1">{{ $req->service->type }}</td>
                                             <td class="col-md-2">{{ $req->prove->nombre }} </td>
                                             <td>{{ $req->description }}</td>
-                                            <td>
+                                            <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
                                                             class="badge text-white bg-secondary">Pendiente</span></h5>

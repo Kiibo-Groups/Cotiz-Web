@@ -75,8 +75,15 @@
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                            <td class="col-md-1">{{ $req->service->type }}</td>
-                                            <td class="col-md-2">{{ $req->user->name }} {{ $req->user->last_name }}</td>
+                                            <td class="col-md-1">{{ $req->tipo }}</td>
+                                            <td class="col-md-2">
+                                                @if ($req->solicitud == 2 )
+                                                    {{ $req->prueba->name}} {{ $req->prueba->last_name}}
+                                                @else
+                                                    {{ $req->prove->nombre }}
+                                                @endif
+
+                                            </td>
                                             <td>{{ $req->description }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)

@@ -225,11 +225,11 @@ class HomeController extends Controller
 
     public function storeRequest(Request $request){
 
-       // dd($request);
+        //dd($request);
 
 
         $input         = $request->all();
-        $requests_data = new Buzonempresa;
+        $requests_data = new Requests;
 
         // $user_data     = User::find($request->user_id);
         // $service_data  = Services::find($request->services_id);
@@ -553,8 +553,6 @@ class HomeController extends Controller
                     return redirect('admin/dash');
                 }
 
-
-
                 break;
 
             case(2):
@@ -563,7 +561,11 @@ class HomeController extends Controller
                 break;
 
             case(3):
-
+                if (auth()->user()->status == 1) {
+                    return redirect('activar');
+                } else {
+                   return redirect('user/solicitud');
+                }
 
                 break;
             case(4):

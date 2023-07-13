@@ -14,6 +14,120 @@
 
         <div class="container z-1">
 
+            @if (Auth::user())
+
+
+                @if (Auth::user()->role == 4 || Auth::user()->role == 5)
+                <div class="grid grid-cols-1 mt-10">
+                    <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br>
+                        Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
+                    <p class="text-slate-400 text-lg max-w-xl">
+                        Pretendemos ser una vitrina única a la que las empresas puedan acudir para
+                        solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
+                    </p>
+
+                    <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form" style="text-align: center">
+                        <div class="lg:col-span-10 mt-8" style="text-align: center">
+                            <div class="bg-white dark:bg-slate-900 border-0 shadow rounded p-3">
+
+                                <form action="{{ url('/user/perfil') }}" method="GET">
+                                    <div class="registration-form text-dark text-start" >
+                                        <div class="grid " style="text-align: center">
+
+
+
+
+                                            <input type="submit" id="search" name="search"
+                                                class="btn text-white searchbtn submit-btn w-100" value="Bienvenido(a) {{ Auth::user()->name }}"
+                                                style="height: 60px;background: #00C5D7;">
+                                        </div>
+                                        <!--end grid-->
+                                    </div>
+                                    <!--end container-->
+                                </form>
+                            </div>
+                        </div>
+                        <!--ed col-->
+                    </div>
+                    <!--end grid-->
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                @else
+                <div class="grid grid-cols-1 mt-10">
+                    <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br>
+                        Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
+                    <p class="text-slate-400 text-lg max-w-xl">
+                        Pretendemos ser una vitrina única a la que las empresas puedan acudir para
+                        solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
+                    </p>
+
+                    <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
+                        <div class="lg:col-span-10 mt-8">
+                            <div class="bg-white dark:bg-slate-900 border-0 shadow rounded p-3">
+
+                                @if (Session::has('message'))
+                                    <hr />
+                                    <br />
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                        style="background-color: #00C5D7; color: white;  text-align: center">
+                                        <h1 class="mb-0 text-success" style="font-size: 25px"> {{ Session::get('message') }}
+                                        </h1>
+                                    </div>
+                                    <br />
+                                    <hr />
+                                @endif
+
+                                <form action="{{ url('/search') }}" method="GET">
+                                    <div class="registration-form text-dark text-start">
+                                        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
+                                            <div class="filter-search-form relative filter-border">
+                                                <input name="q" type="text" id="job-keyword"
+                                                    class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0"
+                                                    placeholder="Busca tus productos y/o servicios" style="padding-left: 25px;">
+                                            </div>
+
+                                            <div class="filter-search-form relative filter-border">
+                                                <select class="form-select" name="type" data-trigger id="choices-location"
+                                                    aria-label="Tipo de servicios" style="padding-left: 25px;">
+                                                    <option value="product">Productos</option>
+                                                    <option value="service">Servicios</option>
+                                                    <option value="employe">Personal</option>
+                                                </select>
+                                            </div>
+
+                                            <input type="submit" id="search" name="search"
+                                                class="btn text-white searchbtn submit-btn w-100" value="Buscar"
+                                                style="height: 60px;background: #00C5D7;">
+                                        </div>
+                                        <!--end grid-->
+                                    </div>
+                                    <!--end container-->
+                                </form>
+                            </div>
+                        </div>
+                        <!--ed col-->
+                    </div>
+                    <!--end grid-->
+
+                </div>
+                @endif
+
+
+
+
+            @else
             <div class="grid grid-cols-1 mt-10">
                 <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores <br>
                     Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
@@ -71,6 +185,9 @@
                 <!--end grid-->
 
             </div>
+            @endif
+
+
             <!--end grid-->
         </div>
         <!--end container-->

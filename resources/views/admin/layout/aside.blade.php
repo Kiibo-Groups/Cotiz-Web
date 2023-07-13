@@ -175,7 +175,7 @@
             @endif
 
 
-
+{{--
             @if ($admin->hasPerm('Buzon - Empresa'))
                 <li class="nav-item">
                     <a class="nav-link @if (!Route::is('buzonempresa') || !Route::is('buzonempresa.show')) collapsed @endif" data-bs-target="#buzonempresa-nav"
@@ -199,7 +199,7 @@
                         </li>
                     </ul>
                 </li><!-- End buzon Empresa-->
-            @endif
+            @endif--}}
 
             @if ($admin->hasPerm('Buzon - Proveedor'))
                 <li class="nav-item">

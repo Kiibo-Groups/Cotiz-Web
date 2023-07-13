@@ -54,8 +54,8 @@ Buzón
                                 <thead>
                                     <tr>
 
-                                       {{-- <th scope="col">Admin</th>
-                                        <th scope="col">Usuario</th>--}}
+                                       <th scope="col">Admin</th>
+                                        <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Creación</th>
                                         <th scope="col">Ocpiones</th>
@@ -65,8 +65,8 @@ Buzón
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                           {{-- <td>$req->admin->name }}</td>
-                                            <td>{{ $req->proveedor->nombre }} </td>--}}
+                                           <td>{{ $req->admin->name }}</td>
+                                            <td>{{ $req->proveedor->nombre }} </td>
                                             <td>{{ $req->descripcion }}</td>
                                             <td>{{ $req->created_at->format('d-m-Y') }}</td>
 
