@@ -32,3 +32,9 @@
             </div>
         @endsection
 @endif
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+@section('scripts')
+    @parent
+
+@endsection
