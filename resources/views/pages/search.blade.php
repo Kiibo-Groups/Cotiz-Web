@@ -8,15 +8,18 @@
         <div class="container">
             <div class="grid grid-cols-1 pb-8 text-center mt-10">
                 <h3 class="mb-4 md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Buscando por:
-                    <i>{{ $type }}</i> </h3>
+                    <i>{{ $type }}</i>
+                </h3>
 
                 <ul class="breadcrumb tracking-[0.5px] breadcrumb-light mb-0 inline-block">
                     <li
                         class="inline breadcrumb-item uppercase text-[13px] font-bold duration-500 ease-in-out text-white/50 hover:text-white">
-                        <a href="{{ url('./') }}">Inicio</a></li>
+                        <a href="{{ url('./') }}">Inicio</a>
+                    </li>
                     <li
                         class="inline breadcrumb-item uppercase text-[13px] font-bold duration-500 ease-in-out text-white/50 hover:text-white">
-                        <a href="./">Busqueda</a></li>
+                        <a href="./">Busqueda</a>
+                    </li>
                     <li class="inline breadcrumb-item uppercase text-[13px] font-bold duration-500 ease-in-out text-white"
                         aria-current="page">{{ $search }}</li>
                 </ul>
@@ -64,7 +67,6 @@
                     <input type="hidden" name="status" value="0">
 
 
-
                     {{-- <div class="grid lg:grid-cols-12 lg:gap-6">
                     <div class="lg:col-span-6 mb-5">
                         <div class="ltr:text-left rtl:text-right">
@@ -101,7 +103,18 @@
                             </div>
                         </div>
                     </div>
+                    @error('document')
+                    <hr />
+                    <br />
+                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                        style="background-color: red; color: white;  text-align: center">
+                        <h1 class="mb-0 text-success" style="font-size: 25px"> Debes subir un archivo menor o igual a 3M.
+                        </h1>
+                    </div>
+                    <br />
+                    <hr />
 
+                    @enderror
                     <div class="grid grid-cols-1">
                         <div class="mb-5">
                             <div class="ltr:text-left rtl:text-right">
@@ -113,6 +126,7 @@
                             </div>
                         </div>
                     </div>
+
 
 
 

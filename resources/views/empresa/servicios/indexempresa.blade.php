@@ -1,4 +1,4 @@
-@extends('layouts.app_profile')
+@extends('layouts.app_empresa')
 @section('title')
     Solicitudes
 @endsection
@@ -17,9 +17,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/requests') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/servicios/proveedores') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/requests') }}" method="GET">
+                        <form action="{{ url(env('user') . '/servicios/proveedores') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')
@@ -76,14 +76,7 @@
                                         <tr>
 
                                             <td class="col-md-1">{{ $req->tipo }}</td>
-                                            <td class="col-md-2">
-                                                @if ($req->solicitud == 2 )
-                                                    {{ $req->prueba->name}} {{ $req->prueba->last_name}}
-                                                @else
-                                                    {{ $req->prove->nombre }}
-                                                @endif
-
-                                            </td>
+                                            <td class="col-md-1">{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
                                             <td>{{ $req->description }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)
@@ -100,9 +93,9 @@
                                                             class="badge text-white bg-success">Finalizado</span></h5>
                                                 @endif
                                             </td>
-                                            <td class="col-md-2">
+                                            <td class="">
                                                 <a class="btn btn-info btn-sm" title="Documentos Relacionados"
-                                                    href="{{ url(env('admin') . '/servicios/ver/' . $req->id) }}">
+                                                    href="{{ url(env('user') . '/empresa/servicios/ver/' . $req->id) }}">
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
@@ -111,25 +104,7 @@
                                                         <i class="bi bi-download"></i>
                                                     </a>
                                                 @endif
-                                                {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
-                                                @if (Auth::guard('admin')->check())
-                                                    <a type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" title="Editar Estado"
-                                                        data-bs-target="#editRequest">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
 
-                                                    @if (!Auth::guard('admin')->check())
-                                                        <a class="btn btn-danger btn-sm"
-                                                            href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
-                                                    @else
-                                                        <a class="btn btn-danger btn-sm"
-                                                            href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
-                                                    @endif
-                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

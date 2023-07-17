@@ -32,13 +32,13 @@
 
                                 <form action="{{ url('/user/perfil') }}" method="GET">
                                     <div class="registration-form text-dark text-start" >
-                                        <div class="grid " style="text-align: center">
+                                        <div class="grid " style="text-align: center; cursor:pointer;">
 
 
 
 
                                             <input type="submit" id="search" name="search"
-                                                class="btn text-white searchbtn submit-btn w-100" value="Bienvenido(a) {{ Auth::user()->name }}"
+                                                class="btn text-white searchbtn submit-btn w-100; cursor:pointer;" value="Bienvenido(a) {{ Auth::user()->name }}"
                                                 style="height: 60px;background: #00C5D7;">
                                         </div>
                                         <!--end grid-->

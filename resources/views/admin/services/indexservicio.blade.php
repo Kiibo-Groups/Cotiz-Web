@@ -22,9 +22,9 @@
 
                     <div class="row">
                         @if(!Auth::guard('admin')->check())
-                        <form action="{{ url(env('user') . '/catalogo') }}" method="GET">
+                        <form action="{{ url(env('user') . '/catalogo/servicio') }}" method="GET">
                         @else
-                        <form action="{{ url(env('admin') . '/catalogo') }}" method="GET">
+                        <form action="{{ url(env('admin') . '/catalogo/servicio') }}" method="GET">
                         @endif
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="search" id="filter_search" @if ($search != null) value="{{ $search }}" @endif placeholder="Buscar un Servicio" aria-label="Recipient's username" aria-describedby="button-addon2">

@@ -70,7 +70,7 @@ Buzón
                                             <td>{{ $req->descripcion }}</td>
                                             <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
 
-                                            <td class="col-md-1">
+                                            <td>
 
                                                 <a target="_blank" class="btn btn-warning" title="Descargar Documento"
                                                     href="/assets/documento/buzon/{{ $req->documento }}">

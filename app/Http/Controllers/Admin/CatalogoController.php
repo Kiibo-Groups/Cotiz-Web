@@ -32,10 +32,7 @@ class CatalogoController extends Controller
         }
 
         if($search) {
-            $data = $data->where('title','like','%'.$search.'%')
-                        ->orWhereHas('provider', function ($q) use ($search) {
-                            $q->where('name','like','%'.$search.'%');
-                        });
+            $data = $data->whereRaw('LOWER(title) LIKE(?)','%'.$search.'%');
         }
 
         $data = $data->paginate(10);
@@ -73,17 +70,14 @@ class CatalogoController extends Controller
         }
 
         if($search) {
-            $data = $data->where('title','like','%'.$search.'%')
-                        ->orWhereHas('provider', function ($q) use ($search) {
-                            $q->where('name','like','%'.$search.'%');
-                        });
+            $data = $data->whereRaw('LOWER(title) LIKE(?)','%'.$search.'%');
         }
 
         $data = $data->paginate(10);
 
 
 
-        return view($this->folder.'services.index', [
+        return view($this->folder.'services.indexservicio', [
             'services' => $data,
             'search' => $search,
             'status' => $status,

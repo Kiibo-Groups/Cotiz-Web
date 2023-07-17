@@ -225,7 +225,11 @@ class HomeController extends Controller
 
     public function storeRequest(Request $request){
 
-        //dd($request);
+
+        $request->validate([
+            'document'=>'required|max:3048',
+
+        ]);
 
 
         $input         = $request->all();
@@ -242,12 +246,12 @@ class HomeController extends Controller
         // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
         // $notification->save();
 
-        if($request->file('documento'))
+        if($request->file('document'))
         {
 
-            $filename   = time().rand(111,699).'.' .$request->file('documento')->getClientOriginalExtension();
-            $input['documento']->move("assets/documento/buzonempresa", $filename);
-            $input['documento'] = $filename;
+            $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
+            $input['document']->move("assets/documento/buzonempresa", $filename);
+            $input['document'] = $filename;
         }
 
         $requests_data->create($input);
@@ -542,29 +546,29 @@ class HomeController extends Controller
     public function perfilUsuario() {
 
         $user   = User::find(auth()->user()->id);
-
+//dd( $user );
 
         switch(auth()->user()->role) {
             case(1):
 
-                if (auth()->user()->status = 1) {
+                if (auth()->user()->status == 1) {
                     return redirect('activar');
                 } else {
-                    return redirect('admin/dash');
+                    return redirect('user/empresa/solicitud');
                 }
 
                 break;
 
             case(2):
 
-
+                return redirect('activar');
                 break;
 
             case(3):
                 if (auth()->user()->status == 1) {
                     return redirect('activar');
                 } else {
-                   return redirect('user/solicitud');
+                   return redirect('user/empresa/solicitud');
                 }
 
                 break;
@@ -589,7 +593,7 @@ class HomeController extends Controller
 
 
 
-        $notifications = Notifications::where('for_user',$user->id)->orderBy("id", "Desc")->paginate(10);
-        return View('admin.notifications.index',['notifications'=> $notifications]);
+        //$notifications = Notifications::where('for_user',$user->id)->orderBy("id", "Desc")->paginate(10);
+        //return View('admin.notifications.index',['notifications'=> $notifications]);
     }
 }
