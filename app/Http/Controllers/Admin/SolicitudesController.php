@@ -59,7 +59,7 @@ class SolicitudesController extends Controller
         //     'status'=>$status
         // ]);
 
-        return view($this->folder.'requests.indexprueba', [
+        return view($this->folder.'requests.indexempresa', [
             'requests'=> $requests,
             'search'=> $search,
             'status'=>$status,
@@ -137,7 +137,8 @@ class SolicitudesController extends Controller
         return view($this->folder.'requests.indexver', [
             'servicios' => Serviciover::where('servicio_id', $id)->orderBy("id", "Desc")->get(),
             'admin' => auth()->guard('admin')->user(),
-            'id' => $id
+            'id' => $id,
+            'request' => Requests::where('id', $id)->orderBy("id", "Desc")->first()
         ]);
 
     }

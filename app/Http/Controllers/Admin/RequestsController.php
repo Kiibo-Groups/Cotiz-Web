@@ -129,14 +129,12 @@ class RequestsController extends Controller
         ]);
 
         $input         = $request->all();
-        dd($input);
+        //dd($input);
 
         $admin         = Admin::find($id_admin);
-        $requests_data = Requests::find($id);
+        $requests_data = Requests::find($request->id);
         $service_data  = Services::find($requests_data->services_id);
-        $provider_data = Rfc::find($service_data->provider_id);
-
-
+        //$provider_data = Rfc::find($service_data->proveedor);
 
         $user_data = User::find($requests_data->user_id);
         $msg =  'Solicitud actualizado con éxito ...';
@@ -173,9 +171,9 @@ class RequestsController extends Controller
 
         // Notificamos
         $notification = new Notifications;
-        $notification->of_user = $provider_data->id;
-        $notification->for_user = $requests_data->user_id;
-        $notification->message = 'El Administrador ha respondido tu solicitud al servicio '.$service_data->title.' del proveedor '.$provider_data->name;
+        $notification->of_user = (int)$requests_data->proveedor;
+        $notification->for_user = 1;
+        $notification->message = 'El Administrador ha respondido tu solicitud al servicio '.$requests_data->nombre;
         $notification->save();
 
 

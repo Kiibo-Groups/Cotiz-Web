@@ -150,7 +150,7 @@
                         data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('requests') || Route::is('servicios.show') || Route::is('servicios')) show @endif"
+                    <ul id="request-nav" class="nav-content  collapse @if  (Route::is('serviciosVer') || Route::is('requests') || Route::is('servicios.show') || Route::is('servicios')) show @endif"
                         data-bs-parent="#sidebar-nav">
                         <li>
                             <a href="{{ Asset(env('admin') . '/servicios') }}"

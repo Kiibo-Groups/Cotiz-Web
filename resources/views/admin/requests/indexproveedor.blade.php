@@ -106,8 +106,8 @@
                                                 @endif
                                                 {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
                                                 @if (Auth::guard('admin')->check())
-                                                    <a type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" title="Editar Estado"
-                                                        data-bs-target="#editRequest">
+                                                    <a type="button" class="open-modal btn btn-success btn-sm" data-bs-toggle="modal" title="Editar Estado"
+                                                        data-bs-target="#editRequest" data-nombre="{{ $req->id }}">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
 
@@ -117,10 +117,10 @@
                                                             <i class="bi bi-trash"></i>
                                                         </a>
                                                     @else
-                                                        <a class="btn btn-danger btn-sm"
+                                                      {{--  <a class="btn btn-danger btn-sm"
                                                             href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
                                                             <i class="bi bi-trash"></i>
-                                                        </a>
+                                                        </a>--}}
                                                     @endif
                                                 @endif
                                             </td>
@@ -156,9 +156,9 @@
     <!--end section-->
 
     @if ($requests)
-        @foreach ($requests as $req)
+
             <!-- Modal Edit Element -->
-            <div class="modal fade" id="editRequest" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -177,6 +177,7 @@
 
 
                         @csrf
+                        <input id="id" name="id" type="hidden"  />
                         <div class="modal-body">
                             <label for="status">Estado</label>
                             <select name="status" id="status" class="form-select">
@@ -195,7 +196,7 @@
                 </div>
             </div>
             <!-- Modal Edit Element -->
-        @endforeach
+
     @endif
     <script>
         const asignarParametrosURL = () => {
@@ -222,3 +223,20 @@
         };
     </script>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.open-modal').click(function() {
+
+            var id = $(this).data('nombre');
+            console.log(id);
+           $('#id').val(id);
+           $(".modal").modal("show");
+        });
+
+        $('.close').click(function() {
+            $(".modal").modal("hide");
+        });
+    });
+</script>
