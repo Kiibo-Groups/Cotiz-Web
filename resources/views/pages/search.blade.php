@@ -1,5 +1,5 @@
 @extends('layouts.app_website')
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 @section('content')
     <!-- Start Hero -->
     <section class="relative table w-full py-36 lg:py-44 bg-no-repeat bg-center"
@@ -49,13 +49,13 @@
 
 
             <div class="p-6 rounded-md shadow dark:shadow-gray-800 mt-8">
-                <h4 class="text-lg font-semibold">Solicitar Servicio:</h4>
+                <h4 class="text-lg font-semibold">Solicitar {{ $type }}:</h4>
 
                 <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
-                    <input type="hidden" name="tipo" value="{{ $type }}">
+                    <input type="hidden" name="tipo" id="tipo" value="{{ $type }}">
                     @if (Auth::user()->role == 2)
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->id }}">
                     @else
@@ -67,53 +67,26 @@
                     <input type="hidden" name="status" value="0">
 
 
-                    {{-- <div class="grid lg:grid-cols-12 lg:gap-6">
-                    <div class="lg:col-span-6 mb-5">
-                        <div class="ltr:text-left rtl:text-right">
-                            <label for="name" class="font-semibold">Nombre:</label>
-                            <div class="form-icon relative mt-2">
-                                <i data-feather="user" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
-                                <input name="name" id="name" type="text" class="form-input ltr:pl-11 rtl:pr-11" readonly placeholder="Name :" value="{{ Auth::user()->name }}">
-                            </div>
-                        </div>
+
+
+
+
+                    <div id="registroData" style="display: none" class="registroData">
+
+                        <div id="formulario"></div>
                     </div>
 
-                    <div class="lg:col-span-6 mb-5">
-                        <div class="ltr:text-left rtl:text-right">
-                            <label for="email" class="font-semibold">Email:</label>
-                            <div class="form-icon relative mt-2">
-                                <i data-feather="mail" class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
-                                <input name="email" id="email" type="email" class="form-input ltr:pl-11 rtl:pr-11" readonly placeholder="Email :" value="{{ Auth::user()->email }}">
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
 
-                    <div class="grid grid-cols-1">
-                        <div class="mb-5">
-                            <div class="ltr:text-left rtl:text-right">
-                                <label for="description" class="font-semibold">Descripción de la solicitud:</label>
-                                <div class="form-icon relative mt-2">
-                                    <i data-feather="message-circle"
-                                        class="w-4 h-4 absolute top-3 ltr:left-4 rtl:right-4"></i>
-                                    <textarea name="description" id="description" required class="form-input ltr:pl-11 rtl:pr-11 h-28"
-                                        placeholder="En este campos podrás añadir detalles importantes a tu solicitud para que sea procesada con mayor efectividad."
-                                        required>{{ $search }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @error('document')
-                    <hr />
-                    <br />
-                    <div class="alert alert-success alert-dismissible fade show" role="alert"
-                        style="background-color: red; color: white;  text-align: center">
-                        <h1 class="mb-0 text-success" style="font-size: 25px"> Debes subir un archivo menor o igual a 3M.
-                        </h1>
-                    </div>
-                    <br />
-                    <hr />
-
+                        <hr />
+                        <br />
+                        <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            style="background-color: red; color: white;  text-align: center">
+                            <h1 class="mb-0 text-success" style="font-size: 25px"> Debes subir un archivo menor o igual a 3M.
+                            </h1>
+                        </div>
+                        <br />
+                        <hr />
                     @enderror
                     <div class="grid grid-cols-1">
                         <div class="mb-5">
@@ -144,3 +117,26 @@
     <!--end section-->
     <!-- End Section-->
 @endsection
+
+<script>
+    $(document).ready(function() {
+
+        type = $("#tipo").val();
+
+        console.log(type);
+
+        if (type == 'product') {
+             $("#registroData").show();
+             $('#formulario').append(` @include('pages.searchproducto')`);
+        }
+
+        if (type == 'service') {
+             $("#registroData").show();
+             $('#formulario').append(` @include('pages.searchservicio')`);
+        }
+        if (type == 'employe') {
+             $("#registroData").show();
+             $('#formulario').append(` @include('pages.searchprofesional')`);
+        }
+    });
+</script>

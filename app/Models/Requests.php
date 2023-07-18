@@ -18,7 +18,13 @@ class Requests extends Model
        'document',
        'solicitud',
        'proveedor',
-       'tipo'
+       'tipo',
+       'nombre',
+       'modelo',
+       'marca',
+       'cantidad',
+       'presupuesto',
+       'servicio'
     ];
 
 

@@ -226,6 +226,7 @@ class HomeController extends Controller
     public function storeRequest(Request $request){
 
 
+
         $request->validate([
             'document'=>'required|max:3048',
 

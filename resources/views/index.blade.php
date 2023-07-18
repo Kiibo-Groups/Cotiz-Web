@@ -103,7 +103,7 @@
                                                     aria-label="Tipo de servicios" style="padding-left: 25px;">
                                                     <option value="product">Productos</option>
                                                     <option value="service">Servicios</option>
-                                                    <option value="employe">Personal</option>
+                                                    <option value="employe">Profesionista</option>
                                                 </select>
                                             </div>
 
