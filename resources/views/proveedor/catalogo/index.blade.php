@@ -22,22 +22,24 @@
 
                         <div class="row">
 
-                                <form action="{{ url(env('user') . '/catalogo') }}" method="GET">
+                            <form action="{{ url(env('user') . '/catalogo') }}" method="GET">
 
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="search" id="filter_search"
-                                    @if ($search != null) value="{{ $search }}" @endif
-                                    placeholder="Buscar un Servicio" aria-label="Recipient's username"
-                                    aria-describedby="button-addon2">
-                                <select name="filter_status" id="filter_status" class="form-select">
-                                    <option value="" @if ($status == '') selected @endif>Estatus
-                                    </option>
-                                    <option value="1" @if ($status == '1') selected @endif>Activo</option>
-                                    <option value="0" @if ($status == '0') selected @endif>Inactivo
-                                    </option>
-                                </select>
-                                <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
-                            </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="search" id="filter_search"
+                                        @if ($search != null) value="{{ $search }}" @endif
+                                        placeholder="Buscar un Servicio" aria-label="Recipient's username"
+                                        aria-describedby="button-addon2">
+                                    <select name="filter_status" id="filter_status" class="form-select">
+                                        <option value="" @if ($status == '') selected @endif>Estatus
+                                        </option>
+                                        <option value="1" @if ($status == '1') selected @endif>Activo
+                                        </option>
+                                        <option value="0" @if ($status == '0') selected @endif>Inactivo
+                                        </option>
+                                    </select>
+                                    <button class="btn btn-outline-primary" type="submit"
+                                        id="button-addon2">Buscar</button>
+                                </div>
                             </form>
                         </div>
 
@@ -52,7 +54,7 @@
                                         </div>
                                         <div class="card-body row">
                                             <div class="col-12">
-                                              {{-- <h5class="card-title">$service->provider->nombre }}</h5>--}}
+                                                {{-- <h5class="card-title">$service->provider->nombre }}</h5> --}}
                                                 @if ($service->status === 0)
                                                     <span class="badge text-white bg-secondary"
                                                         style="float: right;top: -40px;position: relative;">Inactivo</span>
@@ -65,18 +67,18 @@
                                                 {{-- <pclass="card-texttext-mutedm-0">Titulo</p> --}}
                                                 <h5 class="card-title m-0 p-0">{{ $service->title }}</h5>
                                             </div>
-                                            {{--    <div class="col-12 mb-2">
-                                            <p class="card-text text-muted m-0">Tipo</p>
-                                            <h5 class="card-title m-0 p-0">
-                                                @if ($service->type === 'service')
-                                                    Servicio
-                                                @elseif ($service->type === 'product')
-                                                    Producto
-                                                @else
-                                                    Personal
-                                                @endif
-                                            </h5>
-                                        </div> --}}
+                                            <div class="col-12 mb-2">
+                                                <p class="card-text text-muted m-0">Tipo</p>
+                                                <h5 class="card-title m-0 p-0">
+                                                    @if ($service->type === 'service')
+                                                        Servicio
+                                                    @elseif ($service->type === 'product')
+                                                        Producto
+                                                    @else
+                                                        Personal
+                                                    @endif
+                                                </h5>
+                                            </div>
                                             <div class="col-12 mb-2">
                                                 <p class="card-text text-muted m-0">Costo</p>
                                                 <h5 class="card-title m-0 p-0">
@@ -86,10 +88,19 @@
                                             </div>
 
 
-                                                <div class="col-6 mt-3">
+                                            <div class="col-4 mt-3">
+                                                <a href="{{ url(env('user') . '/catalogo/edit/' . $service->id) }}"
+                                                    class="btn btn-primary">Editar</a>
+                                            </div>
+
+                                            @if ($service->type === 'employe')
+                                                <div class="col-4 mt-3">
                                                     <a href="{{ url(env('user') . '/catalogo/edit/' . $service->id) }}"
-                                                        class="btn btn-primary">Editar</a>
+                                                        class="btn btn-warning">Subir Información</a>
                                                 </div>
+                                            @endif
+
+
 
                                         </div>
                                     </div>

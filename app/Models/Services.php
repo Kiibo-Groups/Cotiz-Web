@@ -17,7 +17,37 @@ class Services extends Model
        'logo',
        'status',
        'price',
-       'provider_id'
+       'provider_id',
+
+       'nombre',
+       'apellidoPaterno',
+       'apellidoMaterno',
+       'carrera',
+       'especialidad',
+       'calle',
+       'numeroCalle',
+       'colonia',
+       'cp',
+       'municipio',
+       'delegación',
+       'estado',
+       'country',
+       'celular',
+
+       'email',
+       'fb',
+       'linkedin',
+       'instagram',
+
+       'titulo1',
+       'titulo2',
+       'cedula1',
+       'cedula2',
+       'cv',
+       'fotoCredencial',
+       'fotoCredencial2',
+       'exitos',
+
     ];
 
     public function provider(){
