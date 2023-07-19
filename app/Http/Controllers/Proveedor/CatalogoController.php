@@ -25,7 +25,7 @@ class CatalogoController extends Controller
         }
 
         if($search) {
-            $data = $data->where('title','like','%'.$search.'%');
+            $data = $data->whereRaw('LOWER(title) LIKE(?)','%'.$search.'%');
         }
 
         $data = $data->paginate(10);
