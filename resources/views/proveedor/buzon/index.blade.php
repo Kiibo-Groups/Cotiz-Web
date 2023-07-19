@@ -33,7 +33,7 @@ Buzón
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" id="filter_search"
                         @if ($search != null) value="{{ $search }}" @endif
-                        placeholder="Buscar una solicitud por usuario" aria-label="Recipient's username"
+                        placeholder="Buscar una solicitud por Descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
 
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
@@ -66,18 +66,16 @@ Buzón
                                         <tr>
 
                                            <td class="col-md-1"> {{ $req->admin->name }}</td>
-                                            <td class="col-md-1">{{ $req->proveedor->nombre }} </td>
+                                            <td class="col-md-2">{{ $req->proveedor->nombre }} </td>
                                             <td>{{ $req->descripcion }}</td>
-                                            <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
+                                            <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
 
                                             <td class="col-md-1">
 
-                                                <a target="_blank" class="btn btn-warning" title="Descargar Documento"
+                                                <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
                                                     href="/assets/documento/buzon/{{ $req->documento }}">
                                                     <i class="bi bi-download"></i>
                                                 </a>
-
-
                                             </td>
                                         </tr>
                                     @endforeach

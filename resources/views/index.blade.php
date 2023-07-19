@@ -37,7 +37,7 @@
 
 
 
-                                            <input type="submit" id="search" name="search"
+                                            <input type="submit" id="search" name="search" title="Ir a panel administrativo"
                                                 class="btn text-white searchbtn submit-btn w-100; cursor:pointer;" value="Bienvenido(a) {{ Auth::user()->name }}"
                                                 style="height: 60px;background: #00C5D7;">
                                         </div>

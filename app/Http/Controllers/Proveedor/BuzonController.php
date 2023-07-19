@@ -19,15 +19,14 @@ class BuzonController extends Controller
         $from = $request->filter_from;
         $even = $request->filter_even;
 
-        $requests = Buzon::where('prove_id', auth()->user()->idempresa)->orderBy("id", "desc")->with(['admin','proveedor']);
+        $requests = Buzon::where('prove_id', auth()->user()->idempresa)->orderBy("id", "desc");
 
         if($search) {
            // $requests = $requests->orWhereHas('admin', function ($q) use ($search) {
            //     $q->where('name', "like",'%'.$search.'%');
            // })
-            $requests = $requests->orWhereHas('proveedor', function ($q) use ($search) {
-                $q->where('nombre','like','%'.$search.'%');
-            });
+            $requests = $requests->whereRaw('LOWER(descripcion) LIKE(?)','%'.$search.'%');
+
         }
 
         if(!is_null($from)) {

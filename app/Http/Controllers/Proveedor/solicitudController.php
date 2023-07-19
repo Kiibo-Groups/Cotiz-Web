@@ -22,7 +22,7 @@ class solicitudController extends Controller
         $from = $request->filter_from;
         $even = $request->filter_even;
 
-        $requests = Requests::where('solicitud', 3)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc")->with(['service','user']);
+        $requests = Requests::where('solicitud', 3)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc");
 
 
 
@@ -36,14 +36,10 @@ class solicitudController extends Controller
         if(!is_null($status)) {
             $requests = $requests->where('status','=', $status);
         }
-
+        //whereRaw('LOWER(title) LIKE(?)','%'.$search.'%');
         if($search) {
-            $requests = $requests->orWhereHas('service', function ($q) use ($search) {
-                $q->where('title', "like",'%'.$search.'%');
-            })
-            ->orWhereHas('user', function ($q) use ($search) {
-                $q->where('name','like','%'.$search.'%');
-            });
+            $requests = $requests->whereRaw('LOWER(description) LIKE(?)','%'.$search.'%');
+
         }
 
         if(!is_null($from)) {

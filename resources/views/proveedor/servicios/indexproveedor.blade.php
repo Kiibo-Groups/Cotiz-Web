@@ -17,9 +17,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/servicios/proveedores') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/solicitud') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/servicios/proveedores') }}" method="GET">
+                        <form action="{{ url(env('user') . '/solicitud') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')
@@ -35,7 +35,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" id="filter_search"
                         @if ($search != null) value="{{ $search }}" @endif
-                        placeholder="Buscar una solicitud por usuario" aria-label="Recipient's username"
+                        placeholder="Buscar una solicitud por Descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
                     @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
@@ -62,8 +62,8 @@
                             <!-- Default Table -->
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
+                                    <tr style="text-align: center">
+
                                         <th scope="col">Tipo</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
@@ -74,11 +74,11 @@
                                 <tbody>
                                     @foreach ($requests as $req)
                                         <tr>
-                                            <th scope="row">{{ $req->id }}</th>
-                                            <td>{{ $req->service->type }}</td>
-                                            <td>{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
+
+                                            <td class="col-md-1">{{ $req->service->type }}</td>
+                                            <td class="col-md-2">{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
                                             <td>{{ $req->description }}</td>
-                                            <td>
+                                            <td class="col-md-1" style="text-align: center">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
                                                             class="badge text-white bg-secondary">Pendiente</span></h5>
@@ -93,13 +93,13 @@
                                                             class="badge text-white bg-success">Finalizado</span></h5>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a class="btn btn-info" title="Documentos Relacionados"
+                                            <td class="col-md-2" style="text-align: center">
+                                                <a class="btn btn-info btn-sm" title="Documentos Relacionados"
                                                     href="{{ url(env('user') . '/servicios/ver/' . $req->id) }}">
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning" title="Descargar Documento"
+                                                    <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
                                                         href="/assets/documents/users/{{ $req->document }}">
                                                         <i class="bi bi-download"></i>
                                                     </a>
