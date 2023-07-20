@@ -22,8 +22,75 @@
 
                     <div class="row">
 
+
+                        <div class="col-8 text-align-right">
+                            <div class="card-body" style="justify-items: right;display: grid;">
+                                <a href="{{ url(env('user') . '/catalogo/referencias/' . $data->id) }}"
+                                    class="btn btn-warning"> Agregar
+                                    referencias</a>
+                            </div>
+                        </div>
+                        <div class="col-4 text-align-right">
+                            <div class="card-body" style="justify-items: right;display: grid;">
+                                <a href="{{ url(env('admin') . '/servicios/add/' . $data->id) }}" class="btn btn-primary">
+                                    Agregar
+                                    Certificados / constancias</a>
+                            </div>
+                        </div>
                     </div>
 
+                    <hr />
+                    <div style="text-align: center">
+                        <h6>5 Referencias profesionales - 5 Referencias personales</h6>
+                        @if (count($referencia) >= 1)
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <!-- Default Table -->
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Referencia</th>
+                                                        <th scope="col">Nombre completo</th>
+                                                        <th scope="col">Direccion</th>
+                                                        <th scope="col">Tiempo de conocer</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($referencia as $req)
+                                                        <tr>
+                                                            <td class="col-md-1">{{ $req->referencia }}</td>
+                                                            <td class="col-md-3">{{ $req->nombre }} </td>
+                                                            <td>{{ $req->direccion }}</td>
+                                                            <td style="text-align: center" class="col-md-2">
+                                                                {{ $req->tiempo }}</td>
+
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <!-- End Default Table Example -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        @endif
+
+                    </div>
+
+                    <hr />
+                    <div style="text-align: center">
+                        <h6>Certificados / constancias</h6>
+                    </div>
+
+                    <hr />
 
 
 
@@ -252,9 +319,11 @@
 
                         </div>
                         <div class="col-md-4">
-                            <label for="delegación" class="form-label">Descripción de casos de éxitos en su carrera profesional</label>
+                            <label for="delegación" class="form-label">Descripción de casos de éxitos en su carrera
+                                profesional</label>
                             <br>
-                            <a target="_blank" class="btn btn-warning" title="Descargar Descripción de casos de éxitos en su carrera profesional"
+                            <a target="_blank" class="btn btn-warning"
+                                title="Descargar Descripción de casos de éxitos en su carrera profesional"
                                 href="{{ url(env('user') . '/catalogo/file/' . $data->exitos) }}">
                                 <i class="bi bi-download"></i>
                             </a>

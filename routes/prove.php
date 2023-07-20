@@ -40,6 +40,10 @@ Route::prefix(env('user'))->namespace('Proveedor')->group(static function() {
         Route::get('/catalogo/ver/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'ver'])->name('catalogo_ver');
 
         Route::get('/catalogo/file/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'verFilesEmpresa']);
+        Route::get('/catalogo/referencias/{id}',[App\Http\Controllers\Proveedor\CatalogoController::class, 'AddReferencias'])->name('add_referencias');
+
+        Route::post('/catalogo/add/referencias', [App\Http\Controllers\Proveedor\CatalogoController::class, 'storeServiceReferencias'])->name('catalogo_referencia_post');
+
 
 
 

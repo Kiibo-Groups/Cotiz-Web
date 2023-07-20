@@ -62,6 +62,7 @@ return array(
     'App\\Models\\Notifications' => $baseDir . '/app/Models/Notifications.php',
     'App\\Models\\Providers' => $baseDir . '/app/Models/Providers.php',
     'App\\Models\\Rca' => $baseDir . '/app/Models/Rca.php',
+    'App\\Models\\Referencia' => $baseDir . '/app/Models/Referencia.php',
     'App\\Models\\Requests' => $baseDir . '/app/Models/Requests.php',
     'App\\Models\\Rfc' => $baseDir . '/app/Models/Rfc.php',
     'App\\Models\\Sections' => $baseDir . '/app/Models/Sections.php',

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Proveedor;
 
 use App\Models\Rfc;
 use App\Models\Services;
+use App\Models\Referencia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class CatalogoController extends Controller
 {
@@ -254,6 +256,7 @@ class CatalogoController extends Controller
 
         return view($this->folder.'catalogo.ver', [
             'data' => Services::find($id),
+            'referencia' => Referencia::where('servi_id',$id)->orderBy('referencia', 'desc')->get(),
 
         ]);
 
@@ -266,5 +269,44 @@ class CatalogoController extends Controller
          //dd($rutaDeArchivo);
          return response()->download($rutaDeArchivo, $id);
      }
+
+
+
+     public function AddReferencias($id)
+     {
+
+
+             $user = auth()->user()->id;
+             $origen = 'usuario';
+
+
+
+         return view($this->folder.'catalogo.addreferencias', [
+
+             'data' => new Referencia,
+
+             'array' => [],
+             'id' => $id,
+             'user' => $user,
+             'origen' => $origen
+         ]);
+     }
+
+
+
+     public function storeServiceReferencias(Request $request){
+//dd($request->servi_id);
+        $input = $request->all();
+        $services_data = new Referencia;
+
+        $services_data->create($input);
+
+        Session::flash('mensaje','Referencias Agregada ...');
+        Session::flash('class', 'success');
+        return redirect(env('user').'/catalogo/ver/'.$request->servi_id);
+
+
+
+    }
 
 }

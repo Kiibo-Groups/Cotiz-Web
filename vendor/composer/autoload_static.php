@@ -577,6 +577,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Models\\Notifications' => __DIR__ . '/../..' . '/app/Models/Notifications.php',
         'App\\Models\\Providers' => __DIR__ . '/../..' . '/app/Models/Providers.php',
         'App\\Models\\Rca' => __DIR__ . '/../..' . '/app/Models/Rca.php',
+        'App\\Models\\Referencia' => __DIR__ . '/../..' . '/app/Models/Referencia.php',
         'App\\Models\\Requests' => __DIR__ . '/../..' . '/app/Models/Requests.php',
         'App\\Models\\Rfc' => __DIR__ . '/../..' . '/app/Models/Rfc.php',
         'App\\Models\\Sections' => __DIR__ . '/../..' . '/app/Models/Sections.php',
