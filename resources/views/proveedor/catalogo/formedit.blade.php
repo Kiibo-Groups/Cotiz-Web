@@ -6,7 +6,7 @@
                     @if (!$data->id)
                         <h2>Agregar Nuevo Servicio</h2>
                     @else
-                        <h2>Editando Servicio #{{ $data->id }}</h2>
+                        <h4>Editando Servicio #{{ $data->id }}</h4>
                     @endif
                 </div>
 
@@ -53,22 +53,22 @@
                     <div class="col-lg-8">
 
                         <div class="col-md-11" style="margin-top:25px; ">
-                            <input type="hidden" name="provider_id" value="{{ $providers->id }}">
+                            <input type="hidden" name="provider_id" value="{{ $providers->id}}">
                             @error('type')
                                 <div class="alert alert-danger" role="alert">
                                     Debes Agregar un tipo de servicio
                                 </div>
                             @enderror
-                            <label class="form-label">Tipo</label>
-                            <select name="type" id="type" class="form-select js-example-basic-single">
-                                <option value="" selected></option>
-                                <option value="service" @if ($data->type === 'service') selected @endif>
-                                    Servicio</option>
-                                <option value="product" @if ($data->type === 'product') selected @endif>
-                                    Producto</option>
-                                <option value="employe" @if ($data->type === 'employe') selected @endif>
-                                    Personal</option>
-                            </select>
+                            <label class="form-label">Tipo: </label>
+                             @if ($data->type === 'service') Servicio @endif
+
+                             @if ($data->type === 'product') Producto @endif
+
+                            @if ($data->type === 'employe') Personal @endif
+
+                            <input type="hidden" name="type" id="type" class="form-control"
+                                @if ($data->id) value="{{ $data->type }}" @endif>
+
                         </div>
 
 
@@ -147,9 +147,9 @@
 
 
 <script>
-    $("#type").change(function() {
 
-        var type = $(this).val();
+
+        var type = $('#type').val();
 
         console.log(type);
 
@@ -162,5 +162,5 @@
             $("#registroData").hide();
 
         }
-    });
+
 </script>

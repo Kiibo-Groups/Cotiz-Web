@@ -35,9 +35,9 @@ Route::prefix(env('user'))->namespace('Proveedor')->group(static function() {
         Route::resource('/catalogo',CatalogoController::class);
         Route::get('/catalogo', [App\Http\Controllers\Proveedor\CatalogoController::class, 'index'])->name('catalogo');
         Route::post('/catalogo/add', [App\Http\Controllers\Proveedor\CatalogoController::class, 'storeService'])->name('catalogo_create_post');
-        Route::get('/catalogo/edit/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'edit']);
+        Route::get('/catalogo/edit/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'edit'])->name('catalogo_edit');
         Route::post('/catalogo/update', [App\Http\Controllers\Proveedor\CatalogoController::class, 'updateService'])->name('catalogo_update_post');
-        Route::get('/catalogo/ver/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'ver']);
+        Route::get('/catalogo/ver/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'ver'])->name('catalogo_ver');
 
         Route::get('/catalogo/file/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'verFilesEmpresa']);
 
