@@ -95,7 +95,7 @@
 
                                             @if ($service->type === 'employe')
                                                 <div class="col-4 mt-3">
-                                                    <a href="{{ url(env('user') . '/catalogo/edit/' . $service->id) }}"
+                                                    <a href="{{ url(env('user') . '/catalogo/ver/' . $service->id) }}"
                                                         class="btn btn-warning">Subir Información</a>
                                                 </div>
                                             @endif

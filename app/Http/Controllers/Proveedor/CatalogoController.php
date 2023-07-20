@@ -150,7 +150,7 @@ class CatalogoController extends Controller
 
     public function edit($id){
 
-        $providers = Rfc::where('id', auth()->user()->idempresa)->where('status', 0)->get();
+        $providers = Rfc::where('id', auth()->user()->idempresa)->where('status', 0)->first();
 
         return view($this->folder.'catalogo.edit', [
             'data' => Services::find($id),
@@ -190,5 +190,22 @@ class CatalogoController extends Controller
 
     }
 
+    public function ver($id){
+
+
+        return view($this->folder.'catalogo.ver', [
+            'data' => Services::find($id),
+
+        ]);
+
+    }
+
+    public function verFilesEmpresa($id){
+
+        // $arc  = Arbitraje::where('id', $id)->first();
+         $rutaDeArchivo = public_path().'/assets/documento/profesionales/' .$id;
+         //dd($rutaDeArchivo);
+         return response()->download($rutaDeArchivo, $id);
+     }
 
 }

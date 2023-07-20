@@ -53,7 +53,7 @@
                     <div class="col-lg-8">
 
                         <div class="col-md-11" style="margin-top:25px; ">
-                            <input type="hidden" name="provider_id" value="{{ $providers->id }}">
+                            <input type="hidden" name="provider_id" value="{{ $providers->id}}">
                             @error('type')
                                 <div class="alert alert-danger" role="alert">
                                     Debes Agregar un tipo de servicio

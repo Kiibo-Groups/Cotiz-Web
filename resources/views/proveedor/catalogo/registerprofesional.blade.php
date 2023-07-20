@@ -202,7 +202,7 @@
             <label for="exitos">Descripción de
                 casos de éxitos en su carrera
                 profesional </label>
-            <input id="exitos" type="file" class="form-control" name="exitos" required>
+            <input id="exitos" type="file" class="form-control" name="exitos" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
 
         </div>
     </div>
