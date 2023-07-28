@@ -48,7 +48,7 @@ class CatalogoController extends Controller
 
 
         $providers = Rfc::where('id', auth()->user()->idempresa)->where('status', 0)->first();
-
+dd($providers->id );
         return view($this->folder . 'catalogo.add', [
             'data' => new Services,
             'providers' => $providers
