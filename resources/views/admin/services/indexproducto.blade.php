@@ -56,9 +56,13 @@
                                             <div class="col-12">
                                                 <h5 class="card-title">
                                                     @if ($services !== null)
-                                                        {{ $service->provider->nombre }}
+
                                                     @endif
 
+
+                                                    @php
+                                                        ($service->provider == NULL) ? 1 : {{ $service->provider->nombre }}
+                                                    @endphp
                                                 </h5>
                                                 @if ($service->status === 0)
                                                     <span class="badge text-white bg-secondary"
