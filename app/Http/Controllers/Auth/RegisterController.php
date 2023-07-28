@@ -31,7 +31,7 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $request->validate([
-            'name'=>'required',
+            'nombre'=>'required',
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
@@ -140,7 +140,7 @@ class RegisterController extends Controller
     public function storeEmpresa(Request $request){
 
         $request->validate([
-            'name'=>'required',
+
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
@@ -226,7 +226,7 @@ class RegisterController extends Controller
 
 
         $request->validate([
-            'nombre'=>'required',
+
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
@@ -316,7 +316,7 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $request->validate([
-            'name'=>'required',
+
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
@@ -415,7 +415,7 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $request->validate([
-            'name'    =>'required',
+
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
 
