@@ -120,7 +120,7 @@ class RequestsController extends Controller
     }
 
 
-    public function edit(Request $request, $id){
+    public function edit(Request $request){
 
 
         $id_admin = auth('admin')->user()->id;
