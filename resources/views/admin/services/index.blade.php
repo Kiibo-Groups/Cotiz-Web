@@ -66,7 +66,7 @@
                                     <tbody>
                                         @foreach ($services as $req)
                                         <tr>
-                                            <th  class="col-md-2"> {{ $service->full_nombre }}</th>
+                                            <th  class="col-md-2">{{ $req->full_nombre }}</th>
                                             <td class="col-md-2">{{ $req->nombre}} {{ $req->apellidoPaterno}}</td>
                                             <td class="col-md-2">{{ $req->carrera}} </td>
                                             <td class="col-md-3">{{ $req->especialidad }}</td>
