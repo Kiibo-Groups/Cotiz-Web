@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="card-body row">
                                         <div class="col-12">
-                                            <h5 class="card-title">{{ $service->provider->nombre}}</h5>
+                                            <h5 class="card-title"> {{ $service->full_nombre }}</h5>
                                             @if ($service->status === 0)
                                             <span class="badge text-white bg-secondary" style="float: right;top: -40px;position: relative;">Inactivo</span>
                                             @else
