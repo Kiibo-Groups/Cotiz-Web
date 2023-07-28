@@ -54,7 +54,11 @@
                 <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
+                    @if (Auth::user()->role == 3)
+                        <input type="hidden" name="solicitud" value="1">
+                    @else
+                        <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
+                    @endif
                     <input type="hidden" name="tipo" id="tipo" value="{{ $type }}">
                     @if (Auth::user()->role == 10)
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->id }}">
@@ -82,7 +86,8 @@
                                 <label for="link" class="font-semibold">Link Drive</label>
                                 <div class="form-icon relative mt-2">
 
-                                    <input name="link" id="link" type="text" class="form-input ltr:pl-11 rtl:pr-11">
+                                    <input name="link" id="link" type="text"
+                                        class="form-input ltr:pl-11 rtl:pr-11">
                                 </div>
                             </div>
                         </div>
@@ -141,17 +146,17 @@
         console.log(type);
 
         if (type == 'product') {
-             $("#registroData").show();
-             $('#formulario').append(` @include('pages.searchproducto')`);
+            $("#registroData").show();
+            $('#formulario').append(` @include('pages.searchproducto')`);
         }
 
         if (type == 'service') {
-             $("#registroData").show();
-             $('#formulario').append(` @include('pages.searchservicio')`);
+            $("#registroData").show();
+            $('#formulario').append(` @include('pages.searchservicio')`);
         }
         if (type == 'employe') {
-             $("#registroData").show();
-             $('#formulario').append(` @include('pages.searchprofesional')`);
+            $("#registroData").show();
+            $('#formulario').append(` @include('pages.searchprofesional')`);
         }
     });
 </script>

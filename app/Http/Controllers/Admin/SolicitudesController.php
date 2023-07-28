@@ -30,7 +30,7 @@ class SolicitudesController extends Controller
         $from = $request->filter_from;
         $even = $request->filter_even;
         $requests = Requests::where('solicitud', 1)->orderBy("status", "asc")->with(['service','user']);
-
+        //whereIn('role', [1, 3])
         if(!is_null($status)) {
             $requests = $requests->where('status','=', $status);
         }

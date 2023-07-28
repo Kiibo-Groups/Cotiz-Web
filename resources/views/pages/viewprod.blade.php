@@ -55,7 +55,12 @@
 
                     <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
+                        @if ( Auth::user()->role == 3)
+                        <input type="text" name="solicitud" value="1">
+                        @else
+                        <input type="text" name="solicitud" value="{{ Auth::user()->role }}">
+                        @endif
+
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="services_id" value="{{ $data->id }}">
                         <input type="hidden" name="status" value="0">
