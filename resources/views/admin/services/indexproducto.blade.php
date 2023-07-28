@@ -55,7 +55,7 @@
                                         <div class="card-body row">
                                             <div class="col-12">
                                                 <h5 class="card-title">
-                                                    @if ($service != null)
+                                                    @if ($services !== null)
                                                         {{ $service->provider->nombre }}
                                                     @endif
 
