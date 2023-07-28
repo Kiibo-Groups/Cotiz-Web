@@ -58,8 +58,6 @@
                                                     @if ($services->provider !== null)
                                                         {{ $service->provider->nombre }}
                                                     @endif
-
-
                                                 </h5>
                                                 @if ($service->status === 0)
                                                     <span class="badge text-white bg-secondary"
