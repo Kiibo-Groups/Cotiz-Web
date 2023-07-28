@@ -24,7 +24,8 @@ class Requests extends Model
        'marca',
        'cantidad',
        'presupuesto',
-       'servicio'
+       'servicio',
+       'link'
     ];
 
 

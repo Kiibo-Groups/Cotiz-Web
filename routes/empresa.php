@@ -17,6 +17,13 @@ Route::prefix(env('user'))->namespace('Empresa')->group(static function() {
         Route::get('/empresa/servicios/add/{id}',[App\Http\Controllers\Empresa\solicitudController::class, 'AddindexVer']);
         Route::post('/empresa/Addservicios',[App\Http\Controllers\Empresa\solicitudController::class, 'Addservicios']);
 
+
+        Route::get('/empresa/users', [App\Http\Controllers\Empresa\solicitudController::class, 'usuarios'])->name('users');
+
+        Route::get('/empresa/users/ver/{id}', [App\Http\Controllers\Empresa\solicitudController::class, 'VerUsuarioEmpresa']);
+        Route::get('/empresas/credencial/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesfotoCredencial']);
+
+
 //         /*
 //         |--------------------------------------------------------------------------
 //         | Our Buzón Routes

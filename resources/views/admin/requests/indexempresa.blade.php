@@ -70,6 +70,7 @@
                                         <th scope="col">Servicio</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
+                                        <th scope="col">Fecha</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Opciones</th>
                                     </tr>
@@ -89,19 +90,27 @@
 
                                             </td>
                                             <td>{{ $req->description }}</td>
+                                            <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">Pendiente</span></h5>
-                                                @elseif ($req->status === 1)
+                                                            class="badge text-white bg-secondary">SOLICITANDO</span></h5>
+                                                @elseif ($req->status === 7)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Aprobado</span></h5>
-                                                @elseif ($req->status === 2)
+                                                            class="badge text-white bg-success">APROBADA</span></h5>
+                                                @elseif ($req->status === 8)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">Rechazado</span></h5>
+                                                            class="badge text-white bg-danger">RECHAZADA</span></h5>
                                                 @elseif ($req->status === 5)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Finalizado</span></h5>
+                                                            class="badge text-white bg-dark">CONTESTADA</span></h5>
+                                                @elseif ($req->status === 6)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-primary">EXAMINANDO</span></h5>
+                                                @elseif ($req->status === 1)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-info">EN PROCESO COTIIZ</span>
+                                                    </h5>
                                                 @endif
                                             </td>
                                             <td class="col-md-2">
@@ -191,10 +200,12 @@
                 <div class="modal-body">
                     <label for="status">Estado</label>
                     <select name="status" id="status" class="form-select">
-                        <option value="0" selected>Pendiente</option>
-                        <option value="1">Aprobado</option>
-                        <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
-                        <option value="2">Rechazado</option>
+                        <option value="0" selected>SOLICITANDO</option>
+                        <option value="7">APROBADA</option>
+                        <option value="5">CONTESTADA </option>
+                        <option value="8">RECHAZADA</option>
+                        <option value="6">EXAMINANDO</option>
+                        <option value="1">EN PROCESO COTIIZ</option>
                     </select>
                 </div>
                 <div class="modal-footer">

@@ -126,7 +126,23 @@ class solicitudController extends Controller
 
     }
 
+    public function usuarios()
+    {
 
+        return view($this->folder.'users.indexProveedores', [
+            'data' => User::where('idempresa', auth()->user()->idempresa)->get()
+        ]);
+    }
+
+
+    public function VerUsuarioProveedor($id)
+    {
+        return view($this->folder.'users.formVerProveedor', [
+            'data' => User::find($id),
+            'form_url' => Asset(env('user').'/users/update'),
+            'ver' => 0 //0 permiso ver
+        ]);
+    }
 
 
 

@@ -8,6 +8,13 @@
                     <span>Solicitudes</span>
                 </a>
             </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link @if (!Route::is('home')) collapsed @endif"
+                    href="{{ Asset(env('user') . '/empresa/users') }}">
+                    <i class="bi bi-person"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
            {{-- <li class="nav-item">
                 <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif" data-bs-target="#buzon-nav"

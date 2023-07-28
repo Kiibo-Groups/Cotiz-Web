@@ -139,34 +139,34 @@ class RequestsController extends Controller
         $user_data = User::find($requests_data->user_id);
         $msg =  'Solicitud actualizado con éxito ...';
 
-        if ($input['status'] == 5) {
-            $amountServ    = $service_data->price;
-            $cashBackUser  = $user_data->cashback;
-            $cashBackAdmin = $admin->cashback;
-            $typeCashB     = $admin->type_cashb;
+        // if ($input['status'] == 5) {
+        //     $amountServ    = $service_data->price;
+        //     $cashBackUser  = $user_data->cashback;
+        //     $cashBackAdmin = $admin->cashback;
+        //     $typeCashB     = $admin->type_cashb;
 
-            $newCash;
-            if ($typeCashB === 1) { // en %
-                $newCash = ($amountServ * $cashBackAdmin) / 100;
-            }else { // Valor Fijo
-                $newCash = $cashBackAdmin;
-            }
+        //     $newCash;
+        //     if ($typeCashB === 1) { // en %
+        //         $newCash = ($amountServ * $cashBackAdmin) / 100;
+        //     }else { // Valor Fijo
+        //         $newCash = $cashBackAdmin;
+        //     }
 
-            $cashBackUser = $cashBackUser + $newCash;
-            $user_data->cashback = $cashBackUser;
-            $user_data->save();
+        //     $cashBackUser = $cashBackUser + $newCash;
+        //     $user_data->cashback = $cashBackUser;
+        //     $user_data->save();
 
-            $msg = "Solicitud actualizada, y CashBack aplicado.";
+        //     $msg = "Solicitud actualizada, y CashBack aplicado.";
 
-            // Agregamos el cashBack si es necesario
-            // return response()->json([
-            //     'amountServ' => $service_data->price,
-            //     'cashbackUser' => $cashBackUser,
-            //     'cashbackAdmin' => $cashBackAdmin,
-            //     'typeCashB' => $typeCashB,
-            //     'newCash' => $newCash
-            // ]);
-        }
+        //     // Agregamos el cashBack si es necesario
+        //     // return response()->json([
+        //     //     'amountServ' => $service_data->price,
+        //     //     'cashbackUser' => $cashBackUser,
+        //     //     'cashbackAdmin' => $cashBackAdmin,
+        //     //     'typeCashB' => $typeCashB,
+        //     //     'newCash' => $newCash
+        //     // ]);
+        // }
 
 
         // Notificamos

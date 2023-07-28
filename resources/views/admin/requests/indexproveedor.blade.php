@@ -64,7 +64,7 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Fecha</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Status</th>
@@ -75,22 +75,29 @@
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                            <td class="col-md-1">{{ $req->service->type }}</td>
+                                            <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
                                             <td class="col-md-2">{{ $req->prove->nombre }} </td>
                                             <td>{{ $req->description }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">Pendiente</span></h5>
-                                                @elseif ($req->status === 1)
+                                                            class="badge text-white bg-secondary">SOLICITANDO</span></h5>
+                                                @elseif ($req->status === 7)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Aprobado</span></h5>
-                                                @elseif ($req->status === 2)
+                                                            class="badge text-white bg-success">APROBADA</span></h5>
+                                                @elseif ($req->status === 8)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">Rechazado</span></h5>
+                                                            class="badge text-white bg-danger">RECHAZADA</span></h5>
                                                 @elseif ($req->status === 5)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Finalizado</span></h5>
+                                                            class="badge text-white bg-dark">CONTESTADA</span></h5>
+                                                @elseif ($req->status === 6)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-primary">EXAMINANDO</span></h5>
+                                                @elseif ($req->status === 1)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-info">EN PROCESO COTIIZ</span>
+                                                    </h5>
                                                 @endif
                                             </td>
                                             <td class="col-md-2">
@@ -99,14 +106,16 @@
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
+                                                    <a target="_blank" class="btn btn-warning btn-sm"
+                                                        title="Descargar Documento"
                                                         href="/assets/documents/users/{{ $req->document }}">
                                                         <i class="bi bi-download"></i>
                                                     </a>
                                                 @endif
                                                 {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
                                                 @if (Auth::guard('admin')->check())
-                                                    <a type="button" class="open-modal btn btn-success btn-sm" data-bs-toggle="modal" title="Editar Estado"
+                                                    <a type="button" class="open-modal btn btn-success btn-sm"
+                                                        data-bs-toggle="modal" title="Editar Estado"
                                                         data-bs-target="#editRequest" data-nombre="{{ $req->id }}">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
@@ -117,10 +126,10 @@
                                                             <i class="bi bi-trash"></i>
                                                         </a>
                                                     @else
-                                                      {{--  <a class="btn btn-danger btn-sm"
+                                                        {{--  <a class="btn btn-danger btn-sm"
                                                             href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
                                                             <i class="bi bi-trash"></i>
-                                                        </a>--}}
+                                                        </a> --}}
                                                     @endif
                                                 @endif
                                             </td>
@@ -156,47 +165,46 @@
     <!--end section-->
 
     @if ($requests)
-
-            <!-- Modal Edit Element -->
-            <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar
-                                solicitud</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-
-                        @if (!Auth::guard('admin')->check())
-                            <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
-                            @else
-                                <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
-                        @endif
-
-
-                        @csrf
-                        <input id="id" name="id" type="hidden"  />
-                        <div class="modal-body">
-                            <label for="status">Estado</label>
-                            <select name="status" id="status" class="form-select">
-                                <option value="0" selected>Pendiente</option>
-                                <option value="1">Aprobado</option>
-                                <option value="5">Pagado <small>(Se aplicara el cashback previsto)</small> </option>
-                                <option value="2">Rechazado</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Aceptar</button>
-                        </div>
+        <!-- Modal Edit Element -->
+        <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar
+                            solicitud</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    </form>
-                </div>
-            </div>
-            <!-- Modal Edit Element -->
 
+                    @if (!Auth::guard('admin')->check())
+                        <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
+                        @else
+                            <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                    @endif
+
+
+                    @csrf
+                    <input id="id" name="id" type="hidden" />
+                    <div class="modal-body">
+                        <label for="status">Estado</label>
+                        <select name="status" id="status" class="form-select">
+                            <option value="0" selected>SOLICITANDO</option>
+                            <option value="7">APROBADA</option>
+                            <option value="5">CONTESTADA </option>
+                            <option value="8">RECHAZADA</option>
+                            <option value="6">EXAMINANDO</option>
+                            <option value="1">EN PROCESO COTIIZ</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <!-- Modal Edit Element -->
     @endif
     <script>
         const asignarParametrosURL = () => {
@@ -231,8 +239,8 @@
 
             var id = $(this).data('nombre');
             console.log(id);
-           $('#id').val(id);
-           $(".modal").modal("show");
+            $('#id').val(id);
+            $(".modal").modal("show");
         });
 
         $('.close').click(function() {

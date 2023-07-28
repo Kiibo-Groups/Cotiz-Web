@@ -76,6 +76,19 @@
                         <div id="formulario"></div>
                     </div>
 
+                    <div class="grid lg:grid-cols-12 lg:gap-6">
+                        <div class="lg:col-span-12 mb-5">
+                            <div class="ltr:text-left rtl:text-right">
+                                <label for="link" class="font-semibold">Link Drive</label>
+                                <div class="form-icon relative mt-2">
+
+                                    <input name="link" id="link" type="text" class="form-input ltr:pl-11 rtl:pr-11">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
 
                     @error('document')
                         <hr />
@@ -99,6 +112,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
 
 

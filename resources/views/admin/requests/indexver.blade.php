@@ -19,7 +19,7 @@
 
             @if ($request->tipo == 'service')
                 <div class="container">
-                    <hr/>
+                    <hr />
                     <div class="row">
                         <div class="col-sm">
                             <b>Servicio :</b>
@@ -35,14 +35,22 @@
                             <b>Presupuesto :</b>
                             <p>$ {{ number_format($request->presupuesto, 1) }}</p>
                         </div>
+                        @if ($request->link)
+                            <div class="col-sm">
+                                <b>Link Drive :</b>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                            </div>
+                        @endif
+
+
                     </div>
-                    <hr/>
+                    <hr />
                 </div>
             @endif
 
             @if ($request->tipo == 'product')
                 <div class="container">
-                    <hr/>
+                    <hr />
                     <div class="row">
                         <div class="col-sm">
                             <b>Nombre :</b>
@@ -70,9 +78,15 @@
                             <b>Cantidad :</b>
                             <p style="margin-left: 10px">{{ $request->cantidad }}</p>
                         </div>
+                        @if ($request->link)
+                            <div class="col-sm">
+                                <b>Link Drive :</b>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                            </div>
+                        @endif
 
                     </div>
-                    <hr/>
+                    <hr />
 
                 </div>
             @endif
@@ -80,7 +94,7 @@
 
             @if ($request->tipo == 'employe')
                 <div class="container">
-                    <hr/>
+                    <hr />
                     <div class="row">
                         <div class="col-sm">
                             <b>Trabajo a realizar :</b>
@@ -109,9 +123,16 @@
                             <p style="margin-left: 10px">{{ $request->modelo }}</p>
                         </div>
 
+                        @if ($request->link)
+                            <div class="col-sm">
+                                <b>Link Drive :</b>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                            </div>
+                        @endif
+
 
                     </div>
-                    <hr/>
+                    <hr />
                 </div>
             @endif
 

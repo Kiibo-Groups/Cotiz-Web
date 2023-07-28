@@ -40,9 +40,12 @@
                     @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
                             <option value="" selected>Estatus</option>
-                            <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
-                            <option value="1" @if ($status == 1) selected @endif>Aprobado</option>
-                            <option value="2" @if ($status == 2) selected @endif>Rechazado</option>
+                            <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
+                            <option value="1" @if ($status == 1) selected @endif>EN PROCESO COTIIZ</option>
+                            <option value="5" @if ($status == 5) selected @endif>CONTESTADA </option>
+                            <option value="6" @if ($status == 6) selected @endif>EXAMINANDO</option>
+                            <option value="7" @if ($status == 7) selected @endif>APROBADA</option>
+                            <option value="8" @if ($status == 8) selected @endif>RECHAZADA</option>
                         </select>
                     @endif
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
@@ -64,7 +67,8 @@
                                 <thead>
                                     <tr style="text-align: center">
 
-                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Fecha</th>
+
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Status</th>
@@ -75,22 +79,31 @@
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                            <td class="col-md-1">{{ $req->service->type }}</td>
+                                            <td class="col-md-2">{{ $req->created_at->format('d-m-Y') }}</td>
+
                                             <td class="col-md-2">{{ $req->admin->name }} {{ $req->admin->last_name }}</td>
                                             <td>{{ $req->description }}</td>
-                                            <td class="col-md-1" style="text-align: center">
+
+                                            <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">Pendiente</span></h5>
-                                                @elseif ($req->status === 1)
+                                                            class="badge text-white bg-secondary">SOLICITANDO</span></h5>
+                                                @elseif ($req->status === 7)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Aprobado</span></h5>
-                                                @elseif ($req->status === 2)
+                                                            class="badge text-white bg-success">APROBADA</span></h5>
+                                                @elseif ($req->status === 8)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">Rechazado</span></h5>
+                                                            class="badge text-white bg-danger">RECHAZADA</span></h5>
                                                 @elseif ($req->status === 5)
                                                     <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">Finalizado</span></h5>
+                                                            class="badge text-white bg-dark">CONTESTADA</span></h5>
+                                                @elseif ($req->status === 6)
+                                                    <h5 class="card-title m-0 p-0"><span
+                                                            class="badge text-white bg-primary">EXAMINANDO</span></h5>
+                                                @elseif ($req->status === 1)
+                                                    <h5 class="card-title m-0 p-0"><span class="badge text-white bg-info">EN
+                                                            PROCESO COTIIZ</span>
+                                                    </h5>
                                                 @endif
                                             </td>
                                             <td class="col-md-2" style="text-align: center">
@@ -99,7 +112,8 @@
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
+                                                    <a target="_blank" class="btn btn-warning btn-sm"
+                                                        title="Descargar Documento"
                                                         href="/assets/documents/users/{{ $req->document }}">
                                                         <i class="bi bi-download"></i>
                                                     </a>

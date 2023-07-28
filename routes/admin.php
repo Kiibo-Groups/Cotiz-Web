@@ -138,6 +138,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/catalogo/ver/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'ver'])->name('catalogo_ver');
 
         Route::get('/catalogo/status/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'statusServicios']);
+        //Route::get('/catalogo/status/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'statusServicios']);
 
 
         /*

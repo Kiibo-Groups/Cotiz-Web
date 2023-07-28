@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Empresa;
 
+use App\Models\User;
 use App\Models\Requests;
 use App\Models\Serviciover;
 use Illuminate\Http\Request;
@@ -36,12 +37,11 @@ class solicitudController extends Controller
         }
 
         if($search) {
-            $requests = $requests->orWhereHas('service', function ($q) use ($search) {
-                $q->where('title', "like",'%'.$search.'%');
-            })
-            ->orWhereHas('user', function ($q) use ($search) {
-                $q->where('name','like','%'.$search.'%');
-            });
+            $requests = $requests->whereRaw('LOWER(description) LIKE(?)','%'.$search.'%');
+            ;
+            // ->orWhereHas('user', function ($q) use ($search) {
+            //     $q->where('name','like','%'.$search.'%');
+            // });
         }
 
         if(!is_null($from)) {
@@ -142,6 +142,21 @@ class solicitudController extends Controller
     }
 
 
+    public function usuarios()
+    {
+        return view($this->folder.'users.index', [
+            'data' => User::where('idempresa', auth()->user()->idempresa)->get()
+        ]);
+    }
+
+    public function VerUsuarioEmpresa($id)
+    {
+        return view($this->folder.'users.formVerEmpresa', [
+            'data' => User::find($id),
+            'form_url' => Asset(env('user').'/users/update'),
+            'ver' => 0 //0 permiso ver
+        ]);
+    }
 
 
 
