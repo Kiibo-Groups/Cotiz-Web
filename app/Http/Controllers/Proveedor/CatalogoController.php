@@ -57,21 +57,21 @@ class CatalogoController extends Controller
 
     public function storeService(Request $request)
     {
-        //dd($request);
+
         $request->validate([
             'type' => 'required',
             'title' => 'required',
             'description' => 'required',
             'logo' => 'required|max:3048',
             'status' => 'required',
-            'titulo1'=>'required|max:3048',
-            'titulo2'=>'required|max:3048',
-            'cedula1'=>'required|max:3048',
-            'cedula2'=>'required|max:3048',
-            'cv'=>'required|max:3048',
-            'fotoCredencial'=>'required|max:3048',
-            'fotoCredencial2'=>'required|max:3048',
-            'exitos'=>'required|max:3048',
+            'titulo1'=>'max:3048',
+            'titulo2'=>'max:3048',
+            'cedula1'=>'max:3048',
+            'cedula2'=>'max:3048',
+            'cv'=>'max:3048',
+            'fotoCredencial'=>'max:3048',
+            'fotoCredencial2'=>'max:3048',
+            'exitos'=>'max:3048',
         ]);
 
 
@@ -172,14 +172,14 @@ class CatalogoController extends Controller
             'title' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'titulo1'=>'required|max:3048',
-            'titulo2'=>'required|max:3048',
-            'cedula1'=>'required|max:3048',
-            'cedula2'=>'required|max:3048',
-            'cv'=>'required|max:3048',
-            'fotoCredencial'=>'required|max:3048',
-            'fotoCredencial2'=>'required|max:3048',
-            'exitos'=>'required|max:3048',
+            'titulo1'=>'max:3048',
+            'titulo2'=>'max:3048',
+            'cedula1'=>'max:3048',
+            'cedula2'=>'max:3048',
+            'cv'=>'max:3048',
+            'fotoCredencial'=>'max:3048',
+            'fotoCredencial2'=>'max:3048',
+            'exitos'=>'max:3048',
         ]);
 
         $input = $request->all();
