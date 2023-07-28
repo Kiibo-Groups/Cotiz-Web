@@ -176,13 +176,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
+                    @if ($requests)
+
                     @if (!Auth::guard('admin')->check())
                         <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
                         @else
                             <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
                     @endif
 
-
+                    @endif
                     @csrf
                     <input id="id" name="id" type="hidden" />
                     <div class="modal-body">

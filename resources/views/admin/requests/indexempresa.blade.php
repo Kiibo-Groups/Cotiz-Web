@@ -108,8 +108,8 @@
                                                     <h5 class="card-title m-0 p-0"><span
                                                             class="badge text-white bg-primary">EXAMINANDO</span></h5>
                                                 @elseif ($req->status === 1)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-info">EN PROCESO COTIIZ</span>
+                                                    <h5 class="card-title m-0 p-0"><span class="badge text-white bg-info">EN
+                                                            PROCESO COTIIZ</span>
                                                     </h5>
                                                 @endif
                                             </td>
@@ -187,16 +187,16 @@
                         solicitud</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
-                @if (!Auth::guard('admin')->check())
-                    <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
-                    @else
-                        <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                @if ($requests)
+                    @if (!Auth::guard('admin')->check())
+                        <form action="{{ url(env('user') . '/request/edit/' . $req->id) }}" method="POST">
+                        @else
+                            <form action="{{ url(env('admin') . '/request/edit/' . $req->id) }}" method="POST">
+                    @endif
                 @endif
 
-
                 @csrf
-                <input id="id" name="id" type="hidden"  />
+                <input id="id" name="id" type="hidden" />
                 <div class="modal-body">
                     <label for="status">Estado</label>
                     <select name="status" id="status" class="form-select">
@@ -256,8 +256,8 @@
 
             var id = $(this).data('nombre');
             console.log(id);
-           $('#id').val(id);
-           $(".modal").modal("show");
+            $('#id').val(id);
+            $(".modal").modal("show");
         });
 
         $('.close').click(function() {
