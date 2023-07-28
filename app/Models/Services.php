@@ -60,4 +60,10 @@ class Services extends Model
 
         return $this->hasMany(Requests::class);
     }
+    public function getFullNombreAttribute()
+    {
+        $id = $this->provider_id;
+        $valor = Rfc::where('id', $id )->value('nombre');
+        return $valor;
+    }
 }
