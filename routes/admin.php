@@ -135,6 +135,11 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/catalogo/enviar/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'enviarSolicitud'])->name('catalogoEnviar');
         Route::post('/enviar/create', [App\Http\Controllers\Admin\CatalogoController::class, 'storeRequestSolicitud']);
 
+        Route::get('/catalogo/ver/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'ver'])->name('catalogo_ver');
+
+        Route::get('/catalogo/status/{id}', [App\Http\Controllers\Admin\CatalogoController::class, 'statusServicios']);
+
+
         /*
         |--------------------------------------------------------------------------
         | Our Requests Routes

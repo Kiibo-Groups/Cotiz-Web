@@ -55,6 +55,7 @@ return array(
     'App\\Models\\Banners' => $baseDir . '/app/Models/Banners.php',
     'App\\Models\\Buzon' => $baseDir . '/app/Models/Buzon.php',
     'App\\Models\\Buzonempresa' => $baseDir . '/app/Models/Buzonempresa.php',
+    'App\\Models\\Certificado' => $baseDir . '/app/Models/Certificado.php',
     'App\\Models\\Comments' => $baseDir . '/app/Models/Comments.php',
     'App\\Models\\Events' => $baseDir . '/app/Models/Events.php',
     'App\\Models\\EventsConfirms' => $baseDir . '/app/Models/EventsConfirms.php',

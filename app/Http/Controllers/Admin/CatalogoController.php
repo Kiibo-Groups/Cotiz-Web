@@ -6,8 +6,11 @@ use App\Models\Rfc;
 use App\Models\User;
 use App\Models\Requests;
 use App\Models\Services;
+use App\Models\Referencia;
+use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class CatalogoController extends Controller
 {
@@ -32,7 +35,8 @@ class CatalogoController extends Controller
         }
 
         if($search) {
-            $data = $data->whereRaw('LOWER(title) LIKE(?)','%'.$search.'%');
+            $data = $data->whereRaw('LOWER(carrera) LIKE(?)','%'.$search.'%')
+            ->orwhereRaw('LOWER(especialidad) LIKE(?)','%'.$search.'%');
         }
 
         $data = $data->paginate(10);
@@ -135,6 +139,31 @@ class CatalogoController extends Controller
         return redirect(env('admin').'/servicios/proveedores')->with('message', 'Solicitud Enviada');
         //return redirect()->route('servicios.show')->with('message', 'Solicitud Enviada');
 
+    }
+
+    public function ver($id)
+    {
+
+
+        return view($this->folder . 'services.ver', [
+            'data' => Services::find($id),
+            'referencia'  => Referencia::where('servi_id', $id)->orderBy('referencia', 'desc')->get(),
+            'certificado' => Certificado::where('servi_id', $id)->get(),
+
+        ]);
+    }
+
+    public function statusServicios($id)
+    {
+        $res = Services::find($id);
+
+		$res->status = ($res->status == 0) ? 1 : 0;
+        $res->save();
+        Session::flash('mensaje','Elemento Editado con éxito!');
+        Session::flash('class', 'success');
+        return back();
+
+		//return redirect(env('admin').'/empresas')->with('message','Elemento Editado con éxito.');
     }
 
 

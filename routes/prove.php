@@ -44,6 +44,12 @@ Route::prefix(env('user'))->namespace('Proveedor')->group(static function() {
 
         Route::post('/catalogo/add/referencias', [App\Http\Controllers\Proveedor\CatalogoController::class, 'storeServiceReferencias'])->name('catalogo_referencia_post');
 
+        Route::get('/catalogo/certificados/{id}',[App\Http\Controllers\Proveedor\CatalogoController::class, 'AddCertificados'])->name('add_certificados');
+        Route::post('/catalogo/add/certificados', [App\Http\Controllers\Proveedor\CatalogoController::class, 'storeServiceCertificados'])->name('catalogo_certificados_post');
+
+        Route::get('/catalogo/certificados/file/{id}', [App\Http\Controllers\Proveedor\CatalogoController::class, 'verFilesCertificados']);
+
+
 
 
 

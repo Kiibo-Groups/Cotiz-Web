@@ -1,10 +1,10 @@
 @extends('layouts.app_proveedor')
 
 @section('title')
-    Ver Servicios
+    Ver profesionista
 @endsection
 @section('page_active')
-    Ver Servicios
+    Ver profesionista
 @endsection
 
 <link href="{{ asset('assets2/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">
@@ -19,24 +19,8 @@
                 <div class="container">
 
                     @include('alerts')
-
-                    <div class="row">
-
-
-                        <div class="col-8 text-align-right">
-                            <div class="card-body" style="justify-items: right;display: grid;">
-                                <a href="{{ url(env('user') . '/catalogo/referencias/' . $data->id) }}"
-                                    class="btn btn-warning"> Agregar
-                                    referencias</a>
-                            </div>
-                        </div>
-                        <div class="col-4 text-align-right">
-                            <div class="card-body" style="justify-items: right;display: grid;">
-                                <a href="{{ url(env('user') . '/catalogo/certificados/' . $data->id) }}" class="btn btn-primary">
-                                    Agregar
-                                    Certificados / constancias</a>
-                            </div>
-                        </div>
+                    <div class="card-img-box">
+                        <div style="background-image:url('{{ asset('assets/img/logos/'.$data->logo) }}');background-size: cover;width: 410px;height: 210px;background-position: center center;"></div>
                     </div>
 
                     <hr />

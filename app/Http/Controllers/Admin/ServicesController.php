@@ -152,7 +152,11 @@ class ServicesController extends Controller
 		@unlink($path."assets/img/logos/".$res->logo);
 		$res->delete();
 
-		return redirect(env('admin').'/services')->with('message','Servicio eliminado con éxito.');
+        Session::flash('mensaje','Elemento Eliminado con éxito!');
+        Session::flash('class', 'success');
+        return back();
+
+		//return redirect(env('admin').'/services')->with('message','Servicio eliminado con éxito.');
 
     }
 }

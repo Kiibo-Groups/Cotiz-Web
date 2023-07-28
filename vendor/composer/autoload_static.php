@@ -570,6 +570,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Models\\Banners' => __DIR__ . '/../..' . '/app/Models/Banners.php',
         'App\\Models\\Buzon' => __DIR__ . '/../..' . '/app/Models/Buzon.php',
         'App\\Models\\Buzonempresa' => __DIR__ . '/../..' . '/app/Models/Buzonempresa.php',
+        'App\\Models\\Certificado' => __DIR__ . '/../..' . '/app/Models/Certificado.php',
         'App\\Models\\Comments' => __DIR__ . '/../..' . '/app/Models/Comments.php',
         'App\\Models\\Events' => __DIR__ . '/../..' . '/app/Models/Events.php',
         'App\\Models\\EventsConfirms' => __DIR__ . '/../..' . '/app/Models/EventsConfirms.php',
