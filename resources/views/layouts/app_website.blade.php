@@ -81,19 +81,22 @@
                 </li>
 
                 @if (Auth::user())
+                    @if (Auth::user()->status == 0)
+                        <li class="inline mb-0">
+                            <a href="{{ asset(env('user') . '/perfil') }}"
+                                class="btn btn-icon rounded-full hover:text-black" title="Perfil Usuario">
+                                <i data-feather="user" class="h-4 w-4"></i></a>
+                        </li>
+                    @endif
                     <li class="inline mb-0">
-                        <a href="{{ asset(env('user') . '/perfil') }}" class="btn btn-icon rounded-full hover:text-black" title="Perfil Usuario" >
-                            <i data-feather="user" class="h-4 w-4"></i></a>
-                    </li>
-
-                    <li class="inline mb-0">
-                        <a  href="{{ route('logout') }}" class="btn btn-icon rounded-full hover:text-black" title="Salir"
+                        <a href="{{ route('logout') }}" class="btn btn-icon rounded-full hover:text-black"
+                            title="Salir"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i data-feather="log-out" class="h-4 w-4"></i></a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         </a>
                     </li>
 
