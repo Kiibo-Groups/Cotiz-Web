@@ -1,4 +1,4 @@
-@extends('layouts.app_profile')
+@extends('layouts.app_proveedor')
 @section('title')
     Usuarios Empresa
 @endsection
