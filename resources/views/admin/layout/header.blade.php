@@ -27,7 +27,7 @@
             <hr class="dropdown-divider">
           </li>
 
-          <li>
+        {{--  <li>
             <a class="dropdown-item d-flex align-items-center" href="{{ Asset(env('admin').'/settings')}}">
               <i class="bi bi-person"></i>
               <span>Mi perfil</span>
@@ -42,7 +42,7 @@
               <i class="bi bi-question-circle"></i>
               <span>Need Help?</span>
             </a>
-          </li>
+          </li>--}}
           <li>
             <hr class="dropdown-divider">
           </li>
