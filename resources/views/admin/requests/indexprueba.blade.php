@@ -85,7 +85,7 @@
 
 
                                             </td>
-                                            <td class="col-md-6">{{ $req->description }}</td>
+                                            <td class="col-md-5">{{ $req->description }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
