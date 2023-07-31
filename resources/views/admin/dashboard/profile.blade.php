@@ -1,6 +1,6 @@
 @extends('layouts.app_profile')
 @section('title') Perfil de administración @endsection
-@section('page_active') Perfil @endsection 
+@section('page_active') Perfil @endsection
 
 
 @section('content')
@@ -12,9 +12,9 @@
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                 @if($data->logo == '')
-                    <img src="{{ asset('profile/img/1647418114462.jpg') }}" alt="Profile" class="rounded-circle">
+                    <img src="{{ asset('public/profile/img/1647418114462.jpg') }}" alt="Profile" class="rounded-circle">
                 @else
-                    <img src="<?php echo asset('profile/img/logo/'.$data->logo) ?>" alt="Profile" class="rounded-circle"> 
+                    <img src="<?php echo asset('public/profile/img/logo/'.$data->logo) ?>" alt="Profile" class="rounded-circle">
                 @endif
 
                 <h2>{{$data->name}}</h2>
@@ -23,7 +23,7 @@
 
                 <div class="card-body profile-card d-flex flex-column align-items-left">
                 <div class="social-links mt-2">
-                    <hr class="w-100"> 
+                    <hr class="w-100">
                     <h5 class="text-dark">
                         Información de contacto
                     </h5>
@@ -32,15 +32,15 @@
                     <p>{{$data->shw_email}}</p>
                     <p class="text-dark font-weight-medium pt-24px mb-2 label">Telefono</p>
                     <p>{{$data->phone_contact}}</p>
-                    
+
                     <p class="text-dark font-weight-medium pt-24px mb-2">Redes sociales</p>
                     <p class="social-button">
                         <a href="{{$data->twitter}}" target="_blank" class="mb-1 btn btn-outline btn-twitter rounded-circle">
                             <i class="mdi mdi-twitter"></i>
-                        </a> 
+                        </a>
                         <a href="{{$data->fb}}" target="_blank" class="mb-1 btn btn-outline btn-facebook rounded-circle">
                             <i class="mdi mdi-facebook"></i>
-                        </a> 
+                        </a>
                         <a href="{{$data->insta}}" target="_blank" class="mb-1 btn btn-outline btn-instagram rounded-circle">
                             <i class="mdi mdi-instagram"></i>
                         </a>
@@ -86,9 +86,9 @@
                 </li>
 
                 </ul>
-                
+
                 <div class="tab-content pt-2">
-    
+
                     <!-- Settings -->
                     <div class="tab-pane fade show active profile-settings pt-3" id="profile-settings">
                         <form action="{{ $form_url }}" method="post" enctype="multipart/form-data">
@@ -103,7 +103,7 @@
                                 <label for="imageUpload">
                                     @if($data->logo)
                                     <img src="{{ asset('profile/img/logo/'.$data->logo) }}" class="ec-image-preview" alt="Profile">
-                                    @else 
+                                    @else
                                     <img src="{{ asset('profile/img/user_profile.jpg') }}" class="ec-image-preview" alt="Profile">
                                     @endif
                                 </label>
@@ -134,14 +134,14 @@
                                             Usuario para el inicio de sesión
                                         </span>
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group mb-3">
                                         <label for="email">Correo Administrativo</label>
                                         <input type="email" class="form-control" id="email" name="email" value="{{$data->email}}" autocomplete="off">
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <hr />
                             <div class="row mb-3">
@@ -183,7 +183,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="row mb-3">
-                                
+
                                 <div class="col-lg-5 col-md-6 col-sl-12">
                                     <div class="form-group mb-3">
                                         <label for="phone_contact">Número telefonico</label>
@@ -215,21 +215,21 @@
                                         <label for="twitter">Twitter</label>
                                         <input type="text" class="form-control" id="twitter" name="twitter" value="{{$data->twitter}}" autocomplete="off">
                                     </div>
-                                    
+
                                     <div class="form-group mb-3">
                                         <label for="youtube">Youtube</label>
                                         <input type="text" class="form-control" id="youtube" name="youtube" value="{{$data->youtube}}" autocomplete="off">
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="col-lg-7 col-md-6 col-sl-12">
                                     <div class="form-group mb-3">
                                         @include('admin.layout.google')
                                     </div>
-                                </div> 
-                                
+                                </div>
+
                             </div>
-     
+
                             <div class="text-left pt-16 mb-3">
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             </div>
@@ -257,9 +257,9 @@
                                             <label for="terms">Términos y Condiciones</label>
                                             <textarea name="terms" id="mytextarea" cols="30" rows="10" class="form-control">{{$data->terms}}</textarea>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
-                                
+
                                 <div class="d-flex justify-content-end mt-5">
                                     <button type="submit" class="btn btn-primary mb-2 btn-pill">
                                         Actualizar
@@ -290,7 +290,7 @@
                                             <label for="privacy">Políticas de privacidad</label>
                                             <textarea name="privacy" id="mytextarea" cols="30" rows="10" class="form-control">{{$data->privacy}}</textarea>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="d-flex justify-content-end mt-5">
@@ -311,5 +311,5 @@
         </div>
     </div>
 </section>
-   
+
 @endsection
