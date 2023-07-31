@@ -5,7 +5,7 @@
     <div class="container">
         <div class="flex justify-center">
             <div class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
-                <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="120px" class="mx-auto" alt="">
+                <img src="{{ asset('assets2/images/logo-cotiz.png')}}" width="200px" class="mx-auto" alt="">
                 <h5 class="my-6 text-xl font-semibold">Iniciar sesion</h5>
                 <form class="ltr:text-left rtl:text-right" method="POST" action="{{ route('login') }}">
                     @csrf
