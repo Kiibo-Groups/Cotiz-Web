@@ -35,11 +35,11 @@
                                         <td>
                                             @if($row->id === 1)
                                             <span class="badge text-white bg-success">
-                                                Administrador Principal
+                                               Principal
                                              </span>
-                                            @else  
+                                            @else
                                             <span class="badge text-white bg-info">
-                                                Cuenta secundaria
+                                                Secundaria
                                              </span>
                                             @endif
                                         </td>
@@ -47,17 +47,17 @@
                                         <td>
                                             @if($row->id === 1)
                                             Todos los permisos
-                                            @else 
-                                            <?php 
+                                            @else
+                                            <?php
                                                 $perms = explode(',',$row->perm);
                                                 foreach ($perms as $key) {
-                                                ?>        
+                                                ?>
                                                     <small>
                                                         <span class="badge text-white bg-success">
                                                             {{ $key }}
                                                         </span>&nbsp;
                                                     </small>
-                                                <?php 
+                                                <?php
                                                 }
                                             ?>
                                             @endif
@@ -75,18 +75,18 @@
                                                 </span>
                                                 @break
                                             @endswitch
-                                        </td> 
-                                        <td>
+                                        </td>
+                                        <td class="col-md-1">
                                             @if($row->id != 1)
-                                            <a class="btn btn-success" href="{{ url(env('admin').'/subAccounts/edit/'.$row->id) }}">
+                                            <a class="btn btn-success btn-sm" href="{{ url(env('admin').'/subAccounts/edit/'.$row->id) }}">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a class="btn btn-warning" href="{{ url(env('admin').'/subAccounts/status/'.$row->id) }}">
+                                            <a class="btn btn-warning btn-sm" href="{{ url(env('admin').'/subAccounts/status/'.$row->id) }}">
                                                 <i class="bi bi-file-lock"></i>
                                             </a>
-                                            <a class="btn btn-danger" href="{{ url(env('admin').'/subAccounts/delete/'.$row->id) }}">
+                                           {{-- <aclass="btnbtn-danger"href="url(env('admin').'/subAccounts/delete/'.$row->id)}}">
                                                 <i class="bi bi-trash"></i>
-                                            </a>
+                                            </a>--}}
                                             @endif
                                         </td>
                                     </tr>
