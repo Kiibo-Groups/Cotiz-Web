@@ -54,8 +54,15 @@ class Requests extends Model
 
     public function getFullNombreAttribute()
     {
-        $id = $this->proveedor;
-        $valor = Rfc::where('id', $id )->value('nombre');
+        $id    = $this->proveedor;
+        $soli  = $this->solicitud;
+        if ( $soli == 2) {
+            $valor = User::where('id', $id )->value('name');
+        } else {
+            $valor = Rfc::where('id', $id )->value('nombre');
+        }
+
+
         return $valor;
     }
 }

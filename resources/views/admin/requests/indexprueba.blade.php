@@ -83,6 +83,7 @@
                                                     {{ $req->full_nombre }}
 
 
+
                                             </td>
                                             <td>{{ $req->description }}</td>
                                             <td class="col-md-1">

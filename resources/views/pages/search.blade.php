@@ -60,7 +60,7 @@
                         <input type="hidden" name="solicitud" value="{{ Auth::user()->role }}">
                     @endif
                     <input type="hidden" name="tipo" id="tipo" value="{{ $type }}">
-                    @if (Auth::user()->role == 10)
+                    @if (Auth::user()->role == 2)
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->id }}">
                     @else
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->idempresa }}">
