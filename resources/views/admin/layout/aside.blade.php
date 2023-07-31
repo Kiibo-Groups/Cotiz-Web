@@ -54,7 +54,7 @@
                 </li><!-- End Empresas -->
             @endif
 
-            @if ($admin->hasPerm('Dashboard - empresasProveedores'))
+            @if ($admin->hasPerm('Dashboard - Proveedores'))
                 <li class="nav-item">
                     <a class="nav-link @if (!Route::is('empresasProveedores')) collapsed @endif"
                         href="{{ Asset(env('admin') . '/empresas/proveedores') }}">
