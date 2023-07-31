@@ -79,11 +79,9 @@
                                             <td class="col-md-1">{{ $req->tipo }}</td>
                                             <td class="col-md-1">{{ $req->servicio }}</td>
                                             <td class="col-md-2">
-                                                @if ($req->solicitud == 2)
-                                                    {{ $req->prueba->name }} {{ $req->prueba->last_name }}
-                                                @else
-                                                    {{ $req->prove->nombre }}
-                                                @endif
+
+                                                    {{ $req->full_nombre }}
+
 
                                             </td>
                                             <td>{{ $req->description }}</td>

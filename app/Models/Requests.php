@@ -51,4 +51,11 @@ class Requests extends Model
 
         return $this->belongsTo(User::class, 'proveedor');
     }
+
+    public function getFullNombreAttribute()
+    {
+        $id = $this->proveedor;
+        $valor = Rfc::where('id', $id )->value('nombre');
+        return $valor;
+    }
 }
