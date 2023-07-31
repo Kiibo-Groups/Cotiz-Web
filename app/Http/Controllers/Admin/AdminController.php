@@ -169,7 +169,7 @@ class AdminController extends Controller
             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
             $imageName = date("Ymdhis");
             $imageName = $imageName . '.' . $ext;
-            $image->move('profile/img/logo', $imageName);
+            $image->move('public/profile/img/logo', $imageName);
 
             $input['logo'] = $imageName;
         }
