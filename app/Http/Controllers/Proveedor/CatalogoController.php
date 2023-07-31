@@ -83,7 +83,7 @@ class CatalogoController extends Controller
         if (isset($input['logo'])) {
 
             $filename   = time() . rand(111, 699) . '.' . $input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move("public/assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
@@ -91,49 +91,49 @@ class CatalogoController extends Controller
         if (isset($input['titulo1'])) {
 
             $filename1   = time() . rand(111, 699) . '.' . $input['titulo1']->getClientOriginalExtension();
-            $input['titulo1']->move("assets/documento/profesionales/", $filename1);
+            $input['titulo1']->move("public/assets/documento/profesionales/", $filename1);
             $input['titulo1'] = $filename1;
         }
         if (isset($input['titulo2'])) {
 
             $titulo2   = time() . rand(111, 699) . '.' . $input['titulo2']->getClientOriginalExtension();
-            $input['titulo2']->move("assets/documento/profesionales/", $titulo2);
+            $input['titulo2']->move("public/assets/documento/profesionales/", $titulo2);
             $input['titulo2'] = $titulo2;
         }
         if (isset($input['cedula1'])) {
 
             $cedula1   = time() . rand(111, 699) . '.' . $input['cedula1']->getClientOriginalExtension();
-            $input['cedula1']->move("assets/documento/profesionales/", $cedula1);
+            $input['cedula1']->move("public/assets/documento/profesionales/", $cedula1);
             $input['cedula1'] = $cedula1;
         }
         if (isset($input['cedula2'])) {
 
             $cedula2   = time() . rand(111, 699) . '.' . $input['cedula2']->getClientOriginalExtension();
-            $input['cedula2']->move("assets/documento/profesionales/", $cedula2);
+            $input['cedula2']->move("public/assets/documento/profesionales/", $cedula2);
             $input['cedula2'] = $cedula2;
         }
         if (isset($input['cv'])) {
 
             $cv   = time() . rand(111, 699) . '.' . $input['cv']->getClientOriginalExtension();
-            $input['cv']->move("assets/documento/profesionales/", $cv);
+            $input['cv']->move("public/assets/documento/profesionales/", $cv);
             $input['cv'] = $cv;
         }
         if (isset($input['fotoCredencial'])) {
 
             $fotoCredencial   = time() . rand(111, 699) . '.' . $input['fotoCredencial']->getClientOriginalExtension();
-            $input['fotoCredencial']->move("assets/documento/profesionales/", $fotoCredencial);
+            $input['fotoCredencial']->move("public/assets/documento/profesionales/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
         }
         if (isset($input['fotoCredencial2'])) {
 
             $fotoCredencial2   = time() . rand(111, 699) . '.' . $input['fotoCredencial2']->getClientOriginalExtension();
-            $input['fotoCredencial2']->move("assets/documento/profesionales/", $fotoCredencial2);
+            $input['fotoCredencial2']->move("public/assets/documento/profesionales/", $fotoCredencial2);
             $input['fotoCredencial2'] = $fotoCredencial2;
         }
         if (isset($input['exitos'])) {
 
             $exitos   = time() . rand(111, 699) . '.' . $input['exitos']->getClientOriginalExtension();
-            $input['exitos']->move("assets/documento/profesionales/", $exitos);
+            $input['exitos']->move("public/assets/documento/profesionales/", $exitos);
             $input['exitos'] = $exitos;
         }
 
@@ -191,56 +191,56 @@ class CatalogoController extends Controller
 
             // Agregamos el nuevo
             $filename   = time() . rand(111, 699) . '.' . $input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move("public/assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
         // -----------------Profesional
         if (isset($input['titulo1'])) {
 
             $filename1   = time() . rand(111, 699) . '.' . $input['titulo1']->getClientOriginalExtension();
-            $input['titulo1']->move("assets/documento/profesionales/", $filename1);
+            $input['titulo1']->move("public/assets/documento/profesionales/", $filename1);
             $input['titulo1'] = $filename1;
         }
         if (isset($input['titulo2'])) {
 
             $titulo2   = time() . rand(111, 699) . '.' . $input['titulo2']->getClientOriginalExtension();
-            $input['titulo2']->move("assets/documento/profesionales/", $titulo2);
+            $input['titulo2']->move("public/assets/documento/profesionales/", $titulo2);
             $input['titulo2'] = $titulo2;
         }
         if (isset($input['cedula1'])) {
 
             $cedula1   = time() . rand(111, 699) . '.' . $input['cedula1']->getClientOriginalExtension();
-            $input['cedula1']->move("assets/documento/profesionales/", $cedula1);
+            $input['cedula1']->move("public/assets/documento/profesionales/", $cedula1);
             $input['cedula1'] = $cedula1;
         }
         if (isset($input['cedula2'])) {
 
             $cedula2   = time() . rand(111, 699) . '.' . $input['cedula2']->getClientOriginalExtension();
-            $input['cedula2']->move("assets/documento/profesionales/", $cedula2);
+            $input['cedula2']->move("public/assets/documento/profesionales/", $cedula2);
             $input['cedula2'] = $cedula2;
         }
         if (isset($input['cv'])) {
 
             $cv   = time() . rand(111, 699) . '.' . $input['cv']->getClientOriginalExtension();
-            $input['cv']->move("assets/documento/profesionales/", $cv);
+            $input['cv']->move("public/assets/documento/profesionales/", $cv);
             $input['cv'] = $cv;
         }
         if (isset($input['fotoCredencial'])) {
 
             $fotoCredencial   = time() . rand(111, 699) . '.' . $input['fotoCredencial']->getClientOriginalExtension();
-            $input['fotoCredencial']->move("assets/documento/profesionales/", $fotoCredencial);
+            $input['fotoCredencial']->move("public/assets/documento/profesionales/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
         }
         if (isset($input['fotoCredencial2'])) {
 
             $fotoCredencial2   = time() . rand(111, 699) . '.' . $input['fotoCredencial2']->getClientOriginalExtension();
-            $input['fotoCredencial2']->move("assets/documento/profesionales/", $fotoCredencial2);
+            $input['fotoCredencial2']->move("public/assets/documento/profesionales/", $fotoCredencial2);
             $input['fotoCredencial2'] = $fotoCredencial2;
         }
         if (isset($input['exitos'])) {
 
             $exitos   = time() . rand(111, 699) . '.' . $input['exitos']->getClientOriginalExtension();
-            $input['exitos']->move("assets/documento/profesionales/", $exitos);
+            $input['exitos']->move("public/assets/documento/profesionales/", $exitos);
             $input['exitos'] = $exitos;
         }
 
@@ -349,7 +349,7 @@ class CatalogoController extends Controller
 
             // Agregamos el nuevo
             $filename   = time() . rand(111, 699) . '.' . $input['imagen']->getClientOriginalExtension();
-            $input['imagen']->move("assets/documento/certificados/", $filename);
+            $input['imagen']->move("public/assets/documento/certificados/", $filename);
             $input['imagen'] = $filename;
         }
 

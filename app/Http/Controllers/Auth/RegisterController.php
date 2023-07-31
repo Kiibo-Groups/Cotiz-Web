@@ -45,26 +45,26 @@ class RegisterController extends Controller
         {
 
             $fotoGafete   = time().rand(111,699).'.' .$input['fotoGafete']->getClientOriginalExtension();
-            $input['fotoGafete']->move("assets/img/fotogafete/", $fotoGafete);
+            $input['fotoGafete']->move("public/assets/img/fotogafete/", $fotoGafete);
             $input['fotoGafete'] = $fotoGafete;
         }
         if(isset($input['fotoCredencial']))
         {
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
-            $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
+            $input['fotoCredencial']->move("public/assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
         }
         if(isset($input['fotoGafete2']))
         {
 
             $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
-            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2']->move("public/assets/img/fotogafete/", $fotoGafete2);
             $input['fotoGafete2'] = $fotoGafete2;
         }
         if(isset($input['fotoCredencial2']))
         {
             $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
-            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2']->move("public/assets/img/fotocredencial/", $fotoCredencial2);
             $input['fotoCredencial2'] = $fotoCredencial2;
         }
 
@@ -156,32 +156,32 @@ class RegisterController extends Controller
         if(isset($input['opinionPositiva']))
         {
             $opinionPositiva   = time().rand(111,699).'.' .$input['opinionPositiva']->getClientOriginalExtension();
-            $input['opinionPositiva']->move("assets/img/empresa/", $opinionPositiva);
+            $input['opinionPositiva']->move("public/assets/img/empresa/", $opinionPositiva);
             $input['opinionPositiva'] = $opinionPositiva;
         }
         if(isset($input['infoBancaria']))
         {
             $infoBancaria   = time().rand(111,699).'.' .$input['infoBancaria']->getClientOriginalExtension();
-            $input['infoBancaria']->move("assets/img/empresa/", $infoBancaria);
+            $input['infoBancaria']->move("public/assets/img/empresa/", $infoBancaria);
             $input['infoBancaria'] = $infoBancaria;
         }
         if(isset($input['constFiscal']))
         {
             $constFiscal   = time().rand(111,699).'.' .$input['constFiscal']->getClientOriginalExtension();
-            $input['constFiscal']->move("assets/img/empresa/", $constFiscal);
+            $input['constFiscal']->move("public/assets/img/empresa/", $constFiscal);
             $input['constFiscal'] = $constFiscal;
         }
         if(isset($input['domicilioFiscal']))
         {
             $domicilioFiscal   = time().rand(111,699).'.' .$input['domicilioFiscal']->getClientOriginalExtension();
-            $input['domicilioFiscal']->move("assets/img/empresa/", $domicilioFiscal);
+            $input['domicilioFiscal']->move("public/assets/img/empresa/", $domicilioFiscal);
             $input['domicilioFiscal'] = $domicilioFiscal;
         }
 
         // if(isset($input['numeroPlanta']))
         // {
         //     $numeroPlanta   = time().rand(111,699).'.' .$input['numeroPlanta']->getClientOriginalExtension();
-        //     $input['numeroPlanta']->move("assets/img/empresa/", $numeroPlanta);
+        //     $input['numeroPlanta']->move("public/assets/img/empresa/", $numeroPlanta);
         //     $input['numeroPlanta'] = $numeroPlanta;
         // }
 
@@ -240,33 +240,33 @@ class RegisterController extends Controller
         if(isset($input['opinionPositiva']))
         {
             $opinionPositiva   = time().rand(111,699).'.' .$input['opinionPositiva']->getClientOriginalExtension();
-            $input['opinionPositiva']->move("assets/img/empresa/", $opinionPositiva);
+            $input['opinionPositiva']->move("public/assets/img/empresa/", $opinionPositiva);
             $input['opinionPositiva'] = $opinionPositiva;
         }
         if(isset($input['infoBancaria']))
         {
             $infoBancaria   = time().rand(111,699).'.' .$input['infoBancaria']->getClientOriginalExtension();
-            $input['infoBancaria']->move("assets/img/empresa/", $infoBancaria);
+            $input['infoBancaria']->move("public/assets/img/empresa/", $infoBancaria);
             $input['infoBancaria'] = $infoBancaria;
         }
 
         if(isset($input['constanciaPositiva']))
         {
             $constanciaPositiva   = time().rand(111,699).'.' .$input['constanciaPositiva']->getClientOriginalExtension();
-            $input['constanciaPositiva']->move("assets/img/empresa/", $constanciaPositiva);
+            $input['constanciaPositiva']->move("public/assets/img/empresa/", $constanciaPositiva);
             $input['constanciaPositiva'] = $constanciaPositiva;
         }
         if(isset($input['cartaAceptacion']))
         {
             $cartaAceptacion   = time().rand(111,699).'.' .$input['cartaAceptacion']->getClientOriginalExtension();
-            $input['cartaAceptacion']->move("assets/img/empresa/", $cartaAceptacion);
+            $input['cartaAceptacion']->move("public/assets/img/empresa/", $cartaAceptacion);
             $input['cartaAceptacion'] = $cartaAceptacion;
         }
 
         if(isset($input['listadoProductos']))
         {
             $listadoProductos   = time().rand(111,699).'.' .$input['listadoProductos']->getClientOriginalExtension();
-            $input['listadoProductos']->move("assets/img/empresa/", $listadoProductos);
+            $input['listadoProductos']->move("public/assets/img/empresa/", $listadoProductos);
             $input['listadoProductos'] = $listadoProductos;
         }
 
@@ -330,13 +330,13 @@ class RegisterController extends Controller
         {
 
             $fotoGafete   = time().rand(111,699).'.' .$input['fotoGafete']->getClientOriginalExtension();
-            $input['fotoGafete']->move("assets/img/fotogafete/", $fotoGafete);
+            $input['fotoGafete']->move("public/assets/img/fotogafete/", $fotoGafete);
             $input['fotoGafete'] = $fotoGafete;
         }
         if(isset($input['fotoCredencial']))
         {
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
-            $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
+            $input['fotoCredencial']->move("public/assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
         }
 
@@ -345,13 +345,13 @@ class RegisterController extends Controller
         {
 
             $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
-            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2']->move("public/assets/img/fotogafete/", $fotoGafete2);
             $input['fotoGafete2'] = $fotoGafete2;
         }
         if(isset($input['fotoCredencial2']))
         {
             $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
-            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2']->move("public/assets/img/fotocredencial/", $fotoCredencial2);
             $input['fotoCredencial2'] = $fotoCredencial2;
         }
 
@@ -429,13 +429,13 @@ class RegisterController extends Controller
         {
 
             $fotoGafete   = time().rand(111,699).'.' .$input['fotoGafete']->getClientOriginalExtension();
-            $input['fotoGafete']->move("assets/img/fotogafete/", $fotoGafete);
+            $input['fotoGafete']->move("public/assets/img/fotogafete/", $fotoGafete);
             $input['fotoGafete'] = $fotoGafete;
         }
         if(isset($input['fotoCredencial']))
         {
             $fotoCredencial   = time().rand(111,699).'.' .$input['fotoCredencial']->getClientOriginalExtension();
-            $input['fotoCredencial']->move("assets/img/fotocredencial/", $fotoCredencial);
+            $input['fotoCredencial']->move("public/assets/img/fotocredencial/", $fotoCredencial);
             $input['fotoCredencial'] = $fotoCredencial;
         }
 
@@ -443,13 +443,13 @@ class RegisterController extends Controller
         {
 
             $fotoGafete2   = time().rand(111,699).'.' .$input['fotoGafete2']->getClientOriginalExtension();
-            $input['fotoGafete2']->move("assets/img/fotogafete/", $fotoGafete2);
+            $input['fotoGafete2']->move("public/assets/img/fotogafete/", $fotoGafete2);
             $input['fotoGafete2'] = $fotoGafete2;
         }
         if(isset($input['fotoCredencial2']))
         {
             $fotoCredencial2   = time().rand(111,699).'.' .$input['fotoCredencial2']->getClientOriginalExtension();
-            $input['fotoCredencial2']->move("assets/img/fotocredencial/", $fotoCredencial2);
+            $input['fotoCredencial2']->move("public/assets/img/fotocredencial/", $fotoCredencial2);
             $input['fotoCredencial2'] = $fotoCredencial2;
         }
 

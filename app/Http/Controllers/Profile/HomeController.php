@@ -251,7 +251,7 @@ class HomeController extends Controller
         {
 
             $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
-            $input['document']->move("assets/documento/buzonempresa", $filename);
+            $input['document']->move("public/assets/documento/buzonempresa", $filename);
             $input['document'] = $filename;
         }
 

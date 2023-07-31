@@ -131,7 +131,7 @@ class CatalogoController extends Controller
         if($request->file('document'))
         {
             $filename   = time().rand(111,699).'.' .$request->file('document')->getClientOriginalExtension();
-            $input['document']->move("assets/documents/users", $filename);
+            $input['document']->move("public/assets/documents/users", $filename);
             $input['document'] = $filename;
         }
 

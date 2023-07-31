@@ -73,7 +73,7 @@ class BuzonController extends Controller
         {
 
             $filename   = time().rand(111,699).'.' .$request->file('documento')->getClientOriginalExtension();
-            $input['documento']->move("assets/documento/buzon", $filename);
+            $input['documento']->move("public/assets/documento/buzon", $filename);
             $input['documento'] = $filename;
         }
 

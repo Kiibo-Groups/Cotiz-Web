@@ -186,7 +186,7 @@ class SolicitudesController extends Controller
         {
 
             $filename   = time().rand(111,699).'.' .$request->file('documento')->getClientOriginalExtension();
-            $input['documento']->move("assets/documento/servicios", $filename);
+            $input['documento']->move("public/assets/documento/servicios", $filename);
             $input['documento'] = $filename;
         }
 

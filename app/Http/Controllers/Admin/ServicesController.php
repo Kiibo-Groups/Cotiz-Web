@@ -72,7 +72,7 @@ class ServicesController extends Controller
                 //$path = env('APP_DEBUG') ? '' : 'public/';
                 // Agregamos el nuevo
                 $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-                $input['logo']->move("assets/img/logos/", $filename);
+                $input['logo']->move("public/assets/img/logos/", $filename);
                 $input['logo'] = $filename;
             }
 
@@ -130,7 +130,7 @@ class ServicesController extends Controller
 
             // Agregamos el nuevo
             $filename   = time().rand(111,699).'.' .$input['logo']->getClientOriginalExtension();
-            $input['logo']->move("assets/img/logos/", $filename);
+            $input['logo']->move("public/assets/img/logos/", $filename);
             $input['logo'] = $filename;
         }
 
