@@ -64,7 +64,11 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"href="{{ url(env('admin').'/users/ver/prueba/'.$row->id) }}">Ver</a>
                                                     <a class="dropdown-item" href="{{ url(env('admin').'/users/status/'.$row->id) }}">Activar/Desactivar</a>
-                                                    <a class="dropdown-item" href="{{ url(env('admin').'/users/delete/'.$row->id) }}">Eliminar</a>
+
+                                                    <a href="javascript::void()" class="dropdown-item"
+                                                        onclick="deleteConfirm('{{ url(env('admin').'/users/delete/'.$row->id) }}')">
+                                                        Eliminar
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>

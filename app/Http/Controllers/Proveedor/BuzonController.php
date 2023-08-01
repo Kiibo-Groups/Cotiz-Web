@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Proveedor;
 
 use App\Models\Rfc;
+use App\Models\User;
 use App\Models\Buzon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\Buzon as NotificationsBuzon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class BuzonController extends Controller
@@ -65,6 +68,17 @@ class BuzonController extends Controller
 
     public function create(Request $request)
     {
+
+
+
+
+
+        $salida = 'Cotiz';
+        $user = User::where('id', 82)->first();
+
+        $user->notify(new NotificationsBuzon($salida));
+
+        mail('user1@example.com', 'This is a test subject line', 'The complete body of the message', null, '-fsender@example.com');
 
         $input         = $request->all();
         $requests_data = new Buzon;

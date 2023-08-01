@@ -26,7 +26,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('logout',[App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('logoutAdmin');
 
         Route::get('/subAccounts',[App\Http\Controllers\Admin\AdminController::class, 'subAccounts'])->name('subAccounts');
-        Route::get('/subAccounts/add',[App\Http\Controllers\Admin\AdminController::class, 'AddsubAccounts']);
+        Route::get('/subAccounts/add',[App\Http\Controllers\Admin\AdminController::class, 'AddsubAccounts'])->name('AddsubAccounts');
         Route::get('/subAccounts/edit/{id}',[App\Http\Controllers\Admin\AdminController::class, 'EditsubAccounts']);
         Route::post('/EditsubAccount/{id}',[App\Http\Controllers\Admin\AdminController::class, '_EditsubAccount']);
         Route::get('/subAccounts/status/{id}',[App\Http\Controllers\Admin\AdminController::class, 'StatussubAccounts']);
@@ -103,7 +103,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/empresas/proveedores', [App\Http\Controllers\Admin\AdminController::class, 'indexEmpresasProveedores'])->name('empresasProveedores');
         Route::get('/empresas/proveedores/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedores']);
         Route::get('/empresas/proveedores/status/{id}', [App\Http\Controllers\Admin\AdminController::class, 'statusEmpresasProveedores']);
-        Route::get('/empresas/proveedores/usuarios/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedoresUsuarios']);
+        Route::get('/empresas/proveedores/usuarios/ver/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verEmpresasproveedoresUsuarios'])->name('verEmpresasproveedoresUsuarios');
 
 
 

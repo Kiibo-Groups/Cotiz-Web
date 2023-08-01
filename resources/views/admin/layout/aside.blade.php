@@ -18,20 +18,26 @@
                     $admin->hasPerm('Dashboard - Configuraciones') ||
                     $admin->hasPerm('Dashboard - All'))
                 <li class="nav-item">
+                    @if (auth('admin')->user()->id == 1)
                     <a class="nav-link @if (!Route::is('profile') || !Route::is('settings')) collapsed @endif" data-bs-target="#settings-nav"
                         data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>Panel</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="settings-nav" class="nav-content collapse @if (Route::is('profile') || Route::is('settings')) show @endif"
+                    @endif
+                    <ul id="settings-nav" class="nav-content collapse @if (Route::is('profile') || Route::is('AddsubAccounts') || Route::is('subAccounts') ||       Route::is('settings')) show @endif"
                         data-bs-parent="#settings-nav">
-                        @if ($admin->hasPerm('Dashboard - Inicio') || $admin->hasPerm('Dashboard - Configuraciones'))
-                            <li>
-                                <a href="{{ Asset(env('admin') . '/profile') }}"
-                                    class="@if (Route::is('profile')) nav-link active @endif">
-                                    <i class="bi bi-circle"></i><span>Perfil</span>
-                                </a>
-                            </li>
+
+                        @if (auth('admin')->user()->id == 1)
+                            @if ($admin->hasPerm('Dashboard - Inicio') || $admin->hasPerm('Dashboard - Configuraciones'))
+                                <li>
+                                    <a href="{{ Asset(env('admin') . '/profile') }}"
+                                        class="@if (Route::is('profile')) nav-link active @endif">
+                                        <i class="bi bi-circle"></i><span>Perfil</span>
+                                    </a>
+                                </li>
+                            @endif
                         @endif
+
                         @if ($admin->hasPerm('All'))
                             <li>
                                 <a href="{{ Asset(env('admin') . '/subAccounts') }}"
@@ -150,7 +156,7 @@
                         data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-gear"></i><span>Solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="request-nav" class="nav-content  collapse @if  (Route::is('serviciosVer') || Route::is('requests') || Route::is('servicios.show') || Route::is('servicios')) show @endif"
+                    <ul id="request-nav" class="nav-content  collapse @if (Route::is('serviciosVer') || Route::is('requests') || Route::is('servicios.show') || Route::is('servicios')) show @endif"
                         data-bs-parent="#sidebar-nav">
                         <li>
                             <a href="{{ Asset(env('admin') . '/servicios') }}"
@@ -175,7 +181,7 @@
             @endif
 
 
-{{--
+            {{--
             @if ($admin->hasPerm('Buzon - Empresa'))
                 <li class="nav-item">
                     <a class="nav-link @if (!Route::is('buzonempresa') || !Route::is('buzonempresa.show')) collapsed @endif" data-bs-target="#buzonempresa-nav"
@@ -199,7 +205,7 @@
                         </li>
                     </ul>
                 </li><!-- End buzon Empresa-->
-            @endif--}}
+            @endif --}}
 
             @if ($admin->hasPerm('Buzon - Proveedor'))
                 <li class="nav-item">
