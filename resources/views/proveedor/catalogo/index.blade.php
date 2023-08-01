@@ -1,10 +1,10 @@
 @extends('layouts.app_proveedor')
 @if (Auth::guard()->check() || Auth::user()->status != 0)
     @section('title')
-        Servicios
+    Catálogo
     @endsection
     @section('page_active')
-        Listado de Servicios
+        Listado de Catálogos
     @endsection
 
     <link href="{{ asset('assets2/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">

@@ -80,7 +80,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="delegación" class="form-label">Constancia de situación positiva</label>
+                                        <label for="delegación" class="form-label">Constancia de situación fiscal</label>
                                         <br>
                                         <a target="_blank" class="btn btn-warning" title="Constancia de situación positiva" href="{{ url(env('admin').'/empresas/file/'.$data->constanciaPositiva) }}">
                                             <i class="bi bi-download"></i>

@@ -20,51 +20,25 @@
                 <div class="row">
                     <div class="card info-card">
                         <div class="card-header card-header-border-bottom">
-
+                            @if ($data->role == 4)
+                                <p style="color: red">Usuario Principal de Empresa</p>
+                            @endif
 
                         </div>
 
-                        <div class="row ec-vendor-uploads">
 
-                            <div class="col-lg-12">
-                                <div class="ec-vendor-img-upload">
-                                    <div class="ec-vendor-main-img">
-                                        <div class="avatar-upload">
-                                            <div class="avatar-edit">
-                                                <input type='file' id="img"
-                                                    @if (!$data->id) required="required" @endif
-                                                    name="img" class="ec-image-upload" accept=".png, .jpg, .jpeg" />
 
-                                            </div>
 
-                                            <div class="avatar-preview ec-preview">
-                                                <div class="imagePreview ec-div-preview">
-                                                    @if ($data->id)
-                                                        <img class="ec-image-preview" src="{{ asset('assets/img/logos/'.$data->pic_profile) }}"
-                                                            alt="usuario" />
-                                                    @else
-                                                        <img class="ec-image-preview"
-                                                            src="{{ asset('profile/img/user_profile.jpg') }}"
-                                                            alt="edit" />
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="col-lg-12">
+
+                            <div class="ec-vendor-upload-detail">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="name" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control slug-title" id="name" name="name"
+                                            value="{{ $data->name }}">
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-12">
-
-                                <div class="ec-vendor-upload-detail">
-                                    <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <label for="name" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control slug-title" id="name"
-                                                name="name" value="{{ $data->name }}">
-                                        </div>
-
+                                    @if ($data->role != 4)
                                         <div class="col-md-4">
                                             <label for="last_name" class="form-label">Apellidos</label>
                                             <input type="text" class="form-control slug-title" id="last_name"
@@ -172,8 +146,7 @@
                                         <div class="col-md-6">
                                             <label for="fotoGafete" class="form-label">Foto de gafete lado #1 </label>
                                             <br>
-                                            <a target="_blank" class="btn btn-warning"
-                                                title="Foto de gafete lado #1"
+                                            <a target="_blank" class="btn btn-warning" title="Foto de gafete lado #1"
                                                 href="{{ url(env('admin') . '/empresas/gafete/' . $data->fotoGafete) }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
@@ -182,15 +155,15 @@
                                         <div class="col-md-6">
                                             <label for="fotoGafete" class="form-label">Foto de gafete lado #2 </label>
                                             <br>
-                                            <a target="_blank" class="btn btn-warning"
-                                                title="Foto de gafete lado #2"
+                                            <a target="_blank" class="btn btn-warning" title="Foto de gafete lado #2"
                                                 href="{{ url(env('admin') . '/empresas/gafete/' . $data->fotoGafete2) }}">
                                                 <i class="bi bi-download"></i>
                                             </a>
 
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector (INE)  lado #1 </label>
+                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector
+                                                (INE) lado #1 </label>
                                             <br>
                                             <a target="_blank" class="btn btn-warning"
                                                 title="Foto credencial de elector (INE)  lado #1"
@@ -200,7 +173,8 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector (INE) lado #2 </label>
+                                            <label for="fotoCredencial" class="form-label">Foto credencial de elector
+                                                (INE) lado #2 </label>
                                             <br>
                                             <a target="_blank" class="btn btn-warning"
                                                 title="Foto credencial de elector (INE) lado #2"
@@ -209,28 +183,27 @@
                                             </a>
 
                                         </div>
-                                    </div>
+                                </div>
+                                @endif
 
+                                <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
 
+                                    @if (!($ver = 0))
+                                        <a href="javascript:history.back()" class="btn btn-primary mb-2 btn-pill">
+                                            Volver Atrás
+                                        </a>
+                                    @else
+                                        <h2>Editando Usuario #{{ $data->id }}</h2>
+                                    @endif
 
-                                    <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
-
-                                        @if (!($ver = 0))
-                                            <a href="javascript:history.back()" class="btn btn-primary mb-2 btn-pill">
-                                                Volver Atrás
-                                            </a>
-                                        @else
-                                            <h2>Editando Usuario #{{ $data->id }}</h2>
-                                        @endif
-
-                                    </div>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     </form>

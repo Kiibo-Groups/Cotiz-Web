@@ -19,9 +19,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/requests') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/servicios') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/requests') }}" method="GET">
+                        <form action="{{ url(env('user') . '/servicios') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')
@@ -41,10 +41,13 @@
                         aria-describedby="button-addon2">
                     @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>Estatus</option>
-                            <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
-                            <option value="1" @if ($status == 1) selected @endif>Aprobado</option>
-                            <option value="2" @if ($status == 2) selected @endif>Rechazado</option>
+                            <option value="" selected>-- Seleccionar --</option>
+                            <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
+                            <option value="1" @if ($status == 1) selected @endif>EN PROCESO COTIIZ</option>
+                            <option value="5" @if ($status == 5) selected @endif>CONTESTADA</option>
+                            <option value="6" @if ($status == 6) selected @endif>EXAMINANDO</option>
+                            <option value="7" @if ($status == 7) selected @endif>APROBADA</option>
+                            <option value="8" @if ($status == 8) selected @endif>RECHAZADA</option>
                         </select>
                     @endif
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
@@ -66,7 +69,7 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Tipo</th>
+                                        {{-- <thscope="col">Tipo</th> --}}
                                         <th scope="col">Servicio</th>
                                         <th scope="col">Usuario</th>
                                         <th scope="col">Descripción</th>
@@ -79,7 +82,7 @@
                                     @foreach ($requests as $req)
                                         <tr>
 
-                                            <td class="col-md-1">{{ $req->tipo }}</td>
+                                          {{-- <tdclass="col-md-1">$req->tipo }}</td>--}}
                                             <td class="col-md-1">{{ $req->servicio }}</td>
                                             <td class="col-md-2">
                                                 @if ($req->solicitud == 2)
@@ -90,8 +93,8 @@
 
                                             </td>
                                             <td>{{ $req->description }}</td>
-                                            <td class="col-md-1">{{ $req->created_at->format('d-m-Y') }}</td>
-                                            <td class="col-md-1">
+                                            <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
+                                            <td class="col-md-1" style="font-size: 14px">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span
                                                             class="badge text-white bg-secondary">SOLICITANDO</span></h5>

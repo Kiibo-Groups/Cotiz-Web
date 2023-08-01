@@ -1,4 +1,4 @@
-@extends('layouts.app_proveedor')
+@extends('layouts.app_profile')
 
 @section('title')
     Ver profesionista

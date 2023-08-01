@@ -11,8 +11,6 @@
                 </div>
 
 
-
-
                 <div class="row ec-vendor-uploads">
                     <div class="col-lg-4">
                         <div class="ec-vendor-img-upload">
@@ -28,7 +26,7 @@
                                             </div>
                                         @enderror
                                         <input type='file' id="img" name="logo" class="ec-image-upload"
-                                            accept=".png, .jpg, .jpeg" />
+                                            accept=".png, .jpg, .jpeg" required />
                                         <label for="img">
                                             <img src="<?php echo asset('profile/img/icons/edit.svg'); ?>" class="svg_img header_svg" alt="edit" />
                                         </label>
@@ -60,7 +58,7 @@
                                 </div>
                             @enderror
                             <label class="form-label">Tipo</label>
-                            <select name="type" id="type" class="form-select js-example-basic-single">
+                            <select name="type" id="type" class="form-select js-example-basic-single" required>
                                 <option value="" selected></option>
                                 <option value="service" @if ($data->type === 'service') selected @endif>
                                     Servicio</option>
@@ -78,9 +76,9 @@
                                     Debes Agregar un titulo
                                 </div>
                             @enderror
-                            <label class="title">Titulo</label>
+                            <label class="title">Titulo <span id="titulo1"  style="color: red;font-size:14px">(Campo utilizado para filtrar catálogo)</span> </label>
                             <input type="text" name="title" class="form-control"
-                                @if ($data->id) value="{{ $data->title }}" @endif>
+                                @if ($data->id) value="{{ $data->title }}" @endif required>
                         </div>
 
                         <div class="col-md-11" style="margin-top:25px;">
@@ -91,7 +89,7 @@
                             @enderror
                             <label for="price">Costo del servicio</label>
                             <input type="number" name="price" id="price" class="form-control"
-                                @if ($data->id) value="{{ $data->price }}" @endif>
+                                @if ($data->id) value="{{ $data->price }}" @endif required>
                         </div>
 
                     </div>
@@ -116,7 +114,7 @@
                                 </div>
                             @enderror
                             <label for="description">Descripcion</label>
-                            <textarea class="form-control" placeholder="Escribe una breve descripcion" id="description" name="description">{{ $data->description }}</textarea>
+                            <textarea class="form-control" placeholder="Escribe una breve descripcion" id="description" name="description" required>{{ $data->description }}</textarea>
                         </div>
                     </div>
 
@@ -156,10 +154,14 @@
         if (type == 'employe') {
 
             $("#registroData").show();
+            $("#titulo1").hide();
+
             $('#formulario').append(` @include('proveedor.catalogo.registerprofesional')`);
         } else {
             $('#formulario').empty();
             $("#registroData").hide();
+            $("#titulo1").show();
+
 
         }
     });

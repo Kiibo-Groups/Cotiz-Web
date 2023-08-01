@@ -139,16 +139,16 @@ class RegisterController extends Controller
 
     public function storeEmpresa(Request $request){
 
-        $request->validate([
+     dd(   $request->validate([
 
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|min:8|confirmed',
+            'opinionPositiva'=>'file|max:3048',
+            'infoBancaria'=>'file|max:3048',
+            'constFiscal'=>'file|max:3048',
+            'domicilioFiscal'=>'file|max:3048',
 
-        ],
-        [
-            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.'),
-            Session::flash('class', 'danger'),
-        ]);
+        ]));
 
         $input = $request->all();
         $registro   =  new Rfc();
@@ -417,7 +417,7 @@ class RegisterController extends Controller
         $request->validate([
 
             'email'   => 'required|string|email|unique:users',
-            'password'=>'required|min:8|confirmed',
+            'password'=>'required|confirmed',
 
         ],
         [
@@ -454,8 +454,8 @@ class RegisterController extends Controller
         }
 
         $user = new User;
-        $user->company           = $request->empresa;
-        //$user->idempresa         = $request->empresaid;
+        $user->company           = $request->idempresa;
+        //$user->idempresa         = $request->idempresa;
         //$user->rfc               = $request->rfc;
         $user->name              = $request->name;
         $user->last_name         = $request->apellidoPaterno. ' '. $request->apellidoMaterno;

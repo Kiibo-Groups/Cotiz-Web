@@ -21,38 +21,15 @@
                     <div class="card info-card">
                         <div class="card-header card-header-border-bottom">
 
+                            @if ( $data->role == 4)
+                                <p style="color: red">Usuario Principal de  Empresa</p>
+                            @endif
 
                         </div>
 
                         <div class="row ec-vendor-uploads">
 
-                            <div class="col-lg-12">
-                                <div class="ec-vendor-img-upload">
-                                    <div class="ec-vendor-main-img">
-                                        <div class="avatar-upload">
-                                            <div class="avatar-edit">
-                                                <input type='file' id="img"
-                                                    @if (!$data->id) required="required" @endif
-                                                    name="img" class="ec-image-upload" accept=".png, .jpg, .jpeg" />
 
-                                            </div>
-
-                                            <div class="avatar-preview ec-preview">
-                                                <div class="imagePreview ec-div-preview">
-                                                    @if ($data->id)
-                                                        <img class="ec-image-preview" src="{{ asset('assets/img/logos/'.$data->pic_profile) }}"
-                                                            alt="usuario" />
-                                                    @else
-                                                        <img class="ec-image-preview"
-                                                            src="{{ asset('profile/img/user_profile.jpg') }}"
-                                                            alt="edit" />
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="col-lg-12">
@@ -64,7 +41,7 @@
                                             <input type="text" class="form-control slug-title" id="name"
                                                 name="name" value="{{ $data->name }}">
                                         </div>
-
+                                        @if ( $data->role != 4)
                                         <div class="col-md-4">
                                             <label for="last_name" class="form-label">Apellidos</label>
                                             <input type="text" class="form-control slug-title" id="last_name"
@@ -211,7 +188,7 @@
                                         </div>
                                     </div>
 
-
+                                    @endif
 
                                     <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
 

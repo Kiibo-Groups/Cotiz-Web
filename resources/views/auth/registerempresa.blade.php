@@ -15,29 +15,33 @@
     </div>
     <input id="signuprfc" name="rfc" type="hidden">
 
+    <span class="d-block mt-1" style="font-size:12px;color:red;">
+        Los archivos PDF no deben sobrepasar los 3 MB de tamaño..
+    </span>
+
     <div class="row">
         <div class="col-6 form-floating mb-4">
             <input id="opinionPositiva" type="file" class="form-control" name="opinionPositiva" title="Opinión positiva"
-            accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+            accept=".pdf" required>
             <label for="opinionPositiva">Opinión positiva</label>
 
 
         </div>
         <div class="col-6 form-floating mb-4">
             <input id="infoBancaria" type="file" class="form-control" name="infoBancaria"
-                value="{{ old('infoBancaria') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+                value="{{ old('infoBancaria') }}" accept=".pdf" required>
             <label for="infoBancaria">Información bancaria</label>
         </div>
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
             <input id="constFiscal" type="file" class="form-control" name="constFiscal" value="{{ old('constFiscal') }}"
-            accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+            accept=".pdf" required>
             <label for="constFiscal">Constancia de situación fiscal</label>
         </div>
         <div class="col-6 form-floating mb-4">
             <input id="domicilioFiscal" type="file" class="form-control" name="domicilioFiscal"
-                value="{{ old('domicilioFiscal') }}" accept=".png, .jpg, .jpeg, .doc, .docx, .pdf" required>
+                value="{{ old('domicilioFiscal') }}" accept=".pdf" required>
             <label for="domicilioFiscal">Registro de Domiclio fiscal </label>
         </div>
     </div>
@@ -115,7 +119,7 @@
     </div>
 
     <div class="form-floating mb-4">
-        <textarea name="actividadPPal" id="actividadPPal" rows="3" class="form-control"></textarea>
+        <textarea name="actividadPPal" id="actividadPPal" rows="3" class="form-control" required></textarea>
         <label for="actividadPPal">Descripción de actividad principal de la empresa</label>
     </div>
 

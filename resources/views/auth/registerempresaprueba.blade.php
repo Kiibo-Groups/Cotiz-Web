@@ -40,7 +40,9 @@
         </div>
     </div>
 
-
+    <span class="d-block mt-1" style="font-size:13px;color:red;">
+        Las imagenes no deben sobrepasar los 3 MB de tamaño..
+    </span>
     <div class="row">
         <div class="col-6 form-floating mb-4">
             <input id="fotoGafete" type="file" class="form-control" name="fotoGafete"
@@ -64,6 +66,11 @@
             value="{{ old('fotoCredencial2') }}" accept=".png, .jpg, .jpeg" required>
             <label for="fotoCredencial2">Foto credencial de elector (INE) lado #2 </label>
         </div>
+    </div>
+    <div class="form-floating mb-4">
+        <input id="signupEmail" type="text" class="form-control"  name="idempresa"  required >
+        <label for="signupEmail">Nombre de Empresa</label>
+
     </div>
 
     <div class="row">

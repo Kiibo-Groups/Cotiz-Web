@@ -143,7 +143,7 @@
                         <li>
                             <a href="{{ Asset(env('admin') . '/catalogo') }}"
                                 class="@if (Route::is('catalogo')) active @endif">
-                                <i class="bi bi-circle"></i><span>Personal</span>
+                                <i class="bi bi-circle"></i><span>Profesionistas</span>
                             </a>
                         </li>
                     </ul>
