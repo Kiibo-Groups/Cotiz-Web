@@ -80,7 +80,7 @@ class SolicitudesController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
-        $requests = Requests::where('solicitud', 3)->orderBy("status", "asc")->with(['service','user']);
+        $requests = Requests::where('solicitud', 3)->orderBy("status", "asc")->with(['user']);
 
         //dd($requests);
 
@@ -96,12 +96,7 @@ class SolicitudesController extends Controller
         }
 
         if($search) {
-            $requests = $requests->orWhereHas('service', function ($q) use ($search) {
-                $q->where('title', "like",'%'.$search.'%');
-            })
-            ->orWhereHas('user', function ($q) use ($search) {
-                $q->where('name','like','%'.$search.'%');
-            });
+            $requests = $requests->whereRaw('LOWER(description) LIKE(?)','%'.$search.'%');
         }
 
         if(!is_null($from)) {

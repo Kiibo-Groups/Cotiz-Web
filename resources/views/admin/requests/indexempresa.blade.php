@@ -37,9 +37,9 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" id="filter_search"
                         @if ($search != null) value="{{ $search }}" @endif
-                        placeholder="Buscar una solicitud por usuario" aria-label="Recipient's username"
+                        placeholder="Buscar una solicitud por descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    @if (Auth::user() && Auth::user()->role != 1)
+
                         <select name="filter_status" id="filter_status" class="form-select">
                             <option value="" selected>-- Seleccionar --</option>
                             <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
@@ -49,7 +49,7 @@
                             <option value="7" @if ($status == 7) selected @endif>APROBADA</option>
                             <option value="8" @if ($status == 8) selected @endif>RECHAZADA</option>
                         </select>
-                    @endif
+
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                 </div>
 
