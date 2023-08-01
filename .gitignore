@@ -20,3 +20,4 @@ yarn-error.log
 /public/assets/documento
 /public/assets/documents
 .env
+/public/public
