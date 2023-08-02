@@ -139,16 +139,16 @@ class RegisterController extends Controller
 
     public function storeEmpresa(Request $request){
 
-     dd(   $request->validate([
+       $request->validate([
 
             'email'   => 'required|string|email|unique:users',
-            'password'=>'required|min:8|confirmed',
+            'password'=>'required|confirmed',
             'opinionPositiva'=>'file|max:3048',
             'infoBancaria'=>'file|max:3048',
             'constFiscal'=>'file|max:3048',
             'domicilioFiscal'=>'file|max:3048',
 
-        ]));
+        ]);
 
         $input = $request->all();
         $registro   =  new Rfc();
@@ -228,7 +228,7 @@ class RegisterController extends Controller
         $request->validate([
 
             'email'   => 'required|string|email|unique:users',
-            'password'=>'required|min:8|confirmed',
+            'password'=>'required|confirmed',
 
         ]);
 
@@ -318,7 +318,7 @@ class RegisterController extends Controller
         $request->validate([
 
             'email'   => 'required|string|email|unique:users',
-            'password'=>'required|min:8|confirmed',
+            'password'=>'required|confirmed',
 
         ],
         [
