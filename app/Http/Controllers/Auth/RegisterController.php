@@ -118,7 +118,7 @@ class RegisterController extends Controller
         mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         $request->validate([
-            'document'=>'required|max:3048',
+            'document'=>'max:3048',
 
         ]);
 
