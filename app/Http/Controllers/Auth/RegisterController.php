@@ -35,6 +35,10 @@ class RegisterController extends Controller
 
             'email'   => 'required|string|email|unique:users',
             'password'=>'required|confirmed',
+            'fotoGafete'=>'file|max:3048',
+            'fotoCredencial'=>'file|max:3048',
+            'fotoGafete2'=>'file|max:3048',
+            'fotoCredencial2'=>'file|max:3048',
 
         ],
         [

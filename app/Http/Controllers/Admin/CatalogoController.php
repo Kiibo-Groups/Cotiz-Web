@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Rfc;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Requests;
 use App\Models\Services;
 use App\Models\Referencia;
@@ -111,9 +112,13 @@ class CatalogoController extends Controller
     }
 
     public function storeRequestSolicitud(Request $request){
-       // dd($request);
+        //dd($request);
 
+       $request->validate([
 
+        'document'=>'file|max:3048',
+
+    ]);
         $input = $request->all();
         $requests_data = new Requests;
 
@@ -121,12 +126,6 @@ class CatalogoController extends Controller
         $service_data  = Services::find($request->services_id);
         $provider_data = Rfc::find($service_data->provider_id);
 
-
-        // $notification           = new Notifications;
-        // $notification->of_user  = $request->user_id;
-        // $notification->for_user = $provider_data->id;
-        // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
-        // $notification->save();
 
         if($request->file('document'))
         {
@@ -136,6 +135,21 @@ class CatalogoController extends Controller
         }
 
         $requests_data->create($input);
+
+
+        $para       =  User::where('idempresa', $request->proveedor )->value('email');
+
+        $asunto     =   'Tienes un nueva Cotización  de cotiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $cabeceras = 'From: '. Admin::find(1)->email. "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+
+
+
         return redirect(env('admin').'/servicios/proveedores')->with('message', 'Solicitud Enviada');
         //return redirect()->route('servicios.show')->with('message', 'Solicitud Enviada');
 
