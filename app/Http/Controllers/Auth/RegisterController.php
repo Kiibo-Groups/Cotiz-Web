@@ -7,6 +7,7 @@ use Hash;
 
 use App\Models\Rfc;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Providers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -104,6 +105,23 @@ class RegisterController extends Controller
         // }
 
         //auth()->login($user); auto Login -  se quita por activacion por admin
+
+
+        $para       =  Admin::find(1)->email;
+        $asunto     =   'Tienes un nuevo registro de '.$request->name;
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $cabeceras = 'From: '. $request->email . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+
+        $request->validate([
+            'document'=>'required|max:3048',
+
+        ]);
+
 
         Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
         Session::flash('class', 'success');
@@ -215,6 +233,17 @@ class RegisterController extends Controller
        $user->rfc                 = $registro->rfc;
        $user->save();
 
+
+       $para       =  Admin::find(1)->email;
+       $asunto     =   'Tienes un nuevo registro de '.$request->nombre;
+       $mensaje    =   "Tienes un mensaje, accede al sistema Cotiz<br />";
+       $cabeceras = 'From: '. $request->email . "\r\n";
+
+       $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+       $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+       mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+
        Session::flash('mensaje','Registro Exitoso!');
        Session::flash('class', 'success');
        return back();
@@ -303,6 +332,16 @@ class RegisterController extends Controller
        $user->idempresa         = $registro->id;
        $user->rfc               = $registro->rfc;
        $user->save();
+
+       $para       =  Admin::find(1)->email;
+       $asunto     =   'Tienes un nuevo registro de '.$request->nombre;
+       $mensaje    =   "Tienes un mensaje, accede al sistema Cotiz<br />";
+       $cabeceras = 'From: '. $request->email . "\r\n";
+
+       $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+       $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+       mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
        Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
        Session::flash('class', 'success');
