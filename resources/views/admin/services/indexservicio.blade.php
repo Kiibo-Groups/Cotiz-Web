@@ -93,8 +93,10 @@
                                                     class="btn btn-primary">Editar</a>
                                             </div>
                                             <div class="col-4 mt-3">
-                                                <a href="{{ url(env('admin') . '/services/delete/' . $service->id) }}"
-                                                    class="btn btn-danger">Eliminar</a>
+                                                <a href="javascript::void()" class="btn btn-danger"
+                                                onclick="deleteConfirm('{{ url(env('admin') . '/services/delete/' . $service->id) }}')">
+                                                Eliminar
+                                            </a>
                                             </div>
                                             <div class="col-4 mt-3">
                                                 <a href="{{ url(env('admin') . '/catalogo/enviar/' . $service->id) }}"

@@ -92,7 +92,11 @@
                                                         <a class="dropdown-item" href="{{ url(env('admin') . '/catalogo/enviar/' . $req->id) }}">Enviar Cotización</a>
                                                         <a class="dropdown-item" href="{{ url(env('admin').'/catalogo/ver/'.$req->id) }}">Ver</a>
                                                         <a class="dropdown-item" href="{{ url(env('admin').'/catalogo/status/'.$req->id) }}">Activar/Desactivar</a>
-                                                        <a class="dropdown-item" href="{{ url(env('admin').'/services/delete/'.$req->id) }}">Eliminar</a>
+
+                                                        <a href="javascript::void()" class="dropdown-item"
+                                                            onclick="deleteConfirm('{{ url(env('admin') . '/services/delete/' . $req->id) }}')">
+                                                            Eliminar
+                                                        </a>
 
                                                     </div>
                                                 </div>

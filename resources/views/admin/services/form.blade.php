@@ -1,13 +1,12 @@
-
 <section class="section container services">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header card-header-border-bottom">
-                    @if(!$data->id)
-                    <h2>Agregar Nuevo Servicio</h2>
+                    @if (!$data->id)
+                        <h2>Agregar Nuevo Servicio</h2>
                     @else
-                    <h2>Editando Servicio #{{$data->id}}</h2>
+                        <h2>Editando Servicio #{{ $data->id }}ll</h2>
                     @endif
                 </div>
                 <div class="row ec-vendor-uploads">
@@ -15,7 +14,8 @@
                         <div class="ec-vendor-img-upload">
                             <div class="ec-vendor-main-img">
                                 <div class="avatar-upload">
-                                    <label for="url" class="form-label" style="margin: 0 25px;">Imagen <small>(medidas 450px * 301px)</small></label>
+                                    <label for="url" class="form-label" style="margin: 0 25px;">Imagen
+                                        <small>(medidas 450px * 301px)</small></label>
 
                                     <div class="avatar-edit">
                                         @error('logo')
@@ -23,18 +23,21 @@
                                                 Debes Agregar una imagen
                                             </div>
                                         @enderror
-                                        <input type='file' id="img" name="logo" class="ec-image-upload" accept=".png, .jpg, .jpeg" />
+                                        <input type='file' id="img" name="logo" class="ec-image-upload"
+                                            accept=".png, .jpg, .jpeg" />
                                         <label for="img">
-                                            <img src="<?php echo asset('profile/img/icons/edit.svg') ?>" class="svg_img header_svg" alt="edit" />
+                                            <img src="<?php echo asset('profile/img/icons/edit.svg'); ?>" class="svg_img header_svg" alt="edit" />
                                         </label>
                                     </div>
 
                                     <div class="avatar-preview ec-preview">
                                         <div class="imagePreview ec-div-preview">
-                                            @if($data->id)
-                                            <img class="ec-image-preview" src="<?php echo asset('assets/img/logos/'.$data->logo) ?>" style="height: 301px;" alt="servicio" />
+                                            @if ($data->id)
+                                                <img class="ec-image-preview" src="<?php echo asset('assets/img/logos/' . $data->logo); ?>"
+                                                    style="height: 301px;" alt="servicio" />
                                             @else
-                                            <img class="ec-image-preview" src="<?php echo asset('profile/img/banner/1.jpg') ?>" style="height: 301px;" alt="edit" />
+                                                <img class="ec-image-preview" src="<?php echo asset('profile/img/banner/1.jpg'); ?>"
+                                                    style="height: 301px;" alt="edit" />
                                             @endif
                                         </div>
                                     </div>
@@ -48,29 +51,32 @@
                             <div class="row g-3">
                                 <div class="col-md-8">
                                     @if (!Auth::guard('admin')->check())
-                                        @foreach ( $providers as $provider )
+                                        @foreach ($providers as $provider)
                                             <input type="hidden" name="provider_id" value="{{ $provider->id }}">
                                         @endforeach
                                     @else
-                                    @error('provider_id')
-                                        <div class="alert alert-danger" role="alert">
-                                            Debes agregar un Proveedor
-                                        </div>
-                                    @enderror
-                                    <label for="provider" class="form-label">Proveedor</label>
-                                    <select name="provider_id" id="provider" class="form-select js-example-basic-single">
-                                        @if ($data->id)
-                                            @foreach ($providers as $provider)
-                                                <option value="{{ $provider->id }}" @if($provider->id == $data->provider_id) selected @endif>{{ $provider->nombre }}</option>
-                                            @endforeach
-                                        @else
-                                            <option value="" selected></option>
-                                            @foreach ($providers as $provider)
-                                                <option value="{{ $provider->id }}">{{ $provider->nombre }}</option>
-                                            @endforeach
-                                        @endif
+                                        @error('provider_id')
+                                            <div class="alert alert-danger" role="alert">
+                                                Debes agregar un Proveedor
+                                            </div>
+                                        @enderror
+                                        <label for="provider" class="form-label">Proveedor</label>
+                                        <select name="provider_id" id="provider"
+                                            class="form-select js-example-basic-single">
+                                            @if ($data->id)
+                                                @foreach ($providers as $provider)
+                                                    <option value="{{ $provider->id }}"
+                                                        @if ($provider->id == $data->provider_id) selected @endif>
+                                                        {{ $provider->nombre }}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="" selected></option>
+                                                @foreach ($providers as $provider)
+                                                    <option value="{{ $provider->id }}">{{ $provider->nombre }}</option>
+                                                @endforeach
+                                            @endif
 
-                                    </select>
+                                        </select>
                                     @endif
                                 </div>
 
@@ -81,12 +87,36 @@
                                         </div>
                                     @enderror
                                     <label class="form-label">Tipo</label>
+
+                                    @if ($data->type === 'service')
+                                        <input type="hidden" name="type" class="form-control"
+                                            @if ($data->id) value="{{ $data->type }}" @endif>
+                                        <input type="text" name="type2" class="form-control"
+                                            @if ($data->id) value="Servicio" @endif>
+                                    @endif
+                                    @if ($data->type === 'product')
+                                        <input type="hidden" name="type" class="form-control"
+                                            @if ($data->id) value="{{ $data->type }}" @endif>
+                                            <input type="text" name="type2" class="form-control"
+                                            @if ($data->id) value="Producto" @endif>
+                                    @endif
+                                    @if ($data->type === 'employe')
+                                        <input type="hidden" name="type" class="form-control"
+                                            @if ($data->id) value="{{ $data->type }}" @endif>
+                                            <input type="text" name="type2" class="form-control"
+                                            @if ($data->id) value="Profesionistas" @endif>
+                                    @endif
+
+{{--
                                     <select name="type" id="type" class="form-select js-example-basic-single">
                                         <option value="" selected></option>
-                                        <option value="service" @if ($data->type === "service") selected @endif>Servicio</option>
-                                        <option value="product" @if ($data->type === "product") selected @endif>Producto</option>
-                                        <option value="employe" @if ($data->type === "empleye") selected @endif>Personal</option>
-                                    </select>
+                                        <option value="service" @if ($data->type === 'service') selected @endif>
+                                            Servicio</option>
+                                        <option value="product" @if ($data->type === 'product') selected @endif>
+                                            Producto</option>
+                                        <option value="employe" @if ($data->type === 'empleye') selected @endif>
+                                            Personal</option>
+                                    </select>--}}
                                 </div>
 
                                 <div class="col-md-8" style="margin-top:25px;">
@@ -96,7 +126,8 @@
                                         </div>
                                     @enderror
                                     <label class="title">Titulo</label>
-                                    <input type="text" name="title" class="form-control" @if ($data->id) value="{{ $data->title }}" @endif>
+                                    <input type="text" name="title" class="form-control"
+                                        @if ($data->id) value="{{ $data->title }}" @endif>
                                 </div>
 
                                 <div class="col-md-8" style="margin-top:25px;">
@@ -116,7 +147,8 @@
                                         </div>
                                     @enderror
                                     <label for="price">Costo del servicio</label>
-                                    <input type="number" name="price" id="price" class="form-control" @if ($data->id) value="{{ $data->price }}" @endif>
+                                    <input type="number" name="price" id="price" class="form-control"
+                                        @if ($data->id) value="{{ $data->price }}" @endif>
                                 </div>
 
                                 <div class="col-md-8" style="margin-top:25px;">
@@ -127,18 +159,20 @@
                                     @enderror
                                     <label for="status">Estado</label>
                                     <select name="status" id="status" class="form-select">
-                                        <option value="0" @if ($data->status == '0') selected @endif>Inactivo</option>
-                                        <option value="1" @if ($data->status == '1') selected @endif>Activo</option>
+                                        <option value="0" @if ($data->status == '0') selected @endif>
+                                            Inactivo</option>
+                                        <option value="1" @if ($data->status == '1') selected @endif>
+                                            Activo</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
                                 <button type="submit" class="btn btn-primary text-white rounded">
-                                    @if(!$data->id)
-                                    Agregar
+                                    @if (!$data->id)
+                                        Agregar
                                     @else
-                                    Actualizar
+                                        Actualizar
                                     @endif
                                 </button>
                             </div>

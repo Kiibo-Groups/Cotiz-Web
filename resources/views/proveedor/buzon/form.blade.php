@@ -13,6 +13,7 @@
                     </div>
 
                     <div class="col-lg-10">
+                        @include('alerts')
                         <div class="ec-vendor-upload-detail">
                             <div class="row g-3">
                                 <input type="hidden" class="form-control slug-title"   name="admin_id" value="{{ $user }}">
@@ -35,7 +36,7 @@
 
                                 <div class="col-md-12">
                                     <label for="documento" class="form-label">Documento</label>
-                                    <input type="file" class="form-control slug-title"  id="documento" name="documento" required>
+                                    <input type="file" accept=".png, .jpg, .jpeg, .pdf"  class="form-control slug-title"  id="documento" name="documento" required>
                                 </div>
 
                             </div>

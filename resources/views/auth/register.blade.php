@@ -47,7 +47,7 @@
                                 </div>
 
                             </div>
-                            @include('alerts')
+                           @include('alerts')
                             <div id="registroData" style="display: none" class="registroData">
 
                                 <div id="formulario"></div>

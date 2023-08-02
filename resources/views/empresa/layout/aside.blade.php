@@ -79,7 +79,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ url('./') }}" target="_blank">
                 <i class="bx bxs-navigation"></i>
-                <span>Ir al WebSite</span>
+                <span>Crear Solicitud</span>
             </a>
         </li>
 

@@ -98,7 +98,7 @@ class ServicesController extends Controller
     public function edit($id){
 
         //$providers = Providers::get();
-        $providers = Rfc::where('rol', 2)->where('status', 0)->get();
+        $providers = Rfc::where('id', Services::find($id)->provider_id)->where('status', 0)->get();
 
         return view($this->folder.'services.edit', [
             'data' => Services::find($id),

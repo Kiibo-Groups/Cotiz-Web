@@ -56,7 +56,7 @@
                                             <div class="col-12">
                                                 <h5 class="card-title">
 
-                                                        {{ $service->full_nombre }}
+                                                    {{ $service->full_nombre }}
 
                                                 </h5>
                                                 @if ($service->status === 0)
@@ -99,6 +99,7 @@
                                                 <div class="col-6 mt-3">
                                                     <a href="{{ url(env('user') . '/services/delete/' . $service->id) }}"
                                                         class="btn btn-danger">Eliminar</a>
+
                                                 </div>
                                             @else
                                                 <div class="col-4 mt-3">
@@ -106,8 +107,11 @@
                                                         class="btn btn-primary">Editar</a>
                                                 </div>
                                                 <div class="col-4 mt-3">
-                                                    <a href="{{ url(env('admin') . '/services/delete/' . $service->id) }}"
-                                                        class="btn btn-danger">Eliminar</a>
+
+                                                    <a href="javascript::void()" class="btn btn-danger"
+                                                        onclick="deleteConfirm('{{ url(env('admin') . '/services/delete/' . $service->id) }}')">
+                                                        Eliminar
+                                                    </a>
                                                 </div>
                                                 <div class="col-4 mt-3">
                                                     <a href="{{ url(env('admin') . '/catalogo/enviar/' . $service->id) }}"

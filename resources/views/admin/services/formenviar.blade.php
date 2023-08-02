@@ -12,8 +12,9 @@
 
                     <div class="row ec-vendor-uploads">
                         <div class="col-lg-12">
+                            @include('alerts')
                             <div class="ec-vendor-upload-detail">
-                                @include('alerts')
+
                                 <input type="hidden" name="solicitud" value="3">
                                 <input type="hidden"  id="proveedor" name="proveedor" value="{{ $prove }}">
                                 <input type="hidden"  id="user_id" name="user_id" value="{{ $user }}">

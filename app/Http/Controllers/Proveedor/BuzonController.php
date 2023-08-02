@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Proveedor;
 
 use App\Models\Rfc;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Buzon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Notifications\Buzon as NotificationsBuzon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use App\Notifications\Buzon as NotificationsBuzon;
 
 class BuzonController extends Controller
 {
@@ -69,16 +70,18 @@ class BuzonController extends Controller
     public function create(Request $request)
     {
 
+        $request->validate([
 
+            'documento'=>'file|max:3048',
+
+        ]);
 
 
 
         $salida = 'Cotiz';
         $user = User::where('id', 82)->first();
 
-        $user->notify(new NotificationsBuzon($salida));
 
-        mail('user1@example.com', 'This is a test subject line', 'The complete body of the message', null, '-fsender@example.com');
 
         $input         = $request->all();
         $requests_data = new Buzon;
@@ -92,6 +95,20 @@ class BuzonController extends Controller
         }
 
         $requests_data->create($input);
+        $from       =  User::where('idempresa', $request->prove_id )->value('email');
+
+        $para       =  Admin::find(1)->email;
+
+        $asunto     =   'Tienes un nuevo Buzón  de cotiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $cabeceras = 'From: '.  $from  . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+
+
 
         Session::flash('mensaje','Buzón Cargado ...');
         Session::flash('class', 'success');
