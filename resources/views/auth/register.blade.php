@@ -54,8 +54,14 @@
                             </div>
 
 
-                            <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a type="button"
-                                    class="hover">Ingresar</a></p>
+                            <p id="continuar" class="mb-0" style="color:black;"><a type="button"
+                                    class="hover">Continuar</a></p>
+
+<br>
+
+
+                            <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a href="{{ route('login') }}"
+                                        class="hover">login</a></p>
                         </div>
                         <!--/.card-body -->
                     </div>
@@ -121,6 +127,7 @@
             $('#formulario').append(` @include('auth.registerempresa')`);
 
             $("#divempresa").hide();
+            $("#continuar").hide();
             $("#registroData").show();
             //$('#signupName').prop('readonly', true);
             $('#buscarfc').prop('readonly', true);
@@ -134,7 +141,7 @@
             $('#formulario').append(` @include('auth.registerempresaprueba')`);
 
             $("#buscarfc").hide();
-
+            $("#continuar").hide();
             $("#divempresa").hide();
             $("#registroData").show();
             //$('#signupName').prop('readonly', true);
@@ -151,7 +158,7 @@
             $('#formulario').append(` @include('auth.registerusuario')`);
             $("#divempresa").hide();
             $("#registroData").show();
-
+            $("#continuar").hide();
             $("#registroUsuario").show();
             $('#buscarfc').prop('readonly', true);
             $('#buscarfc').prop('disabled', true);

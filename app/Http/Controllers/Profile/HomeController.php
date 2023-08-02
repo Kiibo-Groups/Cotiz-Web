@@ -228,8 +228,8 @@ class HomeController extends Controller
     //dd(auth()->user()->email);
 
         $para       =  Admin::find(1)->email;
-        $asunto     =   'Tienes un mensaje de'.$request->nomprove;
-        $mensaje    =   "Tienes un mensaje de empresa accede al sistema<br />";
+        $asunto     =   'Tienes un mensaje de '.$request->nomprove;
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
         $cabeceras = 'From: '.auth()->user()->email . "\r\n";
 
         $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
