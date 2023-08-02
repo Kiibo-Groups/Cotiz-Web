@@ -11,3 +11,8 @@
 <link rel="preload" href="{{ asset('assets/css/fonts/thicccboi.css') }}" as="style" onload="this.rel='stylesheet'">
 
 <link href="{{ asset('profile/vendor/select2/css/select2.min.css') }}" rel="stylesheet">
+
+
+
+<link href="{{ asset('profile/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+<link href="{{ asset('profile/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">

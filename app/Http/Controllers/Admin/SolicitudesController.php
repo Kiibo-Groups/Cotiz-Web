@@ -40,9 +40,7 @@ class SolicitudesController extends Controller
         if($search) {
             $requests = $requests->whereRaw('LOWER(description) LIKE(?)','%'.$search.'%')
 
-             ->orWhereHas('prueba', function ($q) use ($search) {
-                $q->whereRaw('LOWER(name) LIKE(?)','%'.$search.'%');
-             });
+             ->orwhereRaw('LOWER(nomprove) LIKE(?)','%'.$search.'%');
         }
 
         if(!is_null($from)) {
@@ -107,12 +105,7 @@ class SolicitudesController extends Controller
 
         $requests = $requests->paginate(10);
 
-        // return response()->json([
-        //     'user' => Auth::user(),
-        //     'requests'=> $requests,
-        //     'search'=> $search,
-        //     'status'=>$status
-        // ]);
+
 
         return view($this->folder.'requests.indexproveedor', [
             'requests'=> $requests,

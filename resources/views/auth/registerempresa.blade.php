@@ -21,8 +21,8 @@
 
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="opinionPositiva" type="file" class="form-control" name="opinionPositiva" title="Opinión positiva"
-            accept=".pdf" required>
+            <input id="opinionPositiva" type="file" class="form-control" name="opinionPositiva"
+                title="Opinión positiva" accept=".pdf" required>
             <label for="opinionPositiva">Opinión positiva</label>
 
 
@@ -35,8 +35,8 @@
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="constFiscal" type="file" class="form-control" name="constFiscal" value="{{ old('constFiscal') }}"
-            accept=".pdf" required>
+            <input id="constFiscal" type="file" class="form-control" name="constFiscal"
+                value="{{ old('constFiscal') }}" accept=".pdf" required>
             <label for="constFiscal">Constancia de situación fiscal</label>
         </div>
         <div class="col-6 form-floating mb-4">
@@ -48,11 +48,12 @@
     <div class="row">
         <div class="col-6 form-floating mb-4">
             <input id="numeroPlanta" type="text" class="form-control" name="numeroPlanta"
-                value="{{ old('numeroPlanta') }}"  required>
+                value="{{ old('numeroPlanta') }}" required>
             <label for="numeroPlanta">Número de planta industrial </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="signupEmail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            <input id="signupEmail" type="email" class="form-control @error('email') is-invalid @enderror"
+                name="email" value="{{ old('email') }}" required autocomplete="email">
             <label for="signupEmail">Email</label>
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -60,66 +61,102 @@
                 </span>
             @enderror
         </div>
-    </div>
-    <div class="row">
-            <div class="col-6 form-floating mb-4">
-                <input id="signupPass" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                <label for="signupPass">Contraseña</label>
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
 
-            <div class="col-6 form-floating mb-4">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                <label for="signupPass">Confirmar Contraseña</label>
-            </div>
     </div>
+
+
+
+
+    <div class="row ">
+        <div class="col-6 form-floating input-group mb-4">
+
+            <input id="password"  type="password" class="form-control @error('password') is-invalid @enderror"
+                name="password" required autocomplete="new-password">
+
+            <label for="signupPass">Contraseña </label>
+
+            <button type="button" class="btn btn-outline-primary" onmousedown="$('#password').attr('type','text');"
+                onmouseup="$('#password').attr('type','password');"> <i class="bi bi-eye-slash"></i></button>
+
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+
+        <div class="col-6 form-floating input-group  mb-4" style="float: right">
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
+                autocomplete="new-password">
+            <label for="signupPass">Confirmar Contraseña</label>
+
+            <button type="button" class="btn btn-outline-primary" onmousedown="$('#password-confirm').attr('type','text');"
+            onmouseup="$('#password-confirm').attr('type','password');"> <i
+                class="bi bi-eye-slash"></i></button>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="calle" type="text" class="form-control" name="calle" required>
+            <input id="calle" type="text" class="form-control" name="calle" value="{{ old('calle') }}"
+                required>
             <label for="calle">Calle </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="numeroCalle" type="text" class="form-control" name="numeroCalle" required>
+            <input id="numeroCalle" type="text" class="form-control" name="numeroCalle"
+                value="{{ old('numeroCalle') }}" required>
             <label for="numeroCalle">Número </label>
         </div>
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="colonia" type="text" class="form-control" name="colonia" required>
+            <input id="colonia" type="text" class="form-control" name="colonia"
+                value="{{ old('colonia') }}"required>
             <label for="colonia">Colonia </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="cp" type="text" class="form-control" name="cp" required>
+            <input id="cp" type="text" class="form-control" name="cp" value="{{ old('cp') }}"
+                required>
             <label for="cp">C.P </label>
         </div>
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="municipio" type="text" class="form-control" name="municipio" required>
+            <input id="municipio" type="text" class="form-control" name="municipio"
+                value="{{ old('municipio') }}" required>
             <label for="municipio">Municipio </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="delegación" type="text" class="form-control" name="delegación" required>
+            <input id="delegación" type="text" class="form-control" name="delegación"
+                value="{{ old('delegación') }}" required>
             <label for="delegación">Delegación </label>
         </div>
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="estado" type="text" class="form-control" name="estado" required>
+            <input id="estado" type="text" class="form-control" name="estado" value="{{ old('estado') }}"
+                required>
             <label for="estado">Estado </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="pais" type="text" class="form-control" name="pais" required>
+            <input id="pais" type="text" class="form-control" name="pais" value="{{ old('pais') }}"
+                required>
             <label for="pais">País </label>
         </div>
     </div>
 
     <div class="form-floating mb-4">
-        <textarea name="actividadPPal" id="actividadPPal" rows="3" class="form-control" required></textarea>
+        <textarea name="actividadPPal" id="actividadPPal" rows="3" class="form-control"
+            value="{{ old('actividadPPal') }}" required></textarea>
         <label for="actividadPPal">Descripción de actividad principal de la empresa</label>
     </div>
 
@@ -128,4 +165,7 @@
         Registrar Empresa
     </button>
 
-<form>
+    <form>
+
+
+

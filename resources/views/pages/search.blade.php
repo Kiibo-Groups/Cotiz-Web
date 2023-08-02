@@ -51,9 +51,24 @@
             <div class="p-6 rounded-md shadow dark:shadow-gray-800 mt-8">
                 <h4 class="text-lg font-semibold">Solicitar {{ $type }}:</h4>
 
+                <h4 class="text-lg font-semibold">* Descargar documento necesario para solicitar productos, servicios o profesionistas:  <a target="_blank"  title="Descargar Documento"
+                    href="/assets/media/Requisitos.docx"><img src="{{ asset('assets/media/word.png') }}" style="width: 30px;" class="inline-block dark:hidden"
+                    alt="">
+                    <i class="bi bi-download"></i>
+                </a></h4>
+
+                <h4 class="text-lg font-semibold">* Link para acceder a Drive de Cotiz:  <a target="_blank" title="Descargar Documento"
+                    href="{{ $link }}" ><img src="{{ asset('assets/media/link.png') }}" style="width: 30px;" class="inline-block dark:hidden"
+                    alt="">
+                    <i class="bi bi-download"></i>
+                </a></h4>
+
+
+
                 <form class="mt-8" action="{{ url(env('user') . '/request/create') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+
                     @if (Auth::user()->role == 3)
                         <input type="hidden" name="solicitud" value="1">
                     @else
@@ -63,7 +78,8 @@
                     @if (Auth::user()->role == 2)
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->id }}">
                     @else
-                        <input type="hidden" name="proveedor" value="{{ Auth::user()->idempresa }}">
+                        <input type="hidden" name="proveedor" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="nomprove" value="{{  Auth::user()->empresa->nombre}}">
                     @endif
 
                     <input type="hidden" name="user_id" value="1">

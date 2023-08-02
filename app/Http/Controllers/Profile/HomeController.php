@@ -225,7 +225,17 @@ class HomeController extends Controller
 
     public function storeRequest(Request $request){
 
+    //dd(auth()->user()->email);
 
+        $para       =  Admin::find(1)->email;
+        $asunto     =   'Tienes un mensaje de'.$request->nomprove;
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema<br />";
+        $cabeceras = 'From: '.auth()->user()->email . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         $request->validate([
             'document'=>'required|max:3048',
@@ -256,6 +266,10 @@ class HomeController extends Controller
         }
 
         $requests_data->create($input);
+
+
+
+
 
         return redirect()->route('init')->with('message', 'Solicitud Enviada');
 

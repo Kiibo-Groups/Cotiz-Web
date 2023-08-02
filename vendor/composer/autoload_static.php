@@ -587,6 +587,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Models\\Settings' => __DIR__ . '/../..' . '/app/Models/Settings.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Viewers' => __DIR__ . '/../..' . '/app/Models/Viewers.php',
+        'App\\Notifications\\Buzon' => __DIR__ . '/../..' . '/app/Notifications/Buzon.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

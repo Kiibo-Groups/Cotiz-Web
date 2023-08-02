@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                    {{--    <div class="social-links mt-2">
+                        {{--    <div class="social-links mt-2">
                             <a @if ($data->twitter) href="{{ $data->twitter }}" @else href="#" @endif
                                 class="twitter"><i class="bi bi-twitter"></i></a>
                             <a @if ($data->facebook) href="{{ $data->facebook }}" @else href="#" @endif
@@ -64,7 +64,7 @@
                                 class="instagram"><i class="bi bi-instagram"></i></a>
                             <a @if ($data->linkedin) href="{{ $data->linkedin }}" @else href="#" @endif
                                 class="linkedin"><i class="bi bi-linkedin"></i></a>
-                        </div>--}}
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                                         </div>
                                     </div>
 
-                               {{--     <div class="row mb-3">
+                                    {{--     <div class="row mb-3">
                                         <div class="col-lg-12 mb-3">
                                             <div class="form-group mb-3">
                                                 <label for="name">Configuración del CashBack</label>
@@ -192,7 +192,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>--}}
+                                    </div> --}}
 
                                     <div class="text-left pt-16 mb-3">
                                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -228,31 +228,34 @@
                                                 </span>
                                             </div>
 
-                                            {{-- <div class="form-group mb-3">
-                                        <label for="fb">Facebook</label>
-                                        <input type="text" class="form-control" id="fb" name="fb" value="{{$data->fb}}" autocomplete="off">
-                                    </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="insta">Instagram</label>
-                                        <input type="text" class="form-control" id="insta" name="insta" value="{{$data->insta}}" autocomplete="off">
-                                    </div>
+                                            {{--
+                                                    <div class="form-group mb-3">
+                                                        <label for="insta">Instagram</label>
+                                                        <input type="text" class="form-control" id="insta" name="insta" value="{{$data->insta}}" autocomplete="off">
+                                                    </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="twitter">Twitter</label>
-                                        <input type="text" class="form-control" id="twitter" name="twitter" value="{{$data->twitter}}" autocomplete="off">
-                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="twitter">Twitter</label>
+                                                        <input type="text" class="form-control" id="twitter" name="twitter" value="{{$data->twitter}}" autocomplete="off">
+                                                    </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="youtube">Youtube</label>
-                                        <input type="text" class="form-control" id="youtube" name="youtube" value="{{$data->youtube}}" autocomplete="off">
-                                    </div> --}}
+                                                    <div class="form-group mb-3">
+                                                        <label for="youtube">Youtube</label>
+                                                        <input type="text" class="form-control" id="youtube" name="youtube" value="{{$data->youtube}}" autocomplete="off">
+                                                    </div> --}}
                                         </div>
+
 
                                         <div class="col-lg-7 col-md-6 col-sl-12">
                                             <div class="form-group mb-3">
                                                 @include('admin.layout.google')
                                             </div>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="fb">Link Drive</label>
+                                            <input type="text" class="form-control" id="fb" name="fb"
+                                                value="{{ $data->fb }}" autocomplete="off">
                                         </div>
 
                                     </div>

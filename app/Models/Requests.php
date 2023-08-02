@@ -25,7 +25,8 @@ class Requests extends Model
        'cantidad',
        'presupuesto',
        'servicio',
-       'link'
+       'link',
+       'nomprove'
     ];
 
 

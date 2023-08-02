@@ -81,22 +81,6 @@
 
 
 
-
-
-
-
-
-                                <div class="mt-5" style="justify-items: end;display: grid;padding:20px;">
-                                    <button type="submit" class="btn btn-primary mb-2 btn-pill">
-                                        @if(!$data->id)
-                                        Agregar
-                                        @else
-                                        Actualizar
-                                        @endif
-                                    </button>
-
-                                </div>
-
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+
+
 @section('content')
     <section class=" bg-image bg-no-repeat bg-center bg-overlay bg-overlay-black-600 text-white py-md-16 "
         data-image-src="{{ asset('assets2/images/bg-login.jpg') }}"
@@ -165,10 +167,6 @@
 
 
         });
-
-
-
-
 
 
 

@@ -22,8 +22,8 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <label for="document" class="form-label">Documento</label>
-                                        <input type="file" class="form-control slug-title"  id="document" name="document" required>
+                                        <label for="document" class="form-label">Documento </label>
+                                        <input type="file" accept=".png, .jpg, .jpeg, .pdf" class="form-control slug-title"  id="document" name="document" required>
                                     </div>
 
 

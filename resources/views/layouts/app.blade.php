@@ -31,6 +31,13 @@
       .absolute {
           position: absolute !important;
       }
+
+      .password-icon {
+        float: right;
+        position: relative;
+        margin: -25px 10px 0 0;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body class="antialiased">
@@ -74,6 +81,8 @@
     <!-- JS -->
         @include("structure.footerjs")
     <!-- JS -->
+
+
 
     @yield('js')
 </body>

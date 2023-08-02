@@ -37,11 +37,11 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" id="filter_search"
                         @if ($search != null) value="{{ $search }}" @endif
-                        placeholder="Buscar una solicitud por descripción" aria-label="Recipient's username"
+                        placeholder="Buscar una solicitud por empresa y descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
 
                         <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>-- Seleccionar --</option>
+                            <option  @if ($status == '') selected @endif>-- Seleccionar --</option>
                             <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
                             <option value="1" @if ($status == 1) selected @endif>EN PROCESO COTIIZ</option>
                             <option value="5" @if ($status == 5) selected @endif>CONTESTADA</option>
@@ -71,7 +71,7 @@
 
                                         {{-- <thscope="col">Tipo</th> --}}
                                         <th scope="col">Servicio</th>
-                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Empresa</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Status</th>
@@ -88,7 +88,7 @@
                                                 @if ($req->solicitud == 2)
                                                     {{ $req->prueba->name }} {{ $req->prueba->last_name }}
                                                 @else
-                                                    {{ $req->prove->nombre }}
+                                                    {{ $req->nomprove }}
                                                 @endif
 
                                             </td>

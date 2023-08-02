@@ -92,7 +92,8 @@ class Controller extends BaseController
             return view('pages.search', [
                 'requests'=> $requests_user,
                 'search' => $search,
-                'type'  => $type
+                'type'  => $type,
+                'link'  => Admin::find(1)->fb
             ]);
         }else {
             return Redirect::to('/login')->with('error', 'Debes ingresar para poder realizar una busqueda.');

@@ -38,7 +38,7 @@
                         placeholder="Buscar una solicitud por descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
                         <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>-- Seleccionar --</option>
+                            <option  @if ($status == '') selected @endif >-- Seleccionar --</option>
                             <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
                             <option value="1" @if ($status == 1) selected @endif>EN PROCESO COTIIZ</option>
                             <option value="5" @if ($status == 5) selected @endif>CONTESTADA</option>
@@ -67,7 +67,7 @@
                                     <tr>
 
                                         <th scope="col">Fecha</th>
-                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Proveedor</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Opciones</th>

@@ -72,6 +72,7 @@ return array(
     'App\\Models\\Settings' => $baseDir . '/app/Models/Settings.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Viewers' => $baseDir . '/app/Models/Viewers.php',
+    'App\\Notifications\\Buzon' => $baseDir . '/app/Notifications/Buzon.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

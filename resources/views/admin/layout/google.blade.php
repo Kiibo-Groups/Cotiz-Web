@@ -1,7 +1,7 @@
-
+<label>País</label>
 <input id="pac-input" class="controls form-control" name="address" value="{{ $data->address }}" type="text" placeholder="Ingresa la dirección">
 
-<div class="form-group col-md-6"><input type="text" hidden name="lat" id="lat" class="form-control" required placeholder="Latitude" value="{{ $data->lat }}"></div>
+{{-- <divclass="form-groupcol-md-6"><inputtype="text"hiddenname="lat"id="lat"class="form-control"requiredplaceholder="Latitude"value="$data->lat }}"></div>
 <div class="form-group col-md-6"><input type="text" hidden name="lng" id="lng" class="form-control" required placeholder="Longitude" value="{{ $data->lng }}"></div>
 
 <div id="map" style="width:100%;height:500px;"></div>
@@ -9,7 +9,7 @@
   <span id="place-name"  class="title"></span>
   <span id="place-id"></span><br>
   <span id="place-address"></span>
-</div>
+</div>--}}
 
 <script>
 let lat = 31.326015; // Por defecto

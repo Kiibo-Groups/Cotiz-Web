@@ -112,20 +112,37 @@
 
 
 
-    <div class="row">
-        <div class="col-6 form-floating mb-4">
-            <input id="signupPass" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-            <label for="signupPass">Contraseña</label>
+
+    <div class="row ">
+        <div class="col-6 form-floating input-group mb-4">
+
+            <input id="password"  type="password" class="form-control @error('password') is-invalid @enderror"
+                name="password" required autocomplete="new-password">
+
+            <label for="signupPass">Contraseña </label>
+
+            <button type="button" class="btn btn-outline-primary" onmousedown="$('#password').attr('type','text');"
+                onmouseup="$('#password').attr('type','password');"> <i class="bi bi-eye-slash"></i></button>
+
+
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
-        <div class="col-6 form-floating mb-4">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
+
+        <div class="col-6 form-floating input-group  mb-4" style="float: right">
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
+                autocomplete="new-password">
             <label for="signupPass">Confirmar Contraseña</label>
+
+            <button type="button" class="btn btn-outline-primary" onmousedown="$('#password-confirm').attr('type','text');"
+            onmouseup="$('#password-confirm').attr('type','password');"> <i
+                class="bi bi-eye-slash"></i></button>
         </div>
+
     </div>
 
 
