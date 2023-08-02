@@ -31,11 +31,11 @@
 
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="apellidoPaterno" type="text" class="form-control" name="apellidoPaterno" required>
+            <input id="apellidoPaterno" type="text" class="form-control" name="apellidoPaterno" value="{{ old('apellidoPaterno') }}" required>
             <label for="apellidoPaterno">Apellido paterno </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="apellidoMaterno" type="text" class="form-control" name="apellidoMaterno" required>
+            <input id="apellidoMaterno" type="text" class="form-control" name="apellidoMaterno" value="{{ old('apellidoMaterno') }}" required>
             <label for="apellidoMaterno">Apellido materno </label>
         </div>
     </div>
@@ -78,11 +78,11 @@
     </div>
     <div class="row">
         <div class="col-6 form-floating mb-4">
-            <input id="telefonoEmpresa" type="text" class="form-control" name="telefonoEmpresa" required>
+            <input id="telefonoEmpresa" type="text" class="form-control" name="telefonoEmpresa" value="{{ old('telefonoEmpresa') }}" required>
             <label for="telefonoEmpresa">Teléfono de la empresa / extensión </label>
         </div>
         <div class="col-6 form-floating mb-4">
-            <input id="phone" type="text" class="form-control" name="phone" required>
+            <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
             <label for="phone">Celular personal</label>
         </div>
     </div>
@@ -98,7 +98,7 @@
     </div>
 
     <div class="form-floating mb-4">
-        <input id="direccionEmpresa" type="text" class="form-control" name="direccionEmpresa" required >
+        <input id="direccionEmpresa" type="text" class="form-control" name="direccionEmpresa" value="{{ old('direccionEmpresa') }}" required >
         <label for="direccionEmpresa">Dirección de empresa</label>
     </div>
 
