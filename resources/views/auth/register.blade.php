@@ -52,7 +52,7 @@
                             </div>
 
 
-                            <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a href="{{ route('login') }}"
+                            <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a type="button"
                                     class="hover">Ingresar</a></p>
                         </div>
                         <!--/.card-body -->
