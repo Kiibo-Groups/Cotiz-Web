@@ -102,7 +102,7 @@
                                 <label for="link" class="font-semibold">Link Drive</label>
                                 <div class="form-icon relative mt-2">
 
-                                    <input name="link" id="link" type="text"
+                                    <input name="link" id="link" type="url"
                                         class="form-input ltr:pl-11 rtl:pr-11">
                                 </div>
                             </div>
