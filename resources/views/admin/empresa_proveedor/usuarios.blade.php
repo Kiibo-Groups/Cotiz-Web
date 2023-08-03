@@ -36,14 +36,7 @@
 
                                     @foreach($data as $row)
                                     <tr>
-                                        <td>
-                                            @if($row->pic_profile)
-                                                <img class="tbl-thumb" src="{{ asset('assets/img/logos/'.$row->pic_profile) }}" style="max-width: 50px;" alt="Banner Image" />
-                                            @else
-                                                <img class="tbl-thumb" src="{{ asset('profile/img/user_profile.jpg') }}" style="max-width: 50px;" alt="Banner Image" />
-                                            @endif
 
-                                            </td>
                                         <td>{{$row->name}} {{$row->last_name}}</td>
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>

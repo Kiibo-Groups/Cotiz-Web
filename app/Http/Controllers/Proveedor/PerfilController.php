@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Proveedor;
 
+use App\Models\Rfc;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,7 @@ class PerfilController extends Controller
     }
     public function Actualizar(Request $request)
     {
+
         $input = $request->all();
         $request->validate(
             [
@@ -39,6 +41,7 @@ class PerfilController extends Controller
                 'fotoCredencial' => 'file|max:3048',
                 'fotoGafete2' => 'file|max:3048',
                 'fotoCredencial2' => 'file|max:3048',
+                'opinionPositiva' => 'file|max:3048',
 
             ],
             [
@@ -46,6 +49,11 @@ class PerfilController extends Controller
                 Session::flash('class', 'danger'),
             ]
         );
+        if (isset($input['opinionPositiva'])) {
+            $opinionPositiva   = time() . rand(111, 699) . '.' . $input['opinionPositiva']->getClientOriginalExtension();
+            $input['opinionPositiva']->move("public/assets/img/empresa/", $opinionPositiva);
+            $input['opinionPositiva'] = $opinionPositiva;
+        }
 
         if (isset($input['fotoGafete'])) {
 
@@ -94,6 +102,13 @@ class PerfilController extends Controller
         }
 
         $user->save();
+
+        if (isset($input['opinionPositiva'])) {
+            $registro =  Rfc::find($user->idempresa);
+            $registro->opinionPositiva = $opinionPositiva;
+            $registro->save();
+
+        }
 
 
         Session::flash('mensaje', 'Registro Exitoso ');
