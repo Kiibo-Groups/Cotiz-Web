@@ -47,8 +47,8 @@
                                     <td>{{ $req->calle}} </td>
                                     <td>{{ $req->numeroCalle }}</td>
                                     <td>{{ $req->colonia }}</td>
-                                    <td>{{ $req->created_at->format('d-m-Y') }}</td>
-                                    <td>
+                                    <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
+                                    <td class="col-md-1">
                                         @if ($req->status === 1)
                                             <h5 class="card-title m-0 p-0"><span class="badge text-white bg-secondary">Pendiente</span></h5>
                                         @else
@@ -57,9 +57,9 @@
 
 
                                     </td>
-                                    <td>
+                                    <td class="col-md-1">
                                         <div class="btn-group mb-1">
-                                            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                            <button type="button" class="btn btn-outline-success sm-btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                                 <span class="sr-only">
                                                     <i class="bi bi-menu-button-wide-fill"></i>
                                                 </span>

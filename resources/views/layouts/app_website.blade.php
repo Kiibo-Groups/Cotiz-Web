@@ -41,9 +41,9 @@
         <div class="container">
             <!-- Logo container-->
             <a class="logo ltr:pl-0 rtl:pr-0" href="{{ route('init') }}">
-                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="inline-block dark:hidden"
+                <img src="{{ asset('assets2/images/logo-cotiz.png') }}" style="width: 150px;" class="inline-block dark:hidden"
                     alt="">
-                <img src="{{ asset('assets2/images/logo.png') }}" style="width: 50px;" class="hidden dark:inline-block"
+                <img src="{{ asset('assets2/images/logo-cotiz.png') }}" style="width: 150px;" class="hidden dark:inline-block"
                     alt="">
             </a>
 

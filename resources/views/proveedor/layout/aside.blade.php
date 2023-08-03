@@ -1,10 +1,23 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-        @if (auth()->user()->status == 0)
+
+
+        @if (
+            (auth()->user()->status == 0 && auth()->user()->role == 4) ||
+                (auth()->user()->status == 0 && auth()->user()->role == 5))
+            <li class="nav-item">
+                <a class="nav-link @if (!Route::is('home')) collapsed @endif"
+                    href="{{ Asset(env('user') . '/proveedor/perfil') }}">
+                    <i class="bi bi-gear"></i>
+                    <span>Perfil</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+
             <li class="nav-item">
                 <a class="nav-link @if (!Route::is('home')) collapsed @endif"
                     href="{{ Asset(env('user') . '/solicitud') }}">
-                    <i class="bi bi-gear"></i>
+                    <i class="bi bi-briefcase"></i>
                     <span>Solicitudes</span>
                 </a>
             </li><!-- End Dashboard Nav -->
@@ -38,36 +51,32 @@
             </li><!-- End buzon -->
 
             <li class="nav-item">
-                <a class="nav-link @if(!Route::is('catalogo') || !Route::is('catalogo.show')) collapsed @endif" data-bs-target="#catalogo-nav" data-bs-toggle="collapse" href="#">
-                  <i class="bi bi-building"></i><span>Catálogos</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link @if (!Route::is('catalogo') || !Route::is('catalogo.show')) collapsed @endif" data-bs-target="#catalogo-nav"
+                    data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-building"></i><span>Catálogos</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="catalogo-nav" class="nav-content  collapse @if(Route::is('add_certificados') ||Route::is('add_referencias') || Route::is('catalogo_create_post') ||Route::is('catalogo_edit') || Route::is('catalogo_ver') || Route::is('catalogo') || Route::is('catalogo.show'))  show @endif" data-bs-parent="#catalogo-nav">
-                  <li>
-                    <a href="{{ Asset(env('user').'/catalogo') }}" class="@if(Route::is('catalogo')) active @endif">
-                      <i class="bi bi-circle"></i><span>Listado</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="{{ Asset(env('user').'/catalogo/add') }}" class="@if(Route::is('catalogo.show')) active @endif">
-                      <i class="bi bi-circle"></i><span>Agregar Servicio</span>
-                    </a>
-                  </li>
+                <ul id="catalogo-nav" class="nav-content  collapse @if (Route::is('add_certificados') ||
+                        Route::is('add_referencias') ||
+                        Route::is('catalogo_create_post') ||
+                        Route::is('catalogo_edit') ||
+                        Route::is('catalogo_ver') ||
+                        Route::is('catalogo') ||
+                        Route::is('catalogo.show')) show @endif"
+                    data-bs-parent="#catalogo-nav">
+                    <li>
+                        <a href="{{ Asset(env('user') . '/catalogo') }}"
+                            class="@if (Route::is('catalogo')) active @endif">
+                            <i class="bi bi-circle"></i><span>Listado</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ Asset(env('user') . '/catalogo/add') }}"
+                            class="@if (Route::is('catalogo.show')) active @endif">
+                            <i class="bi bi-circle"></i><span>Agregar Servicio</span>
+                        </a>
+                    </li>
                 </ul>
-              </li><!-- End catalogo -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </li><!-- End catalogo -->
         @endif
 
 

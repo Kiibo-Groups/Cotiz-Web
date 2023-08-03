@@ -15,12 +15,11 @@
 body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
-  /*     background: #f6f9ff; secambia el color de fondo  tokin   */
   color: #444444;
 }
 
 a {
-  color: #1E2351;
+  color: #4154f1;
   text-decoration: none;
 }
 
@@ -77,7 +76,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #1E2351;
+  background: #4154f1;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -311,7 +310,7 @@ h6 {
 
 .accordion-flush .accordion-button:not(.collapsed) {
   box-shadow: none;
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .accordion-flush .accordion-body {
@@ -359,13 +358,13 @@ h6 {
 
 .nav-tabs-bordered .nav-link:hover,
 .nav-tabs-bordered .nav-link:focus {
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .nav-tabs-bordered .nav-link.active {
   background-color: #fff;
-  color: #1E2351;
-  border-bottom: 2px solid #1E2351;
+  color: #4154f1;
+  border-bottom: 2px solid #4154f1;
 }
 
 /*--------------------------------------------------------------
@@ -397,8 +396,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #FDE125;
-  /*  background-color: #fff; Color original del header */
+  background-color: #fff;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -627,7 +625,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;    /* Menu Izquierdo */
+  background-color: #fff;
 }
 
 @media (max-width: 1199px) {
@@ -701,7 +699,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #1E2351;
+  color: #4154f1;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -711,7 +709,7 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .sidebar-nav .nav-link.collapsed {
@@ -724,12 +722,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #1E2351;
+  color: #4154f1;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -767,11 +765,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #1E2351;
+  background-color: #4154f1;
 }
 
 /*--------------------------------------------------------------
@@ -794,7 +792,7 @@ h6 {
 
 .dashboard .filter .icon:hover,
 .dashboard .filter .icon:focus {
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .dashboard .filter .dropdown-header {
@@ -838,7 +836,7 @@ h6 {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #1E2351;
+  color: #4154f1;
   background: #f6f6fe;
 }
 
@@ -923,7 +921,7 @@ h6 {
 }
 
 .dashboard .news h4 a:hover {
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .dashboard .news p {
@@ -1074,7 +1072,7 @@ h6 {
 .faq .basic h6 {
   font-size: 18px;
   font-weight: 600;
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .faq .basic p {
@@ -1091,7 +1089,7 @@ h6 {
 .contact .info-box i {
   font-size: 38px;
   line-height: 0;
-  color: #1E2351;
+  color: #4154f1;
 }
 
 .contact .info-box h3 {
@@ -1159,7 +1157,7 @@ h6 {
 
 .contact .php-email-form input:focus,
 .contact .php-email-form textarea:focus {
-  border-color: #1E2351;
+  border-color: #4154f1;
 }
 
 .contact .php-email-form input {
@@ -1171,7 +1169,7 @@ h6 {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #1E2351;
+  background: #4154f1;
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -1213,7 +1211,7 @@ h6 {
 .error-404 h1 {
   font-size: 180px;
   font-weight: 700;
-  color: #1E2351;
+  color: #4154f1;
   margin-bottom: 0;
   line-height: 150px;
 }

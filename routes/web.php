@@ -17,10 +17,11 @@ include("empresa.php");
 */
 
 Auth::routes();
-
+//Route::get('dash',[App\Http\Controllers\Admin\AdminController::class, 'home']);
 // Index Section
 Route::get('/', [App\Http\Controllers\Controller::class, 'home'])->name('init');
 Route::get('/home', [App\Http\Controllers\Controller::class, 'home'])->name('init');
+Route::get('/dash', [App\Http\Controllers\Controller::class, 'home'])->name('init');
 
 // Vista del elemento
 Route::get('/viewprod/{prod}/{tit}', [App\Http\Controllers\Controller::class, 'viewprod']);
@@ -70,6 +71,7 @@ Route::prefix(env('user'))->namespace('User')->group(static function() {
         |--------------------------------------------------------------------------
         */
         //Route::resource('home',HomeController::class);
+
         Route::get('/', [App\Http\Controllers\Profile\HomeController::class, 'index'])->name('dash');
         Route::get('/home', [App\Http\Controllers\Profile\HomeController::class, 'settings'])->name('home');
         Route::patch('/input_code/{id}', [App\Http\Controllers\Profile\HomeController::class, 'input_code']);

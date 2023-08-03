@@ -21,6 +21,8 @@ class solicitudController extends Controller
         $from = $request->filter_from;
         $even = $request->filter_even;
 
+
+
         $requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc")->with(['service','user']);
 
 

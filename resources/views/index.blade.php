@@ -21,9 +21,9 @@
                 @if (Auth::user()->status == 0)
                     @if (Auth::user()->role == 4 || Auth::user()->role == 5)
                         <div class="grid grid-cols-1 mt-10">
-                            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los
+                            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold" style="color: #1E2351;">Encuentra los
                                 mejores <br>
-                                Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
+                                Productos <span style="color: #0000F4;">y/o Servicios</span></h4>
                             <p class="text-slate-400 text-lg max-w-xl">
                                 Pretendemos ser una vitrina única a la que las empresas puedan acudir para
                                 solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
@@ -44,7 +44,7 @@
                                                         title="Ir a panel administrativo"
                                                         class="btn text-white searchbtn submit-btn w-100; cursor:pointer;"
                                                         value="Bienvenido(a) {{ Auth::user()->name }}"
-                                                        style="height: 60px;background: #00C5D7;">
+                                                        style="height: 60px;background: #0000F4;">
                                                 </div>
                                                 <!--end grid-->
                                             </div>
@@ -59,9 +59,9 @@
                         </div>
                     @else
                         <div class="grid grid-cols-1 mt-10">
-                            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los
+                            <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold" style="color: #1E2351;">Encuentra los
                                 mejores <br>
-                                Productos <span style="color: #00C5D7;">y/o Servicios</span></h4>
+                                Productos <span style="color: #0000F4;">y/o Servicios</span></h4>
                             <p class="text-slate-400 text-lg max-w-xl">
                                 Pretendemos ser una vitrina única a la que las empresas puedan acudir para
                                 solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
@@ -75,7 +75,7 @@
                                             <hr />
                                             <br />
                                             <div class="alert alert-success alert-dismissible fade show" role="alert"
-                                                style="background-color: #00C5D7; color: white;  text-align: center">
+                                                style="background-color: #0000F4; color: white;  text-align: center">
                                                 <h1 class="mb-0 text-success" style="font-size: 25px">
                                                     {{ Session::get('message') }}
                                                 </h1>
@@ -106,7 +106,7 @@
 
                                                     <input type="submit" id="search" name="search"
                                                         class="btn text-white searchbtn submit-btn w-100" value="Buscar"
-                                                        style="height: 60px;background: #00C5D7;">
+                                                        style="height: 60px;background: #0000F4;">
                                                 </div>
                                                 <!--end grid-->
                                             </div>
@@ -124,9 +124,9 @@
                 @endif
             @else
                 <div class="grid grid-cols-1 mt-10">
-                    <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold">Encuentra los mejores
+                    <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold" style="color: #1E2351;">Encuentra los mejores
                         <br>
-                        Productos <span style="color: #00C5D7;">y/o Servicios</span>
+                        Productos <span style="color: #0000F4;">y/o Servicios</span>
                     </h4>
                     <p class="text-slate-400 text-lg max-w-xl">
                         Pretendemos ser una vitrina única a la que las empresas puedan acudir para
@@ -141,7 +141,7 @@
                                     <hr />
                                     <br />
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"
-                                        style="background-color: #00C5D7; color: white;  text-align: center">
+                                        style="background-color: #0000F4; color: white;  text-align: center">
                                         <h1 class="mb-0 text-success" style="font-size: 25px"> {{ Session::get('message') }}
                                         </h1>
                                     </div>
@@ -160,7 +160,7 @@
                                                 title="Ir a panel administrativo"
                                                 class="btn text-white searchbtn submit-btn w-100; cursor:pointer;"
                                                 value="Bienvenido(a) . "
-                                                style="height: 60px;background: #00C5D7;">
+                                                style="height: 60px;background: #0000F4;">
                                         </div>
                                         <!--end grid-->
                                     </div>

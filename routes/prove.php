@@ -59,6 +59,13 @@ Route::prefix(env('user'))->namespace('Proveedor')->group(static function() {
 
 
 
+        Route::resource('/proveedor/perfil',PerfilController::class);
+        Route::get('/proveedor/perfil', [App\Http\Controllers\Proveedor\PerfilController::class, 'index'])->name('perfil');
+        Route::post('/proveedor/perfil/editar', [App\Http\Controllers\Proveedor\PerfilController::class, 'Actualizar'])->name('perfil_prove_update_post');
+
+
+
+
 
 
 

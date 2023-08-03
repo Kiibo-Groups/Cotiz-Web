@@ -2,7 +2,7 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="./dash" class="logo d-flex align-items-center">
-      <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
+      <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="100px">
       <span class="d-none d-lg-block" style="padding-left:10px;">Cotiz Admin</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>

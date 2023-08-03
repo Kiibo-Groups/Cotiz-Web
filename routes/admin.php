@@ -5,6 +5,7 @@
 Route::get('/admin',[App\Http\Controllers\Admin\AdminController::class, 'index']);
 // Admin Section
 // Route::group(['namespace' => 'Admin','prefix' => env('admin')], function(){
+//Route::get('dash',[App\Http\Controllers\Admin\AdminController::class, 'home']);
 Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
 
     Route::get('login',[App\Http\Controllers\Admin\AdminController::class, 'index']);

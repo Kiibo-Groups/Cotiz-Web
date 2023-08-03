@@ -23,6 +23,11 @@ Route::prefix(env('user'))->namespace('Empresa')->group(static function() {
         Route::get('/empresa/users/ver/{id}', [App\Http\Controllers\Empresa\solicitudController::class, 'VerUsuarioEmpresa']);
         Route::get('/empresas/credencial/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesfotoCredencial']);
 
+        Route::resource('/empresa/perfil',PerfilController::class);
+        Route::get('/empresa/perfil', [App\Http\Controllers\Empresa\PerfilController::class, 'index'])->name('perfil');
+        Route::post('/empresa/perfil/editar', [App\Http\Controllers\Empresa\PerfilController::class, 'Actualizar'])->name('perfil_update_post');
+
+
 
 //         /*
 //         |--------------------------------------------------------------------------

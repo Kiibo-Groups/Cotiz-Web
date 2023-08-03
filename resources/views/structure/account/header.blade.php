@@ -5,11 +5,11 @@
 
     @if (Auth::user()->role == 2)
     <a href="{{ Asset(env('user').'/') }}" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
+        <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="100px">
     </a>
-    @else 
+    @else
     <a href="{{ Asset(env('user').'/home') }}" class="logo d-flex align-items-center">
-      <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="50px">
+      <img src="{{ asset('assets2/images/logo-cotiz.png')}}" alt="" width="100px">
     </a>
     @endif
 
@@ -22,7 +22,7 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            @if(Auth::user()->pic_profile) 
+            @if(Auth::user()->pic_profile)
                 <div style="background-image:url('{{ asset('assets/img/logos/'.Auth::user()->pic_profile) }}');background-size: cover;width: 40px;height: 40px;border-radius:2003px; background-position: center center;"></div>
             @endif
           <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }} .<?php echo substr(Auth::user()->last_name,0,1) ?></span>
@@ -45,7 +45,7 @@
           </li>
           <li>
             <hr class="dropdown-divider">
-          </li>  
+          </li>
 
           <li>
             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

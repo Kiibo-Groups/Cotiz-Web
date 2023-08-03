@@ -2,7 +2,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
 
-    
+
 
     @if (Auth::user()->role == 2)
     <li class="nav-item">
@@ -56,6 +56,7 @@
       </ul>
     </li><!-- End Request -->
     @else
+   {{--
     <li class="nav-item">
       <a class="nav-link @if(!Route::is('home')) collapsed @endif" href="{{ Asset(env('user').'/home') }}">
         <i class="bi bi-grid"></i>
@@ -75,7 +76,7 @@
       </ul>
     </li> End Settings -->
 
-    <li class="nav-item">
+   <li class="nav-item">
       <a class="nav-link @if(!Route::is('request_user')) collapsed @endif" data-bs-target="#request-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear"></i><span>Tus solicitudes</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -92,19 +93,19 @@
         <i class="bi bi-grid"></i>
         <span>Notificaciones</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li><!-- End Dashboard Nav -->--}}
     @endif
 
     <li class="nav-heading">
       <hr />
     </li>
- 
+
      <li class="nav-item">
       <a class="nav-link collapsed" href="{{ url('./') }}">
         <i class="bx bxs-navigation"></i>
         <span>Ir al WebSite</span>
       </a>
-    </li> 
+    </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
