@@ -48,8 +48,14 @@
                             </div>
 
 
+                            <p id="continuar" class="mb-0" style="color:black;"><a type="button"
+                                    class="hover">Continuar</a></p>
+
+<br>
+
+
                             <p class="mb-0" style="color:black;">Ya tienes una cuenta? <a href="{{ route('login') }}"
-                                    class="hover">Ingresar</a></p>
+                                        class="hover">login</a></p>
                         </div>
                         <!--/.card-body -->
                     </div>
