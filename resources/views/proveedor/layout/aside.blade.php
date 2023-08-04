@@ -21,13 +21,15 @@
                     <span>Solicitudes</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-            <li class="nav-item">
-                <a class="nav-link @if (!Route::is('home')) collapsed @endif"
-                    href="{{ Asset(env('user') . '/usuarios') }}">
-                    <i class="bi bi-person"></i>
-                    <span>Usuarios</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+            @if (auth()->user()->role == 5)
+                <li class="nav-item">
+                    <a class="nav-link @if (!Route::is('home')) collapsed @endif"
+                        href="{{ Asset(env('user') . '/usuarios') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Usuarios</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+            @endif
             <li class="nav-item">
                 <a class="nav-link @if (!Route::is('buzon') || !Route::is('buzon.show')) collapsed @endif" data-bs-target="#buzon-nav"
                     data-bs-toggle="collapse" href="#">
