@@ -95,20 +95,7 @@ class RegisterController extends Controller
         $user->status            = 1; // Default status
 
         $user->save();
-        //dd($user);
-        // if($request->role == '2'){
 
-        //     $user_data = User::where('name','like',$request->name)->get();
-
-        //     $provider = new Providers;
-        //     $provider->name = $user_data[0]->name;
-        //     $provider->email = $user_data[0]->email;
-        //     $provider->user_id = $user_data[0]->id;
-        //     $provider->status = 0; // Default status
-        //     $provider->save();
-        // }
-
-        //auth()->login($user); auto Login -  se quita por activacion por admin
 
 
         $para       =  Admin::find(1)->email;
@@ -200,12 +187,6 @@ class RegisterController extends Controller
             $input['domicilioFiscal'] = $domicilioFiscal;
         }
 
-        // if(isset($input['numeroPlanta']))
-        // {
-        //     $numeroPlanta   = time().rand(111,699).'.' .$input['numeroPlanta']->getClientOriginalExtension();
-        //     $input['numeroPlanta']->move("public/assets/img/empresa/", $numeroPlanta);
-        //     $input['numeroPlanta'] = $numeroPlanta;
-        // }
 
 
        $registro->opinionPositiva = $opinionPositiva;
@@ -338,7 +319,7 @@ class RegisterController extends Controller
        $user->save();
 
        $para       =  Admin::find(1)->email;
-       $asunto     =   'Tienes un nuevo registro de '.$request->nombre;
+       $asunto     =   'Tienes un nuevo registro de :'.$request->nombre;
        $mensaje    =   "Tienes un mensaje, accede al sistema Cotiz<br />";
        $cabeceras = 'From: '. $request->email . "\r\n";
 
@@ -429,20 +410,17 @@ class RegisterController extends Controller
         $user->country             = $request->country;
 
         $user->save();
-        //dd($user);
-        // if($request->role == '2'){
 
-        //     $user_data = User::where('name','like',$request->name)->get();
 
-        //     $provider = new Providers;
-        //     $provider->name = $user_data[0]->name;
-        //     $provider->email = $user_data[0]->email;
-        //     $provider->user_id = $user_data[0]->id;
-        //     $provider->status = 0; // Default status
-        //     $provider->save();
-        // }
+        $para       =  Admin::find(1)->email;
+        $asunto     =   'Tienes un nuevo registro de :'.$request->nombre;
+        $mensaje    =   "Tienes un mensaje, accede al sistema Cotiz<br />";
+        $cabeceras = 'From: '. $request->email . "\r\n";
 
-        //auth()->login($user); auto Login -  se quita por activacion por admin
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         Session::flash('mensaje','Registro Exitoso - Pendiente de autorización!');
         Session::flash('class', 'success');
