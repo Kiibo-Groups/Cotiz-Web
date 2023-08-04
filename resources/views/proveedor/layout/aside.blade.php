@@ -21,7 +21,7 @@
                     <span>Solicitudes</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-            @if (auth()->user()->role == 5)
+            @if (auth()->user()->role == 4)
                 <li class="nav-item">
                     <a class="nav-link @if (!Route::is('home')) collapsed @endif"
                         href="{{ Asset(env('user') . '/usuarios') }}">
