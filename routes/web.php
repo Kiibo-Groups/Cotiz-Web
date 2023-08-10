@@ -4,6 +4,7 @@
 include("admin.php");
 include("prove.php");
 include("empresa.php");
+include("prueba.php");
 
 /*
 |--------------------------------------------------------------------------

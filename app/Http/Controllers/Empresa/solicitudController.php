@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Requests;
 use App\Models\Serviciover;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -19,11 +20,65 @@ class solicitudController extends Controller
         $search = $request->search;
         $status = $request->filter_status;
         $from = $request->filter_from;
-        $even = $request->filter_even;
+        //$even = $request->filter_even;
+        //$from = Carbon::parse($request->input('filter_from'));
+        $even = Carbon::parse($request->input('filter_even'))->addDay();
 
 
 
         $requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc")->with(['service','user']);
+
+        //$requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc");
+
+        if ($requests) {
+            $requests = $requests;
+        } else {
+            $requests = 0;
+        }
+
+
+        if(!is_null($status)) {
+            $requests = $requests->where('status','=', $status);
+        }
+
+        if($search) {
+            $requests = $requests->whereRaw('LOWER(description) LIKE(?)','%'.$search.'%');
+            ;
+            // ->orWhereHas('user', function ($q) use ($search) {
+            //     $q->where('name','like','%'.$search.'%');
+            // });
+        }
+
+        if(!is_null($from)) {
+            $requests = $requests->whereBetween('created_at',[$from,$even]);
+        }
+
+
+        $requests = $requests->paginate(10);
+
+        return view($this->folder.'servicios.indexempresa', [
+            'requests'=> $requests,
+            'search'=> $search,
+            'status'=>$status,
+            'solicitud'=> 'Empresa'
+        ]);
+
+    }
+
+    public function indexPrueba(Request $request)
+    {
+
+        $search = $request->search;
+        $status = $request->filter_status;
+        $from = $request->filter_from;
+        //$even = $request->filter_even;
+
+
+        //$from = Carbon::parse($request->input('filter_from'));
+        $even = Carbon::parse($request->input('filter_even'))->addDay();
+
+
+        $requests = Requests::where('solicitud', 2)->where('proveedor', auth()->user()->id)->orderBy("status", "asc")->with(['service','user']);
 
 
 
@@ -47,14 +102,13 @@ class solicitudController extends Controller
         }
 
         if(!is_null($from)) {
-            $requests = $requests->where('created_at','>=',$from)
-            ->where('created_at','<=',$even);
+            $requests = $requests->whereBetween('created_at',[$from,$even]);
         }
 
 
         $requests = $requests->paginate(10);
 
-        return view($this->folder.'servicios.indexempresa', [
+        return view($this->folder.'servicios.indexempresaprueba', [
             'requests'=> $requests,
             'search'=> $search,
             'status'=>$status,
@@ -70,9 +124,21 @@ class solicitudController extends Controller
 
 
 
+
     public function indexVer($id){
 
         return view($this->folder.'servicios.indexver', [
+            'servicios' => Serviciover::where('servicio_id', $id)->orderBy("id", "Desc")->get(),
+            'admin' => auth()->guard('admin')->user(),
+            'id' => $id
+        ]);
+
+    }
+
+
+    public function indexVerPrueba($id){
+
+        return view($this->folder.'servicios.indexverprueba', [
             'servicios' => Serviciover::where('servicio_id', $id)->orderBy("id", "Desc")->get(),
             'admin' => auth()->guard('admin')->user(),
             'id' => $id

@@ -576,7 +576,13 @@ class HomeController extends Controller
 
             case(2):
 
-                return redirect('activar');
+                if (auth()->user()->status == 1) {
+                    return redirect('activar');
+                } else {
+                   return redirect('user/prueba/solicitud');
+                }
+
+
                 break;
 
             case(3):

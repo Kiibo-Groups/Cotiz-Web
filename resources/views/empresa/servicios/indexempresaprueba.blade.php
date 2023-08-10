@@ -17,9 +17,9 @@
             <div class="row">
 
                 @if (Auth::guard('admin')->check())
-                    <form action="{{ url(env('admin') . '/empresa/solicitud') }}" method="GET">
+                    <form action="{{ url(env('admin') . '/prueba/solicitud') }}" method="GET">
                     @else
-                        <form action="{{ url(env('user') . '/empresa/solicitud') }}" method="GET">
+                        <form action="{{ url(env('user') . '/prueba/solicitud') }}" method="GET">
                 @endif
                 <div class="row ">
                     @include('alerts')
@@ -44,7 +44,7 @@
                             <option value="1" >EN PROCESO COTIIZ</option>
                             <option value="5" >CONTESTADA </option>
                             <option value="6" >EXAMINANDO</option>
-                            <option value="7">APROBADA</option>
+                            <option value="7" >APROBADA</option>
                             <option value="8" >RECHAZADA</option>
 
 
@@ -108,7 +108,7 @@
                                             </td>
                                             <td class="col-md-2">
                                                 <a class="btn btn-info btn-sm" title="Documentos Relacionados"
-                                                    href="{{ url(env('user') . '/empresa/servicios/ver/' . $req->id) }}">
+                                                    href="{{ url(env('user') . '/prueba/servicios/ver/' . $req->id) }}">
                                                     <i class="bi bi-book"></i>
                                                 </a>
                                                 @if (!is_null($req->document))
