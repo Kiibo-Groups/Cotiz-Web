@@ -69,6 +69,7 @@
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/ver/'.$req->id) }}">Ver</a>
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/status/'.$req->id) }}">Activar/Desactivar</a>
                                                 <a class="dropdown-item" href="{{ url(env('admin').'/empresas/usuarios/ver/'.$req->id) }}">Ver Usuários</a>
+                                                <a class="dropdown-item" href="{{ url(env('admin').'/empresas/usuarios/ver/'.$req->id) }}">Agregar Usuários</a>
 
                                             </div>
                                         </div>

@@ -14,6 +14,7 @@ use App\Models\Services;
 use App\Models\Providers;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,6 +30,7 @@ class RequestsController extends Controller
         $status = $request->filter_status;
         $from = $request->filter_from;
         $even = $request->filter_even;
+        //$even = Carbon::parse($request->input('filter_even'))->addDay();
         $requests = Requests::where('solicitud', 2)->orderBy("status", "asc")->with(['service','user']);
 
 
@@ -47,19 +49,13 @@ class RequestsController extends Controller
         }
 
         if(!is_null($from)) {
-            $requests = $requests->where('created_at','>=',$from)
-            ->where('created_at','<=',$even);
+            $requests = $requests->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$even);
         }
 
 
         $requests = $requests->paginate(10);
 
-        // return response()->json([
-        //     'user' => Auth::user(),
-        //     'requests'=> $requests,
-        //     'search'=> $search,
-        //     'status'=>$status
-        // ]);
 
         return view($this->folder.'requests.indexprueba', [
             'requests'=> $requests,

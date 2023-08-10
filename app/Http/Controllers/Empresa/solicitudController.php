@@ -50,6 +50,7 @@ class solicitudController extends Controller
         }
 
         if(!is_null($from)) {
+            $from = Carbon::parse($request->input('filter_from'));
             $requests = $requests->whereBetween('created_at',[$from,$even]);
         }
 
@@ -102,6 +103,7 @@ class solicitudController extends Controller
         }
 
         if(!is_null($from)) {
+            $from = Carbon::parse($request->input('filter_from'));
             $requests = $requests->whereBetween('created_at',[$from,$even]);
         }
 

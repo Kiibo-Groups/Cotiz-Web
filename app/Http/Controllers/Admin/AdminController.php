@@ -295,6 +295,21 @@ class AdminController extends Controller
         ]);
 
     }
+    public function EmpresasAgregar()
+    {
+
+
+        $user = auth()->guard('admin')->user()->id;
+        $origen = 'admin';
+        $providers = Rfc::where('rol', 2)->where('status', 0)->get();
+
+        return view($this->folder . 'empresa.add', [
+            'data'      => new Rfc,
+            'providers' => $providers,
+            'origen'    => $origen,
+            'user'      => $user,
+        ]);
+    }
 
 
 

@@ -495,6 +495,7 @@ class RegisterController extends Controller
         $user->role              = 2; //usuarios empleado de empresa
         $user->status            = 1; // Default status
 
+
         $user->save();
 
 
