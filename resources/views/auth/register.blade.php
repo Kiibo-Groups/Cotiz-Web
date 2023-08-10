@@ -107,7 +107,10 @@
                         if (nombre != 0) {
                             $("#divempresaboton").show();
                             $("#divbotonregistro").hide();
+                            $("#divbotonregistroPrueba").hide();
                         } else {
+
+                            $("#divbotonregistroPrueba").show();
                             $("#divempresaboton").hide();
                             $("#divbotonregistro").show();
                         }
