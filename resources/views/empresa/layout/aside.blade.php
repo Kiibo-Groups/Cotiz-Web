@@ -33,6 +33,16 @@
 
         @endif
 
+        @if (auth()->user()->role == 2)
+        <li class="nav-item">
+            <a class="nav-link @if (!Route::is('solicitudprueba')) collapsed @endif"
+                href="{{ Asset(env('user') . '/prueba/solicitud') }}">
+                <i class="bi bi-briefcase"></i>
+                <span>Solicitudes</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+            @endif
+
 
 
 
