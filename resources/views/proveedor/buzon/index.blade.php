@@ -67,7 +67,7 @@ Buzón
 
                                            <td class="col-md-1"> {{ $req->admin->name }}</td>
                                             <td class="col-md-2">{{ $req->proveedor->nombre }} </td>
-                                            <td>{{ $req->descripcion }}</td>
+                                            <td class="col-md-7" style="max-width: 200px; overflow: auto; white-space: normal;">{{ $req->descripcion }}</td>
                                             <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
 
                                             <td class="col-md-1">
