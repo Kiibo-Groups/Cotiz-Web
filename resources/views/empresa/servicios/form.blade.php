@@ -37,7 +37,7 @@
 
                                     <div class="col-md-12">
                                         <label for="email" class="form-label">Descripción</label>
-                                        <textarea class="form-control" placeholder="Escribe una breve descripcion" id="descripcion" name="descripcion" required></textarea>
+                                        <textarea class="form-control" placeholder="Escribe una breve descripcion" id="descripcion" name="descripcion" maxlength="255"  required></textarea>
                                     </div>
 
                                 </div>

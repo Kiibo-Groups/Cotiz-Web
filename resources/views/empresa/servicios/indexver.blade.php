@@ -35,7 +35,7 @@
                                     <tbody>
                                         @foreach ($servicios as $row)
                                             <tr>
-                                                <td>
+                                                <td class="col-md-2">
                                                     @if ($row->origen == 'admin')
                                                     {{ $row->admin->name }}
                                                     @else
@@ -43,9 +43,9 @@
                                                     @endif
 
                                                 </td>
-                                                <td>{{ $row->descripcion }}</td>
-                                                <td style="text-align: center">{{ $row->created_at->format('d-m-Y') }}</td>
-                                                <td style="text-align: center">
+                                                <td class="col-md-8"style="max-width: 200px; overflow: auto; white-space: normal;">{{ $row->descripcion }}</td>
+                                                <td class="col-md-1" style="text-align: center; font-size: 14px">{{ $row->created_at->format('d-m-Y') }}</td>
+                                                <td class="col-md-1" style="text-align: center">
                                                     <a target="_blank" class="btn btn-warning" title="Descargar Documento"
                                                         href="/assets/documento/servicios/{{ $row->documento }}">
                                                         <i class="bi bi-download"></i>

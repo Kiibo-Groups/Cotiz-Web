@@ -21,11 +21,11 @@
                 <div class="container">
                     <hr />
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
                             <b>Servicio :</b>
                             <p>{{ $request->nombre }}</p>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
 
                             <b>Descripción :</b>
                             <p>{{ $request->modelo }}</p>
@@ -36,7 +36,7 @@
                             <p>$ {{ number_format($request->presupuesto, 1) }}</p>
                         </div>
                         @if ($request->link)
-                            <div class="col-sm">
+                            <div class="col-sm"  style=" overflow: auto; white-space: normal;">
                                 <b>Link Drive :</b>
                                 <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
                             </div>
@@ -52,11 +52,11 @@
                 <div class="container">
                     <hr />
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
                             <b>Nombre :</b>
-                            <p style="margin-left: 10px">{{ $request->nombre }}</p>
+                            <p style="margin-left: 10px; ">{{ $request->nombre }}</p>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
 
                             <b>Modelo :</b>
                             <p style="margin-left: 10px">{{ $request->modelo }}</p>
@@ -69,11 +69,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
                             <b>Marca :</b>
                             <p style="margin-left: 10px">{{ $request->marca }}</p>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
 
                             <b>Cantidad :</b>
                             <p style="margin-left: 10px">{{ $request->cantidad }}</p>
@@ -157,7 +157,7 @@
                                 <tbody>
                                     @foreach ($servicios as $row)
                                         <tr>
-                                            <td>
+                                            <td class="col-md-3">
                                                 @if ($row->origen == 'admin')
                                                     {{ $row->admin->name }}
                                                 @else
@@ -165,9 +165,9 @@
                                                 @endif
 
                                             </td>
-                                            <td>{{ $row->descripcion }}</td>
-                                            <td style="text-align: center">{{ $row->created_at->format('d-m-Y') }}</td>
-                                            <td style="text-align: center">
+                                            <td class="col-md-7" style="max-width: 200px; overflow: auto; white-space: normal;">{{ $row->descripcion }}</td>
+                                            <td class="col-md-1" style="text-align: center ; font-size: 14px">{{ $row->created_at->format('d-m-Y') }}</td>
+                                            <td class="col-md-1" style="text-align: center">
                                                 <a target="_blank" class="btn btn-warning" title="Descargar Documento"
                                                     href="/assets/documento/servicios/{{ $row->documento }}">
                                                     <i class="bi bi-download"></i>

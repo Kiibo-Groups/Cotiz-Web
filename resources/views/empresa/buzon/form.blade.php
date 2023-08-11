@@ -30,7 +30,7 @@
 
                                 <div class="col-md-12" style="margin-top:25px;">
                                     <label for="descripcion">Descripcion</label>
-                                    <textarea class="form-control" placeholder="Escribe una breve descripcion" id="descripcion" name="descripcion" required>{{ $data->description }}</textarea>
+                                    <textarea class="form-control" placeholder="Escribe una breve descripcion" id="descripcion" name="descripcion" maxlength="255"  required>{{ $data->description }}</textarea>
                                 </div>
 
                                 <div class="col-md-12">
