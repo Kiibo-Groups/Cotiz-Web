@@ -569,7 +569,7 @@ class HomeController extends Controller
                 if (auth()->user()->status == 1) {
                     return redirect('activar');
                 } else {
-                    return redirect('user/empresa/solicitud');
+                    return redirect('user/empresa/perfil');
                 }
 
                 break;

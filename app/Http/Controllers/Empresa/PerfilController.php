@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Rfc;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Redirect;
 
 class PerfilController extends Controller
 {
@@ -129,7 +130,6 @@ class PerfilController extends Controller
             $registro =  Rfc::find($user->idempresa);
             $registro->opinionPositiva = $opinionPositiva;
             $registro->save();
-
         }
 
         Session::flash('mensaje', 'Registro Exitoso ');
@@ -148,37 +148,42 @@ class PerfilController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function subAccounts()
     {
-        //
+        return view($this->folder . 'accounts.index', [
+            'accounts' => User::where('idempresa', auth()->user()->idempresa)->get(),
+            'admin' => auth()->user()
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function EditsubAccounts($id)
     {
-        //
+        $admin = User::find($id);
+
+        return view($this->folder . 'accounts.add', [
+            'form_url' => Asset(env('user') . '/empresa/EditsubAccount/' . $id),
+            'data' => $admin,
+            'array' => explode(",", $admin->perm)
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function _EditsubAccount(Request $request, $id)
     {
-        //
+
+        $data = $request->all();
+
+        $add             = User::find($id);
+        $add->name       = isset($data['name']) ? $data['name'] : null;
+
+        $add->perm       = isset($data['perm']) ? implode(",", $data['perm']) : null;
+
+        if (isset($data['password'])) {
+            $add->password      = bcrypt($data['password']);
+            $add->shw_password  = $data['password'];
+        }
+
+        $add->save();
+
+        return redirect(env('user') . '/empresa/subAccounts')->with('message', 'Cuenta actualizada con éxito.');
     }
 }

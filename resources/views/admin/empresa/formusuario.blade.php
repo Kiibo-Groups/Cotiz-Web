@@ -72,7 +72,9 @@
                                         </div>
                                     </div>
 
-
+                                    <span class="d-block mt-2" style="font-size:12px;color:red;">
+                                        Los archivos PDF no deben sobrepasar los 3 MB de tamaño..
+                                    </span>
                                     <div class="row">
                                           <div class="col-6  mb-2">
                                             <label for="fotoGafete">Foto de gafete lado #1 </label>

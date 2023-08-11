@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Validator;
 
 class User extends Authenticatable
 {
@@ -71,4 +72,22 @@ class User extends Authenticatable
 
         return $this->belongsTo(Rfc::class,'idempresa','id');
     }
+
+    public function hasPerm($perm)
+	{
+		$array = explode(",", auth()->user()->perm);
+
+		if(in_array($perm,$array) || in_array("All",$array))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+
 }

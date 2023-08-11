@@ -28,6 +28,13 @@ Route::prefix(env('user'))->namespace('Empresa')->group(static function() {
         Route::post('/empresa/perfil/editar', [App\Http\Controllers\Empresa\PerfilController::class, 'Actualizar'])->name('perfil_update_post');
 
 
+        Route::get('/empresa/subAccounts',[App\Http\Controllers\Empresa\PerfilController::class, 'subAccounts'])->name('empresaSubAccounts');
+        Route::get('/empresa/subAccounts/edit/{id}',[App\Http\Controllers\Empresa\PerfilController::class, 'EditsubAccounts']);
+        Route::post('/empresa/EditsubAccount/{id}',[App\Http\Controllers\Empresa\PerfilController::class, '_EditsubAccount']);
+
+
+
+
 
 //         /*
 //         |--------------------------------------------------------------------------

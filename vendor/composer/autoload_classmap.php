@@ -63,6 +63,7 @@ return array(
     'App\\Models\\EventsConfirms' => $baseDir . '/app/Models/EventsConfirms.php',
     'App\\Models\\Mentors' => $baseDir . '/app/Models/Mentors.php',
     'App\\Models\\Notifications' => $baseDir . '/app/Models/Notifications.php',
+    'App\\Models\\Permempresa' => $baseDir . '/app/Models/Permempresa.php',
     'App\\Models\\Providers' => $baseDir . '/app/Models/Providers.php',
     'App\\Models\\Rca' => $baseDir . '/app/Models/Rca.php',
     'App\\Models\\Referencia' => $baseDir . '/app/Models/Referencia.php',

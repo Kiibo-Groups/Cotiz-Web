@@ -9,7 +9,7 @@ use Validator;
 class Admin extends Authenticatable
 {
 	use Notifiable;
- 
+
     protected $table = "admin";
 
 	protected $fillable =[
@@ -46,6 +46,7 @@ class Admin extends Authenticatable
 
     public function rules($type)
     {
+
         if($type === 'add')
         {
             return [
@@ -60,11 +61,11 @@ class Admin extends Authenticatable
         }
 
     }
-    
+
     public function validate($data,$type)
     {
 
-        $validator = Validator::make($data,$this->rules($type));       
+        $validator = Validator::make($data,$this->rules($type));
         if($validator->fails())
         {
             return $validator;
@@ -129,9 +130,9 @@ class Admin extends Authenticatable
 
 		if(isset($data['logo']))
         {
-            $filename   = time().rand(111,699).'.' .$data['logo']->getClientOriginalExtension(); 
-            $data['logo']->move("upload/admin/", $filename);   
-            $update->logo = $filename;   
+            $filename   = time().rand(111,699).'.' .$data['logo']->getClientOriginalExtension();
+            $data['logo']->move("upload/admin/", $filename);
+            $update->logo = $filename;
         }
 
 		$update->save();
@@ -149,7 +150,7 @@ class Admin extends Authenticatable
        	$add->username 			= isset($data['username']) ? $data['username'] : null;
        	$add->name 				= isset($data['name']) ? $data['name'] : null;
 		$add->email  			= isset($data['email']) ? $data['email'] : null;
-       	$add->perm 				= isset($data['perm']) ? implode(",", $data['perm']) : null; 
+       	$add->perm 				= isset($data['perm']) ? implode(",", $data['perm']) : null;
 
         if(isset($data['password']))
         {
@@ -174,21 +175,21 @@ class Admin extends Authenticatable
 	public function getMonthName($type)
 	{
 		 $month = date('m') - $type;
-		 
+
 		 return $type == 0 ? date('F') : date('F',strtotime(date('Y').'-'.$month));
 	}
 
 	public function getDayName($type)
 	{
 		$day = date('d') - $type;
-		 
+
 		return $type == 0 ? date('l') : date('l',strtotime(date('Y').'- '.$type.' day'));
 	}
 
 	public function chart($type,$sid = 0)
 	{
 		$month      = date('Y-m',strtotime(date('Y-m').' - '.$type.' month'));
-		
+
 		$order   = Order::where(function($query) use($sid){
 
 			if($sid > 0)
@@ -226,7 +227,7 @@ class Admin extends Authenticatable
 			{
 				$data[] = ['name' => preg_replace('([^A-Za-z0-9])', '', $user->name),'order' => Order::where('store_id',$sid)->where('status',6)->count()];
 			}
-		}	
+		}
 
 		 arsort($data);
 
@@ -235,7 +236,7 @@ class Admin extends Authenticatable
 
 	public function getStoreData($data,$index,$type)
 	{
-		
+
 		if(isset($data[$index]))
 		{
 			return $data[$index][$type];

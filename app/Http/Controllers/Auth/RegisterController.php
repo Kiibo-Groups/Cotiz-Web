@@ -238,6 +238,7 @@ class RegisterController extends Controller
        $user->role                = 3 ; // Usuario empresa
        $user->idempresa           = $registro->id;
        $user->rfc                 = $registro->rfc;
+       $user->perm                = 'All';
        $user->save();
 
 

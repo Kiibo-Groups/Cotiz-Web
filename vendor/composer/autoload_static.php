@@ -578,6 +578,7 @@ class ComposerStaticInitb1219c98be25b98a455585ea6b1cc045
         'App\\Models\\EventsConfirms' => __DIR__ . '/../..' . '/app/Models/EventsConfirms.php',
         'App\\Models\\Mentors' => __DIR__ . '/../..' . '/app/Models/Mentors.php',
         'App\\Models\\Notifications' => __DIR__ . '/../..' . '/app/Models/Notifications.php',
+        'App\\Models\\Permempresa' => __DIR__ . '/../..' . '/app/Models/Permempresa.php',
         'App\\Models\\Providers' => __DIR__ . '/../..' . '/app/Models/Providers.php',
         'App\\Models\\Rca' => __DIR__ . '/../..' . '/app/Models/Rca.php',
         'App\\Models\\Referencia' => __DIR__ . '/../..' . '/app/Models/Referencia.php',
