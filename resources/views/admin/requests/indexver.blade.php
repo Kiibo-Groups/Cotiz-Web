@@ -96,35 +96,35 @@
                 <div class="container">
                     <hr />
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
                             <b>Trabajo a realizar :</b>
                             <p style="margin-left: 10px">{{ $request->nombre }}</p>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Tiempo para implementar :</b>
                             <p style="margin-left: 10px">{{ $request->presupuesto }}</p>
                         </div>
 
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Conocimientos :</b>
                             <p style="margin-left: 10px">{{ $request->marca }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
                             <b>Certificaciones :</b>
                             <p style="margin-left: 10px">{{ $request->cantidad }}</p>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Detalles del trabajo :</b>
                             <p style="margin-left: 10px">{{ $request->modelo }}</p>
                         </div>
 
                         @if ($request->link)
-                            <div class="col-sm">
+                            <div class="col-sm" style=" overflow: auto; white-space: normal;">
                                 <b>Link Drive :</b>
                                 <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
                             </div>
