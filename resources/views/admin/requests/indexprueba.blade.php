@@ -37,14 +37,16 @@
                         @if ($search != null) value="{{ $search }}" @endif
                         placeholder="Buscar una solicitud por usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>Estatus</option>
-                            <option value="0" @if ($status == 0) selected @endif>Pendiente</option>
-                            <option value="1" @if ($status == 1) selected @endif>Aprobado</option>
-                            <option value="2" @if ($status == 2) selected @endif>Rechazado</option>
+                            <option value=""  >Estatus</option>
+                            <option value="0" >SOLICITANDO</option>
+                            <option value="1" >EN PROCESO COTIIZ</option>
+                            <option value="5" >CONTESTADA</option>
+                            <option value="6" >EXAMINANDO</option>
+                            <option value="7" >APROBADA</option>
+                            <option value="8" >RECHAZADA</option>
                         </select>
-                    @endif
+
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                 </div>
 
@@ -63,7 +65,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-
+                                        <th scope="col">Fecha</th>
                                         <th scope="col">Tipo</th>
                                         <th scope="col">Servicio</th>
                                         <th scope="col">Usuario</th>
@@ -75,7 +77,7 @@
                                 <tbody>
                                     @foreach ($requests as $req)
                                         <tr>
-
+                                            <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
                                             <td class="col-md-1">{{ $req->tipo }}</td>
                                             <td class="col-md-1">{{ $req->servicio }}</td>
                                             <td class="col-md-2">
@@ -85,7 +87,7 @@
 
 
                                             </td>
-                                            <td class="col-md-5">{{ $req->description }}</td>
+                                            <td class="col-md-4">{{ $req->description }}</td>
                                             <td class="col-md-1">
                                                 @if ($req->status === 0)
                                                     <h5 class="card-title m-0 p-0"><span

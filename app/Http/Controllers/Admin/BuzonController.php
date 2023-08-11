@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Buzon;
 use App\Models\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -33,8 +34,7 @@ class BuzonController extends Controller
         }
 
         if (!is_null($from)) {
-            $requests = $requests->where('created_at', '>=', $from)
-                ->where('created_at', '<=', $even);
+            $requests = $requests->whereBetween('fecha',[$from,$even]);
         }
         $requests = $requests->paginate(10);
         return view($this->folder . 'buzon.index', [
@@ -81,7 +81,7 @@ class BuzonController extends Controller
             $input['documento']->move("public/assets/documento/buzon", $filename);
             $input['documento'] = $filename;
         }
-
+        $input['fecha'] = Carbon::now();
         $requests_data->create($input);
 
         $para       =  User::where('idempresa', $request->prove_id )->value('email');

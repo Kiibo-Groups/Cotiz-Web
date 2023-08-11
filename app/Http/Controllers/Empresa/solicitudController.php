@@ -20,9 +20,9 @@ class solicitudController extends Controller
         $search = $request->search;
         $status = $request->filter_status;
         $from = $request->filter_from;
-        //$even = $request->filter_even;
+        $even = $request->filter_even;
         //$from = Carbon::parse($request->input('filter_from'));
-        $even = Carbon::parse($request->input('filter_even'))->addDay();
+       // $even = Carbon::parse($request->input('filter_even'))->addDay();
 
 
 
@@ -50,8 +50,8 @@ class solicitudController extends Controller
         }
 
         if(!is_null($from)) {
-            $from = Carbon::parse($request->input('filter_from'));
-            $requests = $requests->whereBetween('created_at',[$from,$even]);
+            //$from = Carbon::parse($request->input('filter_from'));
+            $requests = $requests->whereBetween('fecha',[$from,$even]);
         }
 
 

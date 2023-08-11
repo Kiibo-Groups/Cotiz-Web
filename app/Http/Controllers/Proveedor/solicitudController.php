@@ -43,8 +43,7 @@ class solicitudController extends Controller
         }
 
         if(!is_null($from)) {
-            $requests = $requests->where('created_at','>=',$from)
-            ->where('created_at','<=',$even);
+            $requests = $requests->whereBetween('fecha',[$from,$even]);
         }
 
 

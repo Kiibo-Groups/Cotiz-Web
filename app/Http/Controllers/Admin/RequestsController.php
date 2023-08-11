@@ -43,14 +43,13 @@ class RequestsController extends Controller
             $requests = $requests->orWhereHas('service', function ($q) use ($search) {
                 $q->where('title', "like",'%'.$search.'%');
             })
-            ->orWhereHas('user', function ($q) use ($search) {
+                ->orWhereHas('user', function ($q) use ($search) {
                 $q->where('name','like','%'.$search.'%');
             });
         }
 
         if(!is_null($from)) {
-            $requests = $requests->whereDate('created_at','>=',$from)
-            ->whereDate('created_at','<=',$even);
+            $requests = $requests->whereBetween('fecha',[$from,$even]);
         }
 
 

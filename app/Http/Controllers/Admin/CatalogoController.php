@@ -10,6 +10,7 @@ use App\Models\Services;
 use App\Models\Referencia;
 use App\Models\Certificado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -133,7 +134,7 @@ class CatalogoController extends Controller
             $input['document']->move("public/assets/documents/users", $filename);
             $input['document'] = $filename;
         }
-
+        $input['fecha'] = Carbon::now();
         $requests_data->create($input);
 
 

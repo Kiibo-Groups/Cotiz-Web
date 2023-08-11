@@ -16,7 +16,8 @@ class Buzon extends Model
         'documento',
         'descripcion',
         'origen',
-        'admin_id'
+        'admin_id',
+        'fecha'
 
      ];
 

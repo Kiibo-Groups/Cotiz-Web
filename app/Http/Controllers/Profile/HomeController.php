@@ -18,6 +18,7 @@ use App\Models\Buzonempresa;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
 use App\Models\EventsConfirms;
+use Illuminate\Support\Carbon;
 use App\Helpers\StatisticsHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -265,6 +266,7 @@ class HomeController extends Controller
             $input['document'] = $filename;
         }
 
+        $input['fecha'] = Carbon::now();
         $requests_data->create($input);
 
 

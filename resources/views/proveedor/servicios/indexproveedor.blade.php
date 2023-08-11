@@ -37,17 +37,15 @@
                         @if ($search != null) value="{{ $search }}" @endif
                         placeholder="Buscar una solicitud por Descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    @if (Auth::user() && Auth::user()->role != 1)
                         <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>Estatus</option>
-                            <option value="0" @if ($status == 0) selected @endif>SOLICITANDO</option>
-                            <option value="1" @if ($status == 1) selected @endif>EN PROCESO COTIIZ</option>
-                            <option value="5" @if ($status == 5) selected @endif>CONTESTADA </option>
-                            <option value="6" @if ($status == 6) selected @endif>EXAMINANDO</option>
-                            <option value="7" @if ($status == 7) selected @endif>APROBADA</option>
-                            <option value="8" @if ($status == 8) selected @endif>RECHAZADA</option>
+                            <option value=""  >Estatus</option>
+                            <option value="0" >SOLICITANDO</option>
+                            <option value="1" >EN PROCESO COTIIZ</option>
+                            <option value="5" >CONTESTADA</option>
+                            <option value="6" >EXAMINANDO</option>
+                            <option value="7" >APROBADA</option>
+                            <option value="8" >RECHAZADA</option>
                         </select>
-                    @endif
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                 </div>
 
