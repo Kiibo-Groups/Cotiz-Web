@@ -53,12 +53,12 @@
             @if ($admin->hasPerm('Dashboard - Empresas'))
 
                 <li class="nav-item">
-                    <a class="nav-link @if (!Route::is('empresas') || !Route::is('empresasagregar')) collapsed @endif" data-bs-target="#buzon-nav"
+                    <a class="nav-link @if (!Route::is('empresas') || !Route::is('empresasagregar') || !Route::is('empresasagregarusuario')) collapsed @endif" data-bs-target="#buzon-nav"
                         data-bs-toggle="collapse" href="#">
                         <i class="bi bi-bag"></i><span>Empresas</span><i
                             class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('empresas') || Route::is('empresasagregar')) show @endif"
+                    <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('empresas') || Route::is('empresasagregar') || Route::is('empresasagregarusuario')) show @endif"
                         data-bs-parent="#buzon-nav">
                         <li>
                             <a href="{{ Asset(env('admin') . '/empresas') }}"
@@ -69,7 +69,13 @@
                         <li>
                             <a href="{{ Asset(env('admin') . '/empresas/agregar') }}"
                                 class="@if (Route::is('empresasagregar')) active @endif">
-                                <i class="bi bi-circle"></i><span>Agregar</span>
+                                <i class="bi bi-circle"></i><span>Agregar Empresa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Asset(env('admin') . '/empresas/agregar/usuario') }}"
+                                class="@if (Route::is('empresasagregarusuario')) active @endif">
+                                <i class="bi bi-circle"></i><span>Agregar Usuario</span>
                             </a>
                         </li>
                     </ul>

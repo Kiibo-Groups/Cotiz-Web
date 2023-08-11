@@ -96,6 +96,7 @@ Route::prefix(env('admin'))->namespace('Admin')->group(static function() {
         Route::get('/empresas/credencial/{id}', [App\Http\Controllers\Admin\AdminController::class, 'verFilesfotoCredencial']);
 
         Route::get('/empresas/agregar', [App\Http\Controllers\Admin\AdminController::class, 'EmpresasAgregar'])->name('empresasagregar');
+        Route::get('/empresas/agregar/usuario', [App\Http\Controllers\Admin\AdminController::class, 'EmpresasUsuarioAgregar'])->name('empresasagregarusuario');
 
         /*
         |--------------------------------------------------------------------------

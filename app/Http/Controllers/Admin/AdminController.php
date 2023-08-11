@@ -312,6 +312,23 @@ class AdminController extends Controller
     }
 
 
+    public function EmpresasUsuarioAgregar()
+    {
+
+
+        $user = auth()->guard('admin')->user()->id;
+        $origen = 'admin';
+        $empresas = Rfc::where('rol', 1)->get();
+
+        return view($this->folder . 'empresa.addusuario', [
+            'data'      => new Rfc,
+            'empresas' => $empresas,
+            'origen'    => $origen,
+            'user'      => $user,
+        ]);
+    }
+
+
 
 
 

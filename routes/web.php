@@ -40,6 +40,7 @@ Route::post('register/prueba', [App\Http\Controllers\Auth\RegisterController::cl
 
 
 Route::get('/register/rfc', [App\Http\Controllers\Auth\RegisterController::class, 'buscarRfc'])->name('register.rfc');
+Route::get('/register/rfcusuario', [App\Http\Controllers\Auth\RegisterController::class, 'buscarRfcUsuario'])->name('register.rfc.usuario');
 Route::post('register/empresa', [App\Http\Controllers\Auth\RegisterController::class, 'storeEmpresa'])->name('register_empresa');
 Route::post('register/proveedor', [App\Http\Controllers\Auth\RegisterController::class, 'storeProveedor'])->name('register_proveedor');
 

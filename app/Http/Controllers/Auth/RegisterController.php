@@ -144,6 +144,28 @@ class RegisterController extends Controller
         }
 
     }
+    public function buscarRfcUsuario(Request $request){
+        $rfc  = $request->rfc;
+        $rol  = $request->rol;
+        $data = Rfc::where('rfc', $rfc)->where('rol', $rol)->first();
+        if ($data) {
+            $dataresul = [
+                'id' => $data->id,
+                'nombre' => $data->nombre,
+                'rfc' => $data->rfc,
+            ];
+
+            return response()->json(['code' => 200, 'data' => $dataresul, 'message' => 'Se ha obtenido la siguiente información.']);
+        } else {
+            $dataresul = [
+                'id' => 0,
+                'nombre' => 0,
+                'rfc' => 0,
+            ];
+            return response()->json(['code' => 200, 'data' => $dataresul, 'message' => 'Se ha obtenido la siguiente información.']);
+        }
+
+    }
 
 
     public function storeEmpresa(Request $request){
