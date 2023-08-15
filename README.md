@@ -1,6 +1,6 @@
 # README
 
-## Sistema Administrativo Codiz
+## Sistema Administrativo Cotiz
 
 Este repositorio contiene el código fuente de un sistema administrativo desarrollado por Kiibo para la empresa Codiz. El sistema está construido utilizando el framework Laravel.
 
