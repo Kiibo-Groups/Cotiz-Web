@@ -10,11 +10,11 @@
 
     <title>@yield('title')</title>
     <!-- Favicons -->
-    <link href="{{ asset('public/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('public/assets/img/favicon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="apple-touch-icon">
     <!-- ========== Links ========== -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <script src="{{ Asset('public/assets/vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ Asset('assets/vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
 
     @include('structure.account.main')
 </head>
