@@ -4,8 +4,7 @@
 
 
         @if (
-            //   (auth()->user()->status == 0 && auth()->user()->role == 3) ||
-            //(auth()->user()->status == 0 && auth()->user()->role == 1))
+
             ( auth()->user()->role == 3) ||
                 ( auth()->user()->role == 1))
 
