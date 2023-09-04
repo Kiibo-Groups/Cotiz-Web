@@ -17,7 +17,7 @@
                         @if ($data->logo == '')
                             <img src="{{ asset('profile/img/1647418114462.jpg') }}" alt="Profile" class="rounded-circle">
                         @else
-                            <img src="<?php echo asset('profile/img/logo/' . $data->logo); ?>" alt="Profile" class="rounded-circle">
+                            <img src="<?php echo asset('public/profile/img/logo/' . $data->logo); ?>" alt="Profile" class="rounded-circle">
                         @endif
 
                         <h2>{{ $data->name }}</h2>
@@ -114,7 +114,7 @@
                                                 accept=".png, .jpg, .jpeg" hidden />
                                             <label for="imageUpload">
                                                 @if ($data->logo)
-                                                    <img src="{{ asset('profile/img/logo/' . $data->logo) }}"
+                                                    <img src="{{ asset('public/profile/img/logo/' . $data->logo) }}"
                                                         class="ec-image-preview" alt="Profile">
                                                 @else
                                                     <img src="{{ asset('profile/img/user_profile.jpg') }}"
