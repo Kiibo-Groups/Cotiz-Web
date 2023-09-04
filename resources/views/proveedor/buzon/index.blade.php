@@ -3,7 +3,7 @@
     Buzón
 @endsection
 @section('page_active')
-Buzón
+    Buzón
 @endsection
 
 <link href="{{ asset('assets2/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">
@@ -17,27 +17,27 @@ Buzón
             <div class="row">
 
 
-                        <form action="{{ url(env('user') . '/buzon') }}" method="GET">
+                <form action="{{ url(env('user') . '/buzon') }}" method="GET">
 
-                <div class="row ">
-                    @include('alerts')
-                    <div class="col-6 mb-3">
-                        <label for="filter_from">Desde</label>
-                        <input type="date" name="filter_from" class="form-control">
+                    <div class="row ">
+                        @include('alerts')
+                        <div class="col-6 mb-3">
+                            <label for="filter_from">Desde</label>
+                            <input type="date" name="filter_from" class="form-control">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="filter_even">Hasta</label>
+                            <input type="date" name="filter_even" id="filter_even" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-6 mb-3">
-                        <label for="filter_even">Hasta</label>
-                        <input type="date" name="filter_even" id="filter_even" class="form-control">
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="search" id="filter_search"
-                        @if ($search != null) value="{{ $search }}" @endif
-                        placeholder="Buscar una solicitud por Descripción" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" id="filter_search"
+                            @if ($search != null) value="{{ $search }}" @endif
+                            placeholder="Buscar una solicitud por Descripción" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
 
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
-                </div>
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                    </div>
 
                 </form>
             </div>
@@ -50,37 +50,43 @@ Buzón
                             <h5 class="card-title">Listado</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-
-                                       <th scope="col">Admin</th>
-                                        <th scope="col">Usuario</th>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Creación</th>
-                                        <th scope="col">Ocpiones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($requests as $req)
+                            <div class="table table-responsive">
+                                <table class="table table-responsive" cellspacing="0" width="100%">
+                                    <thead>
                                         <tr>
 
-                                           <td class="col-md-1"> {{ $req->admin->name }}</td>
-                                            <td class="col-md-2">{{ $req->proveedor->nombre }} </td>
-                                            <td class="col-md-7" style="max-width: 200px; overflow: auto; white-space: normal;">{{ $req->descripcion }}</td>
-                                            <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
-
-                                            <td class="col-md-1">
-
-                                                <a target="_blank" class="btn btn-warning btn-sm" title="Descargar Documento"
-                                                    href="/public/assets/documento/buzon/{{ $req->documento }}">
-                                                    <i class="bi bi-download"></i>
-                                                </a>
-                                            </td>
+                                            <th scope="col">Admin</th>
+                                            <th scope="col">Usuario</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Creación</th>
+                                            <th scope="col">Ocpiones</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($requests as $req)
+                                            <tr>
+
+                                                <td class="col-md-1"> {{ $req->admin->name }}</td>
+                                                <td class="col-md-2">{{ $req->proveedor->nombre }} </td>
+                                                <td class="col-md-7"
+                                                    style="max-width: 200px; overflow: auto; white-space: normal;">
+                                                    {{ $req->descripcion }}</td>
+                                                <td class="col-md-1" style="font-size: 14px">
+                                                    {{ $req->created_at->format('d-m-Y') }}</td>
+
+                                                <td class="col-md-1">
+
+                                                    <a target="_blank" class="btn btn-warning btn-sm"
+                                                        title="Descargar Documento"
+                                                        href="/public/assets/documento/buzon/{{ $req->documento }}">
+                                                        <i class="bi bi-download"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             <!-- End Default Table Example -->
                         </div>
                     </div>
