@@ -66,68 +66,72 @@
                             <h5 class="card-title">Listado de Solicitudes de {{ $solicitud }}</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Status</th>
-                                        @if (auth()->user()->status == 0)
-                                            <th scope="col">Ocpiones</th>
-                                        @endif
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($requests as $req)
+                            <div class="table table-responsive">
+                                <table class="table table-responsive" cellspacing="0" width="100%">
+                                    <thead>
                                         <tr>
 
-                                            <td class="col-md-1">{{ $req->tipo }}</td>
-                                            <td class="col-md-2">{{ $req->created_at->format('d-m-Y') }}</td>
-                                            <td class="col-md-6"> {{ $req->description }}</td>
-                                            <td class="col-md-1">
-                                                @if ($req->status === 0)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">SOLICITANDO</span></h5>
-                                                @elseif ($req->status === 7)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">APROBADA</span></h5>
-                                                @elseif ($req->status === 8)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">RECHAZADA</span></h5>
-                                                @elseif ($req->status === 5)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-dark">CONTESTADA</span></h5>
-                                                @elseif ($req->status === 6)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-primary">EXAMINANDO</span></h5>
-                                                @elseif ($req->status === 1)
-                                                    <h5 class="card-title m-0 p-0"><span class="badge text-white bg-info">EN
-                                                            PROCESO COTIIZ</span>
-                                                    </h5>
-                                                @endif
-                                            </td>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Status</th>
                                             @if (auth()->user()->status == 0)
-                                                <td class="col-md-2">
-                                                    <a class="btn btn-info btn-sm" title="Documentos Relacionados"
-                                                        href="{{ url(env('user') . '/prueba/servicios/ver/' . $req->id) }}">
-                                                        <i class="bi bi-book"></i>
-                                                    </a>
-                                                    @if (!is_null($req->document))
-                                                        <a target="_blank" class="btn btn-warning btn-sm"
-                                                            title="Descargar Documento"
-                                                            href="/public/assets/documento/buzonempresa/{{ $req->document }}">
-                                                            <i class="bi bi-download"></i>
-                                                        </a>
-                                                    @endif
-
-                                                </td>
+                                                <th scope="col">Ocpiones</th>
                                             @endif
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($requests as $req)
+                                            <tr>
+
+                                                <td class="col-md-1">{{ $req->tipo }}</td>
+                                                <td class="col-md-2">{{ $req->created_at->format('d-m-Y') }}</td>
+                                                <td class="col-md-6"> {{ $req->description }}</td>
+                                                <td class="col-md-1">
+                                                    @if ($req->status === 0)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-secondary">SOLICITANDO</span>
+                                                        </h5>
+                                                    @elseif ($req->status === 7)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-success">APROBADA</span></h5>
+                                                    @elseif ($req->status === 8)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-danger">RECHAZADA</span></h5>
+                                                    @elseif ($req->status === 5)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-dark">CONTESTADA</span></h5>
+                                                    @elseif ($req->status === 6)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-primary">EXAMINANDO</span></h5>
+                                                    @elseif ($req->status === 1)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-info">EN
+                                                                PROCESO COTIIZ</span>
+                                                        </h5>
+                                                    @endif
+                                                </td>
+                                                @if (auth()->user()->status == 0)
+                                                    <td class="col-md-2">
+                                                        <a class="btn btn-info btn-sm" title="Documentos Relacionados"
+                                                            href="{{ url(env('user') . '/prueba/servicios/ver/' . $req->id) }}">
+                                                            <i class="bi bi-book"></i>
+                                                        </a>
+                                                        @if (!is_null($req->document))
+                                                            <a target="_blank" class="btn btn-warning btn-sm"
+                                                                title="Descargar Documento"
+                                                                href="/public/assets/documento/buzonempresa/{{ $req->document }}">
+                                                                <i class="bi bi-download"></i>
+                                                            </a>
+                                                        @endif
+
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             <!-- End Default Table Example -->
                         </div>
                     </div>
@@ -136,7 +140,8 @@
                 @if (auth()->user()->status == 1)
                     <div class="d-flex align-items-center flex-column py-6">
                         <div>
-                            <p style="color: red; font-size: 18px"> Activa tu cuenta para tener acceso a todos los apartados....</p>
+                            <p style="color: red; font-size: 18px"> Activa tu cuenta para tener acceso a todos los
+                                apartados....</p>
                         </div>
                     </div>
                 @endif
