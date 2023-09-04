@@ -40,15 +40,15 @@
                         placeholder="Buscar una solicitud por empresa y descripción" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
 
-                        <select name="filter_status" id="filter_status" class="form-select">
-                            <option value="" selected>Estatus</option>
-                            <option value="0" >SOLICITANDO</option>
-                            <option value="1" >EN PROCESO COTIIZ</option>
-                            <option value="5" >CONTESTADA</option>
-                            <option value="6" >EXAMINANDO</option>
-                            <option value="7" >APROBADA</option>
-                            <option value="8" >RECHAZADA</option>
-                        </select>
+                    <select name="filter_status" id="filter_status" class="form-select">
+                        <option value="" selected>Estatus</option>
+                        <option value="0">SOLICITANDO</option>
+                        <option value="1">EN PROCESO COTIIZ</option>
+                        <option value="5">CONTESTADA</option>
+                        <option value="6">EXAMINANDO</option>
+                        <option value="7">APROBADA</option>
+                        <option value="8">RECHAZADA</option>
+                    </select>
 
                     <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
                 </div>
@@ -65,93 +65,98 @@
                             <h5 class="card-title">Listado de Solicitudes de {{ $solicitud }}</h5>
 
                             <!-- Default Table -->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-
-                                        {{-- <thscope="col">Tipo</th> --}}
-                                        <th scope="col">Servicio</th>
-                                        <th scope="col">Empresa</th>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($requests as $req)
+                            <div class="table table-responsive">
+                                <table class="table table-responsive" cellspacing="0" width="100%">
+                                    <thead>
                                         <tr>
 
-                                          {{-- <tdclass="col-md-1">$req->tipo }}</td>--}}
-                                            <td class="col-md-1">{{ $req->servicio }}</td>
-                                            <td class="col-md-2">
-                                                @if ($req->solicitud == 2)
-                                                    {{ $req->prueba->name }} {{ $req->prueba->last_name }}
-                                                @else
-                                                    {{ $req->nomprove }}
-                                                @endif
+                                            {{-- <thscope="col">Tipo</th> --}}
+                                            <th scope="col">Servicio</th>
+                                            <th scope="col">Empresa</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($requests as $req)
+                                            <tr>
 
-                                            </td>
-                                            <td>{{ $req->description }}</td>
-                                            <td class="col-md-1" style="font-size: 14px">{{ $req->created_at->format('d-m-Y') }}</td>
-                                            <td class="col-md-1" style="font-size: 14px">
-                                                @if ($req->status === 0)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-secondary">SOLICITANDO</span></h5>
-                                                @elseif ($req->status === 7)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-success">APROBADA</span></h5>
-                                                @elseif ($req->status === 8)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-danger">RECHAZADA</span></h5>
-                                                @elseif ($req->status === 5)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-dark">CONTESTADA</span></h5>
-                                                @elseif ($req->status === 6)
-                                                    <h5 class="card-title m-0 p-0"><span
-                                                            class="badge text-white bg-primary">EXAMINANDO</span></h5>
-                                                @elseif ($req->status === 1)
-                                                    <h5 class="card-title m-0 p-0"><span class="badge text-white bg-info">EN
-                                                            PROCESO COTIIZ</span>
-                                                    </h5>
-                                                @endif
-                                            </td>
-                                            <td class="col-md-2">
-                                                <a class="btn btn-info btn-sm" title="Documentos Relacionados"
-                                                    href="{{ url(env('admin') . '/servicios/ver/' . $req->id) }}">
-                                                    <i class="bi bi-book"></i>
-                                                </a>
-                                                @if (!is_null($req->document))
-                                                    <a target="_blank" class="btn btn-warning btn-sm"
-                                                        title="Descargar Documento"
-                                                        href="/public/assets/documento/buzonempresa/{{ $req->document }}">
-                                                        <i class="bi bi-download"></i>
-                                                    </a>
-                                                @endif
-                                                {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
-                                                @if (Auth::guard('admin')->check())
-                                                    <a type="button" class=" open-modal btn btn-success btn-sm"
-                                                        title="Editar Estado" data-nombre="{{ $req->id }}">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
-
-                                                    @if (!Auth::guard('admin')->check())
-                                                        <a class="btn btn-danger btn-sm"
-                                                            href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
+                                                {{-- <tdclass="col-md-1">$req->tipo }}</td> --}}
+                                                <td class="col-md-1">{{ $req->servicio }}</td>
+                                                <td class="col-md-2">
+                                                    @if ($req->solicitud == 2)
+                                                        {{ $req->prueba->name }} {{ $req->prueba->last_name }}
                                                     @else
-                                                        {{-- <a class="btn btn-danger btn-sm"
+                                                        {{ $req->nomprove }}
+                                                    @endif
+
+                                                </td>
+                                                <td>{{ $req->description }}</td>
+                                                <td class="col-md-1" style="font-size: 14px">
+                                                    {{ $req->created_at->format('d-m-Y') }}</td>
+                                                <td class="col-md-1" style="font-size: 14px">
+                                                    @if ($req->status === 0)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-secondary">SOLICITANDO</span>
+                                                        </h5>
+                                                    @elseif ($req->status === 7)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-success">APROBADA</span></h5>
+                                                    @elseif ($req->status === 8)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-danger">RECHAZADA</span></h5>
+                                                    @elseif ($req->status === 5)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-dark">CONTESTADA</span></h5>
+                                                    @elseif ($req->status === 6)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-primary">EXAMINANDO</span></h5>
+                                                    @elseif ($req->status === 1)
+                                                        <h5 class="card-title m-0 p-0"><span
+                                                                class="badge text-white bg-info">EN
+                                                                PROCESO COTIIZ</span>
+                                                        </h5>
+                                                    @endif
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <a class="btn btn-info btn-sm" title="Documentos Relacionados"
+                                                        href="{{ url(env('admin') . '/servicios/ver/' . $req->id) }}">
+                                                        <i class="bi bi-book"></i>
+                                                    </a>
+                                                    @if (!is_null($req->document))
+                                                        <a target="_blank" class="btn btn-warning btn-sm"
+                                                            title="Descargar Documento"
+                                                            href="/public/assets/documento/buzonempresa/{{ $req->document }}">
+                                                            <i class="bi bi-download"></i>
+                                                        </a>
+                                                    @endif
+                                                    {{--  @if (Auth::guard('admin')->check() || Auth::user()->role == 2)  --}}
+                                                    @if (Auth::guard('admin')->check())
+                                                        <a type="button" class=" open-modal btn btn-success btn-sm"
+                                                            title="Editar Estado" data-nombre="{{ $req->id }}">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </a>
+
+                                                        @if (!Auth::guard('admin')->check())
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="{{ url(env('user') . '/request/delete/' . $req->id) }}">
+                                                                <i class="bi bi-trash"></i>
+                                                            </a>
+                                                        @else
+                                                            {{-- <a class="btn btn-danger btn-sm"
                                                             href="{{ url(env('admin') . '/request/delete/' . $req->id) }}">
                                                             <i class="bi bi-trash"></i>
                                                         </a> --}}
+                                                        @endif
                                                     @endif
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             <!-- End Default Table Example -->
                         </div>
                     </div>
@@ -191,26 +196,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ url(env('admin') . '/request/edit/' ) }}" method="POST">
+                <form action="{{ url(env('admin') . '/request/edit/') }}" method="POST">
 
 
-                @csrf
-                <input id="id" name="id" type="hidden" />
-                <div class="modal-body">
-                    <label for="status">Estado</label>
-                    <select name="status" id="status" class="form-select">
-                        <option value="0" selected>SOLICITANDO</option>
-                        <option value="7">APROBADA</option>
-                        <option value="5">CONTESTADA </option>
-                        <option value="8">RECHAZADA</option>
-                        <option value="6">EXAMINANDO</option>
-                        <option value="1">EN PROCESO COTIIZ</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
-                </div>
+                    @csrf
+                    <input id="id" name="id" type="hidden" />
+                    <div class="modal-body">
+                        <label for="status">Estado</label>
+                        <select name="status" id="status" class="form-select">
+                            <option value="0" selected>SOLICITANDO</option>
+                            <option value="7">APROBADA</option>
+                            <option value="5">CONTESTADA </option>
+                            <option value="8">RECHAZADA</option>
+                            <option value="6">EXAMINANDO</option>
+                            <option value="1">EN PROCESO COTIIZ</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
             </div>
             </form>
         </div>

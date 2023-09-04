@@ -25,7 +25,7 @@
                             <b>Servicio :</b>
                             <p>{{ $request->nombre }}</p>
                         </div>
-                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Descripción :</b>
                             <p>{{ $request->modelo }}</p>
@@ -36,9 +36,10 @@
                             <p>$ {{ number_format($request->presupuesto, 1) }}</p>
                         </div>
                         @if ($request->link)
-                            <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                            <div class="col-sm" style=" overflow: auto; white-space: normal;">
                                 <b>Link Drive :</b>
-                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive">
+                                    url</a>
                             </div>
                         @endif
 
@@ -52,11 +53,11 @@
                 <div class="container">
                     <hr />
                     <div class="row">
-                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
                             <b>Nombre :</b>
                             <p style="margin-left: 10px; ">{{ $request->nombre }}</p>
                         </div>
-                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Modelo :</b>
                             <p style="margin-left: 10px">{{ $request->modelo }}</p>
@@ -69,11 +70,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
                             <b>Marca :</b>
                             <p style="margin-left: 10px">{{ $request->marca }}</p>
                         </div>
-                        <div class="col-sm"  style=" overflow: auto; white-space: normal;">
+                        <div class="col-sm" style=" overflow: auto; white-space: normal;">
 
                             <b>Cantidad :</b>
                             <p style="margin-left: 10px">{{ $request->cantidad }}</p>
@@ -81,7 +82,8 @@
                         @if ($request->link)
                             <div class="col-sm">
                                 <b>Link Drive :</b>
-                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive">
+                                    url</a>
                             </div>
                         @endif
 
@@ -126,7 +128,8 @@
                         @if ($request->link)
                             <div class="col-sm" style=" overflow: auto; white-space: normal;">
                                 <b>Link Drive :</b>
-                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive"> url</a>
+                                <a target="_blank" href="{{ $request->link }}" class="btn btn-info" title="Ir a Drive">
+                                    url</a>
                             </div>
                         @endif
 
@@ -143,8 +146,9 @@
                 @include('alerts')
                 <div class="card card-default">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
+
+                        <div class="table table-responsive">
+                            <table class="table table-responsive" cellspacing="0" width="100%">
                                 <thead>
                                     <tr style="text-align: center">
                                         <th scope="row">Usuario</th>
@@ -165,8 +169,11 @@
                                                 @endif
 
                                             </td>
-                                            <td class="col-md-7" style="max-width: 200px; overflow: auto; white-space: normal;">{{ $row->descripcion }}</td>
-                                            <td class="col-md-1" style="text-align: center ; font-size: 14px">{{ $row->created_at->format('d-m-Y') }}</td>
+                                            <td class="col-md-7"
+                                                style="max-width: 200px; overflow: auto; white-space: normal;">
+                                                {{ $row->descripcion }}</td>
+                                            <td class="col-md-1" style="text-align: center ; font-size: 14px">
+                                                {{ $row->created_at->format('d-m-Y') }}</td>
                                             <td class="col-md-1" style="text-align: center">
                                                 <a target="_blank" class="btn btn-warning" title="Descargar Documento"
                                                     href="/public/assets/documento/servicios/{{ $row->documento }}">
@@ -177,6 +184,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
