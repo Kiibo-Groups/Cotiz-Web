@@ -1,6 +1,6 @@
 @extends('layouts.app_profile')
-@section('title') Buzón @endsection
-@section('page_active') Buzón @endsection
+@section('title') Empresa @endsection
+@section('page_active') Empresa @endsection
 
 
 
