@@ -13,6 +13,7 @@
     <link href="{{ asset('assets/img/favicon.png') }}" rel="apple-touch-icon">
     <!-- ========== Links ========== -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <script src="{{ Asset('assets/vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
 
     @include("structure.account.main")
 </head>
@@ -75,7 +76,29 @@
 
     <!-- ======= FooterJS ======= -->
     @include("structure.account.footerjs")
+    <script>
+        function deleteConfirm(url) {
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "No podrás revertir esto.!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Eliminar!'
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'Esta entrada ha sido eliminada.',
+                        'success'
+                    )
 
+                    window.location = url;
+                }
+            })
+        }
+    </script>
     @yield('js')
 </body>
 </html>

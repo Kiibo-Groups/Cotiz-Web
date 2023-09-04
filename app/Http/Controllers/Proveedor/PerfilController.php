@@ -42,6 +42,7 @@ class PerfilController extends Controller
                 'fotoGafete2' => 'file|max:3048',
                 'fotoCredencial2' => 'file|max:3048',
                 'opinionPositiva' => 'file|max:3048',
+                'constanciaPositiva'=>'file|max:3048',
 
             ],
             [
@@ -53,6 +54,12 @@ class PerfilController extends Controller
             $opinionPositiva   = time() . rand(111, 699) . '.' . $input['opinionPositiva']->getClientOriginalExtension();
             $input['opinionPositiva']->move("public/assets/img/empresa/", $opinionPositiva);
             $input['opinionPositiva'] = $opinionPositiva;
+        }
+        if(isset($input['constanciaPositiva']))
+        {
+            $constanciaPositiva   = time().rand(111,699).'.' .$input['constanciaPositiva']->getClientOriginalExtension();
+            $input['constanciaPositiva']->move("public/assets/img/empresa/", $constanciaPositiva);
+            $input['constanciaPositiva'] = $constanciaPositiva;
         }
 
         if (isset($input['fotoGafete'])) {
@@ -108,6 +115,12 @@ class PerfilController extends Controller
             $registro->opinionPositiva = $opinionPositiva;
             $registro->save();
 
+        }
+
+        if (isset($input['constanciaPositiva'])) {
+            $registro =  Rfc::find($user->idempresa);
+            $registro->constFiscal = $constanciaPositiva;
+            $registro->save();
         }
 
 

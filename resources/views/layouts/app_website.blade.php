@@ -81,13 +81,13 @@
                 </li>
 
                 @if (Auth::user())
-                    @if (Auth::user()->status == 0)
+                    {{-- @if(Auth::user()->status==0) --}}
                         <li class="inline mb-0">
                             <a href="{{ asset(env('user') . '/perfil') }}"
                                 class="btn btn-icon rounded-full hover:text-black" title="Perfil Usuario">
                                 <i data-feather="user" class="h-4 w-4"></i></a>
                         </li>
-                    @endif
+                 {{-- @endif --}}
                     <li class="inline mb-0">
                         <a href="{{ route('logout') }}" class="btn btn-icon rounded-full hover:text-black"
                             title="Salir"

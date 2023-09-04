@@ -4,8 +4,10 @@
 
 
         @if (
-            (auth()->user()->status == 0 && auth()->user()->role == 3) ||
-                (auth()->user()->status == 0 && auth()->user()->role == 1))
+            //   (auth()->user()->status == 0 && auth()->user()->role == 3) ||
+            //(auth()->user()->status == 0 && auth()->user()->role == 1))
+            ( auth()->user()->role == 3) ||
+                ( auth()->user()->role == 1))
 
 
 
@@ -26,25 +28,29 @@
                 </li><!-- End Dashboard Nav -->
             @endif
 
-            @if ($admin->hasPerm('SubCuentas'))
-                <li class="nav-item">
-                    <a class="nav-link @if (!Route::is('home')) collapsed @endif"
-                        href="{{ Asset(env('user') . '/empresa/subAccounts') }}">
-                        <i class="bi bi-ui-checks-grid"></i>
-                        <span>SubCuentas</span>
-                    </a>
-                </li><!-- End Dashboard Nav -->
-            @endif
-            @if ($admin->hasPerm('Usuarios'))
-                <li class="nav-item">
-                    <a class="nav-link @if (!Route::is('home')) collapsed @endif"
-                        href="{{ Asset(env('user') . '/empresa/users') }}">
-                        <i class="bi bi-person"></i>
-                        <span>Usuarios</span>
-                    </a>
-                </li><!-- End Dashboard Nav -->
-            @endif
+            @if (auth()->user()->status == 0)
 
+
+
+                    @if ($admin->hasPerm('SubCuentas'))
+                        <li class="nav-item">
+                            <a class="nav-link @if (!Route::is('home')) collapsed @endif"
+                                href="{{ Asset(env('user') . '/empresa/subAccounts') }}">
+                                <i class="bi bi-ui-checks-grid"></i>
+                                <span>SubCuentas</span>
+                            </a>
+                        </li><!-- End Dashboard Nav -->
+                    @endif
+                    @if ($admin->hasPerm('Usuarios'))
+                        <li class="nav-item">
+                            <a class="nav-link @if (!Route::is('home')) collapsed @endif"
+                                href="{{ Asset(env('user') . '/empresa/users') }}">
+                                <i class="bi bi-person"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li><!-- End Dashboard Nav -->
+                    @endif
+            @endif
 
 
         @endif

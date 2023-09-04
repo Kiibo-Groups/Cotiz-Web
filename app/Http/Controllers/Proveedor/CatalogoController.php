@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Proveedor;
 
 use App\Models\Rfc;
+use App\Models\User;
 use App\Models\Services;
+use App\Models\Providers;
 use App\Models\Referencia;
+use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Certificado;
 use Illuminate\Support\Facades\Session;
 
 class CatalogoController extends Controller
@@ -433,4 +435,16 @@ class CatalogoController extends Controller
         return response()->download($rutaDeArchivo, $fete);
     }
 
+    public function delete($id){
+
+        $res = Services::find($id);
+        $path = env('APP_DEBUG') ? '' : 'public/';
+		@unlink($path."assets/img/logos/".$res->logo);
+		$res->delete();
+
+        Session::flash('mensaje','Elemento Eliminado con éxito!');
+        Session::flash('class', 'success');
+        return back();
+
+    }
 }

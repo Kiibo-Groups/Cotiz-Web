@@ -569,7 +569,8 @@ class HomeController extends Controller
             case(1):
 
                 if (auth()->user()->status == 1) {
-                    return redirect('activar');
+                    //return redirect('activar');
+                    return redirect('user/empresa/perfil');
                 } else {
                     return redirect('user/empresa/perfil');
                 }
@@ -579,7 +580,8 @@ class HomeController extends Controller
             case(2):
 
                 if (auth()->user()->status == 1) {
-                    return redirect('activar');
+                    //return redirect('activar');
+                    return redirect('user/prueba/solicitud');
                 } else {
                    return redirect('user/prueba/solicitud');
                 }
@@ -589,7 +591,8 @@ class HomeController extends Controller
 
             case(3):
                 if (auth()->user()->status == 1) {
-                    return redirect('activar');
+                    //return redirect('activar');
+                    return redirect('user/empresa/solicitud');
                 } else {
                    return redirect('user/empresa/solicitud');
                 }
@@ -598,7 +601,8 @@ class HomeController extends Controller
             case(4):
 
                     if (auth()->user()->status == 1) {
-                        return redirect('activar');
+                        //return redirect('activar');
+                        return redirect('user/solicitud');
                     } else {
                        return redirect('user/solicitud');
                     }
@@ -606,7 +610,8 @@ class HomeController extends Controller
 
             case(5):
                 if (auth()->user()->status == 1) {
-                    return redirect('activar');
+                    //return redirect('activar');
+                    return redirect('user/solicitud');
                 } else {
                    return redirect('user/solicitud');
                 }

@@ -92,11 +92,19 @@
                                                 <a href="{{ url(env('user') . '/catalogo/edit/' . $service->id) }}"
                                                     class="btn btn-primary">Editar</a>
                                             </div>
+                                            @if (Auth::user()->role == 4)
+                                            <div class="col-4 mt-3">
 
+                                                <a href="javascript::void()" class="btn btn-danger"
+                                                    onclick="deleteConfirm('{{ url(env('user') . '/catalogo/delete/' . $service->id) }}')">
+                                                    Eliminar
+                                                </a>
+                                            </div>
+                                            @endif
                                             @if ($service->type === 'employe')
                                                 <div class="col-4 mt-3">
                                                     <a href="{{ url(env('user') . '/catalogo/ver/' . $service->id) }}"
-                                                        class="btn btn-warning">Ver/Completar </a>
+                                                        class="btn btn-warning">Ver </a>
                                                 </div>
                                             @endif
 

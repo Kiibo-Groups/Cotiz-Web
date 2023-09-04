@@ -107,6 +107,11 @@
                                             <input type="file" accept=".pdf" class="form-control slug-title" id="opinionPositiva"
                                                 name="opinionPositiva">
                                         </div>
+                                        <div class="col-md-12" style="margin-top:25px;">
+                                            <label class="form-label">Constancia de situación fiscal</label>
+                                            <input type="file" accept=".pdf" class="form-control slug-title" id="constFiscal"
+                                                name="constFiscal">
+                                        </div>
                                     @endif
 
 
