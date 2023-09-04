@@ -29,7 +29,7 @@
 
                                     <div class="row">
 
-                                        <div class="col-6  mb-2">
+                                        <div class="col-md-6  mb-2">
                                             <label for="buscarfc" >Empresa</label>
                                             <select name="rfc" id="buscarfc" class="form-control" required>
                                                 <option value="">Seleccione</option>
@@ -42,7 +42,7 @@
 
 
 
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="signupName">Nombres</label>
                                             <input id="signupName" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
@@ -58,13 +58,13 @@
                                     </div>
 
                                     <div class="row">
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="apellidoPaterno">Apellido paterno </label>
                                             <input id="apellidoPaterno" type="text" class="form-control"
                                                 name="apellidoPaterno" value="{{ old('apellidoPaterno') }}" required>
 
                                         </div>
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="apellidoMaterno">Apellido materno </label>
                                             <input id="apellidoMaterno" type="text" class="form-control"
                                                 name="apellidoMaterno" value="{{ old('apellidoMaterno') }}" required>
@@ -76,13 +76,13 @@
                                         Los archivos PDF no deben sobrepasar los 3 MB de tamaño..
                                     </span>
                                     <div class="row">
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="fotoGafete">Foto de gafete lado #1 </label>
                                             <input id="fotoGafete" type="file" class="form-control" name="fotoGafete"
                                                 value="{{ old('fotoGafete') }}" accept=".png, .jpg, .jpeg" required>
 
                                         </div>
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="fotoGafete2">Foto de gafete lado #2 </label>
                                             <input id="fotoGafete2" type="file" class="form-control"
                                                 name="fotoGafete2" value="{{ old('fotoGafete2') }}"
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="fotoCredencial">Foto credencial de elector (INE) lado #1
                                             </label>
                                             <input id="fotoCredencial" type="file" class="form-control"
@@ -99,7 +99,7 @@
                                                 accept=".png, .jpg, .jpeg" required>
 
                                         </div>
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="fotoCredencial2">Foto credencial de elector (INE) lado #2
                                             </label>
                                             <input id="fotoCredencial2" type="file" class="form-control"
@@ -110,13 +110,13 @@
                                     </div>
 
                                     <div class="row">
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="puestoEmpresa">Puesto que desempeña en la empresa </label>
                                             <input id="puestoEmpresa" type="text" class="form-control"
                                                 name="puestoEmpresa" required>
 
                                         </div>
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="areaEmpresa">Área en la que se encuentra </label>
                                             <input id="areaEmpresa" type="text" class="form-control"
                                                 name="areaEmpresa" required>
@@ -124,13 +124,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="telefonoEmpresa">Teléfono de la empresa / extensión </label>
                                             <input id="telefonoEmpresa" type="text" class="form-control"
                                                 name="telefonoEmpresa" value="{{ old('telefonoEmpresa') }}" required>
 
                                         </div>
-                                          <div class="col-6  mb-2">
+                                          <div class="col-md-6  mb-2">
                                             <label for="phone">Celular personal</label>
                                             <input id="phone" type="text" class="form-control" name="phone"
                                                 value="{{ old('phone') }}" required>
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <div class="col-6  mb-2">
+                                    <div class="col-md-6  mb-2">
                                         <label for="signupEmail">Email</label>
                                         <input id="signupEmail" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
@@ -151,7 +151,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-6  mb-2">
+                                    <div class="col-md-6  mb-2">
                                         <label for="direccionEmpresa">Dirección de empresa</label>
                                         <input id="direccionEmpresa" type="text" class="form-control"
                                             name="direccionEmpresa" value="{{ old('direccionEmpresa') }}" required>
