@@ -53,13 +53,13 @@
             @if ($admin->hasPerm('Dashboard - Empresas'))
 
                 <li class="nav-item">
-                    <a class="nav-link @if (!Route::is('empresas') || !Route::is('empresasagregar') || !Route::is('empresasagregarusuario')) collapsed @endif" data-bs-target="#buzon-nav"
+                    <a class="nav-link @if (!Route::is('empresas') || !Route::is('empresasagregar') || !Route::is('empresasagregarusuario')) collapsed @endif" data-bs-target="#buzon1-nav"
                         data-bs-toggle="collapse" href="#">
                         <i class="bi bi-bag"></i><span>Empresas</span><i
                             class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="buzon-nav" class="nav-content  collapse @if (Route::is('empresas') || Route::is('empresasagregar') || Route::is('empresasagregarusuario')) show @endif"
-                        data-bs-parent="#buzon-nav">
+                    <ul id="buzon1-nav" class="nav-content  collapse @if (Route::is('empresas') || Route::is('empresasagregar') || Route::is('empresasagregarusuario')) show @endif"
+                        data-bs-parent="#buzon1-nav">
                         <li>
                             <a href="{{ Asset(env('admin') . '/empresas') }}"
                                 class="@if (Route::is('empresas')) active @endif">
