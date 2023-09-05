@@ -93,8 +93,8 @@ class AdminController extends Controller
 
 		//$providers = Providers::count();
         $services  = Services::count();
-        $users     = Rfc::where('rol',1)->get()->count();
-        $providers = Rfc::where('rol',2)->get()->count();
+        $users     = Rfc::where('rol',1)->where('status', 0)->get()->count();
+        $providers = Rfc::where('rol',2)->where('status', 0)->get()->count();
         $requests  = Requests::count();
 
         $statistics = json_encode([
@@ -295,7 +295,7 @@ class AdminController extends Controller
         ]);
 
     }
-  
+
   	    public function CashbackEmpresas($id)
     {
         $admin = Rfc::find($id);
@@ -315,13 +315,13 @@ class AdminController extends Controller
 		$res->cashback = $request->cashback;
         $res->save();
         return Redirect::to(env('admin').'/empresas')->with('message', 'Elemento Registrado con éxito!');
-     
+
         //return back();
 
 
     }
 
-  
+
     public function EmpresasAgregar()
     {
 
