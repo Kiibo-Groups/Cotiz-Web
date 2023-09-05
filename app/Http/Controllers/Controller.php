@@ -186,7 +186,7 @@ class Controller extends BaseController
         }
 
         $EmailTo = Admin::find(1)->shw_email;
-        $Subject = "Nuevo mensaje de la página de Engine.mx";
+        $Subject = "Nuevo mensaje de la página de Cotiiz";
 
         // prepare email body text
         $Body = "";
@@ -271,7 +271,7 @@ class Controller extends BaseController
 
 
         $EmailTo = Mentors::find($request->get('mentor_id'))->email;
-        $Subject = "Agendación de fecha - Engine.mx";
+        $Subject = "Agendación de fecha - Cotiiz";
 
         // prepare email body text
         $Body = "";

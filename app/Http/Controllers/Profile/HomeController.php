@@ -230,7 +230,7 @@ class HomeController extends Controller
 
         $para       =  Admin::find(1)->email;
         $asunto     =   'Tienes un mensaje de '.$request->nomprove;
-        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
         $cabeceras = 'From: '.auth()->user()->email . "\r\n";
 
         $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
@@ -247,17 +247,6 @@ class HomeController extends Controller
         $input         = $request->all();
         $requests_data = new Requests;
 
-        // $user_data     = User::find($request->user_id);
-        // $service_data  = Services::find($request->services_id);
-        // $provider_data = Rfc::find($service_data->provider_id);
-
-
-        // $notification           = new Notifications;
-        // $notification->of_user  = $request->user_id;
-        // $notification->for_user = $provider_data->id;
-        // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
-        // $notification->save();
-
         if($request->file('document'))
         {
 
@@ -268,10 +257,6 @@ class HomeController extends Controller
 
         $input['fecha'] = Carbon::now();
         $requests_data->create($input);
-
-
-
-
 
         return redirect()->route('init')->with('message', 'Solicitud Enviada');
 

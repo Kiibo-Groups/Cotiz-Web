@@ -27,7 +27,8 @@ class Requests extends Model
        'servicio',
        'link',
        'nomprove',
-       'fecha'
+       'fecha',
+       'usuario'
     ];
 
 

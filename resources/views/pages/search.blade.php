@@ -81,7 +81,7 @@
                         <input type="hidden" name="proveedor" value="{{ Auth::user()->idempresa }}">
                         <input type="hidden" name="nomprove" value="{{  Auth::user()->empresa->nombre}}">
                     @endif
-
+                    <input type="hidden" name="usuario" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="user_id" value="1">
                     <input type="hidden" name="services_id" value="0">
                     <input type="hidden" name="status" value="0">
