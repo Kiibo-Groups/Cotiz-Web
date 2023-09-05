@@ -227,16 +227,25 @@ class HomeController extends Controller
     public function storeRequest(Request $request){
 
     //dd(auth()->user()->email);
+    //        dd($_POST,$request->all());
 
-        $para       =  Admin::find(1)->email;
-        $asunto     =   'Tienes un mensaje de '.$request->nomprove;
-        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
-        $cabeceras = 'From: '.auth()->user()->email . "\r\n";
 
-        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
 
-        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+        // $para       =  Admin::find(1)->email;
+
+        // $from       =  Auth::user()->email;
+
+        // $para       =  Admin::find(1)->email;
+
+        // $asunto     =   'Tienes un mensaje de '.$request->nomprove;
+        // $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
+
+        // $cabeceras = 'From: '.auth()->user()->email . "\r\n";
+
+        // $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        // $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        // mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         $request->validate([
             'document'=>'required|max:3048',
@@ -257,6 +266,20 @@ class HomeController extends Controller
 
         $input['fecha'] = Carbon::now();
         $requests_data->create($input);
+
+
+        $from       =  auth()->user()->email;
+
+        $para       =  Admin::find(1)->email;
+
+        $asunto     =   'Tienes una nueva solicitud  en cotiiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
+        $cabeceras = 'From: '.  $from  . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         return redirect()->route('init')->with('message', 'Solicitud Enviada');
 
