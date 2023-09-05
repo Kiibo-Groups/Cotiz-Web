@@ -134,12 +134,6 @@ class solicitudController extends Controller
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
-        Session::flash('mensaje','Documento Cargado ...');
-        Session::flash('class', 'success');
-        return redirect(env('user').'/empresa/servicios/ver/'.$id);
-
-
-
 
         Session::flash('mensaje','Documento Cargado ...');
         Session::flash('class', 'success');
