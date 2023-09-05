@@ -33,7 +33,7 @@
                                     <div class="avatar-preview ec-preview">
                                         <div class="imagePreview ec-div-preview">
                                             @if ($data->id)
-                                                <img class="ec-image-preview" src="<?php echo asset('assets/img/logos/' . $data->logo); ?>"
+                                                <img class="ec-image-preview" src="<?php echo asset('public/assets/img/logos/' . $data->logo); ?>"
                                                     style="height: 301px;" alt="servicio" />
                                             @else
                                                 <img class="ec-image-preview" src="<?php echo asset('profile/img/banner/1.jpg'); ?>"
