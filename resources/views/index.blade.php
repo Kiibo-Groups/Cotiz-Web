@@ -64,8 +64,7 @@
                                 mejores <br>
                                 Productos <span style="color: #0000F4;">y/o Servicios</span></h4>
                             <p class="text-slate-400 text-lg max-w-xl">
-                                Pretendemos ser una vitrina única a la que las empresas puedan acudir para
-                                solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
+                                La brújula del empresario, la centralización de la cadena de suministro y el valor agregado. Dónde puedes acortar los tiempos y maximizar tus costos, encuentra productos, servicios, profesionistas  especializados para proyectos.
                             </p>
 
                             <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
@@ -129,8 +128,7 @@
                             Productos <span style="color: #0000F4;">y/o Servicios</span>
                         </h4>
                         <p class="text-slate-400 text-lg max-w-xl">
-                            Pretendemos ser una vitrina única a la que las empresas puedan acudir para
-                            solicitar productos, servicios e incluso personal, de ciertos segmentos industriales.
+                            La brújula del empresario, la centralización de la cadena de suministro y el valor agregado. Dónde puedes acortar los tiempos y maximizar tus costos, encuentra productos, servicios, profesionistas  especializados para proyectos.
                         </p>
 
                         <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
