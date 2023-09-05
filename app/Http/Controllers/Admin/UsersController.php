@@ -15,6 +15,7 @@ use App\Models\UserAddress;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Rfc;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -27,11 +28,43 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // return view($this->folder.'users.index', [
+        //     'data' => User::whereIn('role', [1, 3])->get()
+        // ]);
+
+
+        $search = $request->search;
+        $empresa = $request->filter_empresa;
+
+        $requests = User::whereIn('role', [1, 3]);
+
+
+        if($search) {
+            $requests = $requests->whereRaw('LOWER(name) LIKE(?)','%'.$search.'%')
+                                ->orwhereRaw('LOWER(last_name) LIKE(?)','%'.$search.'%');
+
+        }
+
+        if(!is_null($empresa)) {
+            $requests = $requests->where('idempresa',$empresa);
+        }
+
+        $requests = $requests->paginate(10);
+
         return view($this->folder.'users.index', [
-            'data' => User::whereIn('role', [1, 3])->get()
+            'data'=> $requests,
+            'search'=> $search,
+            'empresa'=>$empresa,
+            'empresas'=> Rfc::where('rol', 1)->get()
         ]);
+
+
+
+
+
+
     }
 
 

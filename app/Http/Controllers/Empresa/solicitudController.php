@@ -224,6 +224,7 @@ class solicitudController extends Controller
         return view($this->folder.'users.index', [
             'data' => User::where('idempresa', auth()->user()->idempresa)->get()
         ]);
+
     }
 
     public function VerUsuarioEmpresa($id)
