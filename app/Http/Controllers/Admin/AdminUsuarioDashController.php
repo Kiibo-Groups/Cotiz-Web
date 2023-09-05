@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Redirect;
+use App\Models\Rfc;
 
 
 use App\Models\User;
@@ -15,6 +15,7 @@ use App\Models\Providers;
 use App\Models\UserAddress;
 
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -28,12 +29,41 @@ class AdminUsuarioDashController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
+        // return view($this->folder.'users.indexPrueba', [
+        //     'data' => User::where('role', 2)->get()
+        // ]);
+
+
+        $search = $request->search;
+        $empresa = $request->filter_empresa;
+
+        $requests = User::where('role', 2);
+
+
+        if($search) {
+            $requests = $requests->whereRaw('LOWER(name) LIKE(?)','%'.$search.'%')
+                                ->orwhereRaw('LOWER(last_name) LIKE(?)','%'.$search.'%');
+
+        }
+
+        if(!is_null($empresa)) {
+            $requests = $requests->whereRaw('LOWER(company) LIKE(?)','%'.$empresa.'%');
+        }
+
+        $requests = $requests->paginate(10);
+
         return view($this->folder.'users.indexPrueba', [
-            'data' => User::where('role', 2)->get()
+            'data'=> $requests,
+            'search'=> $search,
+            'empresa'=>$empresa,
+            'empresas'=> User::where('role', 2)->where('company', '!=', null)->get('company')
         ]);
+
+
+
     }
 
 
@@ -64,11 +94,37 @@ class AdminUsuarioDashController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
 
+        // return view($this->folder.'users.indexProveedores', [
+        //     'data' => User::whereIn('role', [4, 5])->get()
+        // ]);
+
+
+        $search = $request->search;
+        $empresa = $request->filter_empresa;
+
+        $requests = User::whereIn('role', [4,5]);
+
+
+        if($search) {
+            $requests = $requests->whereRaw('LOWER(name) LIKE(?)','%'.$search.'%')
+                                ->orwhereRaw('LOWER(last_name) LIKE(?)','%'.$search.'%');
+
+        }
+
+        if(!is_null($empresa)) {
+            $requests = $requests->where('idempresa',$empresa);
+        }
+
+        $requests = $requests->paginate(10);
+
         return view($this->folder.'users.indexProveedores', [
-            'data' => User::whereIn('role', [4, 5])->get()
+            'data'=> $requests,
+            'search'=> $search,
+            'empresa'=>$empresa,
+            'empresas'=> Rfc::where('rol', 2)->get()
         ]);
     }
 

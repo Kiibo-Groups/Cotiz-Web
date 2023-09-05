@@ -5,12 +5,40 @@
 
 @section('content')
 	<section class="section banners">
+        <div class="row">
+
+
+            <form action="{{ url(env('admin') . '/userspanel') }}" method="GET">
+
+                <div class="row ">
+                    @include('alerts')
+
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" id="filter_search"
+                        @if ($search != null) value="{{ $search }}" @endif
+                        placeholder="Buscar por nombre de usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+
+                    <select name="filter_empresa" id="filter_empresa" class="form-select js-example-basic-single" >
+                        <option value="" selected>Buscar por empresa</option>
+                        @foreach ($empresas as $empr)
+                            <option value="{{ $empr->company }}" @if ($empr->company == $empresa) selected @endif>{{ $empr->company }}</option>
+                        @endforeach
+                    </select>
+
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                </div>
+
+            </form>
+        </div>
 		<div class="row">
 			{{--<div class="col-12 text-align-right">
 				<div class="card-body" style="justify-items: right;display: grid;">
 					<a href="{{url(env('admin').'/users/add')}}" class="btn btn-primary"> Agrega Usuario</a>
 				</div>
 			</div>--}}
+
             @if(count($data)>0)
 			<div class="col-12">
                 @include('alerts')
@@ -25,6 +53,7 @@
                                         <th>Email</th>
                                         <th>Telefono</th>
                                         <th>Ingresos</th>
+                                        <th>Empresa</th>
                                         <th>Status</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -39,6 +68,7 @@
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
                                         <td style="text-align: center">{{$row->ingresos}}</td>
+                                        <td>{{$row->company}}</td>
                                         <td>
                                             @if($row->status == 1)
                                             <span style="color:red;">Inactivo</span>
