@@ -173,7 +173,7 @@ class SolicitudesController extends Controller
 
         $from       =  Admin::find(1)->email;
 
-        $asunto     =   'Tienes un nuevo mensaje  de cotiz';
+        $asunto     =   'Tienes un nuevo mensaje  de cotiiz';
         $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
         $cabeceras = 'From: '.  $from  . "\r\n";
 
@@ -181,12 +181,6 @@ class SolicitudesController extends Controller
 
         $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
-
-
-
-
-
-
 
 
 

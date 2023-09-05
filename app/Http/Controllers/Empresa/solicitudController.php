@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Requests;
 use App\Models\Serviciover;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class solicitudController extends Controller
@@ -174,7 +176,7 @@ class solicitudController extends Controller
     public function Addservicios(Request $request)
     {
 
-        //dd($request);
+        dd($request);
         $resp = $request->validate([
             'documento'=>'required|max:3048',
 
@@ -184,16 +186,7 @@ class solicitudController extends Controller
         $input         = $request->all();
         $requests_data = new Serviciover;
 
-        //$user_data     = User::find($request->user_id);
-        //$service_data  = Services::find($request->services_id);
-        // $provider_data = Rfc::find($service_data->provider_id);
 
-
-        // $notification           = new Notifications;
-        // $notification->of_user  = $request->user_id;
-        // $notification->for_user = $provider_data->id;
-        // $notification->message  = 'El cliente '.$user_data->name.' ha solicitado el servicio '.$service_data->title;
-        // $notification->save();
 
         if($request->file('documento'))
         {
@@ -204,6 +197,20 @@ class solicitudController extends Controller
         }
 
         $requests_data->create($input);
+
+
+        $para       =  Admin::find(1)->email;
+
+        $from       =  Auth::user()->email;
+
+        $asunto     =   'Tienes un nuevo mensaje  de cotiiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
+        $cabeceras = 'From: '.  $from  . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
 
         Session::flash('mensaje','Documento Cargado ...');
         Session::flash('class', 'success');
