@@ -173,8 +173,8 @@ class SolicitudesController extends Controller
 
         $from       =  Admin::find(1)->email;
 
-        $asunto     =   'Tienes un nuevo Buzón  de cotiz';
-        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $asunto     =   'Tienes un nuevo mensaje  de cotiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
         $cabeceras = 'From: '.  $from  . "\r\n";
 
         $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
