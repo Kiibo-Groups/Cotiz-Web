@@ -578,9 +578,9 @@ class HomeController extends Controller
 
                 if (auth()->user()->status == 1) {
                     //return redirect('activar');
-                    return redirect('user/empresa/perfil');
+                    return redirect('user/empresa/solicitud');
                 } else {
-                    return redirect('user/empresa/perfil');
+                    return redirect('user/empresa/solicitud');
                 }
 
                 break;
