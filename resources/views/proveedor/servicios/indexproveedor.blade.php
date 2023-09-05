@@ -108,20 +108,22 @@
                                                         </h5>
                                                     @endif
                                                 </td>
-                                                <td class="col-md-2" style="text-align: center">
-                                                    <a class="btn btn-info btn-sm" title="Documentos Relacionados"
-                                                        href="{{ url(env('user') . '/servicios/ver/' . $req->id) }}">
-                                                        <i class="bi bi-book"></i>
-                                                    </a>
-                                                    @if (!is_null($req->document))
-                                                        <a target="_blank" class="btn btn-warning btn-sm"
-                                                            title="Descargar Documento"
-                                                            href="/public/assets/documents/users/{{ $req->document }}">
-                                                            <i class="bi bi-download"></i>
+                                                @if (auth()->user()->status == 0)
+                                                    <td class="col-md-2" style="text-align: center">
+                                                        <a class="btn btn-info btn-sm" title="Documentos Relacionados"
+                                                            href="{{ url(env('user') . '/servicios/ver/' . $req->id) }}">
+                                                            <i class="bi bi-book"></i>
                                                         </a>
-                                                    @endif
+                                                        @if (!is_null($req->document))
+                                                            <a target="_blank" class="btn btn-warning btn-sm"
+                                                                title="Descargar Documento"
+                                                                href="/public/assets/documents/users/{{ $req->document }}">
+                                                                <i class="bi bi-download"></i>
+                                                            </a>
+                                                        @endif
 
-                                                </td>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -131,7 +133,14 @@
                         </div>
                     </div>
                 </div>
-
+                @if (auth()->user()->status == 1)
+                    <div class="d-flex align-items-center flex-column py-6">
+                        <div>
+                            <p style="color: red; font-size: 38px"> Activa tu cuenta para tener acceso a todos los
+                                apartados....</p>
+                        </div>
+                    </div>
+                @endif
 
 
                 @if (count($requests) < 1)
