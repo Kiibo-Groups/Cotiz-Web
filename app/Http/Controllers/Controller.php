@@ -186,7 +186,7 @@ class Controller extends BaseController
         }
 
         $EmailTo = Admin::find(1)->shw_email;
-        $Subject = "Nuevo mensaje de la página de Cotiiz";
+        $Subject = "Nuevo mensaje  de Cotiiz";
 
         // prepare email body text
         $Body = "";
