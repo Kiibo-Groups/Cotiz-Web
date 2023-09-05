@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Proveedor;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Requests;
 use App\Models\Serviciover;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
@@ -118,6 +120,26 @@ class solicitudController extends Controller
         }
 
         $requests_data->create($input);
+
+        $para       =  Admin::find(1)->email;
+
+        $from       =  Auth::user()->email;
+
+        $asunto     =   'Tienes un nuevo mensaje  de cotiiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
+        $cabeceras = 'From: '.  $from  . "\r\n";
+
+        $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($para, $asunto, utf8_encode($mensaje), $cabeceras);
+
+        Session::flash('mensaje','Documento Cargado ...');
+        Session::flash('class', 'success');
+        return redirect(env('user').'/empresa/servicios/ver/'.$id);
+
+
+
 
         Session::flash('mensaje','Documento Cargado ...');
         Session::flash('class', 'success');

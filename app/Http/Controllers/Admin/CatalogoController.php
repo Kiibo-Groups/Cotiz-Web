@@ -140,8 +140,8 @@ class CatalogoController extends Controller
 
         $para       =  User::where('idempresa', $request->proveedor )->value('email');
 
-        $asunto     =   'Tienes un nueva Cotización  de cotiz';
-        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiz<br />";
+        $asunto     =   'Tienes un nueva Cotización  de cotiiz';
+        $mensaje    =   "Tienes un mensaje de empresa accede al sistema Cotiiz<br />";
         $cabeceras = 'From: '. Admin::find(1)->email. "\r\n";
 
         $cabeceras .= 'MIME-Version: 1.0' . "\r\n";
