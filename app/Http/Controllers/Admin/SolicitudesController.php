@@ -167,9 +167,9 @@ class SolicitudesController extends Controller
         $requests_data->create($input);
 
         $servicio_id = $request->servicio_id;
-        $res        = Requests::where('id', $servicio_id)->orderBy("id", "asc")->value('proveedor');
+        $res        = Requests::where('id', $servicio_id)->value('usuario');
 
-        $para       =  User::where('idempresa', $res )->value('email');
+        $para       =  User::where('id', $res )->value('email');
 
         $from       =  Admin::find(1)->email;
 
