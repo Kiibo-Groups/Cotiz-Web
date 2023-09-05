@@ -97,10 +97,6 @@ class AdminUsuarioDashController extends Controller
     public function show(Request $request, $id)
     {
 
-        // return view($this->folder.'users.indexProveedores', [
-        //     'data' => User::whereIn('role', [4, 5])->get()
-        // ]);
-
 
         $search = $request->search;
         $empresa = $request->filter_empresa;
