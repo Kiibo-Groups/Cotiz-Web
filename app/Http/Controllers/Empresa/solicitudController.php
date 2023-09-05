@@ -176,7 +176,7 @@ class solicitudController extends Controller
     public function Addservicios(Request $request)
     {
 
-        dd($request);
+
         $resp = $request->validate([
             'documento'=>'required|max:3048',
 
