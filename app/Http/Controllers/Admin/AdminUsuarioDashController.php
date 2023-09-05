@@ -104,13 +104,18 @@ class AdminUsuarioDashController extends Controller
 
         $search = $request->search;
         $empresa = $request->filter_empresa;
+        $init = $request->init;
+        $end = $request->end;
 
-        $requests = User::whereIn('role', [4,5]);
+        $requests = User::where('role','4')->orWhere('role','5');
+        //$requests = User::whereIn('role', [4, 5]);
+        if($init) {
+            $requests = $requests->where('role',$init)->orWhere('role',$end);
 
-
+        }
         if($search) {
             $requests = $requests->whereRaw('LOWER(name) LIKE(?)','%'.$search.'%')
-                                ->orwhereRaw('LOWER(last_name) LIKE(?)','%'.$search.'%');
+                                ->orWhereRaw('LOWER(last_name) LIKE(?)','%'.$search.'%');
 
         }
 

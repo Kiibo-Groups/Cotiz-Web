@@ -19,6 +19,8 @@
                         @if ($search != null) value="{{ $search }}" @endif
                         placeholder="Buscar por nombre de usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
+                        <input type="hidden" name="init" value="4" >
+                        <input type="hidden" name="end" value="5" >
 
                     <select name="filter_empresa" id="filter_empresa" class="form-select js-example-basic-single" >
                         <option value="" selected>Buscar por empresa</option>
