@@ -36,7 +36,7 @@
                                         <label class="form-label">Permisos </label>
                                         <select name="perm[]" class="form-control js-select2" multiple="true" required>
                                         @foreach(DB::table('permempresas')->get() as $p)
-                                            <option value="{{ $p->name }}" @if(in_array($p->name,$array)) selected @endif>{{ $p->name }}</option>
+                                            <option value="{{ $p->name }}" @if(in_array($p->username,$array)) selected @endif>{{ $p->username }}</option>
                                         @endforeach
                                         </select>
                                         <span class="d-block mt-1" style="font-size:12px;color:red;">

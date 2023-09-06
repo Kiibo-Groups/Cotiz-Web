@@ -26,9 +26,14 @@ class solicitudController extends Controller
         //$from = Carbon::parse($request->input('filter_from'));
        // $even = Carbon::parse($request->input('filter_even'))->addDay();
 
+        if (auth()->user()->perm == 'All') {
+            $requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc")->with(['service','user']);
+        } else {
+            $requests = Requests::where('solicitud', 1)->where('usuario', auth()->user()->id)->orderBy("status", "asc")->with(['service','user']);
+        }
 
 
-        $requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc")->with(['service','user']);
+
 
         //$requests = Requests::where('solicitud', 1)->where('proveedor', auth()->user()->idempresa)->orderBy("status", "asc");
 

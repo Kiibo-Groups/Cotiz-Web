@@ -41,15 +41,17 @@
                                         </td>
                                         <td>{{$row->email}}</td>
                                         <td>
-                                            @if($row->role === 3)
-                                            Todos
+                                            @if($row->role === 3 || $row->perm === 'All')
+                                             <span class="badge text-white bg-success">
+                                                Todos
+                                              </span>
                                             @else
                                             <?php
                                                 $perms = explode(',',$row->perm);
                                                 foreach ($perms as $key) {
                                                 ?>
                                                     <small>
-                                                        <span class="badge text-white bg-success">
+                                                        <span class="badge text-white bg-info">
                                                             {{ $key }}
                                                         </span>&nbsp;
                                                     </small>
