@@ -136,8 +136,7 @@
                 @if (auth()->user()->status == 1)
                     <div class="d-flex align-items-center flex-column py-6">
                         <div>
-                            <p style="color: red; font-size: 38px"> Activa tu cuenta para tener acceso a todos los
-                                apartados....</p>
+                            <p style="color: red; font-size: 38px"> Tus Datos están siendo revisados por cotis estás pendiente de aprobación...</p>
                         </div>
                     </div>
                 @endif
