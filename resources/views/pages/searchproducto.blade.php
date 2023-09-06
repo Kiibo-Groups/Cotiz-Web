@@ -46,7 +46,7 @@
             <label for="presupuesto" class="font-semibold">Presupuesto aproximado para invertir</label>
             <div class="form-icon relative mt-2">
 
-                <input name="presupuesto" id="presupuesto" type="text" class="form-input ltr:pl-11 rtl:pr-11">
+                <input name="presupuesto" id="presupuesto" type="number" class="form-input ltr:pl-11 rtl:pr-11">
             </div>
         </div>
     </div>
